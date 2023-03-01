@@ -1,0 +1,119 @@
+#include sr\sys\_events;
+#include sr\utils\_common;
+#include deathrun\game\_leaderboards;
+
+main()
+{
+	addMode("190", deathrun\player\run\_190::start);
+	addMode("210", deathrun\player\run\_210::start);
+	addMode("Portal", deathrun\player\run\_portal::start);
+	addMode("Defrag", deathrun\player\run\_defrag::start);
+
+    event("map", ::endmapTrigger);
+}
+
+start()
+{
+	self.finishedMap = false;
+
+	self.sr_mode = self deathrun\player\run\_main::getLastMode();
+	if (self sr\game\minigames\_main::isInAnyQueue())
+		self.sr_mode = "210";
+	self.sr_way = "normal_0";
+
+    self [[level.leaderboard_modes[self.sr_mode].callback]]();
+	self thread playerTimer();
+}
+
+getLastMode()
+{
+	switch (self getStat(1700))
+	{
+		case 1: return "190";
+		case 2: return "210";
+		case 3: return "Portal";
+		case 4: return "Defrag";
+	}
+	return "190";
+}
+
+getLastModeStat()
+{
+	switch (self.sr_mode)
+	{
+		case "190": return 1;
+		case "210": return 2;
+		case "Portal": return 3;
+		case "Defrag": return 4;
+	}
+	return 1;
+}
+
+endmapTrigger()
+{
+	waitMapLoad(3);
+
+	array = getEntArray("endmap_trig", "targetname");
+	if (!array.size)
+	{
+		iPrintLnBold("^1Error: No endmap_trig found.");
+		return;
+	}
+
+	trigger = array[0];
+	thread sr\game\fx\_trigger::effect(trigger, "red");
+	while (true)
+	{
+		trigger waittill("trigger", player);
+		player thread endTimer();
+	}
+}
+
+playerTimer()
+{
+	self endon("spawned");
+	self endon("disconnect");
+	self endon("death");
+
+	if (self.finishedMap)
+		return;
+	self.time = undefined;
+
+	// Spastic delay caused by bad modding, too bad...
+	if (game["state"] == "playing")
+		wait 0.05;
+	if (game["state"] == "readyup")
+		level waittill("round_started");
+
+	wait 0.05;
+
+	self deathrun\player\huds\_speedrun::updateTime();
+	self.time = originToTime(getTime());
+}
+
+endTimer()
+{
+	if (!self isPlaying() || self isDemo() || !isDefined(self.time) || self.finishedMap)
+		return;
+	self.finishedMap = true;
+
+	if (self isCheat())
+	{
+		self iPrintLnBold("^1Your time was not saved!");
+		return;
+	}
+
+	self.time = originToTime(getTime() - self.time.origin);
+	self deathrun\player\huds\_speedrun::updateTime();
+
+	way = getLeaderboardName(self.sr_mode, self.sr_way);
+	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",
+		self.name, self.time.min, self.time.sec, self.time.ms,
+		self.sr_mode, way));
+
+	entry = self makeEntry();
+    self thread deathrun\game\_leaderboards::saveEntry(entry);
+    self thread deathrun\game\_pbs::saveEntry(entry);
+
+	self deathrun\player\huds\_speedrun::updateRecords();
+}

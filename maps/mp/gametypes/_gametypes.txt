@@ -1,0 +1,9 @@
+deathrun
+battleroyale
+cj
+dm
+dom
+sd
+sab
+war
+koth
