@@ -6,6 +6,7 @@ main()
 {
 	event("spawn", ::hud);
 	event("death", ::clear);
+	event("killed", ::killed);
 }
 
 hud()
@@ -17,20 +18,22 @@ hud()
 	self clear();
 
 	self.huds["speedrun"] = [];
- 	self.huds["speedrun"]["background"] = addHud(self, 0, 0, 1, "left", "top", 1.8, 90, true);
+ 	self.huds["speedrun"]["background"] = addHud(self, 0, -40, 1, "left", "top", 1.8, 90, true);
 	self.huds["speedrun"]["background"] setShader("time_hud", 142, 80);
 	self.huds["speedrun"]["background"].color = (0, 0, 0);
 	self.huds["speedrun"]["background"].glowAlpha = 1;
 
 	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4, 99, true);
- 	self.huds["speedrun"]["name"] setText("Normal Way");
+ 	self.huds["speedrun"]["name"] setText(fmt("^2%d/%d", game["roundsplayed"], level.dvar["round_limit"]));
+	self.huds["speedrun"]["players"] = addHud(self, 120, 0, 1, "left", "top", 1.4, 99, true);
+	self.huds["speedrun"]["players"] setValue(getPlayingPlayers().size);
+	self.huds["speedrun"]["players"].label = &"Players  ^8";
+	self.huds["speedrun"]["players"].alignX = "right";
+
  	self.huds["speedrun"]["mode"] = addHud(self, 4, 18, 1, "left", "top", 1.8, 99, true);
 	self.huds["speedrun"]["mode"] setText(self.sr_mode);
-
 	self.huds["speedrun"]["row1"] = addHud(self, 72, 18, 1, "left", "top", 1.8, 99, true);
 	self.huds["speedrun"]["row1"] setText("^50:00.0");
- 	self.huds["speedrun"]["row2"] = addHud(self, 5, 42, 1, "left", "top", 1.4, 99, true);
- 	self.huds["speedrun"]["row3"] = addHud(self, 5, 61, 1, "left", "top", 1.4, 99, true);
 
  	self.huds["speedrun"]["role"] = addHud(self, 142, 18, 1, "left", "top", 1.8, 99, true);
 	self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8, 99, true);
@@ -49,6 +52,21 @@ hud()
 	self updateAdmin();
 
 	self notify("speedrun");
+}
+
+killed(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
+{
+	players = getPlayingPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] updatePlayers(players.size);
+}
+
+updatePlayers(count)
+{
+	if (!isHud("players"))
+		return;
+
+	self.huds["speedrun"]["players"] setValue(count);
 }
 
 updateRank()
@@ -91,40 +109,22 @@ updateAdmin()
 
 updateRecords()
 {
-	if (!isHud("row2"))
+	if (!isHud("wr_icon"))
 		return;
 
-	wr = deathrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
-	pb = self deathrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
-
-	self.huds["speedrun"]["row2"] setText("^3" + pb);
-	self.huds["speedrun"]["row2"].label = &"(PB)                  ";
-	self.huds["speedrun"]["row3"] setText("^2" + wr);
- 	self.huds["speedrun"]["row3"].label = &"(WR)                 ";
-
-	if (!self hasLoaded("pbs"))
-	{
-		self.huds["speedrun"]["row2"] setShader("sr_loader", 18, 18);
-		self.huds["speedrun"]["row2"].label = &"(PB)                        ";
-	}
-	if (!level hasLoaded("leaderboards"))
- 	{
-		self.huds["speedrun"]["row3"] setShader("sr_loader", 18, 18);
- 		self.huds["speedrun"]["row3"].label = &"(WR)                       ";
-	}
 	if (!self hasLoaded("wr"))
 	{
 		self.huds["speedrun"]["wr_icon"] setShader("sr_loader", 18, 18);
 		self.huds["speedrun"]["wr_icon"].alpha = 1;
 	}
-	if (isDefined(self.pers["wrBaseCount"]))
+	if (isDefined(self.pers["wrCount"]))
 	{
-		self.huds["speedrun"]["wr_icon"].alpha = self.pers["wrBaseCount"] >= 10;
+		self.huds["speedrun"]["wr_icon"].alpha = self.pers["wrCount"] >= 10;
 
-		if (self.pers["wrBaseCount"] >= 10)
+		if (self.pers["wrCount"] >= 10)
 		{
 			self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
-			self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d ^7[%d]", self.pers["wrBaseCount"], self.pers["wrCount"]));
+			self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d", self.pers["wrCount"]));
 		}
 	}
 }
@@ -147,13 +147,10 @@ updateTime()
 
 updateWay()
 {
-	if (!isHud("name") || self isDemo())
+	if (self isDemo())
 		return;
 
 	self updateRecords();
-
-	name = deathrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
-	self.huds["speedrun"]["name"] setText(name);
 }
 
 isHud(name)

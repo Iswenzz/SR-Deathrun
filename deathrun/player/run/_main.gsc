@@ -31,10 +31,8 @@ getLastMode()
 	{
 		case 1: return "190";
 		case 2: return "210";
-		case 3: return "Portal";
-		case 4: return "Defrag";
 	}
-	return "190";
+	return "210";
 }
 
 getLastModeStat()
@@ -43,10 +41,8 @@ getLastModeStat()
 	{
 		case "190": return 1;
 		case "210": return 2;
-		case "Portal": return 3;
-		case "Defrag": return 4;
 	}
-	return 1;
+	return 2;
 }
 
 endmapTrigger()
@@ -111,9 +107,10 @@ endTimer()
 		self.name, self.time.min, self.time.sec, self.time.ms,
 		self.sr_mode, way));
 
+	if (self.sr_mode != "210")
+		return;
+
 	entry = self makeEntry();
     self thread deathrun\game\_leaderboards::saveEntry(entry);
     self thread deathrun\game\_pbs::saveEntry(entry);
-
-	self deathrun\player\huds\_speedrun::updateRecords();
 }

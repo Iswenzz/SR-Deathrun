@@ -129,11 +129,6 @@
 		SR_FRAME_HEADER("", 0, BOTTOM_Y, SR_WINDOW_W, FOOTER_H, 0)
 		SR_FRAME_BORDER(0, BOTTOM_Y, SR_WINDOW_W, 2)
 
-		BUTTON(1, "190", scriptMenuResponse "mode:190";)
-		BUTTON(2, "210", scriptMenuResponse "mode:210";)
-		BUTTON(3, "Defrag", scriptMenuResponse "mode:Defrag";)
-		BUTTON(4, "Portal", scriptMenuResponse "mode:Portal";)
-
 		BUTTON(10, "Demo", scriptMenuResponse "demo";)
 	}
 }

@@ -13,7 +13,7 @@
 {
 	menuDef
 	{
-		IMPROVED_POPUP_SETUP_ONOPEN(quickmessage, 6, 0, 272, ;, setDvar cl_bypassMouseInput "1";, 0)
+		IMPROVED_POPUP_SETUP_ONOPEN(quickmessage, 5, 0, 296, ;, setDvar cl_bypassMouseInput "1";, 0)
 		onClose{ setDvar cl_bypassMouseInput "0" }
 
 		POPMENU_TITLE("@QUICKMESSAGE_QUICK_MESSAGE")
@@ -93,25 +93,9 @@
 			textstyle		ITEM_TEXTSTYLE_NORMAL
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
-			text			"5. Vote"
+			text			"5. Leaderboards"
 			decoration
 		}
-		execKey "5" { close quickmessage; open "sr_votemap"; }
-
-		itemDef
-		{
-			name			"window"
-			visible			1
-			rect			16 100 0 0
-			origin			ORIGIN_QUICKMESSAGEWINDOW
-			forecolor		1 1 1 1
-			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_NORMAL
-			textscale		TEXTSIZE_SMALL
-			textaligny		8
-			text			"6. Leaderboards"
-			decoration
-		}
-		execKey "6" { close quickmessage; open "sr_leaderboard"; }
+		execKey "5" { close quickmessage; open "sr_leaderboard"; }
 	}
 }

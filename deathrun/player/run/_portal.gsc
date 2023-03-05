@@ -1,5 +1,8 @@
+#include sr\utils\_common;
+
 start()
 {
+	self cheat();
 	self deathrun\player\run\_210::start();
 
 	self allowAds(true);

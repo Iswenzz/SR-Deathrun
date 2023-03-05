@@ -9,7 +9,7 @@ main()
 	level.settings = [];
 	level.settingsMax = 31;
 
-	settings(0,  "hud_crosshair", "Crosshair", 1600, 2, ::update_hudCrosshair, ::toggle_hudCrosshair);
+	settings(0,  "hud_crosshair", "Crosshair", 1600, 1, ::update_hudCrosshair, ::toggle_hudCrosshair);
 	settings(1,  "hud_fps", "Draw FPS", 1601, true, ::update_hudFPS, ::toggle_hudFPS);
 	settings(14, "hud_fps_combo", "FPS Combo", 1621, false, ::update_hudFPSCombo, ::toggle_hudFPSCombo);
 	settings(3,  "hud_xp", "XP Bar", 1605, false, ::update_hudXP, ::toggle_hudXP);
@@ -29,7 +29,7 @@ main()
 	settings(2,  "gfx_fullbright", "Fullbright", 1602, false, ::update_gfxFullbright, ::toggle_gfxFullbright);
 	settings(5,  "gfx_distance", "Draw Distance", 1603, 0, ::update_gfxDistance, ::toggle_gfxDistance);
 	settings(11, "gfx_fx", "FX", 1611, true, ::update_gfxFX, ::toggle_gfxFX);
-	settings(17, "gfx_ragdoll", "Ragdoll", 1618, false, ::update_gfxRagdoll, ::toggle_gfxRagdoll);
+	settings(17, "gfx_ragdoll", "Ragdoll", 1618, true, ::update_gfxRagdoll, ::toggle_gfxRagdoll);
 	settings(18, "gfx_music_animation", "Music Animations", 1619, true, ::update_gfxMusicAnimation, ::toggle_gfxMusicAnimation);
 
 	menu_multiple("sr_settings", "setting", ::menu_Setting);

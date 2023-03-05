@@ -1,5 +1,9 @@
+#include sr\utils\_common;
+
 start()
 {
+	self cheat();
+
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(0.9);
 	self.gravity = sr\api\_map::getGravity(800);
 	self.jumpHeight = sr\api\_map::getJumpHeight(39);

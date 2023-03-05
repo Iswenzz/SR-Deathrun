@@ -155,7 +155,6 @@
 		#define BUTTON_SIZE_X		124
 
 		SR_BUTTON_LEFT(1, "Customize", open sr_customize; close main_mp;, 1)
-		SR_BUTTON_LEFT(2, "Vote", open sr_votemap; close main_mp;, 1)
 
 		SR_FRAME(11, 35, 360, 225)
 		SR_FRAME_HEADER("Stats", 14, 37, 357, 25, 6)
@@ -175,11 +174,13 @@
 		#undef SR_VALUE_SIZE_X
 		#define SR_VALUE_SIZE_X		75
 
-		SR_TEXT_KV(1, "Personal Best", dvarString("sr_leaderboard_pb"))
-		SR_TEXT_KV(2, "World Record", dvarString("sr_leaderboard_wr"))
-		SR_TEXT_KV(3, "WR Count", dvarString("sr_leaderboard_wr_count"))
-		SR_TEXT_KV(4, "Leaderboard Entries", ("" + stat(2002)))
-		SR_TEXT_KV(5, "Time Played", dvarString("sr_info_timePlayed"))
+		SR_TEXT_KV(1, "Kills", ("" + stat(2303)))
+		SR_TEXT_KV(2, "Deaths", ("" + stat(2305)))
+		SR_TEXT_KV(3, "Personal Best", dvarString("sr_leaderboard_pb"))
+		SR_TEXT_KV(4, "World Record", dvarString("sr_leaderboard_wr"))
+		SR_TEXT_KV(5, "WR Count", dvarString("sr_leaderboard_wr_count"))
+		SR_TEXT_KV(6, "Leaderboard Entries", ("" + stat(2002)))
+		SR_TEXT_KV(7, "Time Played", dvarString("sr_info_timePlayed"))
 
 		HEADER(2, "Play", scriptMenuResponse "autoassign"; close main_mp;)
 		HEADER(3, "Spectator", scriptMenuResponse "spectator"; close main_mp;)
