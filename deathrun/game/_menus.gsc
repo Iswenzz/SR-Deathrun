@@ -19,6 +19,8 @@ main()
 	menu_callback("quickresponses",  	maps\mp\gametypes\_quickmessages::quickresponses);
 
 	game["menu_main"] = "main_mp";
+
+	level.menus["sr_votemap"] = [];
 }
 
 precache()
