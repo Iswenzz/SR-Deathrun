@@ -8,7 +8,7 @@ main()
 	level.allowSpawn = true;
 	level.huds["match"] = [];
 
-	game["roundsplayed"] = IfUndef(game["roundsplayed"], 0) + 1;
+	game["roundsplayed"] = IfUndef(game["roundsplayed"], -1) + 1;
 	game["roundStarted"] = false;
 	game["state"] = "readyup";
 
@@ -41,7 +41,7 @@ start()
 	game["roundStarted"] = true;
 
 	matchStartPlayers();
-	timer(level.dvar["time"]);
+	timer();
 	thread deathrun\game\_map::end();
 }
 
@@ -124,14 +124,13 @@ roundStartTimer()
 	level.huds["match"]["timer"] destroyElem();
 }
 
-timer(time)
+timer()
 {
 	level thread timerDelete();
 
-	level.time = time;
-	level.huds["time"] setTimer(time);
-
-	clock = spawn("script_origin", (0, 0, 0));
+	level.time = level.dvar["time"];
+	level.huds["time"].label = &"^7&&1";
+	level.huds["time"] setTimer(level.time - 1);
 
 	while (level.time > 0)
 	{
@@ -141,19 +140,12 @@ timer(time)
 		if (level.time == 180)
 			level sr\sys\_notifications::show("^1Map will end in 3 minutes!");
 		else if (level.time <= 60 && level.time > 10 && level.time % 2 == 0)
-		{
-			clock playSound("ui_mp_timer_countdown");
 			level.huds["time"].color = (1, 0.55, 0);
-		}
 		else if (level.time <= 10)
-		{
-			clock playSound("ui_mp_timer_countdown");
 			level.huds["time"].color = (1, 0, 0);
-		}
 		else if (level.time >= 60)
 			level.huds["time"].color = (1, 1, 1);
 	}
-	clock delete();
 	if (isDefined(level.huds["time"]))
 		level.huds["time"] destroy();
 }
@@ -181,7 +173,7 @@ huds()
 	level.huds["time"].color = (1, 1, 1);
 	level.huds["time"].font = "objective";
 	level.huds["time"].hidewheninmenu = true;
-	level.huds["time"].label = &"^7&&1";
 	level.huds["time"].alpha = 1;
 	level.huds["time"].archived = false;
+	level.huds["time"] setText(fmt("%d:00", int(level.dvar["time"] / 60)));
 }
