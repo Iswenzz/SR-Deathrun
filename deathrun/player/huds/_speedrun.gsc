@@ -24,7 +24,11 @@ hud()
 	self.huds["speedrun"]["background"].glowAlpha = 1;
 
 	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4, 99, true);
- 	self.huds["speedrun"]["name"] setText(fmt("^2%d/%d", game["roundsplayed"], level.dvar["round_limit"]));
+	if (level.freeRun)
+		self.huds["speedrun"]["name"] setText("^2FREE");
+	else
+ 		self.huds["speedrun"]["name"] setText(fmt("^2%d/%d", game["roundsplayed"], level.dvar["round_limit"]));
+
 	self.huds["speedrun"]["players"] = addHud(self, 120, 0, 1, "left", "top", 1.4, 99, true);
 	self.huds["speedrun"]["players"] setValue(getPlayingPlayers().size);
 	self.huds["speedrun"]["players"].label = &"Players  ^8";

@@ -8,7 +8,7 @@ main()
 {
 	braxi\_dvar::initDvars();
 
-	level.freeRun = true;
+	level.freeRun = false;
 	level.trapsDisabled = true;
 	level.trapTriggers = [];
 

@@ -7,10 +7,15 @@ main()
 {
 	level.allowSpawn = true;
 	level.huds["match"] = [];
+	level.time = level.dvar["time"];
 
-	game["roundsplayed"] = IfUndef(game["roundsplayed"], -1) + 1;
+	game["roundsplayed"] = IfUndef(game["roundsplayed"], 0) + 1;
 	game["roundStarted"] = false;
 	game["state"] = "readyup";
+
+	level.freeRun = level.dvar["freerun"] && game["roundsplayed"] == 1;
+	if (level.freeRun)
+		level.time = level.dvar["freerun_time"];
 
 	event("map", ::huds);
 	event("map", ::start);
@@ -128,7 +133,6 @@ timer()
 {
 	level thread timerDelete();
 
-	level.time = level.dvar["time"];
 	level.huds["time"].label = &"^7&&1";
 	level.huds["time"] setTimer(level.time - 1);
 
@@ -175,5 +179,5 @@ huds()
 	level.huds["time"].hidewheninmenu = true;
 	level.huds["time"].alpha = 1;
 	level.huds["time"].archived = false;
-	level.huds["time"] setText(fmt("%d:00", int(level.dvar["time"] / 60)));
+	level.huds["time"] setText(fmt("%d:00", int(level.time / 60)));
 }
