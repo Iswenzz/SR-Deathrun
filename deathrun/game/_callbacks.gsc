@@ -129,10 +129,9 @@ playerSpawn()
 		self setSpawnWeapon(self.pers["weapon"]);
 		self giveMaxAmmo(self.pers["weapon"]);
 	}
-
 	if (game["state"] == "readyup")
 	{
-		self freezeControls(true);
+		self linkTo(level.tempEntity);
 		self disableWeapons();
 	}
 	if (self getStat(988))
