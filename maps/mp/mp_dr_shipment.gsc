@@ -1,12 +1,12 @@
 main()
 {
 	maps\mp\_load::main();
-	
-	
-	
-	  
-	
-	
+
+
+
+
+
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -27,17 +27,17 @@ main()
 	precacheShader("material,mtl_deadpool_misc");
 	precacheShader("material,mtl_deadpool_swords");
 	precacheModel("deadpool");
-	
-	
-/////dvars\\\\\\\\	
+
+
+/////dvars\\\\\\\\
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setdvar("compassmaxrange","1500");
-	
-	thread creds();
+
+	// thread creds();
 	thread music();
 	thread teleport1();
 	thread teleport2();
@@ -59,7 +59,7 @@ main()
 	thread hsecretp1();
 	thread hsecretp2();
 	thread synd();
-	
+
 	 addTriggerToList( "explosiontrig" );
 	 addTriggerToList( "dissapear_strafestrig" );
 	 addTriggerToList( "trap3trig" );
@@ -71,7 +71,7 @@ main()
 	 addTriggerToList( "trig8" );
 	 addTriggerToList( "trig9" );
 	 addTriggerToList( "hellsecret" );
-	 
+
 }
 
 addTriggerToList( name )
@@ -83,26 +83,26 @@ addTriggerToList( name )
 
 creds()
 {
-     level.xxx = newHudElem(); 
-         level.xxx.x = 0;      
-         level.xxx.y = -200;   
-         level.xxx.horzAlign = "left"; 
+     level.xxx = newHudElem();
+         level.xxx.x = 0;
+         level.xxx.y = -200;
+         level.xxx.horzAlign = "left";
          level.xxx.vertAlign = "middle";
          level.xxx.alignX = "left";
          level.xxx.alignY = "middle";
-         level.xxx.sort = 102; 
-         level.xxx.foreground = 1;     
-         level.xxx.archived = true;    
-         level.xxx.alpha = 1;  
+         level.xxx.sort = 102;
+         level.xxx.foreground = 1;
+         level.xxx.archived = true;
+         level.xxx.alpha = 1;
          level.xxx.fontScale = 1.4;
-         level.xxx.hidewheninmenu = false;     
+         level.xxx.hidewheninmenu = false;
          level.xxx.color = (255,128,0);
          level.xxx.glowColor = (0.3, 0.6, 0.3);
          level.xxx.glowAlpha = 1;
 while(1)
          {
          level.xxx.color = (255,124,0);
-         level.xxx.label = &"Map By Synd";    
+         level.xxx.label = &"Map By Synd";
          wait 3;
          level.xxx.color = (0,50,258);
          level.xxx.label = &"Thanks to iMtroll";
@@ -117,7 +117,7 @@ while(1)
 }
 
 
-	 
+
 music()
 {
 	songs = [];
@@ -134,34 +134,34 @@ teleport1()
 	teleport1 = GetEnt("teleport1","targetname");
 	origin1 = GetEnt("teleport1origin","targetname");
 	teleport1 waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin1.angles );
 	        player setOrigin( origin1.origin );
-}	
+}
 
 teleport2()
 {
 	teleport2 = GetEnt("teleport2","targetname");
 	origin2 = GetEnt("teleport2origin","targetname");
 	teleport2 waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin2.angles );
 	        player setOrigin( origin2.origin );
-}			
+}
 
-	
+
 strafes()
 {
 	strafes = GetEnt("strafes","targetname");
 	trig = GetEnt("dissapear_strafestrig","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
-	
+
+
 	strafes hide();
 	strafes notsolid();
 
-}	
+}
 
 trap2()
 {
@@ -188,20 +188,20 @@ explosionkill = GetEnt("explosionkill","targetname");
 wait 1;
 explosionkill delete();
 }
-	
+
 trap3()
 {
 	planks = GetEnt("planks","targetname");
 	trig = GetEnt("trap3trig","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
-	
+
+
 	planks MoveZ(-500, 1);
 	wait 1;
 	planks hide();
 
-}	
+}
 
 trap4()
 {
@@ -209,15 +209,15 @@ trap4()
 	trig = GetEnt("trig4","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
+
 while(1)
 {
-	
+
 	floor rotateroll(-360, 4);
-	
-	
+
+
 wait 0.5;
-}	
+}
 }
 
 trap5()
@@ -227,12 +227,12 @@ trap5()
 	trig waittill("trigger", player);
 	trig delete();
 
-	
+
 	floor moveZ(-88, 1);
 	wait 5;
 	floor moveZ(88, 1);
 
-}	
+}
 
 trap6()
 {
@@ -242,17 +242,17 @@ trap6()
 	trig = GetEnt("trig6","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
+
 	kill EnableLinkTo();
 	kill LinkTo( crate );
-	
-	
+
+
 	crate moveZ(-160, 1);
 	chain moveZ(-160, 1);
 	wait 5;
 	crate moveZ(160, 4);
 	chain moveZ(160, 1);
-}	
+}
 
 trap7()
 {
@@ -260,17 +260,17 @@ trap7()
 	trig = GetEnt("trig7_1","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
-	
-	
+
+
+
 while(1)
 {
-	
+
 	spinner rotateyaw(-360, 4);
-	
-	
+
+
 wait 0.5;
-}	
+}
 }
 
 trap8()
@@ -279,16 +279,16 @@ trap8()
 	trig = GetEnt("trig7_2","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
-	
+
+
 while(1)
 {
-	
+
 	spinner rotateyaw(360, 4);
-	
-	
+
+
 wait 0.5;
-}	
+}
 }
 
 vip()
@@ -311,8 +311,8 @@ vip()
 			players[i] endon("disconnect");
 			players[i] detachAll();
 			players[i] setModel("deadpool");
-			players[i] iprintLnBold("^5You are Deadpool, and have a random color python!");	
-			
+			players[i] iprintLnBold("^5You are Deadpool, and have a random color python!");
+
 		}
 	}
 }
@@ -322,7 +322,7 @@ secret()
 	secret = GetEnt("secret","targetname");
 	secret waittill("trigger", player);
 	secret delete();
-	
+
 			player GiveWeapon( "python_mp" );
 			player GiveMaxAmmo( "python_mp" );
 			wait .05;
@@ -331,8 +331,8 @@ secret()
 			player endon("disconnect");
 			player detachAll();
 			player setModel("deadpool");
-			player iprintLnBold("You Found the Broken Python!");	
-			player iprintLnBold("You are now Deadpool!");	
+			player iprintLnBold("You Found the Broken Python!");
+			player iprintLnBold("You are now Deadpool!");
 }
 
 endroom()
@@ -344,12 +344,12 @@ endroom()
 	while(1)
 	{
 		level.endroom waittill("trigger", player);
-		
+
 		///////RESPECT SCRIPT/////////////////////////
         if(!player sr\api\_deathrun::order())
             continue;
 	///////RESPECT SCRIPT END/////////////////////////
-		
+
 		if( !level.PlayerInRoom )
 		{
 			if( isDefined(level.old_trig) )
@@ -370,7 +370,7 @@ endroom()
 	        level.activ GiveWeapon( "python_mp" );
 	        level.activ GiveMaxAmmo( "python_mp" );
 	        wait .05;
-	        player switchToWeapon( "python_mp" ); 
+	        player switchToWeapon( "python_mp" );
 	        level.activ SwitchToWeapon( "python_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -400,12 +400,12 @@ endroom2()
 	while(1)
 	{
 		level.endroom2 waittill("trigger", player);
-		
+
 		///////RESPECT SCRIPT/////////////////////////
         if(!player sr\api\_deathrun::order())
             continue;
 	///////RESPECT SCRIPT END/////////////////////////
-	
+
 		if( !level.PlayerInRoom )
 		{
 			if( isDefined(level.old_trig) )
@@ -426,7 +426,7 @@ endroom2()
 	        level.activ GiveWeapon( "remington700_mp" );
 	        level.activ GiveMaxAmmo( "remington700_mp" );
 	        wait .05;
-	        player switchToWeapon( "remington700_mp" ); 
+	        player switchToWeapon( "remington700_mp" );
 	        level.activ SwitchToWeapon( "remington700_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -456,12 +456,12 @@ endroom3()
 	while(1)
 	{
 		level.endroom3 waittill("trigger", player);
-		
+
 		///////RESPECT SCRIPT/////////////////////////
         if(!player sr\api\_deathrun::order())
             continue;
 	///////RESPECT SCRIPT END/////////////////////////
-	
+
 		if( !level.PlayerInRoom )
 		{
 			if( isDefined(level.old_trig) )
@@ -486,7 +486,7 @@ endroom3()
 			level.activ GiveWeapon( "deserteagle_mp" );
 	        level.activ GiveMaxAmmo( "deserteagle_mp" );
 	        wait .05;
-	        player switchToWeapon( "ak74u_mp" ); 
+	        player switchToWeapon( "ak74u_mp" );
 	        level.activ SwitchToWeapon( "ak74u_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -514,12 +514,12 @@ trap9()
 	trig = GetEnt("trig8","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
-	
+
+
 	trap8 hide();
 	trap8 notsolid();
 
-}	
+}
 
 trap10()
 {
@@ -527,12 +527,12 @@ trap10()
 	trig = GetEnt("trig9","targetname");
 	trig waittill("trigger", player);
 	trig delete();
-	
-	
+
+
 	trap9 hide();
 	trap9 notsolid();
 
-}	
+}
 
 hsecretp1()
 {
@@ -540,11 +540,11 @@ hsecretp1()
 	secretorigin = GetEnt("hellsecretorigin","targetname");
 	secret waittill("trigger", player);
 	secret delete();
-	
+
 			player SetPlayerAngles( secretorigin.angles );
 	        player setOrigin( secretorigin.origin );
 			player iPrintlnBold( "^9How did you manage to find this.");
-}			
+}
 
 hsecretp2()
 {
@@ -557,15 +557,15 @@ hsecretp2()
 
    player iprintlnbold( "^9SYNDS WEAPON HAS BEEN UNLEASHED");
    player GiveWeapon( "syndcarnage_mp" );
-   player GiveMaxAmmo( "syndcarnage_mp" );  
-   player switchToWeapon( "syndcarnage_mp" ); 
-   sound PlaySound( "elm_quake_sub_rumble"); 
-   Earthquake( 1, 5, quake.origin, 1000 ); 
+   player GiveMaxAmmo( "syndcarnage_mp" );
+   player switchToWeapon( "syndcarnage_mp" );
+   sound PlaySound( "elm_quake_sub_rumble");
+   Earthquake( 1, 5, quake.origin, 1000 );
    wait 5;
    			player SetPlayerAngles( secretorigin2.angles );
 	        player setOrigin( secretorigin2.origin );
    wait 2;
-}			
+}
 
 
 synd()

@@ -173,7 +173,7 @@ order()
 
     self notify("romm_enter_plugin");
     level.inRoomPlugin = true;
-    self thread plugins\_respect::onRoomDeath();
+    self thread onRoomDeath();
     upDateQueueHud();
     return true;
 }
