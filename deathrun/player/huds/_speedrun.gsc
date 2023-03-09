@@ -51,6 +51,7 @@ hud()
 	self updateWay();
 	self updateRank();
 	self updateAdmin();
+	self updateTAS();
 
 	self notify("speedrun");
 }
@@ -149,6 +150,16 @@ updateWay()
 		return;
 
 	self updateRecords();
+}
+
+updateTAS()
+{
+	if (!self sr\sys\_admins::isTAS())
+		return;
+
+	self.huds["speedrun"]["tas"] = addHud(self, 5, 0, 1, "left", "bottom", 1.4, 100, true);
+	self.huds["speedrun"]["tas"].label = &"^5TAS";
+	self.huds["speedrun"]["tas"].font = "objective";
 }
 
 isHud(name)

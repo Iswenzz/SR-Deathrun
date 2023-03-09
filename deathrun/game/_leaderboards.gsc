@@ -116,8 +116,8 @@ getPlayerWorldRecordCount()
 {
 	critical_enter("mysql");
 
-	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
-	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
+	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
+	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0", filter);
 
 	request = SQL_Prepare(query);
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
@@ -173,20 +173,23 @@ load()
 	{
 		for (j = 0; j < ways.size; j++)
 		{
-			mode = level.leaderboard_modes[modes[i]];
-			way = level.leaderboard_ways[ways[j]];
-			index = getLeaderboardIndex(mode.id, way.id);
+			for (tas = 0; tas < 2; tas++)
+			{
+				mode = level.leaderboard_modes[modes[i]];
+				way = level.leaderboard_ways[ways[j]];
+				index = getLeaderboardIndex(mode.id, way.id, tas);
 
-			level.leaderboards[index] = spawnStruct();
-			level.leaderboards[index].entries = [];
-			level.leaderboards[index].id = way.id;
-			level.leaderboards[index].name = way.name;
+				level.leaderboards[index] = spawnStruct();
+				level.leaderboards[index].entries = [];
+				level.leaderboards[index].id = way.id;
+				level.leaderboards[index].name = way.name;
+			}
 		}
 	}
 
 	critical_enter("mysql");
 
-	request = SQL_Prepare("SELECT mode, way, time, name, player, run FROM leaderboards WHERE map = ?");
+	request = SQL_Prepare("SELECT mode, way, time, name, player, run, tas FROM leaderboards WHERE map = ?");
 	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
 	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
 	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
@@ -194,6 +197,7 @@ load()
 	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
 	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
 	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
+	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 
@@ -210,8 +214,9 @@ load()
 		entry["name"] = getSubStr(rows[i]["name"], 0, 15);
 		entry["player"] = rows[i]["player"];
 		entry["run"] = rows[i]["run"];
+		entry["tas"] = rows[i]["tas"];
 
-		index = getLeaderboardIndex(entry["mode"], entry["way"]);
+		index = getLeaderboardIndex(entry["mode"], entry["way"], entry["tas"]);
 
 		if (!isDefined(level.leaderboards[index]))
 		{
@@ -228,14 +233,17 @@ load()
 	{
 		for (j = 0; j < ways.size; j++)
 		{
-			mode = level.leaderboard_modes[modes[i]];
-			way = level.leaderboard_ways[ways[j]];
-			index = getLeaderboardIndex(mode.id, way.id);
+			for (tas = 0; tas < 2; tas++)
+			{
+				mode = level.leaderboard_modes[modes[i]];
+				way = level.leaderboard_ways[ways[j]];
+				index = getLeaderboardIndex(mode.id, way.id, tas);
 
-			if (!isDefined(level.leaderboards[index]))
-				continue;
+				if (!isDefined(level.leaderboards[index]))
+					continue;
 
-			level.leaderboards[index].entries = sortEntries(level.leaderboards[index].entries);
+				level.leaderboards[index].entries = sortEntries(level.leaderboards[index].entries);
+			}
 		}
 	}
 	level setLoading("leaderboards", false);
@@ -289,18 +297,20 @@ demos()
 makeEntry()
 {
 	entry = [];
+	entry["map"] = level.map;
 	entry["name"] = self.shortName;
 	entry["player"] = self.id;
 	entry["run"] = self.run;
 	entry["way"] = self.sr_way;
 	entry["mode"] = self.sr_mode;
 	entry["time"] = self.time;
+	entry["tas"] = self.admin_tas;
 	return entry;
 }
 
 isValidEntry(entry)
 {
-	leaderboard = getLeaderboard(entry["mode"], entry["way"]);
+	leaderboard = getLeaderboard(entry["mode"], entry["way"], entry["tas"]);
 	placement = getEntryPlacement(entry, leaderboard.entries);
 
 	if (placement > level.leaderboard_max_entries)
@@ -330,9 +340,9 @@ saveEntry(entry)
 	if (!mapHasLeaderboards() || !isValidEntry(entry))
 		return;
 
-	index = getLeaderboardIndex(entry["mode"], entry["way"]);
+	index = getLeaderboardIndex(entry["mode"], entry["way"], entry["tas"]);
 	entries = level.leaderboards[index].entries;
-	level.leaderboards[index].entries = addEntry(entry, entries);
+	self addEntry(entry, index);
 
 	placement = getEntryPlacement(entry, entries);
 	self givePlacementXP(entry, entries, placement);
@@ -344,11 +354,12 @@ saveEntry(entry)
 
 	critical_enter("mysql");
 
-	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
+	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ?, tas = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
 	SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
-	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, entry["tas"], level.MYSQL_TYPE_LONG);
+	SQL_BindParam(request, entry["map"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
@@ -360,14 +371,15 @@ saveEntry(entry)
 
 	if (!affected)
 	{
-		request = SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
-		SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+		request = SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run, tas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		SQL_BindParam(request, entry["map"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 		SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["tas"], level.MYSQL_TYPE_LONG);
 		SQL_Execute(request);
 		AsyncWait(request);
 		SQL_Free(request);
@@ -455,9 +467,10 @@ display()
 	}
 }
 
-addEntry(entry, entries)
+addEntry(entry, index)
 {
 	array = [];
+	entries = level.leaderboards[index].entries;
 
 	// Remove duplicates
 	for (i = 0; i < entries.size; i++)
@@ -467,8 +480,7 @@ addEntry(entry, entries)
 		array[array.size] = entries[i];
 	}
 	array[array.size] = entry;
-
-	return sortEntries(array);
+	level.leaderboards[index].entries = sortEntries(array);
 }
 
 sortEntries(entries)
@@ -505,16 +517,19 @@ xpTable()
 	return Reverse(xp);
 }
 
-getLeaderboard(mode, way)
+getLeaderboard(mode, way, tas)
 {
+	tas = IfUndef(tas, 0);
 	if (!isDefined(level.leaderboards) || !level.leaderboards.size)
 		return undefined;
-	return level.leaderboards[getLeaderboardIndex(mode, way)];
+	return level.leaderboards[getLeaderboardIndex(mode, way, tas)];
 }
 
-getLeaderboardIndex(mode, way)
+getLeaderboardIndex(mode, way, tas)
 {
-	return fmt("times_%s_%s", mode, way);
+	tas = IfUndef(tas, 0);
+	tas = Ternary(tas, "_TAS", "");
+	return fmt("times%s_%s_%s", tas, mode, way);
 }
 
 getLeaderboardName(mode, way)
@@ -574,15 +589,17 @@ getWorldRecord(mode, way)
 
 worldRecord(entry)
 {
-	players = getAllPlayers();
+	if (self sr\sys\_admins::isTAS())
+		return;
 
 	way = getLeaderboardName(entry["mode"], entry["way"]);
-	index = getLeaderboardIndex(entry["mode"], entry["way"]);
+	index = getLeaderboardIndex(entry["mode"], entry["way"], entry["tas"]);
 
 	message = fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], way, self.shortName);
 	iPrintLnBold(message);
 	comPrintLn(message);
 
+	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
 	{
 		players[i] thread effects();
