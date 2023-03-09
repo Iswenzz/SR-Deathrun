@@ -63,14 +63,19 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 	level notify("player_damage", self, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 
-	if (isPlayer(eAttacker) && !self sameTeam(eAttacker))
-		return;
 	if (isPlayer(eAttacker) && self sameTeam(eAttacker) && !eAttacker.teamKill)
 		return;
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
 		return;
 	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
 		return;
+
+	if (isPlayer(eAttacker) && eAttacker != self)
+	{
+		eAttacker maps\mp\gametypes\_weapons::checkHit(sWeapon);
+		eAttacker iPrintln("You hit " + self.name + " ^7for ^2" + iDamage + " ^7damage.");
+		self iPrintln(eAttacker.name + " ^7hit you for ^2" + iDamage + " ^7damage.");
+	}
 
 	iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
 
@@ -90,10 +95,28 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
 		sMeansOfDeath = "MOD_HEAD_SHOT";
 
+	self cleanUp();
 	self thread ragdoll(sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath, deathAnimDuration);
 
-	if (self.pers["team"] == "allies" && self canSpawn())
+	if (level.freeRun)
+	{
 		self eventSpawn();
+		return;
+	}
+	self eventSpectator();
+
+	deaths = self maps\mp\gametypes\_persistence::statGet("DEATHS");
+	self maps\mp\gametypes\_persistence::statSet("DEATHS", deaths + 1);
+	self.deaths++;
+	self.pers["deaths"]++;
+	obituary(self, attacker, sWeapon, sMeansOfDeath);
+
+	if (!isPlayer(attacker) || attacker == self)
+		return;
+
+	attacker.kills++;
+	attacker.pers["kills"]++;
+	sr\game\_rank::processXpReward(sMeansOfDeath, attacker, self);
 }
 
 playerSpawn()

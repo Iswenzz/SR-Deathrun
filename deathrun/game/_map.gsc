@@ -69,6 +69,10 @@ placeSpawns()
 
 end(map)
 {
+	if (level.freeRun)
+		return endRound("Free run round has ended", "jumpers");
+	if (game["roundsplayed"] < level.dvar["round_limit"])
+		return endRound("Time limit reached", "activators");
 	if (game["state"] == "end")
 		return;
 
@@ -91,6 +95,31 @@ end(map)
 	// Next map
 	setDvar("sv_maprotationcurrent", fmt("gametype %s map %s", getDvar("g_gametype"), map));
 	levelExit(false);
+}
+
+endRound(text, team)
+{
+	level endon("end");
+
+	text = ifUndef(text, "Round ended");
+	team = ifUndef(team, "jumpers");
+
+	level notify("round_ended", text, team);
+	level notify("endround");
+	level notify("kill logic");
+	game["state"] = "round ended";
+
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] setClientDvar("cg_thirdperson", 1);
+
+	visionSetNaked(team, 4);
+
+	level thread announcement(text, (0, 1, 1));
+	level thread playSoundOnAllPlayers("end_round_" + (randomInt(10) + 1));
+
+	wait 10;
+	levelRestart(true);
 }
 
 endMusic()
@@ -164,6 +193,19 @@ intermission()
 	for (i = 0; i < players.size; i++)
 		players[i].sessionstate = "intermission";
 	wait 10;
+}
+
+announcement(text, color)
+{
+	notifyData = spawnStruct();
+	notifyData.titleText = text;
+	notifyData.notifyText = fmt("Starting round ^5%d^7 out of ^5%d", game["roundsplayed"] + 1, level.dvar["round_limit"]);
+	notifyData.glowColor = color;
+	notifyData.duration = 8.8;
+
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage(notifyData);
 }
 
 deleteUnsupportedWeapons()
