@@ -9,7 +9,7 @@ getPlayingPlayers()
 	array = [];
 	for (i = 0; i < players.size; i++)
 	{
-		if (players[i] isReallyAlive() && players[i].pers["team"] != "spectator")
+		if (players[i] isPlaying() && !players[i] isDead())
 			array[array.size] = players[i];
 	}
 	return array;
@@ -116,12 +116,17 @@ canSpawn()
 
 isReallyAlive()
 {
-	return isDefined(self.sessionstate) && self.sessionstate == "playing";
+	return self isPlaying();
 }
 
 isPlaying()
 {
-	return isReallyAlive();
+	return isDefined(self) && self.sessionstate == "playing";
+}
+
+isDead()
+{
+	return isDefined(self) && (self.sessionstate == "dead" || self.died);
 }
 
 doDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc)
