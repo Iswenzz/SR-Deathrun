@@ -169,10 +169,7 @@ playerSpawn()
 playerSpectator()
 {
 	self endon("disconnect");
-
 	self cleanUp();
-	self spawnSpectator();
-
 	level notify("player_spectator", self);
 }
 
