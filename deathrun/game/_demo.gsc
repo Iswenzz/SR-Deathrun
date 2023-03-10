@@ -23,8 +23,7 @@ setup(id)
 	self setStat(1700, self deathrun\player\run\_main::getLastModeStat());
 
 	self eventSpawn(true);
-	self.died = true;
-	self.statusicon = "hud_status_dead";
+	self sr\game\_teams::setDead();
 
 	if (isDefined(self.demoCamera))
 		return false;
