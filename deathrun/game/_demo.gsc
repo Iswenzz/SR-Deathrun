@@ -24,6 +24,7 @@ setup(id)
 
 	self eventSpawn(true);
 	self.died = true;
+	self.statusicon = "hud_status_dead";
 
 	if (isDefined(self.demoCamera))
 		return false;
@@ -42,6 +43,7 @@ setup(id)
 	}
 
 	self cheat();
+	self hide();
 	self.godmode = true;
 	self.antiLag = false;
 	self.antiElevator = false;
