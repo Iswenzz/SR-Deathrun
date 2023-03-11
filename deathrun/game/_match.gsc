@@ -134,9 +134,7 @@ timer()
 		wait 1;
 		level.time--;
 
-		if (level.time == 180)
-			level sr\sys\_notifications::show("^1Map will end in 3 minutes!");
-		else if (level.time <= 60 && level.time > 10 && level.time % 2 == 0)
+		if (level.time <= 60 && level.time > 10 && level.time % 2 == 0)
 			level.huds["time"].color = (1, 0.55, 0);
 		else if (level.time <= 10)
 			level.huds["time"].color = (1, 0, 0);

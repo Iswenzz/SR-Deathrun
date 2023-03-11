@@ -108,7 +108,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	if (isDefined(level.activ) && level.activ == self)
 	{
 		level.activatorKilled = true;
-		if (isPlayer(attacker))
+		if (isPlayer(attacker) && attacker != self)
 		{
 			text = attacker.name + " ^7killed Activator";
 			thread braxi\_mod::drawInformation(800, 0.8, 1, text);

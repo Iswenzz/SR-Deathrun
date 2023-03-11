@@ -7,8 +7,6 @@
 main()
 {
 	braxi\_dvar::initDvars();
-
-	event("map", ::disableTraps);
 }
 
 endTimer()
@@ -47,14 +45,7 @@ endRoundAnnoucement(text, color)
 
 disableTraps()
 {
-	level waittill("round_freerun");
-
-	for (i = 0; i < level.trapTriggers.size; i++)
-	{
-		if (isDefined(level.trapTriggers[i]))
-			level.trapTriggers[i].origin = level.trapTriggers[i].origin - (0, 0, 10000);
-	}
-	level notify("traps_disabled");
+	deathrun\game\_game::disableTraps();
 }
 
 endingHud(align, fade_in_time, x_off, y_off)

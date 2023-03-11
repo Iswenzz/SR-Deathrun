@@ -91,6 +91,8 @@ end(map)
 	level notify("game over");
 	level notify("game_ended");
 
+	wait 2;
+
 	// Sequence
 	endMusic();
 	endSpectate();
@@ -122,6 +124,9 @@ endRound(text, team)
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
 		players[i] setClientDvar("cg_thirdperson", 1);
+
+	if (game["roundsplayed"] >= level.dvar["round_limit"])
+		return end();
 
 	visionSetNaked(team, 4);
 

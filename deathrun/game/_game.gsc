@@ -10,6 +10,7 @@ main()
 	level.activatorKilled = false;
 	level.freeRun = false;
 	level.allowSpawn = true;
+	level.trapTriggers = [];
 	level.trapsDisabled = false;
 	level.canCallFreeRun = true;
 	level.firstBlood = false;
@@ -22,6 +23,9 @@ main()
 
 bots()
 {
+	if (!level.dvar["debug"])
+		return;
+
 	waitMapLoad(2);
 	spawnBots(1);
 }
@@ -31,6 +35,7 @@ start()
 	level waittill("round_started");
 
 	thread watchGame();
+	thread watchTraps();
 }
 
 watchGame()
@@ -86,6 +91,70 @@ watchGame()
 	}
 }
 
+watchTraps()
+{
+	for (i = 0; i < level.trapTriggers.size; i++)
+	{
+		if (level.dvar["freeRunChoice"] == 2)
+			level.trapTriggers[i] thread trapFreeRun();
+		if (level.dvar["giveXpForActivation"])
+			level.trapTriggers[i] thread trapActivation();
+	}
+}
+
+trapFreeRun()
+{
+	if (!isDefined(self))
+		return;
+
+	level endon("kill_free_run_choice");
+
+	self endon("death");
+	self endon("delete");
+	self endon("deleted");
+
+	self waittill("trigger", player);
+	level.canCallFreeRun = false;
+
+	if (isDefined(player.huds["player"]["free"]))
+		player.huds["player"]["free"] destroy();
+	if (isDefined(player.huds["player"]["free_timer"]))
+		player.huds["player"]["free_timer"] destroy();
+
+	level notify("kill_free_run_choice");
+}
+
+trapActivation()
+{
+	if (!isDefined(self))
+		return;
+
+	self endon("death");
+	self endon("delete");
+	self endon("deleted");
+
+	while (isDefined(self))
+	{
+		self waittill("trigger", player);
+
+		if (player.pers["team"] != "axis")
+			continue;
+
+		player sr\game\_rank::giveRankXP("trap_activation");
+	}
+}
+
+disableTraps()
+{
+	level.trapsDisabled = true;
+	for (i = 0; i < level.trapTriggers.size; i++)
+	{
+		if (isDefined(level.trapTriggers[i]))
+			level.trapTriggers[i].origin = level.trapTriggers[i].origin - (0, 0, 10000);
+	}
+	level notify("traps_disabled");
+}
+
 pickActivator()
 {
 	level notify("picking activator");
@@ -136,4 +205,9 @@ giveLife()
 		return;
 
 	self.pers["lifes"]++;
+}
+
+hasTraps()
+{
+	return level.trapTriggers.size;
 }

@@ -81,6 +81,7 @@ main()
 	deathrun\player\_settings::main();
 	deathrun\player\run\_main::main();
 	deathrun\player\huds\_speedrun::main();
+	deathrun\player\huds\_player::main();
 	deathrun\player\huds\_demo::main();
 
 	deathrun\commands\_deathrun::main();
