@@ -30,7 +30,7 @@ hud()
  		self.huds["speedrun"]["name"] setText(fmt("^2%d/%d", game["roundsplayed"], level.dvar["round_limit"]));
 
 	self.huds["speedrun"]["players"] = addHud(self, 120, 0, 1, "left", "top", 1.4, 99, true);
-	self.huds["speedrun"]["players"] setValue(getPlayingPlayers().size);
+	self.huds["speedrun"]["players"] setValue(level.jumpers);
 	self.huds["speedrun"]["players"].label = &"Players  ^8";
 	self.huds["speedrun"]["players"].alignX = "right";
 
@@ -58,17 +58,15 @@ hud()
 
 killed(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
 {
-	players = getPlayingPlayers();
-	for (i = 0; i < players.size; i++)
-		players[i] updatePlayers(players.size);
+	ForEachCall(getPlayingPlayers(), ::updatePlayers);
 }
 
-updatePlayers(count)
+updatePlayers()
 {
 	if (!isHud("players"))
 		return;
 
-	self.huds["speedrun"]["players"] setValue(count);
+	self.huds["speedrun"]["players"] setValue(level.jumpers);
 }
 
 updateRank()

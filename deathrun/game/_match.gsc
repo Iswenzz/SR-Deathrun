@@ -19,13 +19,6 @@ main()
 
 	event("map", ::huds);
 	event("map", ::start);
-	event("map", ::bots);
-}
-
-bots()
-{
-	waitMapLoad(2);
-	spawnBots(3);
 }
 
 start()

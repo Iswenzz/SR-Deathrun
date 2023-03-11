@@ -65,6 +65,16 @@ placeSpawns()
 		level.spawn["player"].angles = angles;
 		level.spawn["player"] placeSpawnPoint();
 	}
+	if (!isDefined(level.spawn["activator"]))
+	{
+		axis = level.spawn["player"];
+		if (level.spawn["axis"].size)
+			axis = level.spawn["axis"][0];
+
+		level.spawn["activator"] = spawn("script_origin", axis.origin);
+		level.spawn["activator"].angles = axis.angles;
+		level.spawn["activator"] placeSpawnPoint();
+	}
 }
 
 end(map)
@@ -115,7 +125,7 @@ endRound(text, team)
 
 	visionSetNaked(team, 4);
 
-	level thread announcement(text, (0, 1, 1));
+	level thread announcement(text, (0.7, 0, 1));
 	level thread playSoundOnAllPlayers("end_round_" + (randomInt(10) + 1));
 
 	wait 10;
@@ -200,7 +210,7 @@ announcement(text, color)
 	notifyData.titleText = text;
 	notifyData.notifyText = fmt("Starting round ^5%d^7 out of ^5%d", game["roundsplayed"] + 1, level.dvar["round_limit"]);
 	notifyData.glowColor = color;
-	notifyData.duration = 8.8;
+	notifyData.duration = 9;
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)

@@ -51,6 +51,8 @@ setup(id)
 
 play(id)
 {
+	if (self.pers["team"] == "axis")
+		return;
 	if (!self setup(id))
 	{
 		self stopDemoPlayer();

@@ -103,7 +103,20 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 		self eventSpawn();
 		return;
 	}
-	self eventSpectator();
+	self thread eventSpectateDeath();
+
+	if (isDefined(level.activ) && level.activ == self)
+	{
+		level.activatorKilled = true;
+		if (isPlayer(attacker))
+		{
+			text = attacker.name + " ^7killed Activator";
+			thread braxi\_mod::drawInformation(800, 0.8, 1, text);
+			thread braxi\_mod::drawInformation(800, 0.8, -1, text);
+		}
+	}
+	if (self.pers["team"] == "axis" && !level.activatorKilled)
+		return;
 
 	deaths = self maps\mp\gametypes\_persistence::statGet("DEATHS");
 	self maps\mp\gametypes\_persistence::statSet("DEATHS", deaths + 1);
@@ -111,11 +124,15 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	self.pers["deaths"]++;
 	obituary(self, attacker, sWeapon, sMeansOfDeath);
 
+	if (level.activatorKilled || getPlayingPlayers().size <= 1)
+		self thread sr\game\_killcam::start(2, 8, eInflictor, attacker, sWeapon);
+
 	if (!isPlayer(attacker) || attacker == self)
 		return;
 
 	attacker.kills++;
 	attacker.pers["kills"]++;
+	attacker deathrun\game\_game::giveLife();
 	sr\game\_rank::processXpReward(sMeansOfDeath, attacker, self);
 }
 
@@ -133,6 +150,12 @@ playerSpawn()
 	self.pers["weapon"] = self getCustomizeWeapon()["item"];
 	self.pers["knife"] = self getCustomizeKnife()["item"];
 	self.pers["knife_skin"] = self getCustomizeKnifeSkin()["id"];
+
+	if (self.pers["team"] == "axis")
+	{
+		self.pers["weapon"] = "tomahawk_mp";
+		self.playerSpawn = level.spawn["activator"];
+	}
 
 	self spawnPlayer();
 
@@ -171,6 +194,18 @@ playerSpectator()
 	self endon("disconnect");
 	self cleanUp();
 	level notify("player_spectator", self);
+}
+
+eventSpectateDeath()
+{
+	self endon("death");
+	self endon("disconnect");
+
+	wait 0.05;
+	if (self isPlaying())
+		return;
+
+	self eventSpectator();
 }
 
 serverDvars()

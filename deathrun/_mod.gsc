@@ -69,6 +69,7 @@ main()
 	sr\commands\_defrag::main();
 	sr\commands\_portal::main();
 
+	deathrun\game\_game::main();
 	deathrun\game\_map::main();
 	deathrun\game\_demo::main();
 	deathrun\game\_match::main();

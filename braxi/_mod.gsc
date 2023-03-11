@@ -8,10 +8,6 @@ main()
 {
 	braxi\_dvar::initDvars();
 
-	level.freeRun = false;
-	level.trapsDisabled = true;
-	level.trapTriggers = [];
-
 	event("map", ::disableTraps);
 }
 
@@ -51,6 +47,8 @@ endRoundAnnoucement(text, color)
 
 disableTraps()
 {
+	level waittill("round_freerun");
+
 	for (i = 0; i < level.trapTriggers.size; i++)
 	{
 		if (isDefined(level.trapTriggers[i]))
@@ -69,10 +67,10 @@ endingHud(align, fade_in_time, x_off, y_off)
 	hud.alignY = "middle";
 	hud.horzAlign = align;
 	hud.vertAlign = "middle";
-	hud.fontScale = 3;
+	hud.fontScale = 2;
 	hud.color = (0.8, 1.0, 0.8);
 	hud.font = "objective";
-	hud.glowColor = (0.3, 0.6, 0.3);
+	hud.glowColor = (0.7, 0, 1);
 	hud.glowAlpha = 1;
 	hud.alpha = 0;
 	hud fadeovertime(fade_in_time);
@@ -98,4 +96,7 @@ drawInformation(start_offset, movetime, mult, text)
 	hud destroy();
 }
 
-giveLife() { }
+giveLife()
+{
+	self deathrun\game\_game::giveLife();
+}
