@@ -3,6 +3,7 @@
 initDvars()
 {
 	addDvar("mod", "mod_id", "deathrun");
+	addDvar("event", "sr_event", 0, 0, 1, "int");
 	addDvar("debug", "sr_debug", 0, 0, 1, "int");
 	addDvar("spawn_time", "sr_spawn_time", 5, 0, 30, "int");
 	addDvar("demos", "sr_demos", 1, 0, 1, "int");
