@@ -19,6 +19,8 @@ main()
 
 	event("map", ::start);
 	event("map", ::bots);
+	event("spawn", ::playerAFK);
+	event("spawn", ::playerWeapon);
 }
 
 bots()
@@ -165,6 +167,9 @@ pickActivator()
 	while (!isDefined(activator) || activator.number == getDvarInt("last_picked_player"))
 		activator = players[randomInt(players.size)];
 
+	if (isDefined(level.forceActivator))
+		activator = level.forceActivator;
+
 	activator sr\game\_teams::setTeam("axis");
 	activator sr\game\_rank::giveRankXp("activator");
 	activator eventSpawn(true);
@@ -187,11 +192,9 @@ lastJumper()
 	hud.glowColor = (0, 0.7, 0.7);
 	hud.glowAlpha = 1;
 	hud SetPulseFX(30, 100000, 700);
-
 	hud fadeOverTime(0.5);
 	hud.alpha = 1;
 	wait 2.6;
-
 	hud fadeOverTime(0.4);
 	hud.alpha = 0;
 	wait 0.4;
@@ -205,9 +208,73 @@ giveLife()
 		return;
 
 	self.pers["lifes"]++;
+	self thread deathrun\player\huds\_player::addLife();
+}
+
+useLife()
+{
+	if (!self.pers["lifes"])
+		return;
+
+	self.usedLife = true;
+	self.pers["lifes"]--;
+	self respawn();
 }
 
 hasTraps()
 {
 	return level.trapTriggers.size;
+}
+
+playerAFK()
+{
+	self endon("spawn");
+	self endon("death");
+	self endon("disconnect");
+
+	if (!level.dvar["afk"] || self.pers["team"] == "axis")
+		return;
+
+	time = 0;
+	previousOrigin = self.origin - (0, 0, 50);
+	while (isAlive(self))
+	{
+		wait 0.2;
+
+		time = Ternary(distance(previousOrigin, self.origin) <= 10, time + 1, 0);
+		if (time == int(level.dvar["afk_warn"] * 5))
+			self iPrintlnBold("Move or you will be killed due to AFK");
+		if (time == int(level.dvar["afk_time"] * 5))
+		{
+			iPrintln(self.name + " was killed due to AFK.");
+			self suicide();
+		}
+		previousOrigin = self.origin;
+	}
+}
+
+playerWeapon()
+{
+	self endon("spawn");
+	self endon("death");
+	self endon("disconnect");
+
+	while (true)
+	{
+		wait 0.2;
+
+		weapon = self getCurrentWeapon();
+		if (weapon == "none")
+			continue;
+
+		self.droppableWeapon = weapon;
+	}
+}
+
+dropWeapon()
+{
+	if (!isDefined(self.droppableWeapon))
+		return;
+
+	self dropItem(self.droppableWeapon);
 }

@@ -126,14 +126,17 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	if (level.activatorKilled || getPlayingPlayers().size <= 1)
 		self thread sr\game\_killcam::start(2, 8, eInflictor, attacker, sWeapon);
-
+	if (isPlayer(attacker) && !self sameTeam(attacker))
+		self thread deathrun\game\_game::dropWeapon();
 	if (!isPlayer(attacker) || attacker == self)
 		return;
 
 	attacker.kills++;
 	attacker.pers["kills"]++;
-	attacker deathrun\game\_game::giveLife();
 	sr\game\_rank::processXpReward(sMeansOfDeath, attacker, self);
+
+	if (attacker.pers["team"] == "allies")
+		attacker deathrun\game\_game::giveLife();
 }
 
 playerSpawn()
@@ -182,6 +185,14 @@ playerSpawn()
 	}
 	if (self getStat(988))
 		self setClientDvar("cg_thirdperson", 1);
+
+	self setActionSlot(1, "weapon", "vip_mp");
+	self setActionSlot(2, "weapon", "rtd_mp");
+	self setActionSlot(4, "weapon", "shop_mp");
+
+	self giveWeapon("vip_mp");
+	self giveWeapon("rtd_mp");
+	self giveWeapon("shop_mp");
 
 	self deathrun\player\run\_main::start();
 

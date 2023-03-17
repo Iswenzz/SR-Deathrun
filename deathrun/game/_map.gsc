@@ -121,10 +121,6 @@ endRound(text, team)
 	level notify("kill logic");
 	game["state"] = "round ended";
 
-	players = getAllPlayers();
-	for (i = 0; i < players.size; i++)
-		players[i] setClientDvar("cg_thirdperson", 1);
-
 	if (game["roundsplayed"] >= level.dvar["round_limit"])
 		return end();
 

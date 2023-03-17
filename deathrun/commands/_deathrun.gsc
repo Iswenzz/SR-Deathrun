@@ -3,11 +3,13 @@
 
 main()
 {
-    cmd("player", 	"speed",    ::cmd_Speed);
-    cmd("player", 	"190",    	::cmd_190);
-    cmd("player", 	"210",    	::cmd_210);
-	cmd("player", 	"sheep",	::cmd_Sheep);
-	cmd("player", 	"fxenable",	::cmd_FX);
+    cmd("player", 		"speed",    	::cmd_Speed);
+    cmd("player", 		"190",    		::cmd_190);
+    cmd("player", 		"210",    		::cmd_210);
+	cmd("player", 		"sheep",		::cmd_Sheep);
+	cmd("player", 		"fxenable",		::cmd_FX);
+	cmd("adminplus", 	"life",			::cmd_Life);
+	cmd("masteradmin", 	"activator",	::cmd_Activator);
 }
 
 cmd_Speed(args)
@@ -57,3 +59,32 @@ cmd_FX(args)
 	self pm(msg);
 }
 
+cmd_Life(args)
+{
+	if (args.size < 1)
+		return self pm("Usage: life <playerName>");
+
+	player = getPlayerByName(args[0]);
+
+	self log();
+	if (!isDefined(player))
+		return pm("Could not find player");
+
+	player deathrun\game\_game::giveLife();
+}
+
+cmd_Activator(args)
+{
+	if (game["state"] != "readyup")
+		return self pm("Activator can only be set during round begin.");
+	if (args.size < 1)
+		return self pm("Usage: activator <playerName>");
+
+	player = getPlayerByName(args[0]);
+
+	self log();
+	if (!isDefined(player))
+		return pm("Could not find player");
+
+	level.forceActivator = player;
+}

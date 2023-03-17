@@ -4,7 +4,10 @@
 
 main()
 {
+	precacheShader("sr_life");
+
 	event("spawn", ::hud);
+	event("death", ::life);
 	event("death", ::clear);
 }
 
@@ -22,7 +25,8 @@ hud()
 	self.huds["player"]["free"] = addHud(self, 0, 70, 1, "center", "middle", 1.8, 1000, true);
 	self.huds["player"]["free_timer"] = addHud(self, 0, 90, 1, "center", "middle", 1.8, 1000, true);
 
-	self freeRunChoice();
+	self thread freeRunChoice();
+	self thread drawLifes();
 }
 
 freeRunChoice()
@@ -79,6 +83,45 @@ freeRunChoice()
 	level notify("round_freerun");
 }
 
+life()
+{
+	self endon("spawned");
+	self endon("disconnect");
+
+	use = false;
+	wait 0.5;
+
+	if (!self.pers["lifes"] || game["state"] != "playing")
+		return;
+
+	self setLowerMessage(&"PLATFORM_PRESS_TO_SPAWN");
+	for (i = 0; i < 60; i++)
+	{
+		if (self useButtonPressed())
+		{
+			use = true;
+			break;
+		}
+		wait 0.05;
+	}
+	self clearLowerMessage();
+	if (use) self thread deathrun\game\_game::useLife();
+}
+
+drawLifes()
+{
+	for (i = 0; i < self.pers["lifes"]; i++)
+		self thread addLife();
+}
+
+addLife()
+{
+	index = self.huds["player"]["lifes"].size;
+	self.huds["player"]["lifes"][index] = addHud(self, 5 + (index * 15), 45, 1, "left", "top", 1.4, 1000, true);
+	self.huds["player"]["lifes"][index] setShader("sr_life", 8, 8);
+	self.huds["player"]["lifes"][index] fadeIn(0, 1);
+}
+
 clear()
 {
 	self endon("disconnect");
@@ -91,11 +134,10 @@ clear()
 	{
 		if (keys[i] == "lifes")
 		{
-			lifes = getArrayKeys(self.huds["player"]["lifes"]);
-			for (j = 0; j < lifes.size; j++)
+			for (j = 0; j < self.huds["player"]["lifes"].size; j++)
 			{
-				if (isDefined(self.huds["player"]["lifes"][lifes[j]]))
-					self.huds["player"]["lifes"][lifes[j]] destroy();
+				if (isDefined(self.huds["player"]["lifes"][j]))
+					self.huds["player"]["lifes"][j] destroy();
 			}
 			self.huds["player"]["lifes"] = undefined;
 		}

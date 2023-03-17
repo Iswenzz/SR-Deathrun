@@ -96,6 +96,9 @@ menu_Team(arg)
 
 	if (self canSpawn())
 		self eventSpawn();
+
+	if (!self isPlaying())
+		self deathrun\game\_game::useLife();
 }
 
 menu_Spectator(arg)
