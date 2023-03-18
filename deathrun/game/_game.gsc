@@ -18,6 +18,7 @@ main()
 	level.mapHasTimeTrigger = false;
 
 	event("map", ::start);
+	event("map", ::specialRound);
 	event("map", ::bots);
 	event("spawn", ::playerAFK);
 	event("spawn", ::playerWeapon);
@@ -102,6 +103,36 @@ watchTraps()
 		if (level.dvar["giveXpForActivation"])
 			level.trapTriggers[i] thread trapActivation();
 	}
+}
+
+specialRound()
+{
+	if (level.freeRun)
+		return;
+
+	level waittill("round_started");
+	wait 1;
+
+	if (randomIntRange(0, 100) > 5)
+		return;
+
+	mode = randomIntRange(0, 2) + 1;
+	switch (mode)
+	{
+		case 1:
+			mode = deathrun\player\run\_defrag::start;
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^3DEFRAG ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^3DEFRAG ROUND");
+			break;
+		case 2:
+			mode = deathrun\player\run\_portal::start;
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
+			break;
+	}
+	players = getPlayingPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] thread [[mode]]();
 }
 
 trapFreeRun()
