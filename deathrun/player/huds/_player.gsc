@@ -116,6 +116,9 @@ drawLifes()
 
 addLife()
 {
+	if (!isDefined(self.huds["player"]["lifes"]))
+		return;
+
 	index = self.huds["player"]["lifes"].size;
 	self.huds["player"]["lifes"][index] = addHud(self, 5 + (index * 15), 45, 1, "left", "top", 1.4, 1000, true);
 	self.huds["player"]["lifes"][index] setShader("sr_life", 8, 8);

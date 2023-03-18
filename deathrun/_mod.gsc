@@ -32,7 +32,6 @@ main()
 	sr\game\_killcam::main();
 	sr\game\fx\_trail::main();
 	sr\game\menus\_main::initMenus();
-	sr\game\menus\_owner::main();
 	sr\game\minigames\_main::initMinigames();
 	sr\game\music\_main::initMusics();
 	sr\game\weapons\_main::main();
@@ -99,6 +98,7 @@ precache()
 	precacheItem("rtd_mp");
 	precacheItem("tomahawk_mp");
 	precacheItem("fortnite_mp");
+	precacheItem("shepherd_mp");
 
 	precacheShader("time_hud");
 	precacheShader("sr_shop");

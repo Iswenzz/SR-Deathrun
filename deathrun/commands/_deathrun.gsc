@@ -10,6 +10,8 @@ main()
 	cmd("player", 		"fxenable",		::cmd_FX);
 	cmd("adminplus", 	"life",			::cmd_Life);
 	cmd("masteradmin", 	"activator",	::cmd_Activator);
+	cmd("masteradmin", 	"dog",			::cmd_Dog);
+	cmd("masteradmin", 	"rtd",			::cmd_Rtd);
 }
 
 cmd_Speed(args)
@@ -87,4 +89,24 @@ cmd_Activator(args)
 		return pm("Could not find player");
 
 	level.forceActivator = player;
+}
+
+cmd_Dog(args)
+{
+	if (args.size < 1)
+		return self pm("Usage: dog <playerName>");
+
+	player = getPlayerByName(args[0]);
+
+	if (!isDefined(player))
+		return pm("Could not find player");
+
+	player deathrun\game\_game::dog();
+}
+
+cmd_Rtd(args)
+{
+	self.rtd = undefined;
+	self giveWeapon("rtd_mp");
+	self switchToWeapon("rtd_mp");
 }

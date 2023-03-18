@@ -7,8 +7,8 @@ main()
 
 	event("spawn", ::rtd);
 
-	add(1, "^3Defrag", ::rtd_Defrag);
-	add(1, "^3Portal", ::rtd_Portal);
+	add(5, "^3Defrag", ::rtd_Defrag);
+	add(5, "^3Portal", ::rtd_Portal);
 	add(20, "^5Grenade !", ::rtd_Grenade);
 	add(20, "^5RPG !", ::rtd_RPG);
 	add(20, "^5150 XP", ::rtd_XP);
@@ -23,7 +23,7 @@ main()
 	add(20, "^1-90 HP", ::rtd_Damage);
 	add(20, "^15sec Freeze Randomly", ::rtd_RandomFreeze);
 	add(20, "^1Flash Randomly", ::rtd_RandomFlash);
-	add(20, "^1Explode in 80 seconds !!!!", ::rtd_RandomExplode);
+	add(20, "^1Explode in 80 seconds !!!!", ::rtd_Explode);
 }
 
 add(chance, message, callback)
@@ -42,33 +42,35 @@ rtd()
 	self endon("death");
 	self endon("disconnect");
 
-	while (!isDefined(self.rtd))
+	while (true)
 	{
 		wait 0.2;
 
-		if (self getCurrentWeapon() != "rtd_mp")
+		if (!self canRTD() || self getCurrentWeapon() != "rtd_mp")
 			continue;
-		if (self.pers["team"] != "allies" || level.trapsDisabled || level.freeRun)
-		{
-			self removeWeapon();
-			return;
-		}
 
 		self.rtd = true;
 		self randomize();
 	}
 }
 
+canRTD()
+{
+	return !isDefined(self.rtd) && self.pers["team"] == "allies" && !level.trapsDisabled && !level.freeRun;
+}
+
 randomize()
 {
+	self thread removeWeapon();
+
 	self setLowerMessage("RTD");
-	wait 0.4;
-	self setLowerMessage("RTD.");
-	wait 0.4;
-	self setLowerMessage("RTD..");
-	wait 0.4;
-	self setLowerMessage("RTD...");
-	wait 0.4;
+	wait 0.5;
+	self setLowerMessage("RTD .");
+	wait 0.5;
+	self setLowerMessage("RTD ..");
+	wait 0.5;
+	self setLowerMessage("RTD ...");
+	wait 0.5;
 	self clearLowerMessage();
 
 	chance = getChance();
@@ -77,8 +79,9 @@ randomize()
 		picked = level.rtd[randomInt(level.rtd.size)];
 
 	self setLowerMessage(picked.message);
-	self thread removeWeapon();
 	self thread [[picked.callback]]();
+	wait 1;
+	self clearLowerMessage();
 }
 
 getChance()
@@ -99,93 +102,128 @@ removeWeapon()
 	self endon("disconnect");
 
 	self switchToWeapon(self.pers["weapon"]);
-	wait 2;
+	wait 0.3;
 	self takeWeapon("rtd_mp");
-	wait 1;
-	self clearLowerMessage();
 }
 
 rtd_Grenade()
 {
-
+	self giveWeapon("frag_grenade_short_mp");
 }
 
 rtd_RPG()
 {
-
+	self giveWeapon("rpg_mp");
+	self switchToWeapon("rpg_mp");
+	self cheat();
 }
 
 rtd_XP()
 {
-
+	self sr\game\_rank::giveRankXP("", 150);
 }
 
 rtd_Life()
 {
-
+	self deathrun\game\_game::giveLife();
 }
 
 rtd_Dog()
 {
-
+	self deathrun\game\_game::dog();
 }
 
 rtd_Shovel()
 {
-
+	self giveWeapon("shovel_mp");
+	self switchToWeapon("shovel_mp");
 }
 
 rtd_HealthBoost()
 {
-
+	self.maxhealth = 200;
+	self.health = self.maxhealth;
+	self cheat();
 }
 
 rtd_PerkFire()
 {
-
+	self setPerk("specialty_rof");
 }
 
 rtd_PerkReload()
 {
-
+	self setPerk("specialty_fastreload");
 }
 
 rtd_Slowdown()
 {
-
+	self sr\api\_player::setPlayerSpeed(170);
+	self cheat();
 }
 
 rtd_NoSprint()
 {
-
+	self allowSprint(false);
 }
 
 rtd_Damage()
 {
-
+	self doPlayerDamage(self, self, 90, 0, "MOD_FALLING", "default_mp", (0, 0, 0), (0, 0, 0), "head", 0);
 }
 
 rtd_RandomFreeze()
 {
+	self endon("disconnect");
+	self endon("death");
 
+	wait randomInt(80);
+
+	self freezeControls(true);
+	wait 3;
+	self freezeControls(false);
 }
 
 rtd_RandomFlash()
 {
+	self endon("disconnect");
+	self endon("death");
 
+	wait randomInt(80);
+
+	self maps\mp\_flashgrenades::applyFlash(4, 0.75);
 }
 
-rtd_RandomExplode()
+rtd_Explode()
 {
+	self endon("disconnect");
+	self endon("death");
 
+	wait 40;
+	self setLowerMessage("^1Bomb explode in 40s...");
+	wait 20;
+	self setLowerMessage("^1Bomb explode in 20s...");
+	wait 10;
+	self setLowerMessage("^1Bomb explode in 10s...");
+	wait 5;
+	self setLowerMessage("^1Bomb explode in 5s...");
+	wait 5;
+
+	self playSound("wtf");
+
+	wait 0.8;
+
+	playFx(level.gfx["explosion"], self.origin);
+	iPrintLn(self.name + " ^1spontaneously exploded.");
+	self suicide();
 }
 
 rtd_Defrag()
 {
-
+	self deathrun\player\run\_defrag::start();
 }
 
 rtd_Portal()
 {
-
+	self deathrun\player\run\_portal::start();
 }

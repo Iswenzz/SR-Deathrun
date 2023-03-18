@@ -5,7 +5,6 @@ main()
 {
 	precache();
 
-	menu("-1", 			"dog", 			::menu_Dog);
 	menu("-1", 			"back", 		::menu_Back);
 	menu("quickstuff", 	"3rdperson", 	::menu_3rdPerson);
 	menu("quickstuff", 	"suicide", 		::menu_Suicide);
@@ -40,11 +39,6 @@ precache()
 	precacheMenu("misc/endofgame");
 	precacheMenu("misc/scoreboard");
 	precacheMenu("misc/muteplayer");
-}
-
-menu_Dog(arg)
-{
-	self.pers["isDog"] = !self.pers["isDog"];
 }
 
 menu_Back(arg)

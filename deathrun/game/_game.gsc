@@ -278,3 +278,24 @@ dropWeapon()
 
 	self dropItem(self.droppableWeapon);
 }
+
+dog()
+{
+    self endon("disconnect");
+    self endon("death");
+
+	self.pers["isDog"] = true;
+
+	self giveWeapon("shepherd_mp");
+	self switchToWeapon("shepherd_mp");
+
+	while (true)
+	{
+		if (self getCurrentWeapon() != "shepherd_mp" || self isOnLadder())
+			self sr\game\_teams::setPlayerModel();
+		else
+			self setModel("german_sheperd_dog");
+
+		wait 0.05;
+	}
+}

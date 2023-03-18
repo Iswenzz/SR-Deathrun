@@ -2,9 +2,10 @@
 
 start()
 {
+	self.sr_mode = "Portal";
 	self cheat();
-	self deathrun\player\run\_210::start();
 
+	self deathrun\player\run\_210::start();
 	self allowAds(true);
 
 	weapon = level.portalgun;

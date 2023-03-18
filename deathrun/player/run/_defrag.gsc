@@ -2,6 +2,7 @@
 
 start()
 {
+	self.sr_mode = "Defrag";
 	self cheat();
 
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(0.9);
@@ -18,6 +19,9 @@ start()
 	self setGravity(self.gravity);
 	self setJumpHeight(self.jumpHeight);
 	self setMoveSpeed(self.speed);
+
+	self thread sr\game\_defrag::onSpawn();
+	self thread sr\player\huds\_viewkick::onSpawn();
 
 	self takeAllWeapons();
 	for (i = 0; i < level.defragStartWeapons.size; i++)

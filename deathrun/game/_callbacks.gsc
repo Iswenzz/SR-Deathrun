@@ -191,8 +191,9 @@ playerSpawn()
 	self setActionSlot(4, "weapon", "shop_mp");
 
 	self giveWeapon("vip_mp");
-	self giveWeapon("rtd_mp");
 	self giveWeapon("shop_mp");
+	if (self deathrun\game\_rtd::canRTD())
+		self giveWeapon("rtd_mp");
 
 	self deathrun\player\run\_main::start();
 
