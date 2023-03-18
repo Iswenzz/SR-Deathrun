@@ -12,6 +12,7 @@ main()
 	cmd("masteradmin", 	"activator",	::cmd_Activator);
 	cmd("masteradmin", 	"dog",			::cmd_Dog);
 	cmd("masteradmin", 	"rtd",			::cmd_Rtd);
+	cmd("masteradmin", 	"points",		::cmd_Points);
 }
 
 cmd_Speed(args)
@@ -109,4 +110,19 @@ cmd_Rtd(args)
 	self.rtd = undefined;
 	self giveWeapon("rtd_mp");
 	self switchToWeapon("rtd_mp");
+}
+
+cmd_Points(args)
+{
+	if (args.size < 1)
+		return self pm("Usage: points <playerName>");
+
+	player = getPlayerByName(args[0]);
+
+	self log();
+	if (!isDefined(player))
+		return pm("Could not find player");
+
+	player pm("You received ^2500 ^7shop points !");
+	player.pers["shopPoints"] = 500;
 }

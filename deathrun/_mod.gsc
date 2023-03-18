@@ -32,6 +32,7 @@ main()
 	sr\game\_killcam::main();
 	sr\game\fx\_trail::main();
 	sr\game\menus\_main::initMenus();
+	sr\game\menus\_shop::main();
 	sr\game\minigames\_main::initMinigames();
 	sr\game\music\_main::initMusics();
 	sr\game\weapons\_main::main();
