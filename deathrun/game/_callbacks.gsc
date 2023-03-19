@@ -166,9 +166,6 @@ playerSpawn()
 
 	self spawnPlayer();
 
-	if (self.model == "german_sheperd_dog")
-		self.pers["weapon"] = "dog_mp";
-
 	if (self.settings["player_knife"])
 	{
 		self giveWeapon(self.pers["knife"], self.pers["knife_skin"]);

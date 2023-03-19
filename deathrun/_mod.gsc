@@ -32,7 +32,6 @@ main()
 	sr\game\_killcam::main();
 	sr\game\fx\_trail::main();
 	sr\game\menus\_main::initMenus();
-	sr\game\menus\_shop::main();
 	sr\game\minigames\_main::initMinigames();
 	sr\game\music\_main::initMusics();
 	sr\game\weapons\_main::main();
@@ -81,6 +80,7 @@ main()
 	deathrun\game\_scoreboard::main();
 	deathrun\game\_leaderboards::initLeaderboards();
 	deathrun\game\_pbs::initPBs();
+	deathrun\game\menus\_shop::main();
 
 	deathrun\player\_settings::main();
 	deathrun\player\run\_main::main();

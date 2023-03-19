@@ -130,7 +130,7 @@ rtd_Life()
 
 rtd_Dog()
 {
-	self deathrun\game\_game::dog();
+	self sr\commands\_player::dog();
 }
 
 rtd_Shovel()
