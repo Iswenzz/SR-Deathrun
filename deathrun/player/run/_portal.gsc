@@ -3,6 +3,8 @@
 start()
 {
 	self.sr_mode = "Portal";
+	self.forcePortalVisual = true;
+	self.forcePortalHitPlayers = true;
 	self cheat();
 
 	self deathrun\player\run\_210::start();

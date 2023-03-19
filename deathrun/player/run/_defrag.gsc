@@ -3,6 +3,9 @@
 start()
 {
 	self.sr_mode = "Defrag";
+	self.forceWeaponVisual = true;
+	self.forceWeaponKnockback = true;
+	self.forceWeaponHitPlayers = true;
 	self cheat();
 
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(0.9);

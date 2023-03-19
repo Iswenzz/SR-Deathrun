@@ -55,6 +55,7 @@ main()
 	sr\player\huds\_crosshair::main();
 	sr\player\huds\_fps::main();
 	sr\player\huds\_keys::main();
+	sr\player\huds\_spectator::main();
 	sr\player\huds\_velocity::main();
 	sr\player\huds\_viewkick::main();
 	sr\player\huds\_voice::main();
@@ -74,6 +75,7 @@ main()
 	deathrun\game\_rtd::main();
 	deathrun\game\_map::main();
 	deathrun\game\_demo::main();
+	deathrun\game\_order::main();
 	deathrun\game\_match::main();
 	deathrun\game\_menus::main();
 	deathrun\game\_scoreboard::main();

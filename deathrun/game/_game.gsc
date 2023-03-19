@@ -166,15 +166,12 @@ trapActivation()
 	self endon("delete");
 	self endon("deleted");
 
-	while (isDefined(self))
-	{
-		self waittill("trigger", player);
+	self waittill("trigger", player);
 
-		if (player.pers["team"] != "axis")
-			continue;
+	if (player.pers["team"] != "axis")
+		return;
 
-		player sr\game\_rank::giveRankXP("trap_activation");
-	}
+	player sr\game\_rank::giveRankXP("trap_activation");
 }
 
 disableTraps()

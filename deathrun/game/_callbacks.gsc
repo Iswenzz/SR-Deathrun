@@ -65,9 +65,13 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 	if (isPlayer(eAttacker) && self sameTeam(eAttacker) && !eAttacker.teamKill)
 		return;
-	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
+	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallbang(eAttacker, self))
+		return;
+	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_PROJECTILE" && isWallbang(eAttacker, self))
 		return;
 	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
+		return;
+	if (!level.finishedMap && sMeansOfDeath == "MOD_FALLING")
 		return;
 
 	if (isPlayer(eAttacker) && eAttacker != self)
@@ -126,7 +130,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	if (level.activatorKilled || getPlayingPlayers().size <= 1)
 		self thread sr\game\_killcam::start(2, 8, eInflictor, attacker, sWeapon);
-	if (isPlayer(attacker) && !self sameTeam(attacker))
+	if (isPlayer(attacker) && attacker.pers["team"] == "axis")
 		self thread deathrun\game\_game::dropWeapon();
 	if (!isPlayer(attacker) || attacker == self)
 		return;
@@ -186,15 +190,13 @@ playerSpawn()
 	if (self getStat(988))
 		self setClientDvar("cg_thirdperson", 1);
 
-	self setActionSlot(1, "weapon", "vip_mp");
 	self setActionSlot(2, "weapon", "rtd_mp");
+	self setActionSlot(3, "weapon", "claymore_mp");
 	self setActionSlot(4, "weapon", "shop_mp");
 
+	self giveWeapon("claymore_mp");
 	if (!level.freeRun)
-	{
-		self giveWeapon("vip_mp");
 		self giveWeapon("shop_mp");
-	}
 	if (self deathrun\game\_rtd::canRTD())
 		self giveWeapon("rtd_mp");
 

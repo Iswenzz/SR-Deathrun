@@ -4,6 +4,8 @@
 
 main()
 {
+	level.finishedMap = false;
+
 	addMode("190", deathrun\player\run\_190::start);
 	addMode("210", deathrun\player\run\_210::start);
 	addMode("Portal", deathrun\player\run\_portal::start);
@@ -61,6 +63,7 @@ endmapTrigger()
 	while (true)
 	{
 		trigger waittill("trigger", player);
+		level.finishedMap = true;
 		player thread endTimer();
 	}
 }
@@ -101,6 +104,8 @@ endTimer()
 		self iPrintLnBold("^1Your time was not saved!");
 		return;
 	}
+	if (level.freeRun)
+		return;
 
 	way = getLeaderboardName(self.sr_mode, self.sr_way);
 	message = fmt("%s finished the map in %d:%d.%d - %s / %s",

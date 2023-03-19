@@ -5,6 +5,8 @@
 main()
 {
 	level.spawn = [];
+	level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
 	level.colliders = [];
 	level.tempEntity = spawn("script_model", (0, 0, 0));
 	level.files["rotation"] = PATH_Mod("sr/data/match/rotation.txt");
