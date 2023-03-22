@@ -93,7 +93,7 @@ end(map)
 	level notify("game over");
 	level notify("game_ended");
 
-	wait 2;
+	wait 3;
 
 	// Sequence
 	endMusic();
@@ -173,6 +173,8 @@ displayMapScores()
 
 	if (!level.dvar["map_scores"])
 		return;
+
+	deathrun\game\_scoreboard::showBestScores();
 }
 
 voteNextMap()

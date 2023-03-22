@@ -113,7 +113,7 @@ specialRound()
 	level waittill("round_started");
 	wait 1;
 
-	if (randomIntRange(0, 100) > 5)
+	if (randomIntRange(0, 100) > 1)
 		return;
 
 	mode = randomIntRange(0, 2) + 1;
