@@ -47,6 +47,9 @@
 
 		BUTTON_BIND(16, "3rd Person", "openscriptmenu quickstuff 3rdperson", ;)
 		BUTTON_BIND(17, "Suicide", "openscriptmenu quickstuff suicide", ;)
+		BUTTON_BIND(18, "RTD", "+actionslot 2", ;)
+		BUTTON_BIND(19, "Insertion", "+actionslot 3", ;)
+		BUTTON_BIND(20, "Shop", "+actionslot 4", ;)
 
 		BUTTON_KEYBINDHELP
 	}

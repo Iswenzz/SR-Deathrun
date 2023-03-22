@@ -77,6 +77,7 @@ main()
 	deathrun\game\_order::main();
 	deathrun\game\_match::main();
 	deathrun\game\_menus::main();
+	deathrun\game\_race::main();
 	deathrun\game\_scoreboard::main();
 	deathrun\game\_leaderboards::initLeaderboards();
 	deathrun\game\_pbs::initPBs();

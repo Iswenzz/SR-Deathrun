@@ -66,6 +66,8 @@ order()
 	if (!isDefined(level.orderNoRespawn))
 		self setOrigin(origin);
 
+	self iPrintLn("^5You can't enter the room yet.");
+
 	return false;
 }
 
