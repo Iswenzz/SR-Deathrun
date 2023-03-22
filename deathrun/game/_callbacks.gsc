@@ -71,7 +71,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		return;
 	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
 		return;
-	if (!level.finishedMap && sMeansOfDeath == "MOD_FALLING")
+	if (self.pers["team"] == "axis" && sMeansOfDeath == "MOD_FALLING" && !level.finishedMap)
 		return;
 
 	if (isPlayer(eAttacker) && eAttacker != self)
