@@ -51,7 +51,7 @@ setup(id)
 
 play(id)
 {
-	if (self.pers["team"] == "axis")
+	if (self isAxis())
 		return;
 	if (!self setup(id))
 	{

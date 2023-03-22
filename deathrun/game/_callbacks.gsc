@@ -71,7 +71,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		return;
 	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
 		return;
-	if (self.pers["team"] == "axis" && sMeansOfDeath == "MOD_FALLING" && !level.finishedMap)
+	if (self isAxis() && sMeansOfDeath == "MOD_FALLING" && !level.finishedMap)
 		return;
 
 	if (isPlayer(eAttacker) && eAttacker != self)
@@ -119,7 +119,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 			thread braxi\_mod::drawInformation(800, 0.8, -1, text);
 		}
 	}
-	if (self.pers["team"] == "axis" && !level.activatorKilled)
+	if (self isAxis() && !level.activatorKilled)
 		return;
 
 	deaths = self maps\mp\gametypes\_persistence::statGet("DEATHS");
@@ -130,7 +130,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	if (level.activatorKilled || getPlayingPlayers().size <= 1)
 		self thread sr\game\_killcam::start(2, 8, eInflictor, attacker, sWeapon);
-	if (isPlayer(attacker) && attacker.pers["team"] == "axis")
+	if (isPlayer(attacker) && attacker isAxis())
 		self thread deathrun\game\_game::dropWeapon();
 	if (!isPlayer(attacker) || attacker == self)
 		return;
@@ -139,7 +139,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	attacker.pers["kills"]++;
 	sr\game\_rank::processXpReward(sMeansOfDeath, attacker, self);
 
-	if (attacker.pers["team"] == "allies")
+	if (attacker isAllies())
 		attacker deathrun\game\_game::giveLife();
 }
 
@@ -158,7 +158,7 @@ playerSpawn()
 	self.pers["knife"] = self getCustomizeKnife()["item"];
 	self.pers["knife_skin"] = self getCustomizeKnifeSkin()["id"];
 
-	if (self.pers["team"] == "axis")
+	if (self isAxis())
 	{
 		self.pers["weapon"] = "tomahawk_mp";
 		self.playerSpawn = level.spawn["activator"];

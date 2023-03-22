@@ -186,7 +186,7 @@ getPlacementString(index)
 
 isInRace(player)
 {
-	return player isPlaying() && !player.raceFinish && player.pers["team"] == "allies";
+	return player isPlaying() && !player.raceFinish && player isAllies();
 }
 
 clear()

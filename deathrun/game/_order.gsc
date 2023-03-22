@@ -35,7 +35,7 @@ start()
 
 queue()
 {
-	if (isDefined(self.order) || self.pers["team"] != "allies")
+	if (isDefined(self.order) || !self isAllies())
 		return;
 
 	self.order = true;

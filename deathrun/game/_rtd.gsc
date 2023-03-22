@@ -56,7 +56,7 @@ rtd()
 
 canRTD()
 {
-	return !isDefined(self.rtd) && self.pers["team"] == "allies" && !level.trapsDisabled && !level.freeRun;
+	return !isDefined(self.rtd) && self isAllies() && !level.trapsDisabled && !level.freeRun;
 }
 
 randomize()

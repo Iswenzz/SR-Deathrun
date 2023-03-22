@@ -31,7 +31,7 @@ hud()
 
 freeRunChoice()
 {
-	if (self.pers["team"] != "axis")
+	if (!self isAxis())
 		return;
 
 	level endon("kill_free_run_choice");

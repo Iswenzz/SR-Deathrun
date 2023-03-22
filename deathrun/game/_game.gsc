@@ -69,12 +69,12 @@ watchGame()
 			if (player isPlaying())
 			{
 				level.totalPlayingPlayers++;
-				if (player.pers["team"] == "allies")
+				if (player isAllies())
 				{
 					level.jumpers++;
 					level.jumper[level.jumper.size] = player;
 				}
-				if (player.pers["team"] == "axis")
+				if (player isAxis())
 					level.activators++;
 			}
 		}
@@ -168,7 +168,7 @@ trapActivation()
 
 	self waittill("trigger", player);
 
-	if (player.pers["team"] != "axis")
+	if (!player isAxis())
 		return;
 
 	player sr\game\_rank::giveRankXP("trap_activation");
@@ -260,7 +260,7 @@ playerAFK()
 	self endon("death");
 	self endon("disconnect");
 
-	if (!level.dvar["afk"] || self.pers["team"] == "axis")
+	if (!level.dvar["afk"] || self isAxis())
 		return;
 
 	time = 0;
