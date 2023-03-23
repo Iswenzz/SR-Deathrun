@@ -7,6 +7,7 @@
 main()
 {
 	game["scoreboard"] = IfUndef(game["scoreboard"], []);
+	game["scoreboard_records"] = IfUndef(game["scoreboard_records"], []);
 
 	setDvar("g_TeamName_Allies", "^5Jumpers");
 	setDvar("g_TeamIcon_Allies", "");
@@ -29,6 +30,7 @@ main()
 	score("knifes", "killiconmelee", "Knifes");
 	score("time", "hudstopwatch", "Time");
 
+	event("map", ::load);
 	event("map", ::updateScoreboard);
 }
 
@@ -42,9 +44,91 @@ score(id, shader, name)
 	score["playerId"] = undefined;
 	score["value"] = 0;
 	score["display"] = "";
+	score["record"] = false;
 
 	if (!isDefined(game["scoreboard"][id]))
+	{
 		game["scoreboard"][id] = score;
+		game["scoreboard_records"][id] = score;
+	}
+}
+
+load()
+{
+	critical_enter("mysql");
+
+	request = SQL_Prepare("SELECT player, name, score, value FROM scores WHERE map = ?");
+	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 30);
+	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
+	SQL_Execute(request);
+	AsyncWait(request);
+
+	rows = SQL_FetchRowsDict(request);
+	SQL_Free(request);
+	critical_release("mysql");
+
+	for (i = 0; i < rows.size; i++)
+	{
+		row = rows[i];
+		id = row["score"];
+
+		game["scoreboard_records"][id]["player"] = row["name"];
+		game["scoreboard_records"][id]["playerId"] = row["player"];
+		game["scoreboard_records"][id]["value"] = row["value"];
+		game["scoreboard_records"][id]["display"] = ToString(row["value"]);
+		game["scoreboard_records"][id]["record"] = true;
+
+		if (id == "time")
+		{
+			time = originToTime(row["value"]);
+			game["scoreboard_records"][id]["display"] = "" + time.min + ":" + time.sec + "." + time.ms;
+		}
+	}
+}
+
+save()
+{
+	critical_enter("mysql");
+
+	scores = getArrayKeys(game["scoreboard"]);
+	for (i = 0; i < scores.size; i++)
+	{
+		score = game["scoreboard"][scores[i]];
+		record = game["scoreboard_records"][scores[i]];
+
+		if (!isDefined(score["player"]) || !isDefined(score["playerId"])
+			|| !score["record"] || score["value"] == record["value"])
+			continue;
+
+		request = SQL_Prepare("UPDATE scores SET player = ?, name = ?, value = ? WHERE map = ? AND score = ?");
+		SQL_BindParam(request, score["playerId"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, score["player"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, score["value"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, score["id"], level.MYSQL_TYPE_STRING);
+		SQL_Execute(request);
+		AsyncWait(request);
+
+		affected = SQL_AffectedRows(request);
+		SQL_Free(request);
+
+		if (!affected)
+		{
+			request = SQL_Prepare("INSERT INTO scores (map, player, name, score, value) VALUES (?, ?, ?, ?, ?)");
+			SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+			SQL_BindParam(request, score["playerId"], level.MYSQL_TYPE_STRING);
+			SQL_BindParam(request, score["player"], level.MYSQL_TYPE_STRING);
+			SQL_BindParam(request, score["id"], level.MYSQL_TYPE_STRING);
+			SQL_BindParam(request, score["value"], level.MYSQL_TYPE_LONG);
+			SQL_Execute(request);
+			AsyncWait(request);
+			SQL_Free(request);
+		}
+	}
+	critical_release("mysql");
 }
 
 updateScoreboard()
@@ -61,20 +145,28 @@ updateScoreboard()
 		for (j = 0; j < players.size; j++)
 		{
 			score = game["scoreboard"][scores[i]];
+			record = game["scoreboard_records"][scores[i]];
 			entry = players[j] makeEntry();
 
-			if (!isDefined(entry[score["id"]]))
+			id = score["id"];
+			if (!isDefined(entry[id]))
 				continue;
 
-			if (score["id"] == "time" && entry[score["id"]] < score["value"])
-				addEntry(score["id"], entry);
-			else if (entry[score["id"]] > score["value"])
-				addEntry(score["id"], entry);
+			// Scores
+			if ((id == "time" && entry[id] < score["value"])
+				|| entry[id] > score["value"])
+				updateScore(id, entry);
+
+			// Records
+			if (!record["record"]
+				|| (id == "time" && score["value"] < record["value"])
+				|| (score["value"] > record["value"]))
+				game["scoreboard"][id]["record"] = true;
 		}
 	}
 }
 
-addEntry(id, entry)
+updateScore(id, entry)
 {
 	game["scoreboard"][id]["player"] = entry["name"];
 	game["scoreboard"][id]["playerId"] = entry["player"];
@@ -136,6 +228,7 @@ showBestScores()
 		level.huds["score"]["scores"][id] setText(stringBestScore(score));
 		level.huds["score"]["scores"][id] thread fadeIn(0, 1);
 	}
+	thread save();
 	wait 8;
 
 	level clear();
@@ -144,9 +237,15 @@ showBestScores()
 
 stringBestScore(score)
 {
+	id = score["id"];
+	record = Ternary(score["record"], "^2NEW ", "");
+
+	if (!score["record"])
+		score = game["scoreboard_records"][id];
+
 	if (!isDefined(score["player"]))
 		return fmt("This map doesn't have a ^5%s Record ^7yet", score["name"]);
-	return fmt("^7%s Record ^5%s ^7%s", score["name"], score["display"], score["player"]);
+	return fmt("%s^7%s Record ^5%s ^7%s", record, score["name"], score["display"], score["player"]);
 }
 
 playerStringBestScore(score)
