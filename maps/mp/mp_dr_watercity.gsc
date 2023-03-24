@@ -1,8 +1,8 @@
 main()
 {
-level.masterSpawn = spawn("script_origin", (1861,-567,125));
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
-level.masterSpawn placeSpawnPoint();
+level.spawn["player"] = spawn("script_origin", (1861,-567,125));
+level.spawn["player"].angles = level.spawn["allies"][0].angles;
+level.spawn["player"] placeSpawnPoint();
 trigger = spawn("trigger_radius", (1491, 1096, 444), 0, 300, 300);
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;
@@ -12,7 +12,7 @@ trigger.radius = 300;
            maps\mp\_load::main();
 
             ambientPlay("ambient_black");
-           
+
             PreCacheItem("m4_silencer_mp");
 
            thread addTestClients();
@@ -38,9 +38,9 @@ trigger.radius = 300;
            thread helipad();
            thread heli();
            thread carjump();
-          
-           
-           
+
+
+
            thread WatchSniper();
            thread WatchKnife();
            thread WatchPistol();
@@ -99,7 +99,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }
@@ -109,7 +109,7 @@ WatchSniper()
 	level.snip_trig = getEnt( "trigger_sniper", "targetname");
 	jump = getEnt( "sniper_jumper", "targetname" );
 	acti = getEnt( "sniper_activator", "targetname" );
-	
+
 	while(1)
 	{
 		level.snip_trig waittill( "trigger", player );
@@ -119,7 +119,7 @@ WatchSniper()
 	///////RESPECT SCRIPT END/////////////////////////
 		if( !isDefined( level.snip_trig ) )
 			return;
-		
+
 		level.knife_trig delete();
                                      level.pistol_trig delete();
                                      level.old_trig delete();
@@ -136,8 +136,8 @@ WatchSniper()
 		wait 0.05;
 		player switchToWeapon( "remington700_mp" );
 		level.activ SwitchToWeapon( "remington700_mp" );
-		iPrintlnBold( " ^5" + player.name + " has chosen Sniper room!" );		
-//change it as you wish		
+		iPrintlnBold( " ^5" + player.name + " has chosen Sniper room!" );
+//change it as you wish
                                      while( isAlive( player ) && isDefined( player ) )
 			wait 1;
 	}
@@ -147,7 +147,7 @@ WatchKnife()
 	level.knife_trig = getEnt( "trigger_knife", "targetname");
 	jump = getEnt( "knife_jumper", "targetname" );
 	acti = getEnt( "knife_activator", "targetname" );
-	
+
 	while(1)
 	{
 		level.knife_trig waittill( "trigger", player );
@@ -157,22 +157,22 @@ WatchKnife()
 	///////RESPECT SCRIPT END/////////////////////////
 		if( !isDefined( level.knife_trig ) )
 			return;
-		
+
 		level.snip_trig delete();
                                      level.pistol_trig delete();
                                      level.old_trig delete();
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		player TakeAllWeapons();
-		player GiveWeapon( "tomahawk_mp" );		
+		player GiveWeapon( "tomahawk_mp" );
 		level.activ setPlayerangles( acti.angles );
 		level.activ setOrigin( acti.origin );
 		level.activ TakeAllWeapons();
-		level.activ GiveWeapon( "tomahawk_mp" );		
+		level.activ GiveWeapon( "tomahawk_mp" );
 		wait 0.05;
 		player switchToWeapon( "tomahawk_mp" );
 		level.activ SwitchToWeapon( "tomahawk_mp" );
-		iPrintlnBold( " ^6" + player.name + " has chosen Tomahawk room!" );		//change it as you wish 
+		iPrintlnBold( " ^6" + player.name + " has chosen Tomahawk room!" );		//change it as you wish
 		while( isAlive( player ) && isDefined( player ) )
 			wait 1;
 	}
@@ -182,13 +182,13 @@ WatchPistol()
 	level.pistol_trig = getEnt( "trigger_pistol", "targetname");
 	jump = getEnt( "pistol_jumper", "targetname" );
 	acti = getEnt( "pistol_activator", "targetname" );
-	
+
 	while(1)
 	{
 		level.pistol_trig waittill( "trigger", player );
 		if( !isDefined( level.pistol_trig ) )
 			return;
-		
+
 		level.knife_trig delete();
                                      level.snip_trig delete();
                                       level.old_trig delete();
@@ -205,8 +205,8 @@ WatchPistol()
 		wait 0.05;
 		player switchToWeapon( "colt45_mp" );
 		level.activ SwitchToWeapon( "colt45_mp" );
-		iPrintlnBold( " ^3" + player.name + " has chosen Pistol room!" );		
-//change it as you wish		
+		iPrintlnBold( " ^3" + player.name + " has chosen Pistol room!" );
+//change it as you wish
                                      while( isAlive( player ) && isDefined( player ) )
 			wait 1;
 	}
@@ -224,15 +224,15 @@ WatchOld()
 	///////RESPECT SCRIPT END/////////////////////////
 		if( !isDefined( level.old_trig ) )
 			return;
-		
+
 		level.knife_trig delete();
                                      level.snip_trig delete();
                                       level.pistol_trig delete();
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
-		wait 0.05;		
-		iPrintlnBold( " ^3" + player.name + " has chosen Old!" );		
-//change it as you wish		
+		wait 0.05;
+		iPrintlnBold( " ^3" + player.name + " has chosen Old!" );
+//change it as you wish
                                      while( isAlive( player ) && isDefined( player ) )
 			wait 1;
 	}
@@ -251,7 +251,7 @@ opendoor()
 }
 floats()
 {
-                   
+
                    brush1 = getEnt("float12","targetname");
                    brush2 = getEnt("float3","targetname");
 
@@ -290,7 +290,7 @@ trap2()
 
                    trig waittill("trigger");
                    trig delete();
-                   
+
                    while(true)
                    {
                                       brush1 rotateYaw(360,1.5);
@@ -319,7 +319,7 @@ trap4()
 
 	trig waittill("trigger");
 	trig delete();
-	
+
 	brushGroup1[randomInt(brushGroup1.size)] moveZ(-64,2);
 	brushGroup2[randomInt(brushGroup2.size)] moveZ(-64,2);
 }
@@ -332,9 +332,9 @@ trap5()
                    trig waittill("trigger");
                    trig delete();
                    brush delete();
-                   
+
                    brushGroup1[randomInt(brushGroup1.size)] delete();
-                    
+
 }
 trap6()
 {
@@ -343,9 +343,9 @@ trap6()
                    brush2 = getEnt("trap6.2","targetname");
 
                    trig waittill("trigger");
-                   trig delete();                  
+                   trig delete();
                   {
-                                    brush1 moveZ(120,4);                                   
+                                    brush1 moveZ(120,4);
                                     wait 5;
                   }
                   while(true)
@@ -355,9 +355,9 @@ trap6()
                                    wait 5;
                                    brush1 moveZ(120,4);
                                    brush2 moveZ(-120,4);
-                                   wait 5; 
+                                   wait 5;
                    }
-                   
+
 }
 trap7()
 {
@@ -446,16 +446,16 @@ enddoor()
 }
 killvendor()
 {
-	trig = getEnt ("kill_trig", "targetname");	
+	trig = getEnt ("kill_trig", "targetname");
 	{
 		trig waittill ("trigger", who);
-		who suicide();	
+		who suicide();
 	}
 }
 findphill()
 {
 	wait 10;
-	
+
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 	{
@@ -473,7 +473,7 @@ findphill()
 PartyCredits()
 {
                         trig = getEnt ("party_trig", "targetname");
-                       
+
                         trig waittill("trigger" ,player);
                         trig delete();
                    {
@@ -540,15 +540,15 @@ PartyCredits()
                    }
                    while(true)
                    {
-                    SetExpFog(1500, 1500, 1, 0, 0, 0);  
-                    wait 1;  
-                    SetExpFog(1500, 1500, 0, 1, 0, 0);  
-                    wait 1;  
-                    SetExpFog(1500, 1500, 0, 0, 1, 0);   
+                    SetExpFog(1500, 1500, 1, 0, 0, 0);
+                    wait 1;
+                    SetExpFog(1500, 1500, 0, 1, 0, 0);
+                    wait 1;
+                    SetExpFog(1500, 1500, 0, 0, 1, 0);
                     wait 1;
                     SetExpFog(1500, 1500, 1, 1, 0, 0);
-                    wait 1;                    
-                      
+                    wait 1;
+
                   }
 }
 uav()
@@ -568,11 +568,11 @@ uav()
                 uav moveX(3000,20);
                 wait 20;
                 uav rotateYaw(-90,2);
-                wait 7; 
+                wait 7;
                 uav moveY(-3000,20);
                 wait 20;
                 uav rotateYaw(-90,2);
-                wait 7; 
+                wait 7;
          }
 }
 helipad()

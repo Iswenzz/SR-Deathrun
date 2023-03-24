@@ -1,7 +1,7 @@
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][2].origin);
-level.masterSpawn.angles = level.spawn["allies"][2].angles;
+level.spawn["player"] = spawn("script_origin", level.spawn["allies"][2].origin);
+level.spawn["player"].angles = level.spawn["allies"][2].angles;
 trigger = spawn("trigger_radius", (-2.43295, -301.38, 128.125), 0, 40, 120);
 trigger.targetname = "endmap_trig";
 trigger.radius = 40;
@@ -100,22 +100,22 @@ already_check_reset()
 	self.already_check = undefined;
 }
 
-gaptrap_slider() 
-{ 
-	gaptrap = getent( "gap_trap", "targetname" ); 
+gaptrap_slider()
+{
+	gaptrap = getent( "gap_trap", "targetname" );
 	gap_trig = getent( "trigger_gap", "targetname" );
 
-		gap_trig waittill ("trigger"); 
-		//wait 4; 
-		gaptrap movez (-200,2,0,0.6); 
-		gaptrap waittill ("movedone"); 
-		wait 4;  
-		gaptrap movez(200,4,0,0.6); 
+		gap_trig waittill ("trigger");
+		//wait 4;
+		gaptrap movez (-200,2,0,0.6);
+		gaptrap waittill ("movedone");
+		wait 4;
+		gaptrap movez(200,4,0,0.6);
 		gaptrap waittill ("movedone");
 }
 
-liftertrap_slider() 
-{ 
+liftertrap_slider()
+{
 	lifter_left_trap = getent( "lifter_left", "targetname" );
 	lifter_right_trap = getent( "lifter_right", "targetname" );
 	lifter_trig = getent( "trigger_lifter", "targetname" );
@@ -161,7 +161,7 @@ labyrinth_slider()
 	laby_wall = getent( "labyrinth_wall", "targetname" );
 
 		laby_trig waittill ("trigger");
-		
+
 		laby_wall movez (128,1,0,0);
 		laby_wall waittill ("movedone");
 		wait 20;
@@ -174,14 +174,14 @@ spinnercone_slider()
 	spinner_cone = getent( "spinnercone", "targetname" );
 
 		spin_trig waittill ("trigger");
-		
+
 		spinner_cone movez (64,1,0,0);
 		spinner_cone rotateyaw (540,1,0,0);
 		spinner_cone waittill ("rotatedone");
-		
+
 		spinner_cone rotateyaw (540,1,0,0);
 		spinner_cone waittill ("rotatedone");
-		
+
 		spinner_cone rotateyaw (540,1,0,0);
 		spinner_cone waittill ("rotatedone");
 		wait 5;
@@ -190,7 +190,7 @@ spinnercone_slider()
 
 		spinner_cone rotateyaw (540,1,0,0);
 		spinner_cone waittill ("rotatedone");
-		
+
 		spinner_cone rotateyaw (540,1,0,0);
 		spinner_cone movez (-64,1,0,0);
 		spinner_cone waittill ("rotatedone");
@@ -202,7 +202,7 @@ tube_slider()
 	tube = getent( "spinner_tube", "targetname" );
 
 		tube_trig waittill ("trigger");
-		
+
 		tube rotatepitch (720,1,0,0);
 		tube waittill ("rotatedone");
 		wait 0.5;
@@ -226,14 +226,14 @@ arrow_shot_slider()
 	arrw_bot = getent( "arrow_bot", "targetname" );
 
 		arrw_trig waittill ("trigger");
-		
+
 		arrw_bot movex (-320,1,0,0);
 		arrw_bot waittill ("movedone");
 		wait 1;
 		arrw_top movex (-320,1,0,0);
 		arrw_bot movez (-200,1,0,0);
 		arrw_top waittill ("movedone");
-		
+
 		arrw_top movez (-200,1,0,0);
 }
 
@@ -253,7 +253,7 @@ maze_slider()
 	while(true)
 	{
 		maze_trig waittill ("trigger");
-		
+
 		maze_door movez (-136,1,0,0);
 		maze_door waittill ("movedone");
 		wait 2.5;
@@ -273,11 +273,11 @@ brick_blaster_slider()
 	trig_2 = getent ( "point_2", "targetname" );
 	trig_3 = getent ( "point_3", "targetname" );
 	trig_4 = getent ( "point_4", "targetname" );
-	
+
 	while(true)
 	{
 		brick_trig waittill ("trigger", user);
-		
+
 		user suicide();
 	}
 }

@@ -1,18 +1,15 @@
 main()
 {
-level.masterSpawn = spawn("script_origin", (-3046,155,-308));
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
-level.masterSpawn placeSpawnPoint();
 trigger = spawn("trigger_radius", (-273.908, 87.884, -229.875), 0, 196, 48);
 trigger.targetname = "endmap_trig";
 trigger.radius = 196;
 //////////////////////////////thready////////////
   		ambientPlay("indipyramid");
-	
+
       thread door_a();
 	  thread door_b();
       thread jump_teleport();
-      thread secret_teleport();	
+      thread secret_teleport();
 
 precacheItem( "remington700_mp" );
 precacheItem( "knife_mp" );
@@ -29,14 +26,14 @@ thread jump(); //64
 thread snip();  //304
 thread secret2();
 thread jump_room_gun();
-	  
+
         maps\mp\_load::main();
-	
+
 	maps\mp\mp_dr_indipyramid_script1::main();
 	maps\mp\mp_dr_indipyramid_script2::main();
 	maps\mp\mp_dr_indipyramid_obrazy::main();
-	
-	
+
+
 //////////////////////////////////global////////////////////////////
 
 	game["allies"] = "sas";
@@ -45,9 +42,9 @@ thread jump_room_gun();
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -65,13 +62,13 @@ thread jump_room_gun();
         level.trapTriggers[level.trapTriggers.size] = getEnt( "t7", "targetname" );
         level.trapTriggers[level.trapTriggers.size] = getEnt( "t8", "targetname" );
         level.trapTriggers[level.trapTriggers.size] = getEnt( "t9", "targetname" );
-     	level.trapTriggers[level.trapTriggers.size] = getEnt( "t10", "targetname" );	
-	    level.trapTriggers[level.trapTriggers.size] = getEnt( "t11", "targetname" );	
-    	level.trapTriggers[level.trapTriggers.size] = getEnt( "t12", "targetname" );	
-    	level.trapTriggers[level.trapTriggers.size] = getEnt( "t13", "targetname" );	
-		level.trapTriggers[level.trapTriggers.size] = getEnt( "t14", "targetname" );	
-    	level.trapTriggers[level.trapTriggers.size] = getEnt( "t15", "targetname" );	
-		
+     	level.trapTriggers[level.trapTriggers.size] = getEnt( "t10", "targetname" );
+	    level.trapTriggers[level.trapTriggers.size] = getEnt( "t11", "targetname" );
+    	level.trapTriggers[level.trapTriggers.size] = getEnt( "t12", "targetname" );
+    	level.trapTriggers[level.trapTriggers.size] = getEnt( "t13", "targetname" );
+		level.trapTriggers[level.trapTriggers.size] = getEnt( "t14", "targetname" );
+    	level.trapTriggers[level.trapTriggers.size] = getEnt( "t15", "targetname" );
+
 }
 
 door_a()
@@ -116,7 +113,7 @@ iprintlnbold ("^3---^1" + player.name + "^3--- ^2open FINAL door!");
 sipka movex (184, 5);
 door [randomInt(door.size)] movez(220, 10);
 
-sipka delete(); 
+sipka delete();
 door delete();
 }
 }
@@ -158,7 +155,7 @@ level.enter_snip waittill ("trigger" , jumper);
 ///////RESPECT SCRIPT/////////////////////////
         if(!jumper sr\api\_deathrun::order())
             continue;
-	///////RESPECT SCRIPT END///////////////////////// 
+	///////RESPECT SCRIPT END/////////////////////////
 enter_jump delete();
 enter_old delete();
 sipka delete();
@@ -434,14 +431,14 @@ secret2_port()
 	player iprintlnbold ("^3---Welcome to secret room---");
     wait 2;
     player iprintlnbold ("^3---Map by ^1Col!ar ^3& ^1PetX---");
-	
+
 	level.enter waittill ("trigger", player);
 	player SetPlayerAngles(level.go.angles);
 	player SetOrigin(level.go.origin);
 	player iprintlnbold ("^3---Welcome to secret room---");
     wait 2;
     player iprintlnbold ("^3---Map by ^1Col!ar ^3& ^1PetX---");
-	
+
     level.enter waittill ("trigger", player);
 	player SetPlayerAngles(level.go.angles);
 	player SetOrigin(level.go.origin);

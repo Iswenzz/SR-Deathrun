@@ -3,7 +3,7 @@
 main()
 {
 maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -72,8 +72,8 @@ maps\mp\_load::main();
 	thread bounce1tp();
 	thread bounce2tp();
 	thread givesniper();
-	thread vipcheck();
-	
+	// thread vipcheck();
+
 	addTriggerToList( "trig_trap1" );
     addTriggerToList( "trig_trap2" );
     addTriggerToList( "trig_trap3" );
@@ -93,7 +93,7 @@ door moveZ(744, 8);
 iprintlnbold("^1Start door opened.");
 wait 2;
 
-}	
+}
 
 	addTriggerToList( name )
 {
@@ -183,18 +183,18 @@ TestClient(team)
 
      while(!isdefined(self.pers["team"]))
          wait .05;
-         
+
      self notify("menuresponse", game["menu_team"], team);
      wait 0.5;
 }
-	
+
 
 lvator()
 {
 	trig = getEnt("trig_lvator", "targetname");
 	arrivo = getEnt("lvator", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	wait 1;
 	arrivo moveZ (680, 2);
@@ -210,8 +210,8 @@ rvator()
 {
 	trig = getEnt("trig_rvator", "targetname");
 	arrivo = getEnt("rvator", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	wait 1;
 	arrivo moveZ (680, 2);
@@ -244,16 +244,16 @@ protest()
 		//dropPlayer( self, "kick", "xM# members are not allowed to play my maps.", "You're temporary banned for ^2"+getDvar("sv_kickbantime")+" ^7seconds" );
 		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
 		wait 0.2;
-	}		
+	}
 	}
 }
 
 
-getPlayerByName( nickname ) 
+getPlayerByName( nickname )
 {
 	players = getAllPlayers();
 	for ( i = 0; i < players.size; i++ )
-		if ( isSubStr( toLower(players[i].name), toLower(nickname) ) ) 
+		if ( isSubStr( toLower(players[i].name), toLower(nickname) ) )
 			return players[i];
 }
 
@@ -266,7 +266,7 @@ secretenter()
 	out = getEnt("o_secretenter", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -293,7 +293,7 @@ step2()
 		trig waittill("trigger", player);
 			iPrintLnBold("^1Another one? Good job, only one left...");
 	        step3 thread maps\mp\_utility::triggerOn();
-			trig delete();	
+			trig delete();
 	}
 
 }
@@ -309,7 +309,7 @@ step3()
 			iPrintLnBold("^1Secret opened.");
 	        door delete();
 			trig delete();
-		
+
 	}
 
 }
@@ -328,8 +328,8 @@ trap1()
 	a moveY (-1000, 2);
 	b moveY (1000, 2);
 	wait 2;
-  for (;;) 
-  {	
+  for (;;)
+  {
 	a moveY (2000, 4);
 	b moveY (-2000, 4);
 	wait 4;
@@ -345,7 +345,7 @@ secretp1()
 	out = getEnt("o_secretp1", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -357,7 +357,7 @@ secretp2()
 	out = getEnt("o_secretp2", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -369,7 +369,7 @@ secretp3()
 	out = getEnt("o_secretp3", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -381,7 +381,7 @@ secretp4()
 	out = getEnt("o_secretp4", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -393,7 +393,7 @@ secretp5()
 	out = getEnt("o_secretp5", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -405,7 +405,7 @@ secretp6()
 	out = getEnt("o_secretp6", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -417,7 +417,7 @@ secretp7()
 	out = getEnt("o_secretp7", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -429,7 +429,7 @@ secretexit()
 	out = getEnt("o_secretexit", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 		iPrintLnBold("^1" +player.name+" finished secret!");
@@ -441,7 +441,7 @@ trap2()
 	trig = getEnt("trig_trap2", "targetname");
 	a = getEnt("trap2a", "targetname");
 	b = getEnt("trap2b", "targetname");
-	btn = getEnt ("button_trap2a","targetname"); 
+	btn = getEnt ("button_trap2a","targetname");
 	btn2 = getEnt ("button_trap2b","targetname");
 	trig setHintString("^1Spin this shit");
 	trig waittill("trigger", player);
@@ -449,8 +449,8 @@ trap2()
 	btn moveY (-4, 0.5);
 	btn2 moveY (4, 0.5);
 	wait 0.5;
-  for (;;) 
-  {	
+  for (;;)
+  {
 	a rotateYaw (360, 2.5);
 	b rotateYaw (-360, 2.5);
 	wait 2.5;
@@ -462,8 +462,8 @@ trap3()
 	trig = getEnt("trig_trap3", "targetname");
 	a = getEnt("trap3a", "targetname");
 	b = getEnt("trap3b", "targetname");
-	btn = getEnt ("button_trap3a","targetname"); 
-	btn2 = getEnt ("button_trap3b","targetname"); 
+	btn = getEnt ("button_trap3a","targetname");
+	btn2 = getEnt ("button_trap3b","targetname");
 	trig setHintString("^1Spin this other shit");
 	trig waittill("trigger", player);
 	trig delete();
@@ -474,8 +474,8 @@ trap3()
 	a rotateYaw (720, 1.5);
 	b rotateYaw (-720, 1.5);
 	wait 1.5;
-  for (;;) 
-  {	
+  for (;;)
+  {
     a moveY(-576, 1.5);
 	b moveY(576, 1.5);
 	a rotateYaw (720, 1.5);
@@ -495,14 +495,14 @@ trap5()
 	a = getEnt("trap5a", "targetname");
 	b = getEnt("trap5b", "targetname");
 	c = getEnt("trap5c", "targetname");
-	btn = getEnt ("button_trap5","targetname"); 
+	btn = getEnt ("button_trap5","targetname");
 	trig setHintString("^1Drop them");
 	trig waittill("trigger", player);
 	trig delete();
 	btn moveY (-4, 0.5);
 	wait 0.5;
-  for (;;) 
-  {	
+  for (;;)
+  {
 	a moveZ (-500, 1);
 	wait 1.5;
 	b moveZ (-500, 1);
@@ -582,7 +582,7 @@ actip1()
 	out = getEnt("o_actip1", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -594,7 +594,7 @@ actip2()
 	out = getEnt("o_actip2", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -606,7 +606,7 @@ endtp()
 	out = getEnt("o_endtp", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -626,17 +626,17 @@ musicbox()
 cleanUpOnDeath()
 {
 	self waittill("death");
-	
+
 	if(isDefined(self.hud_music))
 	{
-		for(i=0; i<self.hud_music.size; i++)	
+		for(i=0; i<self.hud_music.size; i++)
 			if(isDefined(self.hud_music[i]))
 				self.hud_music[i] Destroy();
 	}
-	
+
 	if(isDefined(self.hud_music_s))
 	{
-		for(i=0; i<self.hud_music_s.size; i++)	
+		for(i=0; i<self.hud_music_s.size; i++)
 			if(isDefined(self.hud_music_s[i]))
 				self.hud_music_s[i] Destroy();
 	}
@@ -645,17 +645,17 @@ cleanUpOnDeath()
 cleanUpOnPick()
 {
 	self waittill("song_picked");
-	
+
 	if(isDefined(self.hud_music))
 	{
-		for(i=0; i<self.hud_music.size; i++)	
+		for(i=0; i<self.hud_music.size; i++)
 			if(isDefined(self.hud_music[i]))
 				self.hud_music[i] Destroy();
 	}
-	
+
 	if(isDefined(self.hud_music_s))
 	{
-		for(i=0; i<self.hud_music_s.size; i++)	
+		for(i=0; i<self.hud_music_s.size; i++)
 			if(isDefined(self.hud_music_s[i]))
 				self.hud_music_s[i] Destroy();
 	}
@@ -663,41 +663,41 @@ cleanUpOnPick()
 
 songMenu()
 {
-	
+
 	self endon( "death" );
 	self endon( "disconnect" );
 	self endon( "song_picked" );
- 
+
 	self openMenu("music");
-	
+
 	self thread cleanUpOnPick();
 	self thread cleanUpOnDeath();
- 
+
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "creepy22d", 360, 200 );
- 
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 288, 358, 1, "center", "top", 1.4 );
 	self.hud_music[i].sort = 885;
 	self.hud_music[i].font = "objective";
 	self.hud_music[i] setText( "\n                 ^1Press [1/2/3/4/5] To Play The Song." );
-	
+
 	j = 0;
 	self.hud_music_s[j] = braxi\_mod::addTextHud( self, 172, 230+(0*16), 0.93, "left", "top", 1.4 );
 	self.hud_music_s[j].sort = 900;
 	self.hud_music_s[j].font = "objective";
 	self.hud_music_s[j] setText("^11.^7"+level.music[0]["song"]+"\n^12.^7"+level.music[1]["song"]+"\n^13.^7"+level.music[2]["song"]+"\n^14.^7"+level.music[3]["song"]+"\n^15.^7"+level.music[4]["song"]);
- 
+
 	for(;;)
 	{
 		self waittill("menuresponse", menu, response);
-		
+
 		if( menu == "music")
 		{
 			music = getDvar(response);
-			
+
 			if(response == "song2")
 			{
 				ambientPlay(level.music[1]["alias"]);
@@ -707,7 +707,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song3")
 			{
 				ambientPlay(level.music[2]["alias"]);
@@ -717,7 +717,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song4")
 			{
 				ambientPlay(level.music[3]["alias"]);
@@ -727,7 +727,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song5")
 			{
 				ambientPlay(level.music[4]["alias"]);
@@ -751,7 +751,7 @@ songMenu()
 	}
 }
 
-games() 
+games()
 {
 level.games_trig = getEnt( "trig_endselector", "targetname");
 games = getEnt( "o_endselector", "targetname" );
@@ -908,7 +908,7 @@ for(;;)
 	bounce waittill("trigger", player);
 	player thread waitdead();
 	activator = GetActivator();
-	
+
 	player takeallweapons();
 	activator takeallweapons();
 	player freezeControls(true);
@@ -945,7 +945,7 @@ bounce1tp()
 	out = getEnt("o_bounce1tp", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -957,7 +957,7 @@ bounce2tp()
 	out = getEnt("o_bounce2tp", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -985,15 +985,15 @@ knife thread maps\mp\_utility::triggerOn();
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -1018,12 +1018,12 @@ if(isdefined(hud_start))
 	hud_start destroy();
 }
 
-antiglitcher() 
-{ 
+antiglitcher()
+{
 self common_scripts\utility::waittill_any("death","disconnect");
 iPrintlnBold("^0"+self.name+" ^1died");
-wait 0.2; 
-iPrintlnBold("^1Room selection open!"); 
+wait 0.2;
+iPrintlnBold("^1Room selection open!");
 }
 
 givesniper()
@@ -1056,7 +1056,7 @@ for(;;)
 guid = getSubStr(guid, 24);
 gametag = player.name;
 thread removeColorFromString(gametag);
-	if ( guid == "860fb8aa" || guid == "58724d4b" || guid == "c8cb8527" || guid == "92d89af0" || guid == "7c6b40c0" || gametag == "Fish Da Rekter" || gametag == "CAR DarkSTEP" || gametag == "DarkSTEP" || gametag == "Pizza Delivery Guy #1" || gametag == "CAR OrK!DeA" || gametag == "CAR Nepo" || gametag == "CAR Danny" || gametag == "Death" || gametag == "boss'Death" || gametag == "Lifezor" || gametag == "CAR Lifezor" || gametag == "eBc|Death" || gametag == "CAR Raidokaze" || gametag == "#Zsever#Sovetskiy-Soyuz")  
+	if ( guid == "860fb8aa" || guid == "58724d4b" || guid == "c8cb8527" || guid == "92d89af0" || guid == "7c6b40c0" || gametag == "Fish Da Rekter" || gametag == "CAR DarkSTEP" || gametag == "DarkSTEP" || gametag == "Pizza Delivery Guy #1" || gametag == "CAR OrK!DeA" || gametag == "CAR Nepo" || gametag == "CAR Danny" || gametag == "Death" || gametag == "boss'Death" || gametag == "Lifezor" || gametag == "CAR Lifezor" || gametag == "eBc|Death" || gametag == "CAR Raidokaze" || gametag == "#Zsever#Sovetskiy-Soyuz")
 	                       //maris                 //kris        //nepo            //druglord            //lifezor                                                                                                                                                                                          																					                                                                                                //just cuz he won the prize lelz
 		{
 	player iPrintLnBold("^1Enjoy your ^0Dark ^1gun ;)");
@@ -1069,11 +1069,11 @@ thread removeColorFromString(gametag);
 		player giveweapon("darkm9_mp");
 		player switchtoweapon("darkm9_mp");
 		player givemaxammo("darkm9_mp");
-		
-    player braxi\_rank::giveRankXp( "", 250);	   
+
+    player braxi\_rank::giveRankXp( "", 250);
 	   }
 
-      else if (gametag == "OrK!DeA" || gametag == "CAR OrK!DeA") 
+      else if (gametag == "OrK!DeA" || gametag == "CAR OrK!DeA")
       {
 	//  trigger delete();
 	  player giveweapon("darkm9_mp");
@@ -1081,12 +1081,12 @@ thread removeColorFromString(gametag);
 	  player givemaxammo("darkm9_mp");
 	  ambientPlay("orki");
 	  iPrintLn("^0OrK!DeA ^1is here!");
-	  player braxi\_rank::giveRankXp( "", 1000);	  
+	  player braxi\_rank::giveRankXp( "", 1000);
 	  }
-	  
+
 		else
 		{
 			player iPrintLnBold("^1Sorry, ^0VIP ^1only!");
 		}
 	}
-}	
+}

@@ -1,8 +1,8 @@
 /*
-___________.__           .____    .__          _____          ____    __________.__           .__  .__        
+___________.__           .____    .__          _____          ____    __________.__           .__  .__
 \__    ___/|  |__   ____ |    |   |__|__  ____/ ____\____    /  _ \   \______   \  |__   ____ |  | |__|__  ___
   |    |   |  |  \_/ __ \|    |   |  \  \/  /\   __\/ __ \   >  _ </\  |     ___/  |  \_/ __ \|  | |  \  \/  /
-  |    |   |   Y  \  ___/|    |___|  |>    <  |  | \  ___/  /  <_\ \/  |    |   |   Y  \  ___/|  |_|  |>    < 
+  |    |   |   Y  \  ___/|    |___|  |>    <  |  | \  ___/  /  <_\ \/  |    |   |   Y  \  ___/|  |_|  |>    <
   |____|   |___|  /\___  >_______ \__/__/\_ \ |__|  \___  > \_____\ \  |____|   |___|  /\___  >____/__/__/\_ \
                 \/     \/        \/        \/           \/         \/                \/     \/              \/
 .:: Map name: mp_dr_urban ::.
@@ -11,10 +11,10 @@ ___________.__           .____    .__          _____          ____    __________
 
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][10].origin);
-level.masterSpawn.angles = level.spawn["allies"][10].angles;
-level.masterSpawn placeSpawnPoint();
-	maps\mp\_load::main();	
+level.spawn["player"] = spawn("script_origin", level.spawn["allies"][10].origin);
+level.spawn["player"].angles = level.spawn["allies"][10].angles;
+level.spawn["player"] placeSpawnPoint();
+	maps\mp\_load::main();
 
 	// Map dvars
 	setdvar( "r_specularcolorscale", "1" );
@@ -341,7 +341,7 @@ trapDrift()
 	{
 		sfx playSound("drift");
 		clip rotateYaw (-360,2.8);
-		clip waittill("rotatedone");		
+		clip waittill("rotatedone");
 	}
 }
 

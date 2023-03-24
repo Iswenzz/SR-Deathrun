@@ -25,7 +25,7 @@ race()
 	load();
 
 	level waittill("round_started");
-	if (level.freeRun || !level.racePoints.size)
+	if (level.freeRun || !level.racePoints.size || !isDefined(level.raceEndTrig))
 		return;
 
 	watchRace();

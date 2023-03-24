@@ -65,7 +65,12 @@ placeSpawns()
 	{
 		level.spawn["player"] = spawn("script_origin", (x, y, z));
 		level.spawn["player"].angles = angles;
-		level.spawn["player"] placeSpawnPoint();
+
+		if (!level.spawn["player"] placeSpawnPoint())
+		{
+			level.spawn["player"].origin = level.spawn["allies"][0].origin;
+			level.spawn["player"] placeSpawnPoint();
+		}
 	}
 	if (!isDefined(level.spawn["activator"]))
 	{

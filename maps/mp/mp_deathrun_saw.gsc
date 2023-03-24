@@ -1,12 +1,12 @@
 main()
 {
-level.masterSpawn = spawn("script_origin", (-494,3,82));
-level.masterSpawn.angles = (0,0,0);
-level.masterSpawn placeSpawnPoint();
+level.spawn["player"] = spawn("script_origin", (-494,3,82));
+level.spawn["player"].angles = (0,0,0);
+level.spawn["player"] placeSpawnPoint();
 
 	maps\mp\_load::main();
 	maps\mp\_teleport::main();
-	
+
     game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "allies";
@@ -17,7 +17,7 @@ level.masterSpawn placeSpawnPoint();
 	trig = spawn("trigger_radius",(-2277,-2043,210),0,150,250);
 	trig.radius = 150;
 	trig.targetname = "endmap_trig";
-	
+
 	elevatorparts = getentarray("elevator","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -27,7 +27,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread elevator();
 	}
 	}
-	
+
 	elevatorparts = getentarray("elevator2","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -37,7 +37,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread elevator2();
 	}
 	}
-	
+
 	elevatorparts = getentarray("elevator3","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -47,7 +47,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread elevator3();
 	}
 	}
-	
+
 	elevatorparts = getentarray("elevator4","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -57,7 +57,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread elevator4();
 	}
 	}
-	
+
 	elevatorparts = getentarray("platform","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -67,7 +67,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread platform();
 	}
 	}
-	
+
 	elevatorparts = getentarray("platform2","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -77,7 +77,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread platform2();
 	}
 	}
-	
+
 	elevatorparts = getentarray("platform3","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -87,7 +87,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread platform3();
 	}
 	}
-	
+
 	elevatorparts = getentarray("platform4","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -97,7 +97,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread platform4();
 	}
 	}
-	
+
 	elevatorparts = getentarray("bobbing","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -107,7 +107,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread bobbing();
 	}
 	}
-	
+
 	elevatorparts = getentarray("bobbing2","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -117,7 +117,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread bobbing2();
 	}
 	}
-	
+
 	elevatorparts = getentarray("bobbing3","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -127,7 +127,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread bobbing3();
 	}
 	}
-	
+
 	elevatorparts = getentarray("bobbing4","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -137,7 +137,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread bobbing4();
 	}
 	}
-	
+
 	elevatorparts = getentarray("secret","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -147,7 +147,7 @@ level.masterSpawn placeSpawnPoint();
 	elevatorparts[i] thread secret();
 	}
 	}
-	
+
 	thread startdoor();
 	// thread platform();
 	// thread platform2();
@@ -165,9 +165,9 @@ level.masterSpawn placeSpawnPoint();
 	thread twister2();
 	thread teleportsniperroom();
 	thread teleportjump();
-	
+
 	thread addTriggerToList( "trigger_spikes" );
-	
+
 	}
 
 addTriggerToList( name )
@@ -176,7 +176,7 @@ addTriggerToList( name )
         level.trapTriggers = [];
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
- 
+
 startdoor()
 {
 door = getent("rise1","targetname");
@@ -193,7 +193,7 @@ trig = getEnt( "doors_trig", "targetname" );
 
 trig waittill("trigger");
 trig delete();
-{	
+{
 door movez(320,2,0.5,1);
 door waittill ("movedone");
 }
@@ -206,7 +206,7 @@ trig2 = getEnt( "doors_trig2", "targetname" );
 
 trig2 waittill("trigger");
 trig2 delete();
-	
+
 door2 movez(320,2,0.5,1);
 door2 waittill ("movedone");
 }
@@ -214,7 +214,7 @@ door2 waittill ("movedone");
 trap_spikes_left()
 {
 spikes = getEntarray("trap_spikes_left", "targetname");
-hurt = getEnt("spikes_hurt", "targetname");	
+hurt = getEnt("spikes_hurt", "targetname");
 level.spiketrig = getEnt("trigger_spikes", "targetname");
 distance = 220; //change this to change the distance the spikes will travel
 time = 2; //change this to make the spikes faster or slower
@@ -253,7 +253,7 @@ wait(1);
 self movez(-440, 6, 1, 5);
 self waittill("movedone");
 wait(2);
-} 
+}
 }
 
 elevator4()
@@ -270,7 +270,7 @@ wait(1);
 self movez(360, 6, 1, 5);
 self waittill("movedone");
 wait(2);
-} 
+}
 }
 
 elevator2()
@@ -287,7 +287,7 @@ wait(0.5);
 self movez(-100, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 elevator3()
@@ -304,7 +304,7 @@ wait(0.5);
 self movez(-100, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 trap3()
@@ -337,7 +337,7 @@ wait(0.5);
 self movex(340, 3, 1, 2);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 platform2()
@@ -354,7 +354,7 @@ wait(0.5);
 self movex(-400, 3, 1, 2);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 platform3()
@@ -371,7 +371,7 @@ wait(0.5);
 self movey(200, 3, 1, 2);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 platform4()
@@ -388,7 +388,7 @@ wait(0.5);
 self movey(-400, 3, 1, 2);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 twister()
@@ -437,7 +437,7 @@ wait(0.5);
 self movez(-210, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 bobbing2()
@@ -454,7 +454,7 @@ wait(0.5);
 self movez(-210, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 bobbing3()
@@ -471,7 +471,7 @@ wait(0.5);
 self movez(-210, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 bobbing4()
@@ -488,7 +488,7 @@ wait(0.5);
 self movez(-210, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 secret()
@@ -504,11 +504,11 @@ self waittill("movedone");
 wait(10);
 self movey(-7, 3, 1, 2);
 wait(0.5);
-} 
+}
 }
 
 teleportsniperroom()
-{	
+{
 level.actorigin = getEnt("sniperact", "targetname");
 teleorigin = getEnt("teleport_origin", "targetname");
 level.snipertrigger = getEnt("trigger_gamedoor_sniper", "targetname");

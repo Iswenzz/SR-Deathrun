@@ -8,6 +8,7 @@ main()
 	level.allowSpawn = true;
 	level.huds["match"] = [];
 	level.time = level.dvar["time"];
+	level.timelimit = level.time;
 
 	game["roundsplayed"] = IfUndef(game["roundsplayed"], 0) + 1;
 	game["roundStarted"] = false;

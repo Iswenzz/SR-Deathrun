@@ -1,12 +1,12 @@
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
-level.masterSpawn.angles = (0,270,0);
-level.masterSpawn placeSpawnPoint();
+level.spawn["player"] = spawn("script_origin", level.spawn["allies"][0].origin);
+level.spawn["player"].angles = (0,270,0);
+level.spawn["player"] placeSpawnPoint();
 	maps\mp\_load::main();
 	maps\mp\teleporter::teleporter();
 	ambientPlay("lol");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "allies";
@@ -25,7 +25,7 @@ level.masterSpawn placeSpawnPoint();
 	thread addTestClients();
 	thread secret();
 	thread secretend();
-	
+
 	addTriggerToList( "trap1_trigger" );
 	addTriggerToList( "trap2_trigger" );
 	addTriggerToList( "trap3_trigger" );
@@ -73,23 +73,23 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }
 
 
 trap1(){
-trig = getEnt ("trap1_trigger", "targetname"); 
-hurt = getEnt ("hurttrig", "targetname"); 
-spikes = getEnt ("goldcrush", "targetname"); 
+trig = getEnt ("trap1_trigger", "targetname");
+hurt = getEnt ("hurttrig", "targetname");
+spikes = getEnt ("goldcrush", "targetname");
 
-hurt enablelinkto(); 
-hurt linkto (spikes); 
+hurt enablelinkto();
+hurt linkto (spikes);
 
 trig waittill ("trigger");
 trig delete();
-{ 
+{
 spikes moveZ (-112,0.6);
 wait 2;
 spikes moveZ (112,3);
@@ -103,11 +103,11 @@ lines2 = getEnt ("lines2", "targetname");
 hurt1 = getEnt ("lines1hurt", "targetname");
 hurt2 = getEnt ("lines2hurt", "targetname");
 
-hurt1 enablelinkto(); 
+hurt1 enablelinkto();
 hurt1 linkto (lines1);
 
-hurt2 enablelinkto(); 
-hurt2 linkto (lines2);  
+hurt2 enablelinkto();
+hurt2 linkto (lines2);
 
 trig2 waittill ("trigger");
 trig2 delete();
@@ -126,12 +126,12 @@ wait 1;
 }
 
 trap3(){
-trig3 = getEnt ("trap3_trigger", "targetname"); 
-roll = getEnt ("spinnythingy", "targetname"); 
+trig3 = getEnt ("trap3_trigger", "targetname");
+roll = getEnt ("spinnythingy", "targetname");
 
 trig3 waittill ("trigger");
 trig3 delete();
-{ 
+{
 roll moveY (-400,0.5);
 wait 2;
 roll moveY (400,1);
@@ -139,12 +139,12 @@ roll moveY (400,1);
 }
 
 trap4(){
-trig4 = getEnt ("trap4_trigger", "targetname"); 
+trig4 = getEnt ("trap4_trigger", "targetname");
 spinny5 = getEnt ("goldspin", "targetname");
 
 trig4 waittill ("trigger");
 trig4 delete();
-{ 
+{
 while(1){
 spinny5 rotateroll(360,2);
 wait 3;
@@ -180,7 +180,7 @@ sniper()
     jump = getEnt( "enter_snipe", "targetname" );
     acti = getEnt( "acti_snipe", "targetname" );
 
-    
+
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -192,34 +192,34 @@ sniper()
         if(!player sr\api\_deathrun::order())
             continue;
         ///////RESPECT SCRIPT END/////////////////////////
-        
+
 		level.snipe_trig delete();
-  
+
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "m40a3_mp" ); //jumper weapon        
+        player GiveWeapon( "m40a3_mp" ); //jumper weapon
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "m40a3_mp" );        
+        level.activ GiveWeapon( "m40a3_mp" );
         wait 0.05;
         player switchToWeapon( "m40a3_mp" ); //activator weapon
         level.activ SwitchToWeapon( "m40a3_mp" );
         iPrintlnBold( " ^6" + player.name + " ^5 HAS CHOSEN SNIPE^1!" );     //change to what you want it to be
         while( isAlive( player ) && isDefined( player ) )
-		
-		
-            wait 1;	
+
+
+            wait 1;
     }
-}	
+}
 
 knife()
 {
     level.snipe_trig = getEnt( "knife_trig", "targetname");
     jump1 = getEnt( "jumper_knife", "targetname" );
     acti2 = getEnt( "acti_knife", "targetname" );
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
@@ -230,27 +230,27 @@ knife()
         if(!player sr\api\_deathrun::order())
             continue;
         ///////RESPECT SCRIPT END/////////////////////////
-			
+
         level.knife_trig delete();
-  
+
         player SetPlayerAngles( jump1.angles );
         player setOrigin( jump1.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "tomahawk_mp" ); //jumper weapon        
+        player GiveWeapon( "tomahawk_mp" ); //jumper weapon
         level.activ setPlayerangles( acti2.angles );
         level.activ setOrigin( acti2.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "tomahawk_mp" );        
+        level.activ GiveWeapon( "tomahawk_mp" );
         wait 0.05;
         player switchToWeapon( "tomahawk_mp" ); //activator weapon
         level.activ SwitchToWeapon( "tomahawk_mp" );
         iPrintlnBold( " ^6" + player.name + " ^5 HAS CHOSEN KNIFE^1!" );     //change to what you want it to be
         while( isAlive( player ) && isDefined( player ) )
-		
-		
-            wait 1;	
+
+
+            wait 1;
     }
-}	
+}
 
 secret(){
 trig=getent("secret","targetname");
