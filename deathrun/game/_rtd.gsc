@@ -9,6 +9,9 @@ main()
 
 	add(5, "^3Defrag", ::rtd_Defrag);
 	add(5, "^3Portal", ::rtd_Portal);
+	add(10, "^5Speed Boost !", ::rtd_SpeedBoost);
+	add(10, "^5Jump Boost !", ::rtd_JumpBoost);
+	add(10, "^5Gravity Boost !", ::rtd_GravityBoost);
 	add(20, "^5Grenade !", ::rtd_Grenade);
 	add(20, "^5RPG !", ::rtd_RPG);
 	add(20, "^5150 XP", ::rtd_XP);
@@ -19,6 +22,7 @@ main()
 	add(20, "^2Fast Fire Perk", ::rtd_PerkFire);
 	add(20, "^2Fast Reload Perk", ::rtd_PerkReload);
 	add(20, "^1Slowdown", ::rtd_Slowdown);
+	add(20, "^1Heavy Gravity", ::rtd_HeavyGravity);
 	add(20, "^1No Sprint", ::rtd_NoSprint);
 	add(20, "^1-90 HP", ::rtd_Damage);
 	add(20, "^15sec Freeze Randomly", ::rtd_RandomFreeze);
@@ -106,6 +110,24 @@ removeWeapon()
 	self takeWeapon("rtd_mp");
 }
 
+rtd_SpeedBoost()
+{
+	self sr\api\_player::setPlayerSpeed(230);
+	self cheat();
+}
+
+rtd_JumpBoost()
+{
+	self sr\api\_player::setPlayerJumpHeight(60);
+	self cheat();
+}
+
+rtd_GravityBoost()
+{
+	self sr\api\_player::setPlayerGravity(500);
+	self cheat();
+}
+
 rtd_Grenade()
 {
 	self giveWeapon("frag_grenade_short_mp");
@@ -159,6 +181,12 @@ rtd_PerkReload()
 rtd_Slowdown()
 {
 	self sr\api\_player::setPlayerSpeed(170);
+	self cheat();
+}
+
+rtd_HeavyGravity()
+{
+	self sr\api\_player::setPlayerGravity(1200);
 	self cheat();
 }
 
