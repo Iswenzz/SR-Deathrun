@@ -1,11 +1,11 @@
 /*
 
-__________                   .__    .___                ____     ____  __.      .__        
+__________                   .__    .___                ____     ____  __.      .__
 \______   \____  ______ ____ |__| __| _/____   ____    /  _ \   |    |/ _|______|__| ______
  |     ___/  _ \/  ___// __ \|  |/ __ |/  _ \ /    \   >  _ </\ |      < \_  __ \  |/  ___/
- |    |  (  <_> )___ \\  ___/|  / /_/ (  <_> )   |  \ /  <_\ \/ |    |  \ |  | \/  |\___ \ 
+ |    |  (  <_> )___ \\  ___/|  / /_/ (  <_> )   |  \ /  <_\ \/ |    |  \ |  | \/  |\___ \
  |____|   \____/____  >\___  >__\____ |\____/|___|  / \_____\ \ |____|__ \|__|  |__/____  >
-                    \/     \/        \/           \/         \/         \/              \/ 
+                    \/     \/        \/           \/         \/         \/              \/
 
 Author: Poseidon & Kris
 Skype: poszah & kekan_fishdarekter
@@ -25,18 +25,18 @@ main()
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setExpFog(2500, 5000, 0.81, 0.75, 0.63, 0.5);
-	
+
 	level.knife_locked = false;
 	level.jump_locked = false;
 	level.room4_locked = false;
 	level.sniper_locked = false;
 	level.mapheight = 0; // cant get that to work properly thus no rain on spawn.
-	
-	setdvar("dr_activator_speed", "1.2"); // DONT DELETE THESE OR IF YOU WANT TO CHANGE THEM LET THEM EQUAL.. ( adjust according to your server speed )
-	setdvar("dr_jumpers_speed", "1.2"); // ...OTHERWISE IT WILL MORE DIFICAULT FOR THE JUMPERS TO COMPLETE THE BOUNCE ROOM! KEEP THEM MORE THAN 1.05 OR IT WILL BE REALLY HARD.
-	
+
+	// setdvar("dr_activator_speed", "1.2"); // DONT DELETE THESE OR IF YOU WANT TO CHANGE THEM LET THEM EQUAL.. ( adjust according to your server speed )
+	// setdvar("dr_jumpers_speed", "1.2"); // ...OTHERWISE IT WILL MORE DIFICAULT FOR THE JUMPERS TO COMPLETE THE BOUNCE ROOM! KEEP THEM MORE THAN 1.05 OR IT WILL BE REALLY HARD.
+
 	thread onPlayerConnected();
 	thread secret1();
 	thread prepareMap();
@@ -84,7 +84,7 @@ effect = LoadFX("mp_dr_misty/tox_rain");
 	while(1)
 	{
 		players = getentarray("player", "classname");
-		
+
 		for(i=0; i<players.size; i++)
 		{
 		x = 550 - randomint(700);
@@ -129,7 +129,7 @@ right_trap4 = getentarray("trap4_right", "targetname");
 	left_trap4[i] moveY(196,.05);
 	right_trap4[i] moveY(-196,.05);
 	}
-	
+
 precacheItem("remington700_mp");
 precacheItem("m40a3_mp");
 precacheItem("dragunov_mp");
@@ -756,9 +756,9 @@ trig = getEntArray("secret1", "targetname");
 	trig[4] waittill("trigger", player);
 	trig[5] waittill("trigger", player);
 	player iprintlnbold("^9hehe!");
-	
+
 	thread room_song();
-	
+
 	player freezeControls(true);
 	player iPrintLnBold("^2Secret Room");
 	iprintln("^2" + player.name + " found the secret room!");

@@ -1,4 +1,4 @@
-/* 
+/*
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MI             O     M      M    8MM.      MMM        MMM.     MMM         7MMMM
 MI             O     M      M    8M        MMM        MM        MM          MMMM
@@ -10,32 +10,32 @@ MMMM    D   MMMMM   MMM= MN     MM.   MM   MMMM,   MI ~N   NM:  .MM.  MMI   7MMM
 MMMM,  ZM   MMMO     M. ..7     MMM        MMM+    .. ~M        ?M..  . M    MMM
 MMMMM  MM   MMM8     M    7M    MMM~       MMM.       ~MM       MM      M   .MMM
 MMMMM  MMN MMMM8     M    7M    MMMMM.  M  MM.        ~MMM.   7MMM      M.  =MMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM 
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 */
 main()
 {
 trigger = spawn("trigger_radius", (-19136.2, 13545.1, 256.125), 0, 325, 110);
 trigger.targetname = "endmap_trig";
-trigger.radius = 325;	
-	maps\mp\_load::main();	
-	
-	SetDvar( "player_meleerange", "100" );
-	
+trigger.radius = 325;
+	maps\mp\_load::main();
+
+	// SetDvar( "player_meleerange", "100" );
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "allies";
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	//thread expandTimeLimit( 2 );
-	
+
 	ambientPlay("zor");
 	precacheItem("m40a3_mp");
 	precacheItem("ak74u_mp");
 	precacheitem("deserteagle_mp");
 	PrecacheShellShock("death");
-	
+
 	level.abovehuman["fireball_idle"] = LoadFX("dball/kishot");
 	level.abovehuman["fireball_explosion"] = LoadFX("dball/kishotimpact");
 	level.abovehuman["fireball_idlebig"] = LoadFX("dball/kishotbig");
@@ -44,24 +44,24 @@ trigger.radius = 325;
 	precacheModel( "viewmodel_hands_zombie" );
 
 	setdvar( "r_specularcolorscale", "1" );
-	setdvar( "dr_jumpers_speed", "1.2" );
+	// setdvar( "dr_jumpers_speed", "1.2" );
 	setdvar( "dr_activators_speed", "1.2" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 	level.dvar["time_limit"] = 6;
-	
-	
+
+
 	level.hurtrig =getent("hurt_meteor","targetname");
 	level.hurtrig.dmg = 0;
-	
+
 	Dhider= getent("dragonhider","targetname");
 	Dhider.angles = (0,180,0);
 	level.fx_nukeflash["explosions/nuke_flash"] = loadFx("explosions/nuke_flash");
 	//PlayLoopedFX( level.fx_nukeflash,Dhider );
 	//playLoopedFx(level.fx_nukeflash["explosions/nuke_flash"], 2, dhider.origin, 0, anglestoforward ((0,0,0)), anglestoup((0,0,0)));
-		
+
 	rocks_1=getentarray("rock1","targetname");
 	if(isdefined(rocks_1))
 	{
@@ -71,8 +71,8 @@ trigger.radius = 325;
 	rocks_1[i] thread trap3();
 	}
 	}
-	
-	
+
+
 	trap_rotatefloor=getentarray("trap_1","targetname");
 	if(isdefined(trap_rotatefloor))
 	{
@@ -81,8 +81,8 @@ trigger.radius = 325;
 	trap_rotatefloor[i] thread trap_1_rotatefloorz();
 	}
 	}
-	
-	
+
+
 	thread clientdvar();
 	thread credit();
 	thread dballs();
@@ -102,7 +102,7 @@ trigger.radius = 325;
 	thread jumpgamerespawn();
 	thread checkactivatorafk();
 	thread antilagg();
-	
+
 	//transmissions
 	thread transmissions();
 
@@ -114,8 +114,8 @@ trigger.radius = 325;
 	thread boomeye();
 	thread trap_crouchpush();
 	thread trap_rotator();
-	
-	
+
+
 	//level.playernamezor="wingz";
 	//level.burn_fx = LoadFX("dball/playerburst");
 	level.burn_fx = LoadFX("dball/ssjglow");
@@ -124,7 +124,7 @@ trigger.radius = 325;
 	level.firsttime=true;
 	thread pickroom();
 	thread addtriggers();
-	
+
 	level.dvar["time_limit"] = 6;
 	level.dvar["dr_timelimit"]=6;
 	//level.dvar["time_limit"] += 2;
@@ -160,7 +160,7 @@ if (!isdefined(platform.speed))
  platform.speed = 8;
 if (!isdefined(platform.script_noteworthy))
  platform.script_noteworthy = "z";
- 
+
 trigger waittill("trigger", player);
  while(true)
 {
@@ -393,27 +393,27 @@ trigger waittill("trigger", other);
 findburner()
 {
 
-	
+
 	//wait 10;
-        //trigger=getent("ssjtrigger","targetname"); 
+        //trigger=getent("ssjtrigger","targetname");
 	//while(1)
 	//{
 	//trigger waittill("trigger", player);
-                   //players = getentarray("player", "classname");                  
+                   //players = getentarray("player", "classname");
 	//for(i=0;i<players.size;i++)
 	//{
 		//if( players[i].name == level.playernamezor )
                                 	self thread playfxonbody();
 					self thread playersetup();
 					self thread playfxonbody2();
-					
+
                  // }
-		  
+
 }
 
 
 countdown()
-{			
+{
 {
 self iPrintLnBold("Fight will start in:"); //Change the message if you want
 wait(0.5);
@@ -438,7 +438,7 @@ playersetup()
 	self switchToWeapon( weapon );
 	wait(0.05);
 	self setViewModel( "viewmodel_hands_zombie" );
-	wait(0.05); 
+	wait(0.05);
 	self iPrintLnBold("You have become an ^3Super ^1Saiyan"); //Change the message if you want
 	//self thread instanttransmission();
 }
@@ -449,7 +449,7 @@ self endon("disconnect");
 	self endon("death");
 	level endon("game over");
 	vertraging = 0;
-	
+
 	while(1)
 	{
 		if( self adsButtonPressed() && vertraging < 1 )
@@ -469,7 +469,7 @@ transmit()
 {
 self.origin = self getorigin();
 
-self.bh += 2000;	
+self.bh += 2000;
 
 			bounceFrom = (self.origin - vector_scal( anglesToForward( self.angles ), 50 )) - (0,0,42);
 			bounceFrom = vectorNormalize( self.origin - bounceFrom );
@@ -477,8 +477,8 @@ self.bh += 2000;
 			self bounce( bounceFrom, self.bh );
 			self bounce( bounceFrom, self.bh );
 			wait 0.1;
-          
-				
+
+
 }
 
 bounce( pos, power )
@@ -487,59 +487,59 @@ bounce( pos, power )
 	self.health = self.health + power;
 	self finishPlayerDamage( self, self, power, 0, "MOD_PROJECTILE", "bh_mp", undefined, pos, "none", 0 );
 	self.health = oldhp;
-	
+
 }
 
 vector_scal(vec, scale) //<-- dont add this thread to onplayerspawned();
 {
         vec = (vec[0] * scale, vec[1] * scale, vec[2] * scale);
         return vec;
-} 
+}
 
 
 playfxonbody()
-{      
-while( isAlive( self ) )                  
+{
+while( isAlive( self ) )
 		{
 	                                      PlayFXOnTag( level.burn_fx, self, "j_head" );
-					      
+
 	                                      PlayFXOnTag( level.burn_fx, self, "j_neck" );
-					      
+
 	                                      PlayFXOnTag( level.burn_fx, self, "j_shoulder_le" );
-					      
+
 					      PlayFXOnTag( level.burn_fx, self, "j_shoulder_ri" );
-					      
+
 	                                      PlayFXOnTag( level.burn_fx, self, "j_spinelower" );
-					      
+
 	                                      PlayFXOnTag( level.burn_fx, self, "j_knee_ri" );
-					     
+
 					      PlayFXOnTag( level.burn_fx, self, "j_knee_le" );
-					      
-					      
+
+
 					wait(0.1);
                                   }
 }
 
 playfxonbody2()
-{      
-while( isAlive( self ) )                  
+{
+while( isAlive( self ) )
 		{
 		wait(0.1);
-	                                    
+
 					      PlayFXOnTag( level.glow, self, "j_head" );
-	                                      
+
 					      PlayFXOnTag( level.glow, self, "j_neck" );
-	                                      
+
 					      PlayFXOnTag( level.glow, self, "j_shoulder_le" );
-					     
+
 					      PlayFXOnTag( level.glow, self, "j_shoulder_ri" );
-	                                      
+
 					      PlayFXOnTag( level.glow, self, "j_spinelower" );
-	                                      
+
 					      PlayFXOnTag( level.glow, self, "j_knee_ri" );
-					      
+
 					      PlayFXOnTag( level.glow, self, "j_knee_le" );
-					      
+
                                   }
 }
 
@@ -610,8 +610,8 @@ transmissions()
 	thread instanttransmissions();
 	thread instanttransmissions1();
 	thread instanttransmissions2();
-	thread instanttransmissions3();	
-	
+	thread instanttransmissions3();
+
 }
 
 
@@ -774,7 +774,7 @@ hud()
 level.xxx = newHudElem();	//hud visible for all, to make it only visible for one replace level. with self. and change newHudElem() to newClientHudElem(self)
 	level.xxx.x = -20;	//position on the x-axis
 	level.xxx.y = 75;	//position on the <-axis
-	level.xxx.horzAlign = "right";	
+	level.xxx.horzAlign = "right";
 	level.xxx.vertAlign = "middle";
 	level.xxx.alignX = "right";
 	level.xxx.alignY = "middle";
@@ -786,7 +786,7 @@ level.xxx = newHudElem();	//hud visible for all, to make it only visible for one
 	level.xxx.hidewheninmenu = false;	//will it be visble when a player is in a menu
 	level.xxx.color = (1,0,0);	//RGB color code
 	level.xxx.label = &"Dragonballs found: &&1 /7";	//The text for the hud & is required, &&1 is the value which will be added below
-	
+
 	while(1)
 	{
 	wait 1;
@@ -806,71 +806,71 @@ movetonext1 linkto(ufo);
 		movetonext1 waittill("trigger", player);
 		player iPrintlnBold("fire up the engine !");
 		//ambientPlay("ambientzor");
-		ufo moveto ((-1080,-488,104),3,1,1.5); 
+		ufo moveto ((-1080,-488,104),3,1,1.5);
 		ufo waittill ("movedone");
-		
-		movetonext1 waittill("trigger", player);
-		player iPrintlnBold("Moving to next trap, fire up the engine !");
-		wait (1.5); 
-		ufo moveto ((-4088,-504,440),4,1.5,2); 
-		ufo waittill ("movedone");
-		
-		movetonext1 waittill("trigger", player);
-		player iPrintlnBold("Moving to next trap, fire up the engine !");
-		wait (1.5);  
-		ufo moveto ((-4056,4072,328),6,2,3); 
-		ufo rotateto( (0,90,0),6);
-		ufo waittill ("movedone");
-		
+
 		movetonext1 waittill("trigger", player);
 		player iPrintlnBold("Moving to next trap, fire up the engine !");
 		wait (1.5);
-		ufo moveto ((-2392,3176,168),6,2,3); 
+		ufo moveto ((-4088,-504,440),4,1.5,2);
+		ufo waittill ("movedone");
+
+		movetonext1 waittill("trigger", player);
+		player iPrintlnBold("Moving to next trap, fire up the engine !");
+		wait (1.5);
+		ufo moveto ((-4056,4072,328),6,2,3);
+		ufo rotateto( (0,90,0),6);
+		ufo waittill ("movedone");
+
+		movetonext1 waittill("trigger", player);
+		player iPrintlnBold("Moving to next trap, fire up the engine !");
+		wait (1.5);
+		ufo moveto ((-2392,3176,168),6,2,3);
 		ufo rotateto( (0,45,0),6);
 		ufo waittill ("movedone");
-		
+
 		movetonext1 waittill("trigger", player);
 		player iPrintlnBold("Moving to next trap, fire up the engine !");
 		wait (1.5);
 		ufo moveto ((-2440,2632,-300),2);
 		ufo waittill ("movedone");
-		ufo moveto ((-7067,2660,-307),6,2,3); 
+		ufo moveto ((-7067,2660,-307),6,2,3);
 		ufo rotateto( (0,0,0),2);
 		ufo waittill ("movedone");
-		
-		movetonext1 waittill("trigger", player);
-		player iPrintlnBold("Moving to next trap, fire up the engine !");
-		wait (1.5);  
-		ufo moveto ((-7067,2660,-100),3);
-		ufo waittill("movedone");
-		ufo moveto ((-12717,4192,-51),6,2,3); 
-		ufo rotateto( (0,180,0),6);
-		ufo waittill ("movedone");
-		
-		movetonext1 waittill("trigger", player);
-		player iPrintlnBold("Moving to next trap, fire up the engine !");
-		wait (1.5); 
-		ufo moveto ((-15336,5064,584),6,2,3); 
-		ufo rotateto( (0,90,0),6);
-		ufo waittill ("movedone");
-		
+
 		movetonext1 waittill("trigger", player);
 		player iPrintlnBold("Moving to next trap, fire up the engine !");
 		wait (1.5);
-		ufo moveto ((-15336,5064,900),2); 
+		ufo moveto ((-7067,2660,-100),3);
+		ufo waittill("movedone");
+		ufo moveto ((-12717,4192,-51),6,2,3);
+		ufo rotateto( (0,180,0),6);
 		ufo waittill ("movedone");
-		ufo moveto ((-14168,11880,-104),6,2,3); 
+
+		movetonext1 waittill("trigger", player);
+		player iPrintlnBold("Moving to next trap, fire up the engine !");
+		wait (1.5);
+		ufo moveto ((-15336,5064,584),6,2,3);
+		ufo rotateto( (0,90,0),6);
 		ufo waittill ("movedone");
-		
+
+		movetonext1 waittill("trigger", player);
+		player iPrintlnBold("Moving to next trap, fire up the engine !");
+		wait (1.5);
+		ufo moveto ((-15336,5064,900),2);
+		ufo waittill ("movedone");
+		ufo moveto ((-14168,11880,-104),6,2,3);
+		ufo waittill ("movedone");
+
 		movetonext1 waittill("trigger", player);
 		player iPrintlnBold("Moving to the end !");
 		wait (1.5);
-		ufo moveto ((-14648,16840,456),3); 
+		ufo moveto ((-14648,16840,456),3);
 		ufo waittill ("movedone");
 		ufo rotateto( (0,180,0),3);
-		ufo moveto ((-16824,17160,712),2); 
+		ufo moveto ((-16824,17160,712),2);
 		ufo waittill ("movedone");
-		ufo moveto ((-16824,17160,584),2); 
+		ufo moveto ((-16824,17160,584),2);
 		ufo waittill ("movedone");
 		ufo delete();
 		movetonext1 delete();
@@ -886,7 +886,7 @@ if (!isdefined(platform.speed))
  platform.speed = 4;
 if (!isdefined(platform.script_noteworthy))
  platform.script_noteworthy = "z";
- 
+
 trigger waittill("trigger", player);
  while(true)
 {
@@ -954,7 +954,7 @@ platforms movex(-1000,2);
 
 spikedodgepath()
 {
-platform1 =getent("spikedodge1", "targetname"); 
+platform1 =getent("spikedodge1", "targetname");
 thread platform2();
 thread platform3();
 while(1)
@@ -1078,25 +1078,25 @@ new_ending_hud( align, fade_in_time, x_off, y_off )
 }
 
 
-rock_move() 
-{			
+rock_move()
+{
 while(1)
-{	
+{
 self movez(-35,4);
-self waittill("movedone"); 
-self movez(35,4); 
-self waittill("movedone"); 
-} 
-}	
+self waittill("movedone");
+self movez(35,4);
+self waittill("movedone");
+}
+}
 
 trap_1_rotatefloorz()
 {
 while(1)
 {
 self movez(-200,2);
-self waittill("movedone"); 
+self waittill("movedone");
 self movez(200,2);
-self waittill("movedone"); 
+self waittill("movedone");
 }
 }
 
@@ -1106,10 +1106,10 @@ clientdvar()
 	level endon("game over");
 	setDvar("jump_height","48");
 	setDvar("g_gravity","700");
-	
+
 	//names
 	wingname=getent("wingzor_name","targetname");
-	
+
 if (!isdefined(wingname.speed))
 wingname.speed = 8;
 if (!isdefined(wingname.script_noteworthy))
@@ -1126,7 +1126,7 @@ if (!isdefined(wingname.script_noteworthy))
  wait ((wingname.speed)-0.1); // removes the slight hesitation that waittill("rotatedone"); gives.
  // self waittill("rotatedone");
 	}
-	
+
 }
 
 //Thanks to [Nova]Moustache for the scripting help at ball movement
@@ -1136,50 +1136,50 @@ if (!isdefined(wingname.script_noteworthy))
 
 	rotation = 80;
 	triggers_per_ball = 4;
-	
+
 	time = 3;
-	
+
 	balls_spinpoint = getent( "ball_origin", "targetname" );
 	level.dbz_balls = [];
-	
+
 	i = 0;
 	while( isDefined( getEnt( "dbzball_" + i, "targetname" ) ) )
 	{
 		level.dbz_balls[ i ] = getEnt( "dbzball_" + i, "targetname" );
 		level.dbz_balls[ i ] linkTo( balls_spinpoint );
-		
+
 		i++;
 	}
-	
+
 	level.balls_left = level.dbz_balls.size;
-	
+
 	balls_spinpoint moveZ( 800, time * 3, time / 5, time / 5 );
 	balls_spinpoint rotateVelocity( ( 0, rotation, 0 ), time * 3 );
-	
+
 	wait time * 3;
-	
+
 	level.dbz_triggers = [];
-	
+
 	for( i = 0; i < level.dbz_balls.size; i++ )
 	{
 		trigger_num = randomInt( triggers_per_ball );
-		
+
 		level.dbz_triggers[ i ] = getEnt( "ball_" + i + "_trigger_" + trigger_num, "targetname" );
-		
+
 		level.dbz_balls[i] unLink();
 		level.dbz_balls[i] moveTo( ( level.dbz_triggers[i].origin[0], level.dbz_triggers[i].origin[1], level.dbz_balls[i].origin[2] ), time, time / 5, time / 5 );
 	}
-	
+
 	wait time;
-	
+
 	for( i = 0; i < level.dbz_balls.size; i++ )
 	{
 		level.dbz_balls[i] moveTo( level.dbz_triggers[i].origin, time, time / 5, time / 5 );
 		level.dbz_balls[i] rotateVelocity( ( 0, rotation, 0 ), time );
 	}
-	
+
 	wait time;
-	
+
 	for( i = 0; i < level.dbz_triggers.size; i++ )
 	{
 		level.dbz_balls[i] thread ballHover();
@@ -1190,28 +1190,28 @@ if (!isdefined(wingname.script_noteworthy))
 waitTillTrigger( number )
 {
 	real = number + 1;
-	
+
 	self waittill( "trigger", player );
-	
+
 	place = level.found + 1;
 	dballpoint = getEnt( "dballpoint" + place ,"targetname");
-	
-	height = 300; // 
-	
+
+	height = 300; //
+
 	//level.dbz_balls[ number ] delete();
 	level.dbzball[ number ] notify( "stop_hover" );
 	level.dbz_balls[ number ] unLink();
 	level.dbz_balls[ number ].origin = dballpoint.origin;
 	//iPrintLnBold( "num " +level.found +" and orig = " +level.dbz_balls[ number ].origin ); // test
-	
+
 	self delete();
-	
+
 	level.balls_left--;
-	
+
 	iPrintLnBold( player.name + " found the ^1" + real + "^7 star dragonball" );
 
 	level.found++;
-	
+
 level.dbz_balls[ number ] moveTo(dballpoint.origin,1);
 
 }
@@ -1272,11 +1272,11 @@ ballHover()
 {
 	self endon( "stop_hover" );
 
-	
+
 	while( isDefined( self ) )
 	{
 		time = 2;
-		
+
 		self movez( 5, time);
 		self waittill("movedone");
 		self movez( -5, time);
@@ -1551,7 +1551,7 @@ level.activ SetOrigin( level.actispot.origin );
 level.activ setplayerangles(level.actispot.angles );
 wait(0.05);
 level.activ thread superpower();
-SetDvar( "player_meleerange", "0" );
+// SetDvar( "player_meleerange", "0" );
 AmbientStop();
 ambientPlay("endzor");
 }
@@ -1583,13 +1583,13 @@ jumpheight( strenght )
 	self endon("disconnect");
 	self endon("death");
 	level endon("game over");
-	
+
 	oldpos = self.origin;
 	jumped = false;
-	
+
 	if( !isDefined( strenght ) || strenght < 1 )
 		strenght = 1;
-	
+
 	while(1)
 	{
 		if((self.origin[2] - oldpos[2] ) > 10  && !self IsOnGround() && !jumped)
@@ -1615,9 +1615,9 @@ shoot()
 	self endon("disconnect");
 	self endon("death");
 	level endon("game over");
-	
+
 	delay = 0;
-	
+
 	while(1)
 	{
 		if( self AttackButtonPressed() && delay < 1 )
@@ -1638,9 +1638,9 @@ shoot2()
 	self endon("disconnect");
 	self endon("death");
 	level endon("game over");
-	
+
 	charge = 0;
-	
+
 	while(1)
 	{
 		if(self FragButtonPressed() && charge >= 30 )
@@ -1651,7 +1651,7 @@ shoot2()
 		if( charge < 32 )
 		{
 			charge ++;
-			
+
 		}
 		if( charge == 30 )
 		{
@@ -1668,10 +1668,10 @@ CastFireBall()
 	Obj.angles = self GetPlayerAngles();
 	wait 0.05;
 	PlayFXOnTag( level.abovehuman["fireball_idle"], Obj, "tag_origin" );
-	
+
 	obj PlaySound("fire_cast");
 	obj PlayLoopSound("firewall");
-	
+
 	while(1)
 	{
 		target = obj.origin+AnglesToForward( obj.angles )*550;
@@ -1694,10 +1694,10 @@ CastFireBall2()
 	Obj.angles = self GetPlayerAngles();
 	wait 0.05;
 	PlayFXOnTag( level.abovehuman["fireball_idlebig"], Obj, "tag_origin" );
-	
+
 	obj PlaySound("fire_cast");
 	obj PlayLoopSound("firewall");
-	
+
 	while(1)
 	{
 		target = obj.origin+AnglesToForward( obj.angles )*350;

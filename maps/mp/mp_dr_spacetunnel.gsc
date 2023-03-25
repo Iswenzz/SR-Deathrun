@@ -838,9 +838,9 @@ knife()
 
 jump()
 {
-self setclientdvar("g_gravity", 130 );
-self waittill("death");
-self setclientdvar("g_gravity", 800 );
+// self setclientdvar("g_gravity", 130 );
+// self waittill("death");
+// self setclientdvar("g_gravity", 800 );
 
 }
 

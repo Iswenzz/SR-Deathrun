@@ -17,25 +17,25 @@ main()
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
 
-	setdvar("g_speed" ,"190");
-	setdvar("dr_jumpers_speed" ,"1");
-	
+	// setdvar("g_speed" ,"190");
+	// setdvar("dr_jumpers_speed" ,"1");
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
-	setdvar("r_glowskybleedintensity0",".1"); 
+	setdvar("r_glowskybleedintensity0",".1");
 
 	thread startdoor();
 	thread lift();
-	
+
 	thread secretopen();
 	thread Teleport1();
 	thread secrethard();
 	thread secreteasy();
-	
+
 	//thread secreteasy_tele1();
-	
+
 	thread trap1();
 	thread trap2();
 	thread trap3();
@@ -51,10 +51,10 @@ main()
 	thread trap13();
 	thread trap14();
 	thread trap15();
-	
+
 	thread actielevator();
 	thread actifastwalk();
-	
+
 	thread GetActivator();
 	thread end();
 	thread games();
@@ -67,9 +67,9 @@ main()
 	//thread nade();
 	//thread nadesign();
 	thread nademoving();
-	
+
 	thread music();
-	
+
 	addTriggerToList( "trigger_trap1" );
 	addTriggerToList( "trigger_trap2" );
 	addTriggerToList( "trigger_trap3" );
@@ -85,7 +85,7 @@ main()
 	addTriggerToList( "trigger_trap13" );
 	addTriggerToList( "trigger_trap14" );
 	addTriggerToList( "trigger_trap15" );
-	
+
 
 }
 
@@ -118,7 +118,7 @@ if(isdefined(hud_start))
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 startdoor()
 {
 lootje = getent("startdoor","targetname");
@@ -135,13 +135,13 @@ lift()
 
         lift=getent("lift","targetname");
 	lift_trigger=getent("lift_trigger","targetname");
-	
+
 
 
 	while(1)
 	{
-		
-                 
+
+
                 lift_trigger waittill ("trigger");
 
                 lift movey (720,4,1,1);
@@ -151,9 +151,9 @@ lift()
 		lift movey (-720,4,1,1);
 
                 wait(2);
-		
-		
-               	        
+
+
+
 
 	}
 }
@@ -164,7 +164,7 @@ Teleport1()
 {
 	trig = getEnt("trigger_teleport1", "targetname");
 	tele1 = getEnt("origin_teleport1", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -179,18 +179,18 @@ secretopen()
 	trig2 = getEnt("trigger_nepo2", "targetname");
 	platform = getEnt("platform", "targetname");
 	secretwall = getEnt("secretwall", "targetname");
-	
+
 	platform notsolid();
 	trig2 hide();
 	secretwall hide();
 	secretwall notsolid();
-	
+
 	trig1 waittill ("trigger", player);
 	iPrintLnBold("^2What now^5? ^2c:");
 	trig2 show();
 	trig2 waittill("trigger", player);
 	iPrintLnBold("^2You can now enter^5. ^2:p");
-	
+
 	platform solid();
 	secretwall solid();
 	secretwall show();
@@ -204,7 +204,7 @@ secrethard()
 {
 	trig = getEnt("trigger_secrethard", "targetname");
 	tele1 = getEnt("origin_secrethard", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -217,7 +217,7 @@ secreteasy()
 {
 	trig = getEnt("trigger_secreteasy", "targetname");
 	tele1 = getEnt("origin_secreteasy", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -232,7 +232,7 @@ secreteasy_tele1()
 {
 	trig = getEnt("trigger_easy_tp1", "targetname");
 	tele1 = getEnt("origin_secreteasy","targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -252,7 +252,7 @@ trap1()
 	trig SetHintString("^5Activate");
 	trig waittill( "trigger", player );
 	trig delete();
-	
+
 	brushGroup1[randomInt(brushGroup1.size)] notSolid();
 	brushGroup2[randomInt(brushGroup2.size)] notSolid();
 }
@@ -264,10 +264,10 @@ trap2()
 	secret = getEnt("actisecret", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	secret notsolid();
 	trig delete();
-	
+
 	trap hide();
 	trap notsolid();
 	wait 5;
@@ -281,9 +281,9 @@ trap3()
 	platform = getEnt("trap3", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	platform hide();
 	platform notsolid();
 	wait 5;
@@ -297,9 +297,9 @@ trap4()
 	platform = getEnt("trap4", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
     {
 		platform rotateRoll (-360, 3);
@@ -313,9 +313,9 @@ trap5()
 	platform = getEnt("trap5", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
 	{
 		platform rotateRoll (-360, 3);
@@ -335,9 +335,9 @@ trap6()
 	//death = getEnt("trap6death", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
 	{
 		platform rotatePitch (-360, 4);
@@ -354,12 +354,12 @@ trap7()
 	trap_c = getEnt("trap7c_test", "targetname");
 	trap_d = getEnt("trap7d", "targetname");
 	trap_e = getEnt("trap7e", "targetname");
-	
+
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	trap_a hide();
 	trap_a notsolid();
 	wait 0.05;
@@ -375,7 +375,7 @@ trap7()
 	trap_e hide();
 	trap_e notsolid();
 	wait 2.5;
-	
+
 	trap_e show();
 	trap_e solid();
 	wait 0.2;
@@ -391,8 +391,8 @@ trap7()
 	trap_a show();
 	trap_a solid();
 	wait 2.5;
-	
-	
+
+
 	for(;;)
 	{
 	trap_a hide();
@@ -410,7 +410,7 @@ trap7()
 	trap_e hide();
 	trap_e notsolid();
 	wait 1;
-	
+
 	trap_e show();
 	trap_e solid();
 	wait 1;
@@ -436,9 +436,9 @@ trap8()
 	trap_red = getEnt("trap8_red", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	trap_red notsolid();
 	trap hide();
 	trap notsolid();
@@ -453,9 +453,9 @@ trap9()
 	trap_b = getEnt("trap9b", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
 	{
 		trap_a rotateRoll(360, 3);
@@ -470,20 +470,20 @@ trap10()
 	trap_a = getEnt("trap10a", "targetname");
 	trap_b = getEnt("trap10b", "targetname");
 	trap_c = getEnt("trap10c", "targetname");
-	
+
 	trap_a_2 = getEnt("trap10a_2", "targetname");
 	trap_b_2 = getEnt("trap10b_2", "targetname");
 	trap_c_2 = getEnt("trap10c_2", "targetname");
-	
+
 	trap_a_3 = getEnt("trap10a_3", "targetname");
 	trap_b_3 = getEnt("trap10b_3", "targetname");
 	trap_c_3 = getEnt("trap10c_3", "targetname");
-	
+
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	while(1)
 	{
 		trap_a rotateyaw (360, 1);
@@ -493,7 +493,7 @@ trap10()
 		trap_b_3 rotateyaw (360, 1);
 		trap_c_3 rotateyaw (360, 1);
 		trap_a waittill ("rotatedone");
-		
+
 		trap_a_2 rotateyaw (360, 1);
 		trap_b_2 rotateyaw (360, 1);
 		trap_c_2 rotateyaw (360, 1);
@@ -508,9 +508,9 @@ trap11()
 	trapwater = getEnt("trap11water", "targetname");
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	trap movez (65, 1);
 	trapwater movez (100, 1);
 	wait 4;
@@ -521,21 +521,21 @@ trap11()
 trap12()
 {
 	trig = getEnt("trigger_trap12", "targetname");
-	
+
 	trap_a_1 = getEnt("trap12a_1", "targetname");
 	trap_a_2 = getEnt("trap12a_2", "targetname");
-	
+
 	trap_b_1 = getEnt("trap12b_1", "targetname");
 	trap_b_2 = getEnt("trap12b_2", "targetname");
-	
+
 	trap_c_1 = getEnt("trap12c_1", "targetname");
 	trap_c_2 = getEnt("trap12c_2", "targetname");
-	
+
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
 	{
 		trap_a_1 rotateyaw (360, 1);
@@ -551,15 +551,15 @@ trap12()
 trap13()
 {
 	trig = getEnt("trigger_trap13", "targetname");
-	
+
 	trapa = getEnt("trap13a", "targetname");
 	trapb = getEnt("trap13b", "targetname");
-	
+
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
 	{
 		trapa rotateyaw (360, 1);
@@ -574,15 +574,15 @@ trap13()
 trap14()
 {
 	trig = getEnt("trigger_trap14", "targetname");
-	
+
 	trapa = getEnt("trap14a", "targetname");
 	trapb = getEnt("trap14b", "targetname");
-	
+
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
 	{
 		trapa rotateRoll (360, 3);
@@ -596,12 +596,12 @@ trap15()
 {
 	trig = getEnt("trigger_trap15", "targetname");
 	trap = getEnt("trap15", "targetname");
-	
+
 	trig SetHintString("^5Activate");
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	for(;;)
 	{
 		trap rotateRoll (360, 4);
@@ -616,9 +616,9 @@ actielevator()
 	trig = getEnt("trigger_acti_elevatorup", "targetname");
 	platform = getEnt("acti_elevator", "targetname");
 	wall = getEnt("acti_elevator_wall", "targetname");
-	
+
 	wall notsolid();
-	
+
 	while(1)
 	{
 		trig waittill ("trigger");
@@ -638,7 +638,7 @@ actifastwalk()
 	trig = getEnt("trigger_acti_fast_walk", "targetname");
 	platform = getEnt("acti_fast_walk", "targetname");
 	white = getEnt("acti_fast_walk_white", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill ("trigger");
@@ -662,15 +662,15 @@ actifastwalk()
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -714,10 +714,10 @@ wait 1;
 }
 
 antiglitch()
-{ 
+{
 self common_scripts\utility::waittill_any("death","disconnect");
-iPrintlnBold("^5"+self.name+" ^7has ^1DIED"); 
-iPrintlnBold("^5Selection Room ^7is ^7now ^1OPEN^7!!"); 
+iPrintlnBold("^5"+self.name+" ^7has ^1DIED");
+iPrintlnBold("^5Selection Room ^7is ^7now ^1OPEN^7!!");
 }
 
 waitdead() //ng2
@@ -753,37 +753,37 @@ sniper()
 		sniper waittill("trigger", player);
 		player thread waitdead();
 		activator = GetActivator();
-		
+
 		player freezeControls(true);
 		player setorigin(jumper.origin);
 		player setPlayerAngles(jumper.angles);
-		
+
 		activator freezeControls(true);
 		activator setorigin(acti.origin);
 		activator setPlayerAngles(acti.angles);
-		
+
 		player takeallweapons();
 		activator takeallweapons();
-		
+
 		player giveweapon("m40a3_mp");
 		activator giveweapon("m40a3_mp");
 		player giveweapon("remington700_mp");
 		activator giveweapon("remington700_mp");
-		
+
 		thread createhud(player.name + " ^5selected ^7snipah ^4war!");
 		//noobsnip triggerOn();
 		wait 5;
 		player iprintlnbold("^5FIGHT ^7!!!");
 		activator iprintlnbold("^5FIGHT ^7!!!");
-		
+
 		player freezeControls(false);
 		activator freezeControls(false);
-		
+
 		player switchtoweapon("m40a3_mp");
 		activator switchtoweapon("m40a3_mp");
 		player switchtoweapon("remington700_mp");
 		activator switchtoweapon("r700_mp_mp");
-		
+
 		player givemaxammo("m40a3_mp");
 		activator givemaxammo("m40a3_mp");
 		player givemaxammo("remington700_mp");
@@ -794,7 +794,7 @@ sniper()
 sniper_sign()
 {
 	sign = getent("sniper_sign", "targetname");
-	
+
 	for(;;)
 	{
 		sign rotateYaw(360, 3);
@@ -812,22 +812,22 @@ knife() //Knife room lel
 		knife waittill("trigger", player);
 		player thread waitdead();
 		activator = GetActivator();
-		
+
 		player takeallweapons();
 		activator takeallweapons();
-		
+
 		player freezeControls(true);
 		player setorigin(jumper.origin);
 		player setPlayerAngles(jumper.angles);
 		activator freezeControls(true);
 		activator setorigin(acti.origin);
 		activator setPlayerAngles(acti.angles);
-		
+
 		activator giveweapon("tomahawk_mp");
 		player giveweapon("tomahawk_mp");
 		thread createhud(player.name + " ^5Selected ^7Knife ^5room^7!!");
 		wait 5;
-		
+
 		player freezeControls(false);
 		activator freezeControls(false);
 		player switchtoweapon("tomahawk_mp");
@@ -850,9 +850,9 @@ knife_sign()
 	//redline = getent("line", "targetname");
 	//trig = getent("trig_knife_secret", "targetname");
 	//wall = getent("knifewall", "targetname");
-	
+
 	//trig waittill("trigger", player);
-	
+
 	//while(1)
 	//{
 		//redline notsolid();
@@ -874,28 +874,28 @@ nademoving()
 {
 	vertikali1 = getEnt("nade_vertikali1", "targetname");
 	vertikali2 = getEnt("nade_vertikali2", "targetname");
-	
+
 	vertikali3 = getEnt("nade_vertikali3", "targetname");
 	vertikali4 = getEnt("nade_vertikali4", "targetname");
-	
+
 	vertikali5 = getEnt("nade_vertikali5", "targetname");
 	vertikali6 = getEnt("nade_vertikali6", "targetname");
-	
+
 	horizontali1 = getEnt("nade_horizontali1", "targetname");
 	horizontali2 = getEnt("nade_horizontali2", "targetname");
-	
+
 	horizontali3 = getEnt("nade_horizontali3", "targetname");
 	horizontali4 = getEnt("nade_horizontali4", "targetname");
-	
+
 	horizontali5 = getEnt("nade_horizontali5", "targetname");
 	horizontali6 = getEnt("nade_horizontali6", "targetname");
-	
+
 	horizontali7 = getEnt("nade_horizontali7", "targetname");
 	horizontali8 = getEnt("nade_horizontali8", "targetname");
-	
+
 	horizontali9 = getEnt("nade_horizontali9", "targetname");
 	horizontali10 = getEnt("nade_horizontali10", "targetname");
-	
+
 	horizontali11 = getEnt("nade_horizontali11", "targetname");
 	horizontali12 = getEnt("nade_horizontali12", "targetname");
 	wait 30;
@@ -929,9 +929,9 @@ music()
 {
 
     level waittill( "round_started" );
-    
+
     wait 1;
-    
+
     ambientPlay( "song1" );
 }
 

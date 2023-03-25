@@ -22,8 +22,8 @@ level.spawn["player"] placeSpawnPoint();
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
 
-	setdvar("g_speed" ,"190");
-	setdvar("dr_jumpers_speed" ,"1");
+	// setdvar("g_speed" ,"190");
+	// setdvar("dr_jumpers_speed" ,"1");
 
 	setdvar( "r_specularcolorscale", "1" );
 

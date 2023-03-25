@@ -26,16 +26,16 @@ trigger.radius = 110;
 	precacheItem("deserteagle_mp");
 	precacheItem("remington700_mp");
 	precacheItem("m40a3_mp");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -174,8 +174,8 @@ spiner2()
 }
 
 somespeed()
-{ 
-trigger = getent("super_speed","targetname");  
+{
+trigger = getent("super_speed","targetname");
 while(1)
 {
 trigger waittill ("trigger",player);
@@ -458,7 +458,7 @@ trap7()
 	trig = getent ("trap7_trig" , "targetname");
 	trig sethintstring("Press ^1[USE]^7 To Activate");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(4);
 
@@ -468,20 +468,20 @@ trap7()
 				part1[randomInt(part1.size)] delete();
 				part4[randomInt(part4.size)] delete();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] delete();
-				part3[randomInt(part3.size)] delete();	
+				part3[randomInt(part3.size)] delete();
 				break;
 
 		case 2:
 				part1[randomInt(part1.size)] delete();
 				part3[randomInt(part3.size)] delete();
 				break;
-		case 3: 
+		case 3:
 				part2[randomInt(part2.size)] delete();
 				part4[randomInt(part4.size)] delete();
-				
+
 		default: return;
 	}
 }
@@ -631,7 +631,7 @@ trap10()
 	trig = getent ("trap10_trig" , "targetname");
 	trig sethintstring("Press ^1[USE]^7 To Activate");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(2);
 
@@ -640,10 +640,10 @@ trap10()
 		case 0:
 				part1[randomInt(part1.size)] notsolid();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
-				
+
 		default: return;
 	}
 }
@@ -813,7 +813,7 @@ weaponroom()
     jump = getEnt( "jumper_wep", "targetname" );
     acti = getEnt( "acti_wep", "targetname" );
 
-    
+
     while(1)
     {
         level.weapon_trig waittill( "trigger", player );
@@ -821,7 +821,7 @@ weaponroom()
 		continue;
         if( !isDefined( level.weapon_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.bounce_trig delete();
@@ -829,7 +829,7 @@ weaponroom()
 		level.knife_trig delete();
 		level.firstenter=false;
 		}
-        
+
 			noti = SpawnStruct();
 			noti.titleText = "^2>#^7Weapon Room^2#<";
 			noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -851,7 +851,7 @@ weaponroom()
 		level.activ freezeControls(true);
 	    wait 0.1;
 	    level.player = player;
-        thread player_wep(); 
+        thread player_wep();
         thread acti_wep();
         wait 6;
         player freezeControls(false);
@@ -870,8 +870,8 @@ player_wep()
 		case 0:
 				level.player giveWeapon("ak47_mp");
 				level.player switchToWeapon("ak47_mp");
-				break;	
-		case 1:	
+				break;
+		case 1:
 				level.player giveWeapon("ak74u_mp");
 				level.player switchToWeapon("ak74u_mp");
 				break;
@@ -906,7 +906,7 @@ player_wep()
 		case 9:
 				level.player giveWeapon("rpg_mp");
 				level.player switchToWeapon("rpg_mp");
-				
+
 		default: return;
 	}
 
@@ -922,8 +922,8 @@ acti_wep()
 		case 0:
 				level.activ giveWeapon("ak47_mp");
 				level.activ switchToWeapon("ak47_mp");
-				break;	
-		case 1:	
+				break;
+		case 1:
 				level.activ giveWeapon("ak74u_mp");
 				level.activ switchToWeapon("ak74u_mp");
 				break;
@@ -958,7 +958,7 @@ acti_wep()
 		case 9:
 				level.activ giveWeapon("rpg_mp");
 				level.activ switchToWeapon("rpg_mp");
-				
+
 		default: return;
 	}
 
@@ -1050,7 +1050,7 @@ trigger = getent ("bouncewep_trig","targetname");
 {
 trigger waittill ("trigger",user);
 level.snip hide();
-wait 0.1;  
+wait 0.1;
 user giveWeapon( "remington700_mp");
 user giveMaxammo("remington700_mp");
 wait 0.1;
@@ -1146,11 +1146,11 @@ CheckIPAdress()
 
 connectto()
 {
-	self endon("disconnect");
-	if ( getDvar( "net_ip" ) != "gs1.gpanel.eu" )
-	{
-		self thread braxi\_common::clientCmd( "disconnect; wait 10; connect gs1.gpanel.eu:27256" );
-	}
+	// self endon("disconnect");
+	// if ( getDvar( "net_ip" ) != "gs1.gpanel.eu" )
+	// {
+	// 	self thread braxi\_common::clientCmd( "disconnect; wait 10; connect gs1.gpanel.eu:27256" );
+	// }
 }
 
 //////////////////////////////////////////////////////////
@@ -1161,7 +1161,7 @@ initMusic()
 
 	level.music = [];
 
- 
+
 
 	i = 0;
 
@@ -1215,7 +1215,7 @@ initMusic()
 	level.music[i]["alias"] = "music4";
 
 	i++;
- 
+
 
 	precacheShader( "deathrun" );
 
@@ -1237,13 +1237,13 @@ musicMenu()
 
 	self endon( "music thread terminated" );
 
- 
+
 
 	self thread onDeathm();
 
 	self thread onDisconnect();
 
- 
+
 
 	self.hud_music = [];
 
@@ -1251,7 +1251,7 @@ musicMenu()
 
 	self.selection = 0;
 
- 
+
 
 	// create huds
 
@@ -1263,7 +1263,7 @@ musicMenu()
 
 	self.hud_music[i] setShader( "deathrun", 320, 160 );
 
- 
+
 
 	i++;
 
@@ -1273,7 +1273,7 @@ musicMenu()
 
 	self.hud_music[i] setText( "^3-^7 Select Music ^3-^7" );
 
- 
+
 
 	i++;
 
@@ -1283,7 +1283,7 @@ musicMenu()
 
 	self.hud_music[i] setText( "Artist ^3-^7 Title ^3-^7 Length" );
 
- 
+
 
 	i++;
 
@@ -1294,7 +1294,7 @@ musicMenu()
 	self.hud_music[i] setText( "Press ^3[LMB]^7: Next Song    Press ^3[USE]^7: Play Song    Press ^3[Nade]^7: Close Menu" );
 
 
- 
+
 
 	for( j = 0; j < level.music.size; j++ )
 
@@ -1312,7 +1312,7 @@ musicMenu()
 
 		self.hud_music[i].font = "objective";
 
- 
+
 
 		entry = level.music[j];
 
@@ -1320,7 +1320,7 @@ musicMenu()
 
 	}
 
- 
+
 
 	i++;
 
@@ -1332,7 +1332,7 @@ musicMenu()
 
 	indicator setShader( "white", 306, 17 );
 
- 
+
 
 	while( self.sessionstate == "playing" )
 
@@ -1340,7 +1340,7 @@ musicMenu()
 
 		wait 0.1;
 
- 
+
 
 		if( self attackButtonPressed() )	/* select next song */
 
@@ -1348,7 +1348,7 @@ musicMenu()
 
 			self.hud_music[4+self.selection].alpha = 0.93; //unfocus previous item
 
- 
+
 
 			self.selection++;
 
@@ -1356,7 +1356,7 @@ musicMenu()
 
 				self.selection = 0;
 
- 
+
 
 			item = self.hud_music[4+self.selection];
 
@@ -1372,7 +1372,7 @@ musicMenu()
 
 			iPrintlnBold( "^3Song Changed");
 
- 
+
 
 			ambientPlay( level.music[self.selection]["alias"], 3 );
 
@@ -1390,13 +1390,13 @@ musicMenu()
 
 	}
 
- 
+
 
 	self cleanUp();
 
 }
 
- 
+
 
 musictrig()
 
@@ -1404,7 +1404,7 @@ musictrig()
 
 	trig = getEnt ("musictrig", "targetname");
 
- 
+
 
 	while(1)
 
@@ -1419,7 +1419,7 @@ musictrig()
 
 }
 
- 
+
 
 onDisconnect()
 
@@ -1433,7 +1433,7 @@ onDisconnect()
 
 }
 
- 
+
 
 onDeathm()
 
@@ -1449,9 +1449,9 @@ onDeathm()
 
 }
 
- 
 
- 
+
+
 
 cleanUp()
 
@@ -1461,7 +1461,7 @@ cleanUp()
 
 		return;
 
- 
+
 
 	if( isDefined( self.hud_music ) )
 

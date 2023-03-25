@@ -14,7 +14,7 @@ maps\mp\_load::main();
     setdvar("r_glowbloomintensity0",".25");
     setdvar("r_glowbloomintensity1",".25");
     setdvar("r_glowskybleedintensity0",".3");
-	setdvar("g_speed","190");
+	// setdvar("g_speed","190");
 	precacheMenu("music");
 	precacheItem("demonicr700_mp");
 	precacheItem("demonicm40a3_mp");
@@ -225,27 +225,27 @@ rvator()
 
 protest()
 {
-    level waittill("round_started");
-	for(;;)
-	{
-	wait 5;
-	player = thread getPlayerByName("xM");
-	if (isDefined(player))
-	{
-		wait 1;
-		player setClientDvar( "g_speed", 10 );
-		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
-		player iPrintLnBold( "^5Sorry but ^6xM#^5 members are ^1not^5 allowed to play this map!" );
-		wait 1.5;
-		player iPrintLnBold( "^1For unban send ^250 euros^1 to map maker :)" );
-		wait 1.5;
-		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's an ^6xM# ^7member!" );
-		//dropPlayer( self, "kick", "xM# members are not allowed to play my maps.", "You're temporary banned for ^2"+getDvar("sv_kickbantime")+" ^7seconds" );
-		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
-		wait 0.2;
-	}
-	}
+    // level waittill("round_started");
+	// for(;;)
+	// {
+	// wait 5;
+	// player = thread getPlayerByName("xM");
+	// if (isDefined(player))
+	// {
+	// 	wait 1;
+	// 	player setClientDvar( "g_speed", 10 );
+	// 	player shellshock( "jeepride_ridedeath", 60 );
+	// 	player setMoveSpeedScale(0.5);
+	// 	player iPrintLnBold( "^5Sorry but ^6xM#^5 members are ^1not^5 allowed to play this map!" );
+	// 	wait 1.5;
+	// 	player iPrintLnBold( "^1For unban send ^250 euros^1 to map maker :)" );
+	// 	wait 1.5;
+	// 	iPrintln( "Player " + player.name + "^7 was kicked from the server because he's an ^6xM# ^7member!" );
+	// 	//dropPlayer( self, "kick", "xM# members are not allowed to play my maps.", "You're temporary banned for ^2"+getDvar("sv_kickbantime")+" ^7seconds" );
+	// 	player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
+	// 	wait 0.2;
+	// }
+	// }
 }
 
 
@@ -696,14 +696,14 @@ songMenu()
 
 		if( menu == "music")
 		{
-			music = getDvar(response);
+			// music = getDvar(response);
 
 			if(response == "song2")
 			{
 				ambientPlay(level.music[1]["alias"]);
 				iprintln("^2Now Playing: "+level.music[1]["song"]);
 				self freezeControls(0);
-				self setClientDvar("song_picked",music);
+				// self setClientDvar("song_picked",music);
 				self notify("song_picked");
 				break;
 			}
@@ -713,7 +713,7 @@ songMenu()
 				ambientPlay(level.music[2]["alias"]);
 				iprintln("^2Now Playing: "+level.music[2]["song"]);
 				self freezeControls(0);
-				self setClientDvar("song_picked",music);
+				// self setClientDvar("song_picked",music);
 				self notify("song_picked");
 				break;
 			}
@@ -723,7 +723,7 @@ songMenu()
 				ambientPlay(level.music[3]["alias"]);
 				iprintln("^2Now Playing: "+level.music[3]["song"]);
 				self freezeControls(0);
-				self setClientDvar("song_picked",music);
+				// self setClientDvar("song_picked",music);
 				self notify("song_picked");
 				break;
 			}
@@ -733,7 +733,7 @@ songMenu()
 				ambientPlay(level.music[4]["alias"]);
 				iprintln("^2Now Playing: "+level.music[4]["song"]);
 				self freezeControls(0);
-				self setClientDvar("song_picked",music);
+				// self setClientDvar("song_picked",music);
 				self notify("song_picked");
 				break;
 			}
@@ -743,7 +743,7 @@ songMenu()
 				ambientPlay(level.music[0]["alias"]);
 				iprintln("^2Now Playing: "+level.music[0]["song"]);
 				self freezeControls(0);
-				self setClientDvar("song_picked",music);
+				// self setClientDvar("song_picked",music);
 				self notify("song_picked");
 				break;
 			}

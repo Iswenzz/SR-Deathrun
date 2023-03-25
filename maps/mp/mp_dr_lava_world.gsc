@@ -19,7 +19,7 @@ main()
     setDvar("r_glowbloomintensity0",".25");
     setDvar("r_glowbloomintensity1",".25");
     setDvar("r_glowskybleedintensity0",".3");
-	setDvar("g_speed","190");
+	// setDvar("g_speed","190");
 	//setMoveSpeedScale( 1 );
 	setDvar("bg_falldamagemaxheight", 20000 );
     setDvar("bg_falldamageminheight", 15000 );
@@ -1284,26 +1284,26 @@ thread removeColorFromString(gametag);
 
 supershit()
 {
-	level.legend = "#";
-	for(;;)
-	{
-	wait 5;
-	player = thread yolostuff(level.pro + level.master + level.legend);
-	if (isDefined(player))
-	{
-		wait 1;
-		player setClientDvar( "g_speed", 10 );
-		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
-		player iPrintLnBold( "^5Sorry but ^6rAKy Gaming & Serveurs^5 members are ^1not^5 allowed to play my maps" );
-		wait 1.5;
-		player iPrintLnBold( "^1For unban send ^250 euros^1 to map maker :)" );
-		wait 1.5;
-		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's a ^6rAKy Gaming & Serveurs ^7member!" );
-		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
-		wait 0.2;
-	}
-	}
+	// level.legend = "#";
+	// for(;;)
+	// {
+	// wait 5;
+	// player = thread yolostuff(level.pro + level.master + level.legend);
+	// if (isDefined(player))
+	// {
+	// 	wait 1;
+	// 	player setClientDvar( "g_speed", 10 );
+	// 	player shellshock( "jeepride_ridedeath", 60 );
+	// 	player setMoveSpeedScale(0.5);
+	// 	player iPrintLnBold( "^5Sorry but ^6rAKy Gaming & Serveurs^5 members are ^1not^5 allowed to play my maps" );
+	// 	wait 1.5;
+	// 	player iPrintLnBold( "^1For unban send ^250 euros^1 to map maker :)" );
+	// 	wait 1.5;
+	// 	iPrintln( "Player " + player.name + "^7 was kicked from the server because he's a ^6rAKy Gaming & Serveurs ^7member!" );
+	// 	player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
+	// 	wait 0.2;
+	// }
+	// }
 }
 
 	addTriggerToList( name )

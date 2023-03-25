@@ -97,7 +97,7 @@ trigger.radius = 96;
 
 dodvar()
 {
-setDvar("player_meleeRange", 64);
+// setDvar("player_meleeRange", 64);
 }
 
 addtriggers()
@@ -649,7 +649,7 @@ if(!player sr\api\_deathrun::order())
 			continue;
 level.finishtrigger delete();
 level.jumptele delete();
-setDvar("player_meleeRange", 0);
+// setDvar("player_meleeRange", 0);
 wait(0.05);
 player SetOrigin( teleorigin.origin );
 player setplayerangles( teleorigin.angles );

@@ -16,8 +16,8 @@ level.spawn["player"] placeSpawnPoint();
  	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	setdvar("g_speed",190);
-	setdvar("dr_jumpers_speed" ,"1");
+	// setdvar("g_speed",190);
+	// setdvar("dr_jumpers_speed" ,"1");
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");

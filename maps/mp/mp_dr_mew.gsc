@@ -4,7 +4,7 @@
 // // | |\/| | | '_ \          | | | | | '__|         | |\/| |  / _ \ \ \ /\ / /			 |
 // // | |  | | | |_) |         | |_| | | |            | |  | | |  __/  \ V  V / 			 |
 // // |_|  |_| | .__/   _____  |____/  |_|     _____  |_|  |_|  \___|   \_/\_/  		     |
-// // ---------|_|-----|_____|----------------|_____|----------------------------------------|     
+// // ---------|_|-----|_____|----------------|_____|----------------------------------------|
 // //          																			     |
 // //  __  __                     _                 __  __                                   |
 // // |  \/  |   __ _   _ __     | |__    _   _    |  \/  |   ___  __      __   ___   _ __   |
@@ -14,12 +14,12 @@
 // // -----------------|_|----------------|___/----------------------------------------------|              																					  |
 // // _______________________________________________________________________________________|
 // //|																						 |
-// //|> I'm surprised you're even here to be honest. This map's scripting is god awful lmao. |		  
+// //|> I'm surprised you're even here to be honest. This map's scripting is god awful lmao. |
 // //|> Well feel free to use anything, couldn't care less. 								 |
 // //|> Doubt you'll find much anyway. 														 |
 // //|> If you're looking here for help in your own map, good luck in your map mate.		 |
 // //|														  							     |
-// //|> My Skype - mewen25 -> Hit me up if you want help with something.		  	         |												  
+// //|> My Skype - mewen25 -> Hit me up if you want help with something.		  	         |
 // //|_______________________________________________________________________________________|
 
 //#include braxi\_common;
@@ -28,14 +28,14 @@ main()
 {
  maps\mp\_load::main();
  //maps\mp\mews\menu::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
+
 
 setdvar("r_specularcolorscale", "1");
 setdvar("r_specular", "0");
@@ -92,7 +92,7 @@ level.bouncemepls = 0;
     ///Easy///Traps///
       thread e_trap1();
       thread e_trap2();
-      thread e_trap3();  
+      thread e_trap3();
       thread e_trap4();
       thread e_trap5();
       thread e_trap6();
@@ -162,9 +162,9 @@ level.bouncemepls = 0;
 	level.actiBusy = 0;
 	level.playerBusy = 0;
 	precacheModel( "playermodel_terminator" );
-	//precacheItem("raygun_mp");	
-	//precacheItem("shockwave_mp");	
- 
+	//precacheItem("raygun_mp");
+	//precacheItem("shockwave_mp");
+
 }
 
 
@@ -173,7 +173,7 @@ level.bouncemepls = 0;
     if( !isDefined( level.trapTriggers ) )
         level.trapTriggers = [];
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
-} 
+}
 
 onPlayerSpawned()
 {
@@ -341,7 +341,7 @@ messages()
             level.hudcolour = (0.9, 0.1, 0.9);
             break;
             }
-	
+
 		if( isDefined( self.msgText ) )
 			self.msgText destroy();
 
@@ -372,21 +372,21 @@ messages()
 credits()
 {
         self endon( "disconnect" );
- 
+
         if( isDefined( self.credits_text ) )
                 self.credits_text Destroy();
- 
+
         self.credits_text = newHudElem();
         self.credits_text.y = 10;
         self.credits_text.alignX = "center";
         self.credits_text.alignY = "middle";
         self.credits_text.horzAlign = "center";
- 
+
         self.credits_text.alpha = 0;
         self.credits_text.sort = -3;
         self.credits_text.fontScale = 1.6;
         self.credits_text.archieved = true;
- 
+
         {
                 self credit_roll( "^2>> ^1M^7ap ^1B^7y ^1M^7ewen ^2<<", 5 );
                 self credit_roll( "^2>> ^1B^7ig ^1T^7hanks ^1T^7o ^1VC ^7' ^7Blade ^1F^7or ^1H^7elping ^1M^7e ^1S^7tart. ^2<<", 5 );
@@ -398,7 +398,7 @@ credits()
 credit_roll( msg, time )
 {
         self endon( "disconnect" );
- 
+
         self.credits_text fadeOverTime(1);
         self.credits_text.alpha = 1;
         self.credits_text setText( msg );
@@ -429,7 +429,7 @@ text()
 		wait 10;
 		hud_clock fadeOverTime(1);
 		hud_clock.alpha = 0;
-		wait 1;	
+		wait 1;
 		hud_clock fadeOverTime(1);
 		hud_clock.alpha = 1;
 		hud_clock setText("Skype: mewen25");
@@ -438,7 +438,7 @@ text()
 		hud_clock.alpha = 0;
 		wait 1;
 	}
-} 
+}
 
 activatorteleport()
 {
@@ -936,7 +936,7 @@ ohdear()
 			player setOrigin(tp2.origin);
 			air delete();
 		}
-	}	
+	}
 }
 
 ohdear2()
@@ -1001,7 +1001,7 @@ easytp()
 		trig waittill("trigger", player);
 		player setOrigin(tp.origin);
 	}
- 
+
 }
 hardsecretjump()
 {
@@ -1031,11 +1031,11 @@ hardsecretjump()
 easybouncer(who)
 {
 	trigger = getEnt ( "easy_start_bounce", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 	    strenght = 3;
 	    for(i=0;i<strenght;i++)
@@ -1048,11 +1048,11 @@ easybouncer(who)
 hardbouncer(who)
 {
 	trigger = getent ( "hard_start_bounce", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 	    strenght = 4;
 	    for(i=0;i<strenght;i++)
@@ -1066,11 +1066,11 @@ hardbouncer(who)
 hardbouncer2(who)
 {
 	trigger = getent ( "hard_start_bounce2", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 	    strenght = 4;
 	    for(i=0;i<strenght;i++)
@@ -1084,11 +1084,11 @@ hardbouncer2(who)
 secretbouncer(who)
 {
 	trigger = getEnt ( "easy_secret_bounce", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 	    strenght = 4;
 	    for(i=0;i<strenght;i++)
@@ -1481,7 +1481,7 @@ easysecretsteps(i)
 			{
 				player thread secretmessage("Secret Quest:^2 " + player.stepsdone + "^7/^2" + amount,"doing");
 			}
-		}	
+		}
 	}
 }
 
@@ -1512,7 +1512,7 @@ easysecretsteps2(i)
 			{
 				player thread secretmessage("Secret Quest:^2 " + player.stepsdone + "^7/^2" + amount,"doing");
 			}
-		}	
+		}
 	}
 }
 
@@ -1975,7 +1975,7 @@ hardfinish()
 {
 	trig = getent("hardend_trig", "targetname");
 	tp = getent("hardend_tp", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -1997,7 +1997,7 @@ end_trig()
 	wait .1;
 }
 
-Endrooms() 
+Endrooms()
 {
 	trig = getEnt("trig_easyend_tp", "targetname");
 	tp = getEnt("easyendtp", "targetname");
@@ -2026,8 +2026,8 @@ Endrooms()
 	}
 }
 
-checkstatus() 
-{ 
+checkstatus()
+{
 	self common_scripts\utility::waittill_any("death","disconnect");
 	iPrintlnBold("^6"+level.playername+"^2 Lost to ^1"+level.activ.name);
 
@@ -2038,7 +2038,7 @@ checkstatus()
 		iPrintlnBold("^1>>Activator<< ^2Is on a killstreak of: ^1"+level.activKills+"^6!");
 		thread killstreak();
 		wait 1;
-	iPrintLnBold("^6Selection Room ^7is now ^7open^6!"); 
+	iPrintLnBold("^6Selection Room ^7is now ^7open^6!");
 }
 
 room_simonsays()
@@ -2056,7 +2056,7 @@ room_simonsays()
 	green1 = getent("ss_green", "targetname");
 	purple = getent("ss_purple", "targetname");
 	orange = getent("ss_orange", "targetname");
-	
+
 	black hide();
 	brown hide();
 	blue hide();
@@ -2080,22 +2080,22 @@ room_simonsays()
 
         if(!isdefined(level.activKills))
 			level.playername = player.name;
-		
+
 		ambientPlay("song13");
 
 		player freezeControls(1);
 		level.activ freezeControls(1);
-			
+
 		iPrintlnBold("^2"+ player.name + " ^7Challenges ^1"+level.activ.name+" ^7To A Game Of ^1Simon Says^7!");
-        
+
         player setOrigin(level.race_jumper_tp.origin);
 		player setPlayerangles(level.race_jumper_tp.angles);
-		
+
 		player TakeAllWeapons();
-		
+
 		level.activ setOrigin( level.race_acti_tp.origin );
-		level.activ setPlayerangles( level.race_acti_tp.angles );	
-		
+		level.activ setPlayerangles( level.race_acti_tp.angles );
+
 		level.activ TakeAllWeapons();
 		wait 1;
 		player iPrintlnBold(" ^7>>^13^7<<");
@@ -2110,7 +2110,7 @@ room_simonsays()
 		player iprintlnbold("^1Good Luck!");
 		level.activ iprintlnbold("^1Good Luck!");
 		wait 0.5;
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
 		thread ss_game(player);
@@ -2140,7 +2140,7 @@ ss_check(player)
 		player setOrigin(level.race_jumper_tp.origin);
 		player setPlayerangles(level.race_jumper_tp.angles);
 		level.activ setOrigin( level.race_acti_tp.origin );
-		level.activ setPlayerangles( level.race_acti_tp.angles );	
+		level.activ setPlayerangles( level.race_acti_tp.angles );
 
 		player iprintlnbold("^1You ^7lost to the ^1Activator");
 
@@ -2149,7 +2149,7 @@ ss_check(player)
 		level.activ iprintlnbold("^1You Win! ^7now kill the ^1Jumper");
 		wait 2.5;
 		level.activ freezeControls(0);
-	} 
+	}
 	else
 	{
 		level.activ takeallweapons();
@@ -2159,7 +2159,7 @@ ss_check(player)
 		player setOrigin(level.race_jumper_tp.origin);
 		player setPlayerangles(level.race_jumper_tp.angles);
 		level.activ setOrigin( level.race_acti_tp.origin );
-		level.activ setPlayerangles( level.race_acti_tp.angles );	
+		level.activ setPlayerangles( level.race_acti_tp.angles );
 
 		level.activ iprintlnbold("^1You ^7lost to the ^1Jumper");
 
@@ -2337,7 +2337,7 @@ room_sniper()
     level.sniper = getent("room_sniper_trig", "targetname");
 	level.sniper_acti_tp = getent("sniper_acti_tp","targetname");
 	level.sniper_jumper_tp = getent("sniper_jumper_tp","targetname");
-	
+
 	while(1)
     {
     	level.sniper setHintString("^1P^7ress ^1>^7F^1< ^1F^7or ^1S^7niper");
@@ -2352,13 +2352,13 @@ room_sniper()
 
         if(!isdefined(level.activKills))
 			level.playername = player.name;
-		
+
 		ambientStop();
 		player freezeControls(1);
 		level.activ freezeControls(1);
-			
+
 		iPrintlnBold(" ^2"+ player.name + " ^7Challenges ^1"+level.activ.name+ " ^7To A ^1Sniper ^7Fight");
-        
+
         player setOrigin(level.sniper_jumper_tp.origin);
 		player setPlayerangles(level.sniper_jumper_tp.angles);
 
@@ -2366,14 +2366,14 @@ room_sniper()
 		level.activ setPlayerangles( level.sniper_acti_tp.angles );
 
 		wait 1.5;
-		
+
 		player TakeAllWeapons();
 		wait 0.05;
 		player GiveWeapon( "m40a3_mp" );
 		player GiveWeapon( "remington700_mp" );
 		player GiveMaxAmmo( "m40a3_mp" );
 		player GiveMaxAmmo( "remington700_mp" );
-			
+
 		ambientPlay("song14");
 		level.activ TakeAllWeapons();
 		wait 0.05;
@@ -2381,11 +2381,11 @@ room_sniper()
 		level.activ GiveWeapon( "remington700_mp" );
 		level.activ GiveMaxAmmo( "m40a3_mp" );
 		level.activ GiveMaxAmmo( "remington700_mp" );
-		
+
 		wait 0.05;
 		player switchToWeapon( "m40a3_mp" );
 		level.activ switchToWeapon( "m40a3_mp" );
-		
+
 		wait 0.05;
 		player iPrintlnBold(" ^7>>^13^7<<");
 		wait 1;
@@ -2394,10 +2394,10 @@ room_sniper()
 		player iPrintlnBold(" ^7>>^11^7<<");
 		wait 1.5;
 		player iPrintlnBold(" ^7>>^1F^7ight^7<<");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-		
+
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		}
@@ -2425,7 +2425,7 @@ room_knife()
     level.knife = getent("room_knife_trig", "targetname");
 	level.knife_acti_tp = getent("knife_acti_tp","targetname");
 	level.knife_jumper_tp = getent("knife_jumper_tp","targetname");
-	
+
 	while(1)
     {
     	level.knife setHintString("^1P^7ress ^1>^7F^1< ^1F^7or ^1K^7nife");
@@ -2442,30 +2442,30 @@ room_knife()
 		wait 0.5;
 		player freezeControls(1);
 		level.activ freezeControls(1);
-			
+
 		iPrintlnBold("^2"+ player.name + " ^7Challenges ^1"+level.activ.name+" ^7To A ^1Knife ^7Fight!");
-        
+
         player setOrigin(level.knife_jumper_tp.origin);
 		player setPlayerangles(level.knife_jumper_tp.angles);
 
 		level.activ setOrigin( level.race_acti_tp.origin );
 		level.activ setPlayerangles( level.race_acti_tp.angles );
-		
+
 		player TakeAllWeapons();
 		wait 0.05;
 		player GiveWeapon( "knife_mp" );
-		
+
 		level.activ setOrigin( level.knife_acti_tp.origin );
-		level.activ setPlayerangles( level.knife_acti_tp.angles );	
-		
+		level.activ setPlayerangles( level.knife_acti_tp.angles );
+
 		level.activ TakeAllWeapons();
 		wait 0.05;
 		level.activ GiveWeapon( "knife_mp" );
-		
+
 		wait 0.05;
 		player switchToWeapon( "knife_mp" );
 		level.activ switchToWeapon( "knife_mp" );
-		
+
 		wait 0.05;
 		player iPrintlnBold(" ^7>>^13^7<<");
 		wait 1;
@@ -2474,10 +2474,10 @@ room_knife()
 		player iPrintlnBold(" ^7>>^11^7<<");
 		wait 1.5;
 		player iPrintlnBold(" ^7>>^1F^7ight!^7<<");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-		
+
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		}
@@ -2648,15 +2648,15 @@ runner_check(player)
 	if ( player IsTouching(trig) )
 		player iprintlnbold("Why have you not gone yet?");
 }
-	
+
 attacker_status(player)
 {
 	self endon("round_ended");
 	self endon("death");
 	self endon("disconected");
-	tp = getent("bulldog_attacker", "targetname"); 
+	tp = getent("bulldog_attacker", "targetname");
 	trig2 = getent("bulldog_box", "targetname");
-	
+
 	while( isAlive( player ) && isDefined( player ) )
 	{
 	if (level.round1 == 1)
@@ -2694,9 +2694,9 @@ attacker_status2(player)
 	self endon("round_ended");
 	self endon("death");
 	self endon("disconected");
-	tp = getent("bulldog_attacker", "targetname"); 
+	tp = getent("bulldog_attacker", "targetname");
 	trig2 = getent("bulldog_box", "targetname");
-	
+
 	while( isAlive( player ) && isDefined( player ) )
 	{
 	if(level.bulldogOn == 1)
@@ -2765,7 +2765,7 @@ killstreak()
 		{
 			level.activ iprintLnBold("^1You ^7Got A Life For Getting A ^15 ^7Killstreak");
 			//level.activ braxi\_mod::giveLife();
-		}	
+		}
 }
 
 
@@ -2788,7 +2788,7 @@ vipsongs()
 	{
 		trig waittill("trigger", player);
 		if(used == 3)
-		{	
+		{
 			player iprintlnbold("^1You can only change the song three times");
 			for(;;)
 			{
@@ -2894,7 +2894,7 @@ vipfeatures()
 			player playsound("heyguys");
 			player thread secret_secret();
 			wait 0.5;
-			player iPrintLn("^1Info ^7> ^1Server Speed: ^7[^1"+getDvar("g_speed")+"/"+getDvar("dr_jumpers_speed")+"^7]");
+			// player iPrintLn("^1Info ^7> ^1Server Speed: ^7[^1"+getDvar("g_speed")+"/"+getDvar("dr_jumpers_speed")+"^7]");
 	}
 }
 
@@ -2943,7 +2943,7 @@ spamsecret()
 		}
 		else if(player.presses > 27)
 			player FinishPlayerDamage(player, player, 20, 0, "MOD_FALLING", "jump_mp", player.origin, AnglesToForward((-90,0,0)), "none", 0);
-		
+
 		player.presses++;
 	}
 	else
@@ -2957,7 +2957,7 @@ spamsecret()
 			wait 0.5;
 			player playsound("heyguys");
 		}
-	}		
+	}
 }
 
 which_quest()
@@ -2996,8 +2996,8 @@ which_quest()
 		//ted4 delete();
 		//ted5 delete();
 		//teds delete();
-	}	
-}  
+	}
+}
 
 secret_enter()
 {
@@ -3038,7 +3038,7 @@ secretmain(which)
 		player.shots++;
 		}
 	}
-}  
+}
 
 easysecret1()
 {
@@ -3059,7 +3059,7 @@ easysecret1()
 secretmessage(text,status)
 {
 text2 = "^1/4";
-	
+
 		if( isDefined( self.secretText ) )
 			self.secretText destroy();
 
@@ -3094,7 +3094,7 @@ text2 = "^1/4";
 
 secretmessage1(text,which)
 {
-	
+
 		if( isDefined( self.secretText1 ) )
 			self.secretText1 destroy();
 
@@ -3128,7 +3128,7 @@ secretmessage1(text,which)
 			self.secretText1.y = 85;
 			self.secretText1.color = (1.0, 0, 0);
 			self.secretText1 setText(text);
-		}	
+		}
 			wait 4;
 }
 
@@ -3199,7 +3199,7 @@ specialmenu()
 }
 
 bounceme(player)
-{	
+{
 	while( isAlive( player ) && isDefined( player ) )
 	{
 		if (player fragButtonPressed())
