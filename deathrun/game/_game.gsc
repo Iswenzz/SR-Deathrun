@@ -260,7 +260,7 @@ playerAFK()
 	self endon("death");
 	self endon("disconnect");
 
-	if (!level.dvar["afk"] || self isAxis())
+	if (!level.dvar["afk"] || self isAxis() || level.freeRun)
 		return;
 
 	time = 0;
