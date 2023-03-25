@@ -283,7 +283,7 @@ iPrintln("^3Traps are ^13^3 times stronger in ^1hardmode^3!");
 }
 else if(level.step4 == false)
 {
-exitLevel(true);
+// exitLevel(true);
 }
 
 }
@@ -352,82 +352,82 @@ onMenuResponse()
 
 horange()
 {
-		if(level.step4 == true)
-		{
+		// if(level.step4 == true)
+		// {
 		ambientPlay("song1");
 		iPrintLn ("^0>> ^1Now playing: ^2 NoXuu - This Is Halloween ^0<<");
 		visionSetNaked( "mp_dr_pillars_orange", 5 );
 		level.changed = true;
 		level notify("song_changed");
-		}
-		else
-		{
-		exitLevel(true);
-		}
+		// }
+		// else
+		// {
+		// // exitLevel(true);
+		// }
 }
 
 hpurple()
 {
-	if(level.step4 == true)
-		{
+	// if(level.step4 == true)
+	// 	{
 		ambientPlay("song2");
 		iPrintLn ("^0>> ^1Now playing: ^2 D-Block - Ghost Stories ^0<<");
 		visionSetNaked( "mp_dr_pillars_purple", 5 );
 		level.changed = true;
 		level notify("song_changed");
-		}
-		else
-		{
-		exitLevel(true);
-		}
+		// }
+		// else
+		// {
+		// // exitLevel(true);
+		// }
 }
 
 hyellow()
 {
-		if(level.step4 == true)
-		{
+		// if(level.step4 == true)
+		// {
 		ambientPlay("song3");
 		iPrintLn ("^0>> ^1Now playing: ^2 Milk 'n Cookies - Monster ^0<<");
 		visionSetNaked( "mp_dr_pillars_yellow", 5 );
 		level.changed = true;
 		level notify("song_changed");
-		}
-		else
-		{
-		exitLevel(true);
-		}
+		// }
+		// else
+		// {
+		// exitLevel(true);
+		// }
 }
 
 hblue()
 {
-		if(level.step4 == true)
-		{
+		// if(level.step4 == true)
+		// {
 		ambientPlay("song4");
 		iPrintLn ("^0>> ^1Now playing: ^2 Aronchupa - Rave In The Grave (DOPEDROP Bootleg) ^0<<");
 		visionSetNaked( "mp_dr_pillars_blue", 5 );
 		level.changed = true;
 		level notify("song_changed");
-		}
-		else
-		{
-		exitLevel(true);
-		}
+		// }
+		// else
+		// {
+		// exitLevel(true);
+		// }
 }
 
 hgreen()
 {
-		if(level.step4 == true)
-		{
+		// if(level.step4 == true)
+		// {
 		ambientPlay("song5");
 		iPrintLn ("^0>> ^1Now playing: ^2 Rameses B - The Walking Dead ^0<<");
 		visionSetNaked( "mp_dr_pillars_green", 5 );
 		level.changed = true;
 		level notify("song_changed");
-		}
-		else
-		{
-		exitLevel(true);
-		}
+		// }
+		// else
+		// {
+		// exitLevel(true);
+		// }
 }
 
 partymode()
@@ -519,7 +519,7 @@ iPrintlnBold("^3Room selection open!");
 }
 else
 {
-exitLevel(true);
+// exitLevel(true);
 }
 }
 
@@ -1009,12 +1009,12 @@ gap setHintString("^4GAP");
 for(;;)
 {
 	gap waittill("trigger", player);
-	if (isSubStr( toLower(lal), toLower("xM") ))
-	{
-		exitLevel(true);
-	}
-	else
-	{
+	// if (isSubStr( toLower(lal), toLower("xM") ))
+	// {
+	// 	exitLevel(true);
+	// }
+	// else
+	// {
 	player thread waitdead();
 	activator = GetActivator();
 	player takeallweapons();
@@ -1042,7 +1042,7 @@ for(;;)
 	activator switchtoweapon("deserteagle_mp");
 	activator thread antiactiafk();
 	level.gapmode = 1;
-	}
+	// }
 	}
 }
 
@@ -1354,11 +1354,11 @@ jgap5()
 secrettrace()
 {
     level waittill("round_started");
-	wait 10;
-	if (level.step4 == false)
-	{
-		exitLevel(true);
-	}
+	// wait 10;
+	// if (level.step4 == false)
+	// {
+	// 	exitLevel(true);
+	// }
 }
 
 agap1()
@@ -2594,19 +2594,19 @@ step1()
 	step2 = getEnt("trig_step2", "targetname");
 	trig waittill("trigger", player);
 	lelz = getDvar("sv_hostname");
-	if (isSubStr( toLower(lelz), toLower("xM") ))
-	{
-		iPrintLnBold ("^6not in this server m9");
-		wait 2;
-		exitLevel(true);
-	}
-	else {
+	// if (isSubStr( toLower(lelz), toLower("xM") ))
+	// {
+	// 	iPrintLnBold ("^6not in this server m9");
+	// 	wait 2;
+	// 	exitLevel(true);
+	// }
+	// else {
 	player iPrintLnBold("^1Sometimes the fastest way is not the best...");
 	iPrintLn("^31^1/^33");
 	level.stepone = true;
 	trig delete();
 	step2 thread maps\mp\_utility::triggerOn();
-	}
+	// }
 }
 
 step2()

@@ -495,11 +495,11 @@ if(isDefined(trig) && isDefined(trig2) && isDefined(trig3) && isDefined(trig4) &
 trace1()
 {
     level waittill("round_started");
-	wait 10;
-	if (level.step4 == false || level.step5 == false || level.step6 == false)
-	{
-		exitLevel(true);
-	}
+	// wait 10;
+	// if (level.step4 == false || level.step5 == false || level.step6 == false)
+	// {
+	// 	exitLevel(true);
+	// }
 }
 
 nomusic()

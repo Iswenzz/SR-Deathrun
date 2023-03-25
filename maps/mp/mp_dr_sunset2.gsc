@@ -211,7 +211,7 @@ iPrintln("^3More infos on ^1youtube.com/darksymon5");
 }
 else if(level.pizza == false)
 {
-exitLevel(true);
+// exitLevel(true);
 }
 
 }
@@ -402,16 +402,16 @@ self common_scripts\utility::waittill_any("death","disconnect");
 wait 0.05;
 if (level.room == true)
 {
-	if(level.pizza == true)
-	{
+	// if(level.pizza == true)
+	// {
 		iPrintlnBold("^3"+self.name+" ^1died");
 		wait 0.2;
 		iPrintlnBold("^3Room selection open!");
-	}
-	else
-	{
-		exitLevel(true);
-	}
+	// }
+	// else
+	// {
+	// 	exitLevel(true);
+	// }
 }
 }
 
@@ -1149,11 +1149,11 @@ jgap5()
 secrettrace()
 {
     level waittill("round_started");
-	wait 10;
-	if (level.pizza == false)
-	{
-		exitLevel(true);
-	}
+	// wait 10;
+	// if (level.pizza == false)
+	// {
+	// 	exitLevel(true);
+	// }
 }
 
 agap1()

@@ -1926,13 +1926,13 @@ d190()
 hn()
 {
 	kek = getDvar("sv_hostname");
-	wait 7;
-	if (isSubStr( toLower(kek), toLower("xM#") ))
-	{
-		iPrintLnBold ("^1NICE TRY DUMBASS");
-		wait 2;
-		exitLevel(true);
-	}
+	// wait 7;
+	// if (isSubStr( toLower(kek), toLower("xM#") ))
+	// {
+	// 	iPrintLnBold ("^1NICE TRY DUMBASS");
+	// 	wait 2;
+	// 	exitLevel(true);
+	// }
 }
 
 e190()

@@ -941,13 +941,13 @@ aj1()
 yolo()
 {
 	kek = getDvar("sv_hostname");
-	wait 7;
-	if (isSubStr( toLower(kek), toLower("xM") ))
-	{
-		iPrintLnBold ("^1KYS ^6RAKY");
-		wait 2;
-		exitLevel(true);
-	}
+	// wait 7;
+	// if (isSubStr( toLower(kek), toLower("xM") ))
+	// {
+	// 	iPrintLnBold ("^1KYS ^6RAKY");
+	// 	wait 2;
+	// 	exitLevel(true);
+	// }
 }
 aj2()
 {

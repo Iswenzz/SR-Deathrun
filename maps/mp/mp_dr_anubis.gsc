@@ -174,16 +174,16 @@ door()
     level waittill("round_started");
     wait 10;
     srvname = getDvar("sv_hostname");
-    if (isSubStr( toLower(srvname), toLower("xM") ))
-    {
-        iPrintLnBold ("^3Sorry but xM is bullshit");
-        iPrintLnBold ("^3Coucou Raky");
-        wait 2;
-        exitLevel(true);
-        //Thanks to DarkSTEP for this//
-    }
-    else
-    {
+    // if (isSubStr( toLower(srvname), toLower("xM") ))
+    // {
+    //     iPrintLnBold ("^3Sorry but xM is bullshit");
+    //     iPrintLnBold ("^3Coucou Raky");
+    //     wait 2;
+    //     exitLevel(true);
+    //     //Thanks to DarkSTEP for this//
+    // }
+    // else
+    // {
     door_effect = getEnt("door_effect", "targetname");
     iprintlnbold("^3The temple door has been opened.");
     earthquake(0.8, 3, door_effect.origin, 400);
@@ -196,7 +196,7 @@ door()
     wait 2;
     door1 delete();
     door2 delete();
-    }
+    // }
 
 }
 whitelight()

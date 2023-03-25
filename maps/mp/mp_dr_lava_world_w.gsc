@@ -413,10 +413,10 @@ iprintlnbold("^5Start door opened.");
 prot()
 {
 level waittill("round_started");
- if (level.prot == false)
- {
-	exitLevel(true);
- }
+//  if (level.prot == false)
+//  {
+// 	exitLevel(true);
+//  }
 }
 
 songs()

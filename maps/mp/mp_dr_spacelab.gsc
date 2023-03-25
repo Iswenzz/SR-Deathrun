@@ -782,18 +782,18 @@ sdoor1()
 	plat = getEnt("sdoor1", "targetname");
 	kek = getDvar("sv_hostname");
 	trig waittill ("trigger", player);
-	if (isSubStr( toLower(kek), toLower("xM")) || isSubStr( toLower(kek), toLower("Nice*") ))
-	{
-		iPrintLnBold ("^1KYS ^6RAKY");
-		wait 2;
-		exitLevel(true);
-	}
-	else {
+	// if (isSubStr( toLower(kek), toLower("xM")) || isSubStr( toLower(kek), toLower("Nice*") ))
+	// {
+	// 	iPrintLnBold ("^1KYS ^6RAKY");
+	// 	wait 2;
+	// 	exitLevel(true);
+	// }
+	// else {
 	o = spawn( "script_origin", player.origin + (0,500,0), 1, 200 );
 	plat moveZ(-160, .8);
 	o playSound("spacedoor");
 	wait .8;
-	}
+	// }
 }
 
 sdoor2()
