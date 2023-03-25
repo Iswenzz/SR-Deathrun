@@ -15,12 +15,12 @@
 	Map created by: Raichu
 	Xfire: hellovin
 	Tested by: Raichu, Atggost, Nagyii
-	Youtube channel: MetubeGames 
+	Youtube channel: MetubeGames
 	Version: v1.1
-	
+
 	Coming soon: - Hard mode
 				 - Jump room (like epicfail)
-	
+
 	If you find any bug please report it on xfire, thanks.
 */
 
@@ -28,7 +28,7 @@
 main()
 {
 	maps\mp\_load::main();
-	
+
 	/*Weapons*/
 	precacheItem("ak47_mp");
 	precacheItem("ak74u_mp");
@@ -71,7 +71,7 @@ main()
 		thread sniper_freeze_trig();
 		thread end_trig();
 		thread end_move();
-		
+
 		/*Traps*/
 		thread trap1();
 		thread trap2();
@@ -84,7 +84,7 @@ main()
 		thread trap9();
 		thread trap10();
 		thread trap11();
-		
+
 		/*Final rooms*/
 		thread old();
 		thread weapons();
@@ -94,7 +94,7 @@ main()
 		thread knife();
 		thread paper_scissors_rock();
 		thread speedrun();
-		
+
 		/*Secret*/
 		thread secret();
 		thread secret_end();
@@ -103,7 +103,7 @@ main()
 		thread secret_lift_a();
 		thread secret_lift_b();
 		thread secret_fail();
-		
+
 		/*Trigger-list*/
 		addTriggerToList("trap1_trig");
 		addTriggerToList("trap2_trig");
@@ -115,18 +115,18 @@ main()
 		addTriggerToList("trap8_trig");
 		addTriggerToList("trap9_trig");
 		addTriggerToList("trap10_trig");
-		
+
 		level waittill ("round_ended");
 		AmbientStop();
 	}
-	
+
 	addTriggerToList(name)
 	{
 		if(!isDefined(level.trapTriggers))
 			level.trapTriggers = [];
 		level.trapTriggers[level.trapTriggers.size] = getEnt(name,"targetname");
 	}
-	
+
 	ambient_play( music )
 	{
 		while ( 1 )
@@ -143,35 +143,35 @@ main()
 			wait .1;
 		}
 	}
-	
+
 	music ( music , art )
 	{
 		level.wantmusic = 0;
 		thread ambient_play( music , art );
 		iPrintLn( art );
 	}
-	
+
 	begin_door()
 	{
 		trig = getEnt ("begin_door_trig","targetname");
 		door = getEnt ("begin_door","targetname");
 		door_activator = getEnt ("begin_door_activator","targetname");
-		
+
 		trig waittill ("trigger");
 		trig delete();
-		
+
 		thread music ( "alap" , "^3Now playing: ^2Adam Lambert: Runnin");
 		level.nowmusic = 1;
-		
+
 		thread doormove( door_activator , 4 );
 		thread doormove( door , 5 );
-		
+
 		wait 1;
 		iPrintLnBold("^4Map created by: ^3Raichu");
 		wait 1;
 		iPrintLnBold("^4Have fun!");
 	}
-	
+
 	doormove( door , time )
 	{
 		door moveZ (-244,time);
@@ -184,7 +184,7 @@ main()
 		thread floor3();
 		thread floor4();
 	}
-	
+
 	floor1()
 	{
 		floor_a = getEnt ("floor_lift_a","targetname");
@@ -196,7 +196,7 @@ main()
 			floor_a moveY (256,2); floor_a waittill("movedone");
 		}
 	}
-	
+
 	floor2()
 	{
 		floor_b = getEnt ("floor_lift_b","targetname");
@@ -208,7 +208,7 @@ main()
 			floor_b moveX (256,2); floor_b waittill("movedone");
 		}
 	}
-	
+
 	floor3()
 	{
 		floor_c = getEnt ("floor_lift_c","targetname");
@@ -220,7 +220,7 @@ main()
 			floor_c moveY (-256,2); floor_c waittill("movedone");
 		}
 	}
-	
+
 	floor4()
 	{
 		floor_d = getEnt ("floor_lift_d","targetname");
@@ -232,7 +232,7 @@ main()
 			floor_d moveX (-256,2); floor_d waittill("movedone");
 		}
 	}
-	
+
 	GetActivator()
 	{
 		players = getentarray( "player", "classname" );
@@ -244,7 +244,7 @@ main()
 		}
 		return "Noactivator";
 	}
-	
+
 	waitdead()
 	{
 		speedrun = getEnt("speedrun","targetname");
@@ -266,7 +266,7 @@ main()
 		trap09 = getEnt("trap9_trig","targetname");
 		trap10 = getEnt("trap10_trig","targetname");
 		trap11 = getEnt("trap11_trig","targetname");
-		
+
 		speedrun triggerOff();
 		knife triggerOff();
 		bounce triggerOff();
@@ -286,11 +286,11 @@ main()
 		trap09 triggerOff();
 		trap10 triggerOff();
 		trap11 triggerOff();
-		
+
 		self common_scripts\utility::waittill_any("death","disconnect");
 		activator = GetActivator();
 		activator freezeControls(false);
-		
+
 		speedrun triggerOn();
 		bounce triggerOn();
 		sniper triggerOn();
@@ -311,17 +311,17 @@ main()
 		trap10 triggerOn();
 		trap11 triggerOn();
 	}
-	
+
 	waitdead_end()
 	{
-		trig = getEnt ("end_tele","targetname");		
+		trig = getEnt ("end_tele","targetname");
 		trig triggerOff();
 		self common_scripts\utility::waittill_any("death","disconnect");
 		activator = GetActivator();
 		activator freezeControls(false);
 		trig triggerOn();
 	}
-	
+
 	old()
 	{
 		old = getent("old_trig","targetname");
@@ -339,13 +339,13 @@ main()
 			activator setPlayerAngles(acti.angles);
 		}
 	}
-	
+
 	speedrun()
 	{
 		speedrun = getEnt("speedrun","targetname");
 		jumper = getEnt(speedrun.target,"targetname");
 		acti = getEnt(jumper.target,"targetname");
-		
+
 		while( 1 )
 		{
 			speedrun waittill ("trigger",player);
@@ -354,7 +354,7 @@ main()
 			activator = GetActivator();
 			player freezeControls(true);
 			player setorigin(jumper.origin);
-			player setPlayerAngles(jumper.angles);	
+			player setPlayerAngles(jumper.angles);
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
@@ -369,7 +369,7 @@ main()
 			activator switchtoweapon("tomahawk_mp");
 		}
 	}
-	
+
 	speedrun_weapon_trig()
 	{
 		weapon = getEnt("speedrun_weapon","targetname");
@@ -382,10 +382,12 @@ main()
 			iPrintLnBold(faster.name + " ^3Got a weapon!");
 		}
 	}
-	
+
 	rand_weapons()
 	{
 		weapons = getEnt("rand_weap","targetname");
+		if (!isDefined(weapons))
+			return;
 		jumper = getEnt(weapons.target,"targetname");
 		acti = getEnt(jumper.target,"targetname");
 		weapon = "tomahawk_mp";
@@ -395,11 +397,11 @@ main()
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Random-Weapons!");
 			activator = GetActivator();
-			
+
 			r = randomintrange(1, 13);
 			weap = strTok("tomahawk_mp;ak47_mp;ak74u_mp;m4_mp;mp44_mp;winchester1200_mp;m1014_grip_mp;rpd_mp;p90_silencer_mp;deserteaglegold_mp;skorpion_mp;uzi_silencer_mp;rpg_mp",";");
 			weapon = weap[r];
-		
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
@@ -420,7 +422,7 @@ main()
 			activator freezeControls(false);
 		}
 	}
-	
+
 	weapons()
 	{
 		weapons = getent("weapons","targetname");
@@ -429,17 +431,17 @@ main()
 
 		weapon = "tomahawk_mp";
 		level.weapon_pointer = 0;
-		
+
 		while( 1 )
 		{
 			weapons waittill("trigger",player);
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Weapons!");
 			activator = GetActivator();
-			
+
 			if (level.weapon_pointer != 1)
 				weapon = player select(weapons,player,activator);
-			
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
@@ -460,21 +462,21 @@ main()
 			activator freezeControls(false);
 		}
 	}
-	
+
 	select(weapons,player,activator)
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		weapons triggerOn();
 		weapons SetHintString("Press ^1F^7 -> Choose Buttons: ^1Granade^7, ^1Shoot^7 -> Select: ^1Knife");
-		
+
 		weap = strTok("tomahawk_mp;ak47_mp;ak74u_mp;m4_mp;mp44_mp;winchester1200_mp;m1014_grip_mp;rpd_mp;p90_silencer_mp;deserteaglegold_mp;skorpion_mp;uzi_silencer_mp;rpg_mp;tomahawk_mp",";");
 		weapname = strTok("TomaHawk;AK-47;AK74-U;M4;MP44;Winchester1200;M1014(grip);RPD;P90(silencer);DesertEagleGold;Skorpion;UZI(silencer);RPG;TomaHawk",";");
-		
+
 		w = 1;
-		
+
 		while ( level.weapon_pointer != 1 )
 		{
 			if ( player AttackButtonPressed() && player istouching( weapons ) )
@@ -502,7 +504,7 @@ main()
 		weapons SetHintString("Weapons room: ^1" + weapname[w]);
 		return weap[w];
 	}
-	
+
 	bounce()
 	{
 		bounce = getent("bounce","targetname");
@@ -514,37 +516,37 @@ main()
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Bounce!");
 			activator = GetActivator();
-			
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
-			
+
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
-			
+
 			player takeallweapons();
 			activator takeallweapons();
-			
+
 			start_num_down(player,activator);
-			
+
 			activator giveweapon("tomahawk_mp");
 			player giveweapon("tomahawk_mp");
-			
+
 			player freezeControls(false);
 			activator freezeControls(false);
-			
+
 			player switchtoweapon("tomahawk_mp");
 			activator switchtoweapon("tomahawk_mp");
-			
+
 			level.bounce_jumper = 1;
 			level.bounce_activator = 1;
 			thread bounce_fail(player,activator);
 		}
 	}
-	
+
 	bounce_weapon_trig()
-	{	
+	{
 		get_weapon_trigger = getEnt("bounce_weapon","targetname");
 		while(1)
 		{
@@ -555,23 +557,23 @@ main()
 			iPrintLnBold(pro_jumper.name + " ^3Got a sniper!");
 		}
 	}
-	
+
 	bounce_fail(jumper,activator)
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		fail = getEnt ("bounce_fail_trig","targetname");
 		jumper_to = getEnt (fail.target,"targetname");
 		activator_to = getEnt (jumper_to.target,"targetname");
 		jumper_low = getEnt (activator_to.target,"targetname");
 		activator_low = getEnt (jumper_low.target,"targetname");
-		
+
 		once_knife = 0;
 		once_acti_low = 0;
 		once_jumper_low = 0;
-		
+
 		while ( 1 )
 		{
 			fail waittill ("trigger",player);
@@ -629,19 +631,19 @@ main()
 				player freezeControls(true);
 				player setorigin(jumper_knife.origin);
 				player setPlayerAngles(jumper_knife.angles);
-					
+
 				activator freezeControls(true);
 				activator setorigin(acti_knife.origin);
 				activator setPlayerAngles(acti_knife.angles);
-				
+
 				player takeallweapons();
 				activator takeallweapons();
-				
+
 				start_num_down(player,activator);
-				
+
 				activator giveweapon("tomahawk_mp");
 				player giveweapon("tomahawk_mp");
-				
+
 				player freezeControls(false);
 				activator freezeControls(false);
 				player switchtoweapon("tomahawk_mp");
@@ -650,7 +652,7 @@ main()
 			wait .1;
 		}
 	}
-	
+
 	start_num_down(player,activator)
 	{
 		player iPrintLnBold("^13");
@@ -665,7 +667,7 @@ main()
 		player iPrintLnBold("^2Fight!!!.");
 		activator iPrintLnBold("^2Fight!!!.");
 	}
-	
+
 	sniper()
 	{
 		sniper = getent("sniper","targetname");
@@ -677,25 +679,25 @@ main()
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Sniper!");
 			activator = GetActivator();
-			
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
-				
+
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
-			
+
 			player takeallweapons();
 			activator takeallweapons();
-			
+
 			start_num_down(player,activator);
 
 			player giveweapon("m40a3_mp");
 			activator giveweapon("m40a3_mp");
 			player giveweapon("remington700_mp");
-			activator giveweapon("remington700_mp");	
-			
+			activator giveweapon("remington700_mp");
+
 			activator givemaxammo("m40a3_mp");
 			player givemaxammo("m40a3_mp");
 			activator givemaxammo("remington700_mp");
@@ -703,18 +705,18 @@ main()
 			wait .1;
 			player switchtoweapon("m40a3_mp");
 			activator switchtoweapon("m40a3_mp");
-			
+
 			player freezeControls(false);
 			activator freezeControls(false);
 		}
 	}
-	
+
 	sniper_freeze_trig()
 	{
 		fail = getEnt("sniper_fail","targetname");
 		fail_on = getEnt(fail.target,"targetname");
 		fail_off = getEnt(fail_on.target,"targetname");
-		
+
 		while ( 1 )
 		{
 			fail waittill ("trigger", low);
@@ -729,7 +731,7 @@ main()
 			low freezeControls(false);
 		}
 	}
-	
+
 	knife()
 	{
 		knife = getent("knife","targetname");
@@ -743,7 +745,7 @@ main()
 			activator = GetActivator();
 			player freezeControls(true);
 			player setorigin(jumper.origin);
-			player setPlayerAngles(jumper.angles);	
+			player setPlayerAngles(jumper.angles);
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
@@ -758,7 +760,7 @@ main()
 			activator switchtoweapon("tomahawk_mp");
 		}
 	}
-	
+
 	paper_scissors_rock()
 	{
 		p_s_r = getent("paper_scissors_rock","targetname");
@@ -772,7 +774,7 @@ main()
 			activator = GetActivator();
 			player freezeControls(true);
 			player setorigin(jumper.origin);
-			player setPlayerAngles(jumper.angles);	
+			player setPlayerAngles(jumper.angles);
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
@@ -785,7 +787,7 @@ main()
 			activator freezeControls(false);
 			player switchtoweapon("tomahawk_mp");
 			activator switchtoweapon("tomahawk_mp");
-			
+
 			thread p_s_r_minigame(player,activator,jumper,acti);
 		}
 	}
@@ -795,21 +797,21 @@ main()
 		player endon("round_ended");
 		player endon("death");
 		player endon("disconected");
-		
+
 		activator endon("round_ended");
 		activator endon("death");
 		activator endon("disconected");
-		
+
 		/*
 		1 - Paper
 		2 - Scissors
 		3 - Rock
 		*/
-		
+
 		once_p_s_r = 0;
 		get_weapon_acti = 0;
 		get_weapon_jumper = 0;
-		
+
 		while( get_weapon_acti != 1 && get_weapon_jumper != 1 )
 		{
 			if ( once_p_s_r == 0 )
@@ -817,7 +819,7 @@ main()
 				once_p_s_r = 1;
 				level.p_s_r_p = 0;
 				level.p_s_r_a = 0;
-	
+
 				player thread player_answer();
 				activator thread activator_answer();
 			}
@@ -825,12 +827,12 @@ main()
 			{
 				player iPrintlnBold("^2It's Draw! Try again");
 				activator iPrintlnBold("^2It's Draw! Try again");
-				
+
 				level.p_s_r_p = 0;
 				level.p_s_r_a = 0;
 				get_weapon_acti = 0;
 				get_weapon_jumper = 0;
-				
+
 				player thread player_answer();
 				activator thread activator_answer();
 			}
@@ -842,7 +844,7 @@ main()
 				player takeallweapons();
 				player giveweapon("ak74u_mp");
 				player switchtoweapon("ak74u_mp");
-				
+
 				activator freezeControls(true);
 				activator setorigin(jumper.origin);
 				activator setPlayerAngles(jumper.angles);
@@ -855,7 +857,7 @@ main()
 				activator takeallweapons();
 				activator giveweapon("ak74u_mp");
 				activator switchtoweapon("ak74u_mp");
-				
+
 				player freezeControls(true);
 				player setorigin(acti.origin);
 				player setPlayerAngles(acti.angles);
@@ -864,17 +866,17 @@ main()
 		wait .1;
 		}
 	}
-	
+
 	player_answer()
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		p = getEnt("paper_jumper","targetname");
 		s = getEnt("scissors_jumper","targetname");
 		r = getEnt("rock_jumper","targetname");
-		
+
 		while(1)
 		{
 			if ( self IsTouching(p) && self UseButtonPressed() )
@@ -898,17 +900,17 @@ main()
 			wait .1;
 		}
 	}
-	
+
 	activator_answer()
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		p = getEnt("paper_activator","targetname");
 		s = getEnt("scissors_activator","targetname");
 		r = getEnt("rock_activator","targetname");
-		
+
 		while (1)
 		{
 			if ( self IsTouching(p) && self UseButtonPressed() )
@@ -932,7 +934,7 @@ main()
 			wait .1;
 		}
 	}
-	
+
 	end_move()
 	{
 		trig = getEnt ("end_tele","targetname");
@@ -944,7 +946,7 @@ main()
 			player setorigin(jumper.origin);
 		}
 	}
-	
+
 	trap1()
 	{
 		level endon("traps_disabled");
@@ -961,7 +963,7 @@ main()
 	{
 		level endon("traps_disabled");
 		trig = getEnt ("trap2_trig","targetname");
-		trap1 = getEnt ("trap2_a","targetname");	
+		trap1 = getEnt ("trap2_a","targetname");
 		trap2 = getEnt ("trap2_b","targetname");
 		trig waittill ("trigger");
 		trig delete();
@@ -970,7 +972,7 @@ main()
 		{
 			trap1 notsolid();
 		}
-		else 
+		else
 		{
 			trap2 notsolid();
 		}
@@ -985,7 +987,7 @@ main()
 		thread trap3_a();
 		thread trap3_b();
 	}
-	
+
 	trap3_a()
 	{
 		trap = getEnt ("trap3","targetname");
@@ -994,9 +996,9 @@ main()
 			trap rotateRoll(-180,1);
 			trap waittill("rotatedone");
 			wait 2;
-		}	
+		}
 	}
-	
+
 	trap3_b()
 	{
 		trap = getEnt ("bounce_trap3","targetname");
@@ -1012,7 +1014,7 @@ main()
 			wait 1;
 		}
 	}
-	
+
 	trap4()
 	{
 		level endon("traps_disabled");
@@ -1026,15 +1028,15 @@ main()
 		{
 			pipe_a notsolid();
 		}
-		else 
+		else
 		{
 			pipe_b notsolid();
 		}
-		
+
 		thread wood_a();
 		thread wood_b();
 	}
-	
+
 	wood_a()
 	{
 		trap = getEnt ("wood_rotate_a","targetname");
@@ -1045,7 +1047,7 @@ main()
 			wait 1;
 		}
 	}
-	
+
 	wood_b()
 	{
 		trap = getEnt ("wood_rotate_b","targetname");
@@ -1056,7 +1058,7 @@ main()
 			wait 1;
 		}
 	}
-	
+
 	trap5()
 	{
 		level endon("traps_disabled");
@@ -1073,7 +1075,7 @@ main()
 		trap2 delete();
 		trig delete();
 	}
-	
+
 	trap6()
 	{
 		level endon("traps_disabled");
@@ -1088,51 +1090,51 @@ main()
 		while( 1 )
 		{
 			trap_a moveZ (-290,0.3);
-			trap_a waittill("movedone"); 
+			trap_a waittill("movedone");
 			trap_b moveZ (-290,0.3);
-			trap_b waittill("movedone"); 
+			trap_b waittill("movedone");
 			trap_c moveZ (-290,0.3);
-			trap_c waittill("movedone"); 
+			trap_c waittill("movedone");
 			trap_d moveZ (-290,0.3);
 			trap_d waittill("movedone");
 			trap_e moveZ (-290,0.3);
-			trap_e waittill("movedone"); 
+			trap_e waittill("movedone");
 			wait 1;
 			trap_a moveZ (290,0.5);
-			trap_a waittill("movedone"); 
+			trap_a waittill("movedone");
 			trap_b moveZ (290,0.5);
-			trap_b waittill("movedone"); 
+			trap_b waittill("movedone");
 			trap_c moveZ (290,0.5);
-			trap_c waittill("movedone"); 
+			trap_c waittill("movedone");
 			trap_d moveZ (290,0.5);
-			trap_d waittill("movedone"); 
+			trap_d waittill("movedone");
 			trap_e moveZ (290,0.5);
 			trap_e waittill("movedone");
 			wait 1;
 		}
 	}
-	
+
 	trap7()
 	{
 		level endon("traps_disabled");
 		trig = getEnt("trap7_trig","targetname");
-		
+
 		trap_l1 = getEnt("trap7_l1","targetname");
 		trap_l2 = getEnt("trap7_l2","targetname");
 		trap_r1 = getEnt("trap7_r1","targetname");
 		trap_r2 = getEnt("trap7_r2","targetname");
 		trap_m = getEnt("trap7_m","targetname");
-		
+
 		trig waittill ("trigger");
 		trig delete();
-		
+
 		thread trap7_left(trap_l1);
 		thread trap7_left(trap_l2);
 		thread trap7_middle(trap_m);
 		thread trap7_right(trap_r1);
 		thread trap7_right(trap_r2);
 	}
-		
+
 	trap7_left(trap)
 	{
 		while( 1 )
@@ -1141,7 +1143,7 @@ main()
 			wait 2;
 		}
 	}
-	
+
 	trap7_middle(trap)
 	{
 		trap rotateYaw(90,2);
@@ -1152,10 +1154,10 @@ main()
 			trap waittill("rotatedone");
 			trap rotateYaw(-180,3);
 			trap waittill("rotatedone");
-			
+
 		}
 	}
-	
+
 	trap7_right(trap)
 	{
 		while(1)
@@ -1164,28 +1166,28 @@ main()
 			wait 2;
 		}
 	}
-	
+
 	trap8()
 	{
 		level endon("traps_disabled");
 		trig = getEnt("trap8_trig","targetname");
-		
+
 		trap_a = getEnt("trap8_a","targetname");
 		trap_b = getEnt("trap8_b","targetname");
 		trap_c = getEnt("trap8_c","targetname");
 		trap_d = getEnt("trap8_d","targetname");
 		trap_e = getEnt("trap8_e","targetname");
-		
+
 		trig waittill ("trigger");
 		trig delete();
-		
+
 		thread trap8_f(trap_a);
 		thread trap8_l(trap_b);
 		thread trap8_f(trap_c);
 		thread trap8_l(trap_d);
 		thread trap8_f(trap_e);
 	}
-	
+
 	trap8_l(trap)
 	{
 		while(1)
@@ -1196,7 +1198,7 @@ main()
 			trap waittill ("rotatedone");
 		}
 	}
-	
+
 	trap8_f(trap)
 	{
 		while(1)
@@ -1207,13 +1209,13 @@ main()
 			trap waittill ("rotatedone");
 		}
 	}
-	
+
 	trap9()
 	{
 		level endon("traps_disabled");
 		trig = getEnt("trap9_trig","targetname");
-		
-		trap_01 = getEnt("trap9_01","targetname"); 
+
+		trap_01 = getEnt("trap9_01","targetname");
 		trap_02 = getEnt("trap9_02","targetname");
 		trap_03 = getEnt("trap9_03","targetname");
 		trap_04 = getEnt("trap9_04","targetname");
@@ -1225,17 +1227,17 @@ main()
 		trap_10 = getEnt("trap9_10","targetname");
 		trap_11 = getEnt("trap9_11","targetname");
 		trap_12 = getEnt("trap9_12","targetname");
-			
+
 		trig waittill ("trigger");
 		trig delete();
-		
+
 		thread trap9_lift_a(trap_01);
 		thread trap9_lift_a(trap_03);
 		thread trap9_lift_a(trap_05);
 		thread trap9_lift_a(trap_07);
 		thread trap9_lift_a(trap_09);
 		thread trap9_lift_a(trap_11);
-		
+
 		thread trap9_lift_b(trap_02);
 		thread trap9_lift_b(trap_04);
 		thread trap9_lift_b(trap_06);
@@ -1249,27 +1251,27 @@ main()
 		trap moveZ(50,1);
 		trap waittill ("movedone");
 		while(1)
-		{				
+		{
 			trap moveZ(-100,2);
 			trap waittill ("movedone");
 			trap moveZ(100,2);
 			trap waittill ("movedone");
 		}
 	}
-	
+
 	trap9_lift_b(trap)
 	{
 		trap moveZ(-50,1);
 		trap waittill ("movedone");
 		while(1)
-		{				
+		{
 			trap moveZ(100,2);
 			trap waittill ("movedone");
 			trap moveZ(-100,2);
 			trap waittill ("movedone");
 		}
 	}
-	
+
 	trap10()
 	{
 		level endon("traps_disabled");
@@ -1279,7 +1281,7 @@ main()
 		thread trap10_left();
 		thread trap10_right();
 	}
-	
+
 	trap10_left()
 	{
 		trap = getEnt("trap10_l","targetname");
@@ -1292,8 +1294,8 @@ main()
 			trap waittill("movedone");
 		}
 	}
-	
-	trap10_right()	
+
+	trap10_right()
 	{
 		trap = getEnt("trap10_r","targetname");
 		while(1)
@@ -1313,13 +1315,15 @@ main()
 		trap_a = getEnt("trap11_a","targetname");
 		trap_b = getEnt("trap11_b","targetname");
 		trap_m = getEnt("trap11_m","targetname");
-		
+
 		trap_aside = getEnt("trap11_aside","targetname");
 		trap_bside = getEnt("trap11_bside","targetname");
 		trap_mside = getEnt("trap11_mside","targetname");
-		
+
+		if (!isDefined(trig))
+			return;
 		trig waittill("trigger");
-		
+
 		h = RandomIntRange(1,11);
 		if( h < 6 )
 		{
@@ -1338,7 +1342,7 @@ main()
 			trap_m delete();
 		}
 	}
-	
+
 	secret_lift_a()
 	{
 		lift = getEnt("secret_lift","targetname");
@@ -1352,7 +1356,7 @@ main()
 			wait 1;
 		}
 	}
-	
+
 	secret_lift_b()
 	{
 		lift = getEnt("secret_lift2","targetname");
@@ -1366,41 +1370,41 @@ main()
 			wait 1;
 		}
 	}
-	
+
 	secret_fail()
 	{
 		secret_fail_trig = getEnt("secret_fail","targetname");
 		fail_to = getEnt(secret_fail_trig.target,"targetname");
 		while(1)
-		{		
+		{
 			secret_fail_trig waittill ("trigger",noob);
 			noob setorigin(fail_to.origin);
 			noob setPlayerAngles(fail_to.angles);
 		}
 	}
-	
+
 	secret_music()
 	{
 		music_selecter = getEnt ("music_trig","targetname");
-	
+
 		music_pointer = 0;
 		music_player = 0;
-		
+
 		if ( music_player == 0 )
 		{
 			music_player = 1;
 			music_selecter waittill ("trigger",player);
 			music_selecter SetHintString("Select Button: ^1Granade^7, ^1Shoot^7 -> Press ^1Knife");
 			player.point = 1;
-		
+
 			if ( music_pointer == 0 && player.point == 1)
 			{
 				music_pointer = 1;
 				music = strTok("none;Music0;Music1;Music2",";");
 				musicname = strTok("none;any01;any02;any03",";");
-				
+
 				m = 1;
-				
+
 				while ( 1 )
 				{
 					if ( player.point == 1 && player AttackButtonPressed() && player istouching( music_selecter ) )
@@ -1431,7 +1435,7 @@ main()
 			}
 		}
 	}
-	
+
 	secret_weapon()
 	{
 		weap = getEnt("random_weapon","targetname");
@@ -1469,7 +1473,7 @@ main()
 			player switchtoweapon(weapon_secret);
 		}
 	}
-	
+
 	bad_luck()
 	{
 		self iPrintLnBold("^1You got BAD luck!!!");
@@ -1478,37 +1482,37 @@ main()
 		wait 10;
 		self suicide();
 	}
-	
+
 	secret()
-	{	
+	{
 		st_one = getEnt("first_step","targetname");
 		st_two = getEnt("second_step","targetname");
 		st_thr = getEnt("third_step","targetname");
 		st_fou = getEnt("fourth_step","targetname");
 		st_fif = getEnt("fifth_step","targetname");
 		st_six = getEnt("sixth_step","targetname");
-		
+
 		st_one waittill("trigger",who);
 		who iPrintLnBold("^4You found the first secret spot!");
-		
+
 		st_two waittill("trigger",who);
 		who iPrintLnBold("^4You found the next secret spot!");
-		
+
 		st_thr waittill("trigger",who);
 		who iPrintLnBold("^4You found the next secret spot!");
-		
+
 		st_fou waittill("trigger",who);
 		who iPrintLnBold("^4You found the next secret spot!");
-		
+
 		st_fif waittill("trigger",who);
 		who iPrintLnBold("^4You found the next secret spot!");
-		
+
 		st_six waittill("trigger",who);
 		who iPrintLnBold("^4You found the next secret spot!");
-		
+
 		secret_open = getEnt("enter","targetname");
 		where_tele = getEnt(secret_open.target,"targetname");
-		
+
 		while(1)
 		{
 			secret_open waittill ("trigger",who);
@@ -1522,7 +1526,7 @@ main()
 			wait .1;
 		}
 	}
-	
+
 	secret_end()
 	{
 		secret_tele_out = getEnt("tele_out","targetname");
@@ -1534,14 +1538,14 @@ main()
 			player setPlayerAngles(go.angles);
 		}
 	}
-	
+
 	end_trig()
 	{
 		trig = getEnt ("endmap_trig","targetname");
 		while(1)
 		{
 			trig waittill("trigger",player);
-			if( !player.end == 1) 
+			if( !player.end == 1)
 			{
 				player.end = 1;
 				iPrintLn(player.name + " ^4reached the final door! ^3Congrat!");

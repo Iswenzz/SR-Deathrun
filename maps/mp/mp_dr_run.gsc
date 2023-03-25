@@ -1,6 +1,6 @@
  main()
 {
-	
+
 maps\mp\_load::main();
 
 
@@ -36,7 +36,7 @@ maps\mp\_load::main();
 	thread teleport5();
 	thread water();
 
-	
+
 }
 
 
@@ -49,8 +49,14 @@ jumper()
 	air3 = getent ("air3","targetname");
 	air4 = getent ("air4","targetname");
 
+	if (!isDefined(glow))
+		return;
+
 	level._effect[ "beacon_glow" ] = loadfx( "misc/ui_pickup_available" );
 	maps\mp\_fx::loopfx("beacon_glow", (glow.origin), 3, (glow.origin) + (0, 0, 90));
+
+	if (!isDefined(jumpx))
+		return;
 
 	time = 1;
 	for(;;)
@@ -82,9 +88,11 @@ rotate1()
 {
    trig = getEnt ("rotatetrig" , "targetname");
    brush = getEnt ("rotate" ,"targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-  
+   if (!isDefined(trig))
+		return;
+   trig waittill ("trigger",player);
+   trig delete ();
+
    for( i = 0; i < 90; i++ )
 	{
 		brush rotatePitch( 360, 12 );
@@ -97,6 +105,8 @@ dest1()
 {
 	trig = getEnt( "dest1trig", "targetname" );
 	brush = getEnt( "dest1", "targetname" );
+	if (!isDefined(trig))
+		return;
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -110,7 +120,8 @@ dest2()
 {
 	trig = getEnt( "dest2trig", "targetname" );
 	brush = getEnt( "dest2", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	brush moveZ(-200, 20 );
@@ -123,7 +134,8 @@ dest3()
 {
 	trig = getEnt( "dest3trig", "targetname" );
 	brush = getEnt( "dest3", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	brush moveZ(-200, 8 );
@@ -136,7 +148,8 @@ pad1()
 {
 	trig = getEnt( "pad1trig", "targetname" );
 	brush = getEnt( "pad1", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	wait 1;
@@ -149,7 +162,8 @@ pad2()
 {
 	trig = getEnt( "pad2trig", "targetname" );
 	brush = getEnt( "pad2", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	wait 1;
@@ -162,7 +176,8 @@ pad3()
 {
 	trig = getEnt( "pad3trig", "targetname" );
 	brush = getEnt( "pad3", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	wait 1;
@@ -175,7 +190,8 @@ pad4()
 {
 	trig = getEnt( "pad4trig", "targetname" );
 	brush = getEnt( "pad4", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	wait 1;
@@ -189,7 +205,8 @@ pad5()
 {
 	trig = getEnt( "pad5trig", "targetname" );
 	brush = getEnt( "pad5", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	wait 1;
@@ -202,7 +219,8 @@ pad6()
 {
 	trig = getEnt( "pad6trig", "targetname" );
 	brush = getEnt( "pad6", "targetname" );
-
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig delete();
 	wait 0.1;
@@ -220,7 +238,7 @@ teleport()
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter()
 {
 for(;;)
@@ -232,7 +250,7 @@ for(;;)
 		player setplayerangles( entTarget.angles );
 		wait 0.3;
     }
-	
+
 }
 
 
@@ -243,7 +261,7 @@ teleport1()
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter1()
 {
 for(;;)
@@ -255,7 +273,7 @@ for(;;)
 		player setplayerangles( entTarget.angles );
 		wait 0.3;
     }
-	
+
 }
 
 
@@ -266,7 +284,7 @@ teleport2()
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter2()
 {
 for(;;)
@@ -278,7 +296,7 @@ for(;;)
 		player setplayerangles( entTarget.angles );
 		wait 0.3;
     }
-	
+
 }
 
 
@@ -289,7 +307,7 @@ teleport3()
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter3()
 {
 for(;;)
@@ -301,7 +319,7 @@ for(;;)
 		player setplayerangles( entTarget.angles );
 		wait 0.3;
     }
-	
+
 }
 
 
@@ -312,7 +330,7 @@ teleport4()
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter4()
 {
 for(;;)
@@ -324,7 +342,7 @@ for(;;)
 		player setplayerangles( entTarget.angles );
 		wait 0.3;
     }
-	
+
 }
 
 
@@ -335,7 +353,7 @@ teleport5()
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter5()
 {
 for(;;)
@@ -348,7 +366,7 @@ for(;;)
 		wait 0.1;
 		player iprintlnbold ("^1Fast!!!Kill him!");
     }
-	
+
 }
 
 
@@ -359,7 +377,8 @@ water()
 	hurt = getEnt( "watertrig", "targetname" );
 	brush1 = getEnt( "water", "targetname" );
 	brush2 = getEnt( "water1", "targetname" );
-						
+if (!isDefined(trig))
+		return;
 	trig waittill( "trigger", who );
 	trig waittill( "trigger", player );
 	trig delete();
