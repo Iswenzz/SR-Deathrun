@@ -110,6 +110,9 @@ life()
 
 drawLifes()
 {
+	if (self isDemo())
+		return;
+
 	for (i = 0; i < self.pers["lifes"]; i++)
 		self thread addLife();
 }

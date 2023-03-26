@@ -99,6 +99,12 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
 		sMeansOfDeath = "MOD_HEAD_SHOT";
 
+	if (self isDemo())
+	{
+		self thread eventSpectateDeath();
+		return;
+	}
+
 	self cleanUp();
 	self thread ragdoll(sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath, deathAnimDuration);
 
@@ -154,6 +160,7 @@ playerSpawn()
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
 	self sr\api\_player::antiLag(false);
+	self sr\api\_player::antiElevator(false);
 
 	self.pers["weapon"] = self getCustomizeWeapon()["item"];
 	self.pers["knife"] = self getCustomizeKnife()["item"];

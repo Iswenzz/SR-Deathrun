@@ -22,7 +22,7 @@ menu_Open(arg)
 	if (!isDefined(self.leaderboard_way))
 		self.leaderboard_way = self.sr_way;
 	if (!isDefined(self.leaderboard_mode))
-		self.leaderboard_mode = self.sr_mode;
+		self.leaderboard_mode = "210";
 
 	self display();
 }

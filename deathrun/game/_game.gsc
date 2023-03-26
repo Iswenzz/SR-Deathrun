@@ -66,7 +66,7 @@ watchGame()
 			player = players[i];
 			level.totalPlayers++;
 
-			if (player isPlaying())
+			if (player isPlaying() && !player isDead())
 			{
 				level.totalPlayingPlayers++;
 				if (player isAllies())

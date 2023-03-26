@@ -8,12 +8,12 @@ maps\mp\_load::main();
 VisionSetNaked( "mp_dr_jungletemple");
 
 ////game////
-game["allies"] = "sas"; 
-game["axis"] = "spetnaz"; 
+game["allies"] = "sas";
+game["axis"] = "spetnaz";
 game["attackers"] = "axis";
 game["defenders"] = "allies";
-game["allies_soldiertype"] = "desert"; 
-game["axis_soldiertype"] = "desert"; 
+game["allies_soldiertype"] = "desert";
+game["axis_soldiertype"] = "desert";
 
 ////SetDvar////
 setdvar( "r_specularcolorscale", "1" );
@@ -35,7 +35,7 @@ level._fx["Light"]["Env"] = loadfx ("speedex_spotlight");
 level._fx["Light2"]["Env"] = loadfx ("speedex_spot_party");
 level._fx["Light3"]["Env"] = loadfx ("speedex_spot_party2");
 level._fx["Light4"]["Env"] = loadfx ("speedex_endfx");
-level._fx["Water"]["Splash"] = loadfx ("explosions/grenadeExp_water"); 
+level._fx["Water"]["Splash"] = loadfx ("explosions/grenadeExp_water");
 level.fx_airstrike_afterburner = loadfx ("fire/jet_afterburner");
 level.fx_airstrike_contrail = loadfx ("smoke/jet_contrail");
 level.airstrikefx = loadfx ("explosions/clusterbomb");
@@ -90,7 +90,7 @@ thread shotroom();
 addTriggerToList( "trap1_trigger" );
 addTriggerToList( "trap2_trigger" );
 addTriggerToList( "trap3_trigger" );
-addTriggerToList( "trap4_trigger" ); 
+addTriggerToList( "trap4_trigger" );
 addTriggerToList( "trap5_trigger" );
 addTriggerToList( "trap6_trigger" );
 addTriggerToList( "trap8_trigger" );
@@ -111,11 +111,11 @@ water_bounce()
 	waterbounce = getent("water_bounce", "targetname");
 
 	while(1)
-	{	
+	{
     	waterbounce waittill ("trigger",user);
 		if (user istouching(waterbounce))
-		{ 
-			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,0,1)) ), 1000 );		
+		{
+			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,0,1)) ), 1000 );
 		}
 	}
 }
@@ -155,7 +155,7 @@ secret_access()
 
 	while(true)
 	{
-		trig_heen waittill ("trigger", who);	
+		trig_heen waittill ("trigger", who);
 		who SetPlayerAngles( orig_heen.angles );
 		who setOrigin( orig_heen.origin ); //teleports the jumper
 		wait 1;
@@ -169,7 +169,7 @@ secret_finish()
 
 	while(true)
 	{
-		trig_terug waittill ("trigger", who);	
+		trig_terug waittill ("trigger", who);
 		who SetPlayerAngles( orig_terug.angles );
 		who setOrigin( orig_terug.origin ); //teleports the jumper
 		wait 1;
@@ -193,7 +193,7 @@ rpg()
 
 music()
 {
-	
+
 	switch(randomint(4))
 	{
 		case 0:
@@ -219,7 +219,7 @@ music()
 	}
 
 	level waittill("round_ended");
-	AmbientStop();
+	// AmbientStop();
 }
 
 water_splash()
@@ -228,7 +228,7 @@ water_splash()
 
 	while(true)
 	{
-		trig3 waittill ("trigger", who);	
+		trig3 waittill ("trigger", who);
 		who PlaySound ("splash");
 		PlayFX( level._fx["Water"]["Splash"], who.origin );
 		wait 1;
@@ -241,7 +241,7 @@ bounce_slpash()
 
 	while(true)
 	{
-		trig4 waittill ("trigger", who);	
+		trig4 waittill ("trigger", who);
 		who PlaySound ("splash");
 		PlayFX( level._fx["Water"]["Splash"], who.origin );
 		wait 1;
@@ -262,11 +262,11 @@ partymode()
 		//ambientPlay("party");
 		while(1)
 		{
-		SetExpFog(1000, 2000, 1, 0, 0, 0);  
-        wait 0.5;  
-        SetExpFog(1000, 2000, 0, 1, 0, 0);  
-        wait 0.5;  
-        SetExpFog(1000, 2000, 0, 0, 1, 0);   
+		SetExpFog(1000, 2000, 1, 0, 0, 0);
+        wait 0.5;
+        SetExpFog(1000, 2000, 0, 1, 0, 0);
+        wait 0.5;
+        SetExpFog(1000, 2000, 0, 0, 1, 0);
         wait 0.5;
         SetExpFog(1000, 2000, 1, 1, 0, 0);
         wait 0.5;
@@ -368,36 +368,36 @@ boatb()
 
 spotlight_efxs()
 {
-	spot1 = getent("spot1","targetname"); 
-	spot2 = getent("spot2","targetname"); 
-	spot3 = getent("spot3","targetname"); 
-	spot4 = getent("spot4","targetname"); 
-	spot5 = getent("spot5","targetname"); 
-	spot6 = getent("spot6","targetname"); 
-	spot7 = getent("spot7","targetname"); 
-	spot10 = getent("spot10","targetname"); 
-	spot11 = getent("spot11","targetname"); 
-	spot12 = getent("spot12","targetname"); 
-	spot13 = getent("spot13","targetname"); 
-	spot14 = getent("spot14","targetname"); 
-	spot15 = getent("spot15","targetname"); 
-	spot16 = getent("spot16","targetname"); 
-	spot17 = getent("spot17","targetname"); 
-	spot18 = getent("spot18","targetname"); 
-	spot19 = getent("spot19","targetname"); 
-	spot20 = getent("spot20","targetname"); 
-	spot21 = getent("spot21","targetname"); 
-	spot22 = getent("spot22","targetname"); 
-	spot23 = getent("spot23","targetname"); 
-	spot24 = getent("spot24","targetname"); 
-	spot26 = getent("spot26","targetname"); 
-	spot27 = getent("spot27","targetname"); 
-	spot28 = getent("spot28","targetname"); 
-	spot29 = getent("spot29","targetname"); 
-	spot30 = getent("spot30","targetname"); 
-	spot31 = getent("spot31","targetname"); 
-	spot32 = getent("spot32","targetname"); 
-	spot33 = getent("spot33","targetname"); 
+	spot1 = getent("spot1","targetname");
+	spot2 = getent("spot2","targetname");
+	spot3 = getent("spot3","targetname");
+	spot4 = getent("spot4","targetname");
+	spot5 = getent("spot5","targetname");
+	spot6 = getent("spot6","targetname");
+	spot7 = getent("spot7","targetname");
+	spot10 = getent("spot10","targetname");
+	spot11 = getent("spot11","targetname");
+	spot12 = getent("spot12","targetname");
+	spot13 = getent("spot13","targetname");
+	spot14 = getent("spot14","targetname");
+	spot15 = getent("spot15","targetname");
+	spot16 = getent("spot16","targetname");
+	spot17 = getent("spot17","targetname");
+	spot18 = getent("spot18","targetname");
+	spot19 = getent("spot19","targetname");
+	spot20 = getent("spot20","targetname");
+	spot21 = getent("spot21","targetname");
+	spot22 = getent("spot22","targetname");
+	spot23 = getent("spot23","targetname");
+	spot24 = getent("spot24","targetname");
+	spot26 = getent("spot26","targetname");
+	spot27 = getent("spot27","targetname");
+	spot28 = getent("spot28","targetname");
+	spot29 = getent("spot29","targetname");
+	spot30 = getent("spot30","targetname");
+	spot31 = getent("spot31","targetname");
+	spot32 = getent("spot32","targetname");
+	spot33 = getent("spot33","targetname");
 
 	wait 3;
 
@@ -469,8 +469,8 @@ trap1()
 }
 
 move_fxtest()
-{	
-	
+{
+
 
 	level.fx_ent = spawn( "script_model", level.fx_mover.origin );
 	level.fx_ent setModel( "tag_origin" );
@@ -480,7 +480,7 @@ move_fxtest()
 	level.fx_entb linkto( level.fx_moverb);
 
 	level.fx_moverb rotateYaw(180,0.1);
-	
+
 	wait 0.5;
 
 	level.fx_mover thread move_test();
@@ -488,7 +488,7 @@ move_fxtest()
 
 	playfxontag (level._fx["Fire"]["Trap1"], level.fx_ent, "tag_origin");
 	playfxontag (level._fx["Fire"]["Trap1"], level.fx_entb, "tag_origin");
-	wait 4;	
+	wait 4;
 }
 
 move_test()
@@ -497,12 +497,12 @@ move_test()
 	{
 	self rotateYaw(360,1.8);
 	wait 1.8;
-	}	
+	}
 }
 
 move_fxtest2()
-{	
-	
+{
+
 
 	level.fx_ent2 = spawn( "script_model", level.fx_mover2.origin );
 	level.fx_ent2 setModel( "tag_origin" );
@@ -512,7 +512,7 @@ move_fxtest2()
 	level.fx_ent2b linkto( level.fx_mover2b);
 
 	level.fx_mover2b rotateYaw(180,0.1);
-	
+
 	wait 0.5;
 
 	level.fx_mover2 thread move_test2();
@@ -521,7 +521,7 @@ move_fxtest2()
 	playfxontag (level._fx["Fire"]["Trap1"], level.fx_ent2, "tag_origin");
 	playfxontag (level._fx["Fire"]["Trap1"], level.fx_ent2b, "tag_origin");
 	wait 4;
-	
+
 }
 
 move_test2()
@@ -536,11 +536,11 @@ move_test2()
 trap2()
 {
 	trap2_trigger = getent("trap2_trigger","targetname"); //acti trigger
-	log1 = getent("log1","targetname"); 
-	log2 = getent("log2","targetname"); 
-	log3 = getent("log3","targetname"); 
-	log4 = getent("log4","targetname"); 
-	orig1 = getent("orig1","targetname"); 
+	log1 = getent("log1","targetname");
+	log2 = getent("log2","targetname");
+	log3 = getent("log3","targetname");
+	log4 = getent("log4","targetname");
+	orig1 = getent("orig1","targetname");
 	orig2 = getent("orig2","targetname");
 	orig3 = getent("orig3","targetname");
 	orig4 = getent("orig4","targetname");
@@ -606,11 +606,11 @@ Water_gush_efx()
 
 water_hud()
 {
-	trig4 = getent("watervision", "targetname"); 
-	
+	trig4 = getent("watervision", "targetname");
+
 	while(1)
 	{
-	trig4 waittill ("trigger", who);	
+	trig4 waittill ("trigger", who);
 	who shellshock( "jeepride_ridedeath", 3 );
 	hud_Screen = NewClientHudElem(who);
     hud_Screen.horzalign = "fullscreen";
@@ -621,20 +621,20 @@ water_hud()
 	who allowJump(false);
     who waittill("death");
     if(IsDefined(hud_Screen)) hud_Screen Destroy();
-    
+
 	}
 }
 //Adds a blue overlay and blurred vision when the trigger is touched!
 
 platforms()
 {
-	trap1_1 = getent("trap1_1","targetname"); 
-	trap1_2 = getent("trap1_2","targetname"); 
-	trap1_3 = getent("trap1_3","targetname"); 
+	trap1_1 = getent("trap1_1","targetname");
+	trap1_2 = getent("trap1_2","targetname");
+	trap1_3 = getent("trap1_3","targetname");
 	trap1_4 = getent("trap1_4","targetname");
-	trap1_5 = getent("trap1_5","targetname"); 
-	trap1_6 = getent("trap1_6","targetname");  
-	trap1_1_t1 = getent("trap1_1_t1","targetname"); 
+	trap1_5 = getent("trap1_5","targetname");
+	trap1_6 = getent("trap1_6","targetname");
+	trap1_1_t1 = getent("trap1_1_t1","targetname");
 	trap1_1_t2 = getent("trap1_1_t2","targetname");
 	trap1_2_t1 = getent("trap1_2_t1","targetname");
 	trap1_2_t2 = getent("trap1_2_t2","targetname");
@@ -647,7 +647,7 @@ platforms()
 	trap1_6_t1 = getent("trap1_6_t1","targetname");
 	trap1_6_t2 = getent("trap1_6_t2","targetname");
 
-	
+
 	trap1_1 moveTo(trap1_1_t1.origin, 2, 0 , 0.5);
 	trap1_2 moveTo(trap1_2_t1.origin, 2, 0 , 0.5);
 	//trap1_3 moveTo(trap1_3_t1.origin, 2, 0 , 0.5);
@@ -678,9 +678,9 @@ platforms()
 trap3()
 {
 	trap3_trigger = getent("trap3_trigger","targetname"); //acti trigger
-	level.trap31_hurt = getent("trap31_hurt","targetname"); 
-	level.trap32_hurt = getent("trap32_hurt","targetname"); 
-	level.trap33_hurt = getent("trap33_hurt","targetname"); 
+	level.trap31_hurt = getent("trap31_hurt","targetname");
+	level.trap32_hurt = getent("trap32_hurt","targetname");
+	level.trap33_hurt = getent("trap33_hurt","targetname");
 
 	level.trap31_hurt thread maps\mp\_utility::triggerOff();
 	level.trap32_hurt thread maps\mp\_utility::triggerOff();
@@ -698,9 +698,9 @@ trap3()
 
 trap3_1()
 {
-	trap31a = getent("trap3_1a","targetname"); 
-	trap31b = getent("trap3_1b","targetname"); 
-	trap31 = getent("trap3_1","targetname"); 
+	trap31a = getent("trap3_1a","targetname");
+	trap31b = getent("trap3_1b","targetname");
+	trap31 = getent("trap3_1","targetname");
 
 
 	level.fx_ent3 = spawn( "script_model", trap31.origin );
@@ -726,9 +726,9 @@ trap3_1()
 
 trap3_2()
 {
-	trap32a = getent("trap3_2a","targetname"); 
-	trap32b = getent("trap3_2b","targetname"); 
-	trap32 = getent("trap3_2","targetname"); 
+	trap32a = getent("trap3_2a","targetname");
+	trap32b = getent("trap3_2b","targetname");
+	trap32 = getent("trap3_2","targetname");
 
 	level.fx_ent4 = spawn( "script_model", trap32.origin );
 	level.fx_ent4.angles = (270,89.3558,90.6442);
@@ -738,7 +738,7 @@ trap3_2()
 
 	level.trap32_hurt enableLinkTo();
 	level.trap32_hurt linkTo(trap32);
-	
+
 	wait 0.5;
 
 	playfxontag (level._fx["Light2"]["Env"], level.fx_ent4, "tag_origin");
@@ -755,9 +755,9 @@ trap3_2()
 
 trap3_3()
 {
-	trap33a = getent("trap3_3a","targetname"); 
-	trap33b = getent("trap3_3b","targetname"); 
-	trap33 = getent("trap3_3","targetname"); 
+	trap33a = getent("trap3_3a","targetname");
+	trap33b = getent("trap3_3b","targetname");
+	trap33 = getent("trap3_3","targetname");
 
 	level.fx_ent5 = spawn( "script_model", trap33.origin );
 	level.fx_ent5.angles = (270,89.3558,90.6442);
@@ -767,7 +767,7 @@ trap3_3()
 
 	level.trap33_hurt enableLinkTo();
 	level.trap33_hurt linkTo(trap33);
-	
+
 	wait 0.5;
 
 	playfxontag (level._fx["Light2"]["Env"], level.fx_ent5, "tag_origin");
@@ -785,8 +785,8 @@ trap3_3()
 trap4()
 {
 	trap4_trigger = getent("trap4_trigger","targetname"); //acti trigger
-	level.trap4 = getent("trap4","targetname"); 
-	level.trap41_hurt = getent("trap41_hurt","targetname"); 
+	level.trap4 = getent("trap4","targetname");
+	level.trap41_hurt = getent("trap41_hurt","targetname");
 
 	level.trap41_hurt thread maps\mp\_utility::triggerOff();
 
@@ -818,7 +818,7 @@ trap4_1()
 	level.fx_ent5.angles = (0,270,0);
 	level.fx_ent5 setModel( "tag_origin" );
 	level.fx_ent5 linkto( level.trap4);
-	
+
 	wait 0.5;
 
 	playfxontag (level._fx["Water"]["Water_Pour"], level.fx_ent5, "tag_origin");
@@ -831,7 +831,7 @@ trap4_2()
 	level.fx_ent6.angles = (0,270,0);
 	level.fx_ent6 setModel( "tag_origin" );
 	level.fx_ent6 linkto( level.trap4);
-	
+
 	wait 0.5;
 
 	playfxontag (level._fx["Water"]["Water_Pour"], level.fx_ent6, "tag_origin");
@@ -841,11 +841,11 @@ trap4_2()
 bounce()
 {
 	while(1)
-	{	
+	{
     	level.trap41_hurt waittill ("trigger",user);
 		if (user istouching(level.trap41_hurt))
-		{ 
-			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,1,0)) ), 1000 );		
+		{
+			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,1,0)) ), 1000 );
 		}
 	}
 }
@@ -863,7 +863,7 @@ trap5()
 	trap5_trigger delete();
 
 	trap5_lava thread maps\mp\_utility::triggerOn();
-	FX = spawnFX( level._fx["Lava"]["Pour"], trap5_fx.origin);    
+	FX = spawnFX( level._fx["Lava"]["Pour"], trap5_fx.origin);
 	TriggerFx( FX );
 	wait 7;
 	FX delete();
@@ -874,21 +874,21 @@ trap5()
 trap6()
 {
 	trap6_trigger = getent("trap6_trigger","targetname"); //acti trigger
-	log16 = getent("trap6_log1","targetname"); 
-	log26 = getent("trap6_log2","targetname"); 
-	log36 = getent("trap6_log3","targetname"); 
-	log46 = getent("trap6_log4","targetname"); 
-	orig61 = getent("trap6_orig1","targetname"); 
+	log16 = getent("trap6_log1","targetname");
+	log26 = getent("trap6_log2","targetname");
+	log36 = getent("trap6_log3","targetname");
+	log46 = getent("trap6_log4","targetname");
+	orig61 = getent("trap6_orig1","targetname");
 	orig62 = getent("trap6_orig2","targetname");
 	orig63 = getent("trap6_orig3","targetname");
 	orig64 = getent("trap6_orig4","targetname");
-	orig612 = getent("trap6_orig12","targetname"); 
+	orig612 = getent("trap6_orig12","targetname");
 	orig622 = getent("trap6_orig22","targetname");
 	orig632 = getent("trap6_orig32","targetname");
 	orig642 = getent("trap6_orig42","targetname");
 	trap6_static_logs = getent("trap6_static_logs","targetname");
-	trap6_wall = getent("trap6_wall","targetname"); 
-	trap6_wall2 = getent("trap6_wall1","targetname"); 
+	trap6_wall = getent("trap6_wall","targetname");
+	trap6_wall2 = getent("trap6_wall1","targetname");
 
 	log16 moveTo(orig61.origin, 2, 0 , 0.5);
 	log26 moveTo(orig62.origin, 2, 0 , 0.5);
@@ -950,10 +950,10 @@ trap6()
 
 trap7()
 {
-	trap7_trigger = getent("trap8_trigger","targetname"); 
-	level.trap7_bounce = getent("trap7_trigger","targetname"); 
-	orig71 = getent("trap7_streamfx","targetname"); 
-	orig72 = getent("trap7_streamfx2","targetname"); 
+	trap7_trigger = getent("trap8_trigger","targetname");
+	level.trap7_bounce = getent("trap7_trigger","targetname");
+	orig71 = getent("trap7_streamfx","targetname");
+	orig72 = getent("trap7_streamfx2","targetname");
 	level.fx_ent71 = spawn( "script_model", orig71.origin );
 	level.fx_ent71 setModel( "tag_origin" );
 	level.fx_ent71.angles = orig71.angles;
@@ -966,7 +966,7 @@ trap7()
 	// Wachten tot op de knop wordt gedrukt
 	trap7_trigger waittill("trigger");
 	trap7_trigger delete();
-	
+
 	level.trap7_bounce thread maps\mp\_utility::triggerOn();
 	thread bounce2();
 
@@ -974,7 +974,7 @@ trap7()
 	playfxontag (level._fx["Water"]["Trap7a"], level.fx_ent72, "tag_origin");
 	wait 2.5;
 	playfxontag (level._fx["Water"]["Trap7b"], level.fx_ent71, "tag_origin");
-	wait 16.5;	
+	wait 16.5;
 	level.trap7_bounce thread maps\mp\_utility::triggerOff();
 	level.fx_ent71 delete();
 	level.fx_ent72 delete();
@@ -984,11 +984,11 @@ trap7()
 bounce2()
 {
 	while(1)
-	{	
+	{
     	level.trap7_bounce  waittill ("trigger",user);
 		if (user istouching(level.trap7_bounce))
-		{ 
-			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,-1,0)) ), 1000 );		
+		{
+			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,-1,0)) ), 1000 );
 		}
 		wait 0.05;
 	}
@@ -997,9 +997,9 @@ bounce2()
 trap8()
 {
 	trap8_trigger = getent("trap9_trigger","targetname"); //acti trigger
-	level.trap81_hurt = getent("trap81_hurt","targetname"); 
-	level.trap82_hurt = getent("trap82_hurt","targetname"); 
-	level.trap83_hurt = getent("trap83_hurt","targetname"); 
+	level.trap81_hurt = getent("trap81_hurt","targetname");
+	level.trap82_hurt = getent("trap82_hurt","targetname");
+	level.trap83_hurt = getent("trap83_hurt","targetname");
 
 	level.trap81_hurt thread maps\mp\_utility::triggerOff();
 	level.trap82_hurt thread maps\mp\_utility::triggerOff();
@@ -1017,9 +1017,9 @@ trap8()
 
 trap8_1()
 {
-	trap81a = getent("trap8_1a","targetname"); 
-	trap81b = getent("trap8_1b","targetname"); 
-	trap81 = getent("trap8_1","targetname"); 
+	trap81a = getent("trap8_1a","targetname");
+	trap81b = getent("trap8_1b","targetname");
+	trap81 = getent("trap8_1","targetname");
 
 
 	level.fx_ent7 = spawn( "script_model", trap81.origin );
@@ -1045,9 +1045,9 @@ trap8_1()
 
 trap8_2()
 {
-	trap82a = getent("trap8_2a","targetname"); 
-	trap82b = getent("trap8_2b","targetname"); 
-	trap82 = getent("trap8_2","targetname"); 
+	trap82a = getent("trap8_2a","targetname");
+	trap82b = getent("trap8_2b","targetname");
+	trap82 = getent("trap8_2","targetname");
 
 	level.fx_ent8 = spawn( "script_model", trap82.origin );
 	level.fx_ent8.angles = (270,89.3558,90.6442);
@@ -1057,7 +1057,7 @@ trap8_2()
 
 	level.trap82_hurt enableLinkTo();
 	level.trap82_hurt linkTo(trap82);
-	
+
 	wait 0.5;
 
 	playfxontag (level._fx["Light3"]["Env"], level.fx_ent8, "tag_origin");
@@ -1074,9 +1074,9 @@ trap8_2()
 
 trap8_3()
 {
-	trap83a = getent("trap8_3a","targetname"); 
-	trap83b = getent("trap8_3b","targetname"); 
-	trap83 = getent("trap8_3","targetname"); 
+	trap83a = getent("trap8_3a","targetname");
+	trap83b = getent("trap8_3b","targetname");
+	trap83 = getent("trap8_3","targetname");
 
 	level.fx_ent9 = spawn( "script_model", trap83.origin );
 	level.fx_ent9.angles = (270,89.3558,90.6442);
@@ -1086,7 +1086,7 @@ trap8_3()
 
 	level.trap83_hurt enableLinkTo();
 	level.trap83_hurt linkTo(trap83);
-	
+
 	wait 0.5;
 
 	playfxontag (level._fx["Light3"]["Env"], level.fx_ent9, "tag_origin");
@@ -1104,10 +1104,10 @@ trap8_3()
 trap9() //Artillery trap
 {
 	trap9_trigger = getent("trap10_trigger","targetname"); //acti trigger
-	level.plane_start = getent("plane_start","targetname"); 
-	level.plane_end = getent("plane_end","targetname"); 
-	level.strikecoord = getent("strike_coord","targetname"); 
-	level.trap9_kill = getent("trap9_kill","targetname"); 
+	level.plane_start = getent("plane_start","targetname");
+	level.plane_end = getent("plane_end","targetname");
+	level.strikecoord = getent("strike_coord","targetname");
+	level.trap9_kill = getent("trap9_kill","targetname");
 
 	level.trap9_kill thread maps\mp\_utility::triggerOff();
 
@@ -1120,34 +1120,34 @@ trap9() //Artillery trap
 }
 
 callStrike()
-{	
+{
 	// Get starting and ending point for the plane
 	owner = level.activ;
 	direction = level.plane_start.angles;
 	planeBombExplodeDistance = 1500;
 	planeFlyHeight = 850;
 	planeFlySpeed = 7000;
-	
+
 	startpoint = level.plane_start;
 	endPoint = level.plane_end;
-	
+
 	// Make the plane fly by
 	flyTime = ( 34816 / planeFlySpeed );
-	
+
 	level thread doPlaneStrike(startPoint, endPoint, flyTime, direction);
 	wait 1;
 }
 
 doPlaneStrike(startPoint, endPoint, flyTime, direction)
 {
-	owner = getentarray( "player", "classname" )[0]; 
+	owner = getentarray( "player", "classname" )[0];
 
-	
+
 	// Spawn the planes
 	plane = spawnplane(owner, "script_model", startpoint.origin );
 	plane setModel( "vehicle_mig29_desert" );
 	plane.angles = direction;
-	
+
 	playfxontag( level._fx["Fire"]["Trap1"] , plane, "tag_engine_right" );
 	playfxontag( level._fx["Fire"]["Trap1"] , plane, "tag_engine_left" );
 	playfxontag( level.fx_airstrike_contrail, plane, "tag_right_wingtip" );
@@ -1163,7 +1163,7 @@ doPlaneStrike(startPoint, endPoint, flyTime, direction)
 
 	plane thread play_sound_in_space( "veh_mig29_sonic_boom" );
 	thread bomb_effect();
-	
+
 	// Delete the plane after its flyby
 	wait flyTime / 2;
 	plane notify( "delete" );
@@ -1172,12 +1172,12 @@ doPlaneStrike(startPoint, endPoint, flyTime, direction)
 
 bomb_effect()
 {
-	fx1 = getent("trap9_fx1","targetname"); 
-	fx2 = getent("trap9_fx2","targetname");  
-	fx3 = getent("trap9_fx3","targetname"); 
-	fx4 = getent("trap9_fx4","targetname");  
-	fx5 = getent("trap9_fx5","targetname"); 
-	fx6 = getent("trap9_fx6","targetname"); 
+	fx1 = getent("trap9_fx1","targetname");
+	fx2 = getent("trap9_fx2","targetname");
+	fx3 = getent("trap9_fx3","targetname");
+	fx4 = getent("trap9_fx4","targetname");
+	fx5 = getent("trap9_fx5","targetname");
+	fx6 = getent("trap9_fx6","targetname");
 
 	level.trap9_kill thread maps\mp\_utility::triggerOn();
 	thread killplayers();
@@ -1207,16 +1207,16 @@ bomb_effect()
 killplayers()
 {
 	while(1)
-	{	
+	{
     	level.trap9_kill  waittill ("trigger",user);
 		if (user istouching(level.trap9_kill) && isDefined(level.activ))
-			{ 
-				user FinishPlayerDamage( level.activ, level.activ, 1000, 0, "MOD_PROJECTILE_SPLASH", "artillery_mp", self.origin, self.origin, "none", 0 );		
+			{
+				user FinishPlayerDamage( level.activ, level.activ, 1000, 0, "MOD_PROJECTILE_SPLASH", "artillery_mp", self.origin, self.origin, "none", 0 );
 			}
 			wait 0.05;
 		if (user istouching(level.trap9_kill) && !isDefined(level.activ))
 		{
-			user FinishPlayerDamage( self, self, 1000, 0, "MOD_PROJECTILE_SPLASH", "artillery_mp", self.origin, self.origin, "none", 0 );	
+			user FinishPlayerDamage( self, self, 1000, 0, "MOD_PROJECTILE_SPLASH", "artillery_mp", self.origin, self.origin, "none", 0 );
 		}
 	}
 }
@@ -1292,7 +1292,7 @@ targetisinfront(other, target)
 {
 	forwardvec = anglestoforward(flat_angle(other.angles));
 	normalvec = vectorNormalize(flat_origin(target)-other.origin);
-	dot = vectordot(forwardvec,normalvec); 
+	dot = vectordot(forwardvec,normalvec);
 	if(dot > 0)
 		return true;
 	else
@@ -1379,16 +1379,16 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
         level.knife_trigger delete(); //deletes all of the other room triggers so that they cant be entered
         level.weap_trigger delete();
         level.bounce_trigger delete();
-        
+
 	player SetPlayerAngles( jumpk.angles );
 	player setOrigin( jumpk.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "remington700_mp" ); //jumper weapon 
-	player GiveWeapon( "m40a3_mp" ); //jumper weapon 
+	player GiveWeapon( "remington700_mp" ); //jumper weapon
+	player GiveWeapon( "m40a3_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("remington700_mp");
-	player giveMaxAmmo("remington700_mp"); 
-	player giveMaxAmmo("m40a3_mp"); 
+	player giveMaxAmmo("remington700_mp");
+	player giveMaxAmmo("m40a3_mp");
 
 	//player giveMaxAmmo("rpg_mp"); //Not needed in knife :p
 	//player.maxhealth = 1000;
@@ -1407,7 +1407,7 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
 		level.activ giveMaxAmmo("remington700_mp");
 		level.activ giveMaxAmmo("m40a3_mp");
 		//level.activ giveMaxAmmo("rpg_mp");
-		//level.activ.maxhealth = 1000; 
+		//level.activ.maxhealth = 1000;
   	  	//level.activ.health = level.activ.maxhealth;
   	  	//level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -1428,9 +1428,9 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
-	
+
 }
 
 kniferoom()
@@ -1455,14 +1455,14 @@ actik = getEnt( "small_area_acti", "targetname" ); //the origin the acti will te
         level.shot_trigger delete(); //deletes all of the other room triggers so that they cant be entered
         level.weap_trigger delete();
         level.bounce_trigger delete();
-        
+
 	player SetPlayerAngles( jumpk.angles );
 	player setOrigin( jumpk.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "tomahawk_mp" ); //jumper weapon 
+	player GiveWeapon( "tomahawk_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("tomahawk_mp");
-	//player giveMaxAmmo("m1014_grip_mp"); 
+	//player giveMaxAmmo("m1014_grip_mp");
 	//player giveMaxAmmo("rpg_mp"); //Not needed in knife :p
 	//player.maxhealth = 1000;
 	//player setPerk("specialty_armorvest");
@@ -1478,7 +1478,7 @@ actik = getEnt( "small_area_acti", "targetname" ); //the origin the acti will te
 		level.activ SwitchToWeapon( "tomahawk_mp" ); //this line means they switch to the weapon
 		//level.activ giveMaxAmmo("m1014_grip_mp");
 		//level.activ giveMaxAmmo("rpg_mp");
-		//level.activ.maxhealth = 1000; 
+		//level.activ.maxhealth = 1000;
   	  	//level.activ.health = level.activ.maxhealth;
   	  	//level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -1499,9 +1499,9 @@ actik = getEnt( "small_area_acti", "targetname" ); //the origin the acti will te
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
-	
+
 }
 
 shotroom()
@@ -1526,14 +1526,14 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
         level.knife_trigger delete(); //deletes all of the other room triggers so that they cant be entered
         level.weap_trigger delete();
         level.bounce_trigger delete();
-        
+
 	player SetPlayerAngles( jumpk.angles );
 	player setOrigin( jumpk.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "m1014_grip_mp" ); //jumper weapon 
+	player GiveWeapon( "m1014_grip_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("m1014_grip_mp");
-	player giveMaxAmmo("m1014_grip_mp"); 
+	player giveMaxAmmo("m1014_grip_mp");
 	//player giveMaxAmmo("rpg_mp"); //Not needed in knife :p
 	//player.maxhealth = 1000;
 	//player setPerk("specialty_armorvest");
@@ -1549,7 +1549,7 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
 		level.activ SwitchToWeapon( "m1014_grip_mp" ); //this line means they switch to the weapon
 		level.activ giveMaxAmmo("m1014_grip_mp");
 		//level.activ giveMaxAmmo("rpg_mp");
-		//level.activ.maxhealth = 1000; 
+		//level.activ.maxhealth = 1000;
   	  	//level.activ.health = level.activ.maxhealth;
   	  	//level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -1570,9 +1570,9 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
-	
+
 }
 
 weaproom()
@@ -1597,14 +1597,14 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
         level.knife_trigger delete(); //deletes all of the other room triggers so that they cant be entered
         level.shot_trigger delete();
         level.bounce_trigger delete();
-        
+
 	player SetPlayerAngles( jumpk.angles );
 	player setOrigin( jumpk.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "ak74u_mp" ); //jumper weapon 
+	player GiveWeapon( "ak74u_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("ak74u_mp");
-	player giveMaxAmmo("ak74u_mp"); 
+	player giveMaxAmmo("ak74u_mp");
 	//player giveMaxAmmo("rpg_mp"); //Not needed in knife :p
 	//player.maxhealth = 1000;
 	//player setPerk("specialty_armorvest");
@@ -1620,7 +1620,7 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
 		level.activ SwitchToWeapon( "ak74u_mp" ); //this line means they switch to the weapon
 		level.activ giveMaxAmmo("ak74u_mp");
 		//level.activ giveMaxAmmo("rpg_mp");
-		//level.activ.maxhealth = 1000; 
+		//level.activ.maxhealth = 1000;
   	  	//level.activ.health = level.activ.maxhealth;
   	  	//level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -1641,9 +1641,9 @@ actik = getEnt( "whole_area_acti", "targetname" ); //the origin the acti will te
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
-	
+
 }
 
 
@@ -1669,14 +1669,14 @@ level.bouncea = getEnt( "bouncea_orig", "targetname" ); //the origin the acti wi
         level.knife_trigger delete(); //deletes all of the other room triggers so that they cant be entered
         level.shot_trigger delete();
         level.weap_trigger delete();
-        
+
 	player SetPlayerAngles( level.bouncej.angles );
 	player setOrigin( level.bouncej.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "knife_mp" ); //jumper weapon 
+	player GiveWeapon( "knife_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("knife_mp");
-	//player giveMaxAmmo("knife_mp"); 
+	//player giveMaxAmmo("knife_mp");
 	//player giveMaxAmmo("rpg_mp"); //Not needed in knife :p
 	//player.maxhealth = 1000;
 	//player setPerk("specialty_armorvest");
@@ -1692,7 +1692,7 @@ level.bouncea = getEnt( "bouncea_orig", "targetname" ); //the origin the acti wi
 		level.activ SwitchToWeapon( "knife_mp" ); //this line means they switch to the weapon
 		//level.activ giveMaxAmmo("knife_mp");
 		//level.activ giveMaxAmmo("rpg_mp");
-		//level.activ.maxhealth = 1000; 
+		//level.activ.maxhealth = 1000;
   	  	//level.activ.health = level.activ.maxhealth;
   	  	//level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -1713,9 +1713,9 @@ level.bouncea = getEnt( "bouncea_orig", "targetname" ); //the origin the acti wi
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
-	
+
 }
 
 
@@ -1725,7 +1725,7 @@ jump_respawn()
 	for(;;)
 	{
 		trigger waittill ( "trigger", player );
-	
+
 		if( player.pers[ "team" ] != "spectator" )
 		{
 			if( player.pers[ "team" ] == "allies" )

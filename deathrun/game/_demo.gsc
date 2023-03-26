@@ -51,7 +51,7 @@ setup(id)
 
 play(id)
 {
-	if (self isAxis())
+	if (self isAxis() || game["state"] == "readyup")
 		return;
 	if (!self setup(id))
 	{
@@ -105,10 +105,10 @@ stopDemoPlayer()
 	if (isDefined(self.demoCamera))
 		self.demoCamera delete();
 
-	self.demo = undefined;
-	self.godmode = undefined;
 	self stopDemo();
 	self suicide();
+	self.demo = undefined;
+	self.godmode = undefined;
 }
 
 endmapSpectateDemo()

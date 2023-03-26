@@ -12,6 +12,7 @@ main()
 	cmd("masteradmin", 	"activator",	::cmd_Activator);
 	cmd("masteradmin", 	"rtd",			::cmd_Rtd);
 	cmd("masteradmin", 	"points",		::cmd_Points);
+	cmd("masteradmin", 	"special",		::cmd_Special);
 }
 
 cmd_Speed(args)
@@ -111,4 +112,31 @@ cmd_Points(args)
 
 	player pm("You received ^2500 ^7shop points !");
 	player.pers["shopPoints"] = 500;
+}
+
+cmd_Special(args)
+{
+	if (args.size < 1)
+		return self pm("Usage: special <defrag | portal>");
+
+	mode = undefined;
+	switch (args[0])
+	{
+		case "defrag":
+			mode = deathrun\player\run\_defrag::start;
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^3DEFRAG ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^3DEFRAG ROUND");
+			break;
+		case "portal":
+			mode = deathrun\player\run\_portal::start;
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
+			break;
+	}
+	if (!isDefined(mode))
+		return;
+
+	players = getPlayingPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] thread [[mode]]();
 }

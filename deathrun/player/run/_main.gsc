@@ -80,11 +80,16 @@ playerTimer()
 
 	// Spastic delay caused by bad modding, too bad...
 	if (game["state"] == "playing")
+	{
+		self sr\game\_demo::record();
 		wait 0.05;
+	}
 	if (game["state"] == "readyup")
+	{
 		level waittill("round_started");
-
-	wait 0.05;
+		self sr\game\_demo::record();
+	}
+	wait 0.1;
 
 	self deathrun\player\huds\_speedrun::updateTime();
 	self.time = originToTime(getTime());
@@ -92,7 +97,7 @@ playerTimer()
 
 endTimer()
 {
-	if (!self isPlaying() || self isDemo() || !isDefined(self.time) || self.finishedMap)
+	if (!self isPlaying() || self isDemo() || !isDefined(self.time) || self isAxis() || self.finishedMap)
 		return;
 	self.finishedMap = true;
 

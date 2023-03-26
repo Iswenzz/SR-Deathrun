@@ -229,7 +229,7 @@ showBestScores()
 		level.huds["score"]["scores"][id] thread fadeIn(0, 1);
 	}
 	thread save();
-	wait 8;
+	wait 6;
 
 	level clear();
 	wait 1;

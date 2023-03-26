@@ -86,10 +86,6 @@ placeSpawns()
 
 end(map)
 {
-	if (level.freeRun)
-		return endRound("Free run round has ended", "jumpers");
-	if (game["roundsplayed"] < level.dvar["round_limit"])
-		return endRound("Time limit reached", "activators");
 	if (game["state"] == "end")
 		return;
 
@@ -101,9 +97,9 @@ end(map)
 	wait 3;
 
 	// Sequence
-	endMusic();
 	endSpectate();
 	displayMapScores();
+	endMusic();
 
 	if (IsNullOrEmpty(map))
 		map = voteNextMap();
@@ -174,8 +170,6 @@ endSpectate()
 
 displayMapScores()
 {
-	wait 1;
-
 	if (!level.dvar["map_scores"])
 		return;
 

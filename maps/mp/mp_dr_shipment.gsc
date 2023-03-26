@@ -126,7 +126,7 @@ music()
 	songs[songs.size] = "song3";
 
 	selected = songs[ Randomint( songs.size ) ];
-	// AmbientPlay( selected );
+	AmbientPlay( selected );
 }
 
 teleport1()
