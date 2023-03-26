@@ -127,8 +127,6 @@ endRound(text, team)
 	if (game["roundsplayed"] >= level.dvar["round_limit"])
 		return end();
 
-	visionSetNaked(team, 4);
-
 	level thread announcement(text, (0.7, 0, 1));
 	level thread playSoundOnAllPlayers("end_round_" + (randomInt(10) + 1));
 
