@@ -156,8 +156,8 @@ CodeCallback_PlayerConnect()
 	self.sessionteam = self.team;
 	self.pers["team"] = self.team;
 	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
-	self.statusicon = "hud_status_connecting";
-	self.died = false;
+	self.statusicon = "hud_status_dead";
+	self.died = true;
 
 	self sr\sys\_admins::connection();
 	self sr\player\_settings::init();
