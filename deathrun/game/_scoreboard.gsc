@@ -28,13 +28,13 @@ main()
 	score("headshots", "killiconheadshot", "Headshots");
 	score("score", "score_icon", "Score");
 	score("knifes", "killiconmelee", "Knifes");
-	score("time", "hudstopwatch", "Time");
+	score("time", "hudstopwatch", "Time", 9999999999);
 
 	event("map", ::load);
 	event("map", ::updateScoreboard);
 }
 
-score(id, shader, name)
+score(id, shader, name, value)
 {
 	score = [];
 	score["id"] = id;
@@ -42,7 +42,7 @@ score(id, shader, name)
 	score["shader"] = shader;
 	score["player"] = undefined;
 	score["playerId"] = undefined;
-	score["value"] = 0;
+	score["value"] = IfUndef(value, 0);
 	score["display"] = "";
 	score["record"] = false;
 
@@ -142,28 +142,47 @@ updateScoreboard()
 
 	for (i = 0; i < scores.size; i++)
 	{
+		score = game["scoreboard"][scores[i]];
+		id = score["id"];
+
 		for (j = 0; j < players.size; j++)
 		{
-			score = game["scoreboard"][scores[i]];
-			record = game["scoreboard_records"][scores[i]];
 			entry = players[j] makeEntry();
 
-			id = score["id"];
 			if (!isDefined(entry[id]))
 				continue;
 
-			// Scores
-			if ((id == "time" && entry[id] < score["value"])
-				|| entry[id] > score["value"])
-				updateScore(id, entry);
-
-			// Records
-			if (!record["record"]
-				|| (id == "time" && score["value"] < record["value"])
-				|| (score["value"] > record["value"]))
-				game["scoreboard"][id]["record"] = true;
+			switch (id)
+			{
+				case "time": 	updateLess(score, entry); 		break;
+				default: 		updateGreater(score, entry);	break;
+			}
 		}
 	}
+}
+
+updateLess(score, entry)
+{
+	id = score["id"];
+
+	if (entry[id] < score["value"])
+		updateScore(id, entry);
+
+	record = game["scoreboard_records"][id];
+	if (!record["record"] || (score["value"] < record["value"]))
+		game["scoreboard"][id]["record"] = true;
+}
+
+updateGreater(score, entry)
+{
+	id = score["id"];
+
+	if (entry[id] > score["value"])
+		updateScore(id, entry);
+
+	record = game["scoreboard_records"][id];
+	if (!record["record"] || (score["value"] > record["value"]))
+		game["scoreboard"][id]["record"] = true;
 }
 
 updateScore(id, entry)
