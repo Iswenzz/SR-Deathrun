@@ -134,7 +134,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	self.pers["deaths"]++;
 	obituary(self, attacker, sWeapon, sMeansOfDeath);
 
-	if (level.activatorKilled || getPlayingPlayers().size <= 1)
+	if (game["state"] == "playing" && (level.activatorKilled || getPlayingPlayers().size <= 1))
 		self thread sr\game\_killcam::start(2, 8, eInflictor, attacker, sWeapon);
 	if (isPlayer(attacker) && attacker isAxis())
 		self thread deathrun\game\_game::dropWeapon();
@@ -188,10 +188,7 @@ playerSpawn()
 		self giveMaxAmmo(self.pers["weapon"]);
 	}
 	if (game["state"] == "readyup")
-	{
 		self linkTo(level.tempEntity);
-		self disableWeapons();
-	}
 	if (self getStat(988))
 		self setClientDvar("cg_thirdperson", 1);
 

@@ -17,6 +17,9 @@ main()
 
 cmd_Speed(args)
 {
+	if (self isAxis())
+		return;
+
     speed = Ternary(self.sr_mode == "190", "210", "190");
 	self setStat(1700, Ternary(speed == "190", 1, 2));
     self.sr_mode = speed;
@@ -27,6 +30,9 @@ cmd_Speed(args)
 
 cmd_190(args)
 {
+	if (self isAxis())
+		return;
+
 	self setStat(1700, 1);
 	self.sr_mode = "190";
     self pm("Run mode: ^5190");
@@ -36,6 +42,9 @@ cmd_190(args)
 
 cmd_210(args)
 {
+	if (self isAxis())
+		return;
+
 	self setStat(1700, 2);
 	self.sr_mode = "210";
     self pm("Run mode: ^5210");

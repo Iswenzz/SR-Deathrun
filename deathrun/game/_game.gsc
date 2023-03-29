@@ -85,11 +85,16 @@ watchGame()
 			pickActivator();
 			continue;
 		}
-		if(!level.jumpers && level.activators)
+		if (level.jumpers <= 1 && !level.activators && !level.activatorKilled && !level.freeRun)
+		{
+			levelRestart(true);
+			return;
+		}
+		else if(!level.jumpers && level.activators)
 			thread deathrun\game\_map::endRound("Jumpers died", "activators");
-		else if(!level.activators && level.jumpers && !level.freeRun)
+		else if(level.jumpers && !level.activators && !level.freeRun)
 			thread deathrun\game\_map::endRound("Activator died", "jumpers");
-		else if(!level.activators && !level.jumpers)
+		else if(!level.jumpers && !level.activators)
 			thread deathrun\game\_map::endRound("Everyone died", "activators");
 	}
 }
@@ -262,6 +267,9 @@ playerAFK()
 
 	if (!level.dvar["afk"] || self isAxis() || level.freeRun)
 		return;
+
+	if (game["state"] != "playing")
+		level waittill("round_started");
 
 	time = 0;
 	previousOrigin = self.origin - (0, 0, 50);

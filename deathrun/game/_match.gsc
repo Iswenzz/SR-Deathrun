@@ -60,7 +60,7 @@ canStartGame()
 
 	for (i = 0; i < players.size; i++)
 	{
-		if (players[i] isPlaying())
+		if (players[i] isAllies())
 			count++;
 	}
 	if (count >= level.dvar["match_need_players"])
