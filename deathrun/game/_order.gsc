@@ -49,19 +49,24 @@ dequeue()
 		return;
 
 	self.order = undefined;
+	self.orderCard = undefined;
 	level.order = Remove(level.order, self);
 	update();
 }
 
 order()
 {
-	if (!level.orderEnabled)
-		return true;
-	if (!level.order.size)
-		return true;
-	if (level.order[0] == self)
-		return true;
+	if (!level.orderEnabled || !level.order.size || level.order[0] == self)
+	{
+		if (!isDefined(self.orderCard))
+		{
+			self.orderCard = true;
 
+			self thread sr\player\huds\_card::hud(self, level.activ);
+			level.activ thread sr\player\huds\_card::hud(self, level.activ);
+		}
+		return true;
+	}
 	origin = Ternary(isDefined(level.orderRespawn), level.orderRespawn, level.orderTrigger.origin);
 	if (!isDefined(level.orderNoRespawn))
 		self setOrigin(origin);

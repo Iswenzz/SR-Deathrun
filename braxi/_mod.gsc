@@ -64,6 +64,7 @@ endingHud(align, fade_in_time, x_off, y_off)
 	hud.alpha = 0;
 	hud fadeovertime(fade_in_time);
 	hud.alpha = 1;
+	hud.archived = false;
 	hud.hidewheninmenu = true;
 	hud.sort = 10;
 	return hud;
