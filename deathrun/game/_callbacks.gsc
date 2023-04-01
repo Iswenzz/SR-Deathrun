@@ -135,7 +135,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	obituary(self, attacker, sWeapon, sMeansOfDeath);
 
 	if (game["state"] == "playing" && (level.activatorKilled || getPlayingPlayers().size <= 1))
-		self thread sr\game\_killcam::start(2, 8, eInflictor, attacker, sWeapon);
+		self thread sr\game\_killcam::start(4, 8, eInflictor, attacker, sWeapon);
 	if (isPlayer(attacker) && attacker isAxis())
 		self thread deathrun\game\_game::dropWeapon();
 	if (!isPlayer(attacker) || attacker == self)

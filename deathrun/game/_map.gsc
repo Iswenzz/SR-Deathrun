@@ -128,9 +128,12 @@ endRound(text, team)
 		return end();
 
 	level thread announcement(text, (0.7, 0, 1));
-	level thread playSoundOnAllPlayers("end_round_" + (randomInt(10) + 1));
+	ambientStop(1);
+	ambientPlay("end_round_" + (randomInt(11) + 1), 0.5);
 
-	wait 10;
+	wait 11.5;
+	ambientStop(0.5);
+	wait 0.5;
 	levelRestart(true);
 }
 
