@@ -127,6 +127,7 @@ endRound(text, team)
 	if (game["roundsplayed"] >= level.dvar["round_limit"])
 		return end();
 
+	level thread deathrun\game\_scoreboard::updateScoreboard();
 	level thread announcement(text, (0.7, 0, 1));
 	ambientStop(1);
 	ambientPlay("end_round_" + (randomInt(11) + 1), 0.5);

@@ -53,10 +53,7 @@ endmapTrigger()
 
 	array = getEntArray("endmap_trig", "targetname");
 	if (!array.size)
-	{
-		iPrintLnBold("^1Error: No endmap_trig found.");
 		return;
-	}
 
 	trigger = array[0];
 	thread sr\game\fx\_trigger::effect(trigger, "red");
@@ -112,8 +109,6 @@ endTimer()
 	if (level.freeRun)
 		return;
 
-	self.pers["time"] = self.time.origin;
-
 	way = getLeaderboardName(self.sr_mode, self.sr_way);
 	message = fmt("%s finished the map in %d:%d.%d - %s / %s",
 		self.name, self.time.min, self.time.sec, self.time.ms,
@@ -126,6 +121,9 @@ endTimer()
 
 	if (self.sr_mode != "210")
 		return;
+
+	self.pers["time"] = self.time.origin;
+	level thread deathrun\game\_scoreboard::updateScoreboard();
 
 	entry = self makeEntry();
     self thread deathrun\game\_leaderboards::saveEntry(entry);

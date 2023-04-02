@@ -16,10 +16,11 @@ main()
 
 start()
 {
-	trigger = getEnt("endmap_trig", "targetname");
-	if (!isDefined(trigger) || level.freeRun)
+	array = getEntArray("endmap_trig", "targetname");
+	if (!array.size || level.freeRun)
 		return;
 
+	trigger = array[0];
 	level.huds["order"] = addHud(level, -5, 30, 0.7, "right", "top", 1.4);
 	level.orderTrigger = trigger;
 	level.orderEnabled = true;
@@ -58,7 +59,7 @@ order()
 {
 	if (!level.orderEnabled || !level.order.size || level.order[0] == self)
 	{
-		if (!isDefined(self.orderCard))
+		if (!isDefined(self.orderCard) && !level.freeRun)
 		{
 			self.orderCard = true;
 

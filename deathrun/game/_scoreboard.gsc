@@ -6,6 +6,8 @@
 
 main()
 {
+	critical("scoreboard");
+
 	game["scoreboard"] = IfUndef(game["scoreboard"], []);
 	game["scoreboard_records"] = IfUndef(game["scoreboard_records"], []);
 
@@ -31,7 +33,6 @@ main()
 	score("time", "hudstopwatch", "Time", 9999999999);
 
 	event("map", ::load);
-	event("map", ::updateScoreboard);
 }
 
 score(id, shader, name, value)
@@ -133,9 +134,7 @@ save()
 
 updateScoreboard()
 {
-	level waittills("game_ended", "round_ended");
-
-	wait 1;
+	critical_enter("scoreboard");
 
 	players = getAllPlayers();
 	scores = getArrayKeys(game["scoreboard"]);
@@ -159,6 +158,7 @@ updateScoreboard()
 			}
 		}
 	}
+	critical_release("scoreboard");
 }
 
 updateLess(score, entry)
@@ -216,6 +216,8 @@ makeEntry()
 
 showBestScores()
 {
+	updateScoreboard();
+
 	level.huds["score"] = [];
 	level.huds["score"]["scores"] = [];
 	level.huds["score"]["title"] = addHud(level, 0, -130, 1, "center", "middle", 2.5, 1000, true);
