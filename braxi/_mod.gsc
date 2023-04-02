@@ -34,7 +34,7 @@ endRoundAnnoucement(text, color)
 	notifyData.titleText = text;
 	notifyData.notifyText = ("Starting round ^3" + game["roundsplayed"] + "^7 out of ^3" + level.dvar["round_limit"]);
 	notifyData.glowColor = color;
-	notifyData.duration = 8.8;
+	notifyData.duration = 4.8;
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)

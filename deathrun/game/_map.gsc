@@ -130,7 +130,7 @@ endRound(text, team)
 	level thread deathrun\game\_scoreboard::updateScoreboard();
 	level thread announcement(text, (0.7, 0, 1));
 	ambientStop(1);
-	ambientPlay("end_round_" + (randomInt(11) + 1), 0.5);
+	ambientPlay("end_round_" + (randomInt(18) + 1), 0.5);
 
 	wait 11.5;
 	ambientStop(0.5);
