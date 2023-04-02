@@ -203,9 +203,11 @@ pickActivator()
 	if (isDefined(level.forceActivator))
 		activator = level.forceActivator;
 
+	activator.godmode = true;
 	activator sr\game\_teams::setTeam("axis");
 	activator sr\game\_rank::giveRankXp("activator");
 	activator eventSpawn(true);
+	activator.godmode = undefined;
 
 	setDvar("last_picked_player", activator.number);
 	level notify("activator", activator);
