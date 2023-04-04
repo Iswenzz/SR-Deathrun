@@ -5,14 +5,14 @@
 
 */
 
-//	      _ _____      _____                       _            
-//	     | |  __ \    |_   _|                     (_)           
-//	     | | |__) |_____| |  _ __ ___   __ _  __ _ _ _ __   ___ 
+//	      _ _____      _____                       _
+//	     | |  __ \    |_   _|                     (_)
+//	     | | |__) |_____| |  _ __ ___   __ _  __ _ _ _ __   ___
 //	 _   | |  _  /______| | | '_ ` _ \ / _` |/ _` | | '_ \ / _ \
 //	| |__| | | \ \     _| |_| | | | | | (_| | (_| | | | | |  __/
 //	 \____/|_|  \_\   |_____|_| |_| |_|\__,_|\__, |_|_| |_|\___|
-//	                                          __/ |             
-//	                                         |___/  
+//	                                          __/ |
+//	                                         |___/
 
 // FGT WTF U DOIN IN MAH SCRIPTS?! GTFO >:(
 
@@ -166,7 +166,7 @@ onSpawn()
 
 		if( player.pers["team"] == "axis" )
 			player SetModel("eliza_BR2");
-		player SetViewModel("viewhands_dnf_duke");
+		// player SetViewModel("viewhands_dnf_duke");
 
 		player.secret_steps_complete = 0;
 		player.secret_step1 = false;
@@ -677,7 +677,7 @@ room_jump()
 	        level.activ TakeAllWeapons();
 	        level.activ GiveWeapon( "knife_mp" );
 	        wait .05;
-	        player switchToWeapon( "knife_mp" ); 
+	        player switchToWeapon( "knife_mp" );
 	        level.activ SwitchToWeapon( "knife_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -764,7 +764,7 @@ room_snipe()
 	        level.activ GiveWeapon( "slaya_dsr50" );
 	        level.activ GiveMaxAmmo( "slaya_dsr50" );
 	        wait .05;
-	        player switchToWeapon( "slaya_dsr50" ); 
+	        player switchToWeapon( "slaya_dsr50" );
 	        level.activ SwitchToWeapon( "slaya_dsr50" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -934,7 +934,7 @@ SecretTimer()
 		self.secret_time_left--;
 		wait 1;
 	}
-	
+
 	if( !self.secret_finished )
 	{
 		self.secret_timer Destroy();

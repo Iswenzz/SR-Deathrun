@@ -146,7 +146,7 @@ player_skins()
 	if( self.pers["team"] == "axis" )
 		self setModel( "playermodel_baa_joker" );
 
-	self SetViewModel( "viewhands_dnf_duke" );
+	// self SetViewModel( "viewhands_dnf_duke" );
 }
 
 //Secret

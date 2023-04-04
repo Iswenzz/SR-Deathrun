@@ -537,7 +537,7 @@ takewep()
 	{
 		level waittill( "jumper", who );
 		who setModel( "playermodel_terminator" );
-		who setViewModel( "viewhands_dnf_duke" );
+		// who setViewModel( "viewhands_dnf_duke" );
 	}
 
 }
