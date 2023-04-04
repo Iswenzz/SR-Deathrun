@@ -159,7 +159,6 @@ playerSpawn()
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
-	self sr\api\_player::antiLag(false);
 	self sr\api\_player::antiElevator(false);
 
 	self.pers["weapon"] = self getCustomizeWeapon()["item"];
