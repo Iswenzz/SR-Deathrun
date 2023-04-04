@@ -225,7 +225,7 @@ announcement(text, color)
 
 deleteUnsupportedWeapons()
 {
-	weapons = strTok("knife_mp,m16_gl_mp,ak74u_reflex_mp,ak74u_acog_mp,ak74u_silencer_mp,dog_mp,shovel_mp", ",");
+	weapons = strTok("knife_mp,m16_gl_mp,ak74u_reflex_mp,ak74u_acog_mp,ak74u_silencer_mp,dog_mp,saw_mp", ",");
 
 	for (i = 0; i < weapons.size; i++)
 	{

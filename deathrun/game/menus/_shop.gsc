@@ -29,7 +29,7 @@ onConnect()
 	if (level.freeRun)
 		return;
 
-    self thread loop("shop", "shop_mp");
+    self thread loop("shop", "cobra_FFAR_mp");
 	self.pers["shopPoints"] = self getStat(2358);
 
 	while (true)

@@ -191,15 +191,15 @@ playerSpawn()
 	if (self getStat(988))
 		self setClientDvar("cg_thirdperson", 1);
 
-	self setActionSlot(2, "weapon", "rtd_mp");
+	self setActionSlot(2, "weapon", "hind_FFAR_mp");
 	self setActionSlot(3, "weapon", "claymore_mp");
-	self setActionSlot(4, "weapon", "shop_mp");
+	self setActionSlot(4, "weapon", "cobra_FFAR_mp");
 
 	self giveWeapon("claymore_mp");
 	if (!level.freeRun)
-		self giveWeapon("shop_mp");
+		self giveWeapon("cobra_FFAR_mp");
 	if (self deathrun\game\_rtd::canRTD())
-		self giveWeapon("rtd_mp");
+		self giveWeapon("hind_FFAR_mp");
 
 	self deathrun\player\run\_main::start();
 

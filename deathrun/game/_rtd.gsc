@@ -50,7 +50,7 @@ rtd()
 	{
 		wait 0.2;
 
-		if (!self canRTD() || self getCurrentWeapon() != "rtd_mp")
+		if (!self canRTD() || self getCurrentWeapon() != "hind_FFAR_mp")
 			continue;
 
 		self.rtd = true;
@@ -60,7 +60,7 @@ rtd()
 
 canRTD()
 {
-	return !isDefined(self.rtd) && self isAllies() && !level.trapsDisabled && !level.freeRun;
+	return game["state"] == "playing" && !isDefined(self.rtd) && self isAllies() && !level.trapsDisabled && !level.freeRun;
 }
 
 randomize()
@@ -107,7 +107,7 @@ removeWeapon()
 
 	self switchToWeapon(self.pers["weapon"]);
 	wait 0.3;
-	self takeWeapon("rtd_mp");
+	self takeWeapon("hind_FFAR_mp");
 }
 
 rtd_SpeedBoost()
@@ -157,8 +157,8 @@ rtd_Dog()
 
 rtd_Shovel()
 {
-	self giveWeapon("shovel_mp");
-	self switchToWeapon("shovel_mp");
+	self giveWeapon("saw_mp");
+	self switchToWeapon("saw_mp");
 }
 
 rtd_HealthBoost()

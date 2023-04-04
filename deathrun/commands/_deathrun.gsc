@@ -104,8 +104,8 @@ cmd_Activator(args)
 cmd_Rtd(args)
 {
 	self.rtd = undefined;
-	self giveWeapon("rtd_mp");
-	self switchToWeapon("rtd_mp");
+	self giveWeapon("hind_FFAR_mp");
+	self switchToWeapon("hind_FFAR_mp");
 }
 
 cmd_Points(args)
