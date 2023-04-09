@@ -42,35 +42,12 @@ placeSpawns()
 	for (i = 0; i < level.spawn["axis"].size; i++)
 		level.spawn["axis"][i] placeSpawnPoint();
 
-	x = 0;
-	y = 0;
-	z = 0;
-
-	angles = (0, 180, 0);
-
-	for (i = 0; i < level.spawn["allies"].size; i++)
-	{
-		x += level.spawn["allies"][i].origin[0];
-		y += level.spawn["allies"][i].origin[1];
-	}
-	if (level.spawn["allies"].size)
-	{
-		x /= level.spawn["allies"].size;
-		y /= level.spawn["allies"].size;
-		z = level.spawn["allies"][0].origin[2];
-
-		angles = level.spawn["allies"][0].angles;
-	}
 	if (!isDefined(level.spawn["player"]))
 	{
-		level.spawn["player"] = spawn("script_origin", (x, y, z));
-		level.spawn["player"].angles = angles;
-
-		if (!level.spawn["player"] placeSpawnPoint())
-		{
-			level.spawn["player"].origin = level.spawn["allies"][0].origin;
-			level.spawn["player"] placeSpawnPoint();
-		}
+		allies = level.spawn["allies"][0];
+		level.spawn["player"] = spawn("script_origin", allies.origin);
+		level.spawn["player"].angles = allies.angles;
+		level.spawn["player"] placeSpawnPoint();
 	}
 	if (!isDefined(level.spawn["activator"]))
 	{
