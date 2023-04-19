@@ -102,6 +102,9 @@ weaponHasChanged()
 
 stopDemoPlayer()
 {
+	if (!isDefined(self.demo))
+		return;
+
 	if (isDefined(self.demoCamera))
 		self.demoCamera delete();
 

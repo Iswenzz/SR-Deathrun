@@ -1,8 +1,8 @@
 /*
 
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-▒▒▒▒▒▒▒▒	.______    __  ___   ___  _______  __      	   ▒▒▒▒▒▒▒▒ 
-▒▒▒▒▒▒▒▒	|   _  \  |  | \  \ /  / |   ____||  |     	   ▒▒▒▒▒▒▒▒ 
+▒▒▒▒▒▒▒▒	.______    __  ___   ___  _______  __      	   ▒▒▒▒▒▒▒▒
+▒▒▒▒▒▒▒▒	|   _  \  |  | \  \ /  / |   ____||  |     	   ▒▒▒▒▒▒▒▒
 ▒▒▒▒▒▒▒▒	|  |_)  | |  |  \  V  /  |  |__   |  |     	   ▒▒▒▒▒▒▒▒
 ▒▒▒▒▒▒▒▒	|   ___/  |  |   >   <   |   __|  |  |     	   ▒▒▒▒▒▒▒▒
 ▒▒▒▒▒▒▒▒	|  |      |  |  /  .  \  |  |____ |  `----.    ▒▒▒▒▒▒▒▒
@@ -12,8 +12,8 @@
 ▒▒▒▒▒▒▒▒	*Map Created & Scripted by: Pixel			   ▒▒▒▒▒▒▒▒
 ▒▒▒▒▒▒▒▒	*Huge thanks to: Phaedrean					   ▒▒▒▒▒▒▒▒
 ▒▒▒▒▒▒▒▒    *For additional credits, go to bottom          ▒▒▒▒▒▒▒▒
-▒▒▒▒▒▒▒▒	*Do not use any scripts without permission	   ▒▒▒▒▒▒▒▒	    	 
-▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ 	   
+▒▒▒▒▒▒▒▒	*Do not use any scripts without permission	   ▒▒▒▒▒▒▒▒
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 Map Information
 -----------------
@@ -31,19 +31,19 @@ main()
 {
 
 	maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	precacheItem("ak47_mp");
 	precacheItem("m40a3_mp");
-	
+
 	precacheShellshock( "teargas" );
-	
+
 	level.fx_radiation = LoadFX( "deathrun/radiation" );
 	level.fx_blast = LoadFX( "deathrun/blast" );
 	level.fx_trail1 = LoadFX( "deathrun/coolfx" );
@@ -78,41 +78,41 @@ main()
 	addTriggerToList("slaya_trigger");
 	addTriggerToList("at_trigger");
 
-	thread autofunc(); 
-	thread spawnelevators(); 
-	thread trap1(); 
-	thread teleport1(); 
-	thread teleport2(); 
-	thread teleport3(); 
-	thread teleport4(); 
-	thread autoplatform(); 
-	thread triggeredplatform(); 
-	thread elevator1(); 
-	thread mode(); 
-	thread lasers(); 
+	thread autofunc();
+	thread spawnelevators();
+	thread trap1();
+	thread teleport1();
+	thread teleport2();
+	thread teleport3();
+	thread teleport4();
+	thread autoplatform();
+	thread triggeredplatform();
+	thread elevator1();
+	thread mode();
+	thread lasers();
 	thread logotrap();
-	thread roller(); 
-	thread squash(); 
-	thread block(); 
+	thread roller();
+	thread squash();
+	thread block();
 	thread block2();
-	thread loltext(); 
-	thread rendum(); 
-	thread lolderp(); 
-	thread endroomstele(); 
-	thread actitele1(); 
-	thread actitele2(); 
-	thread actitele3(); 
-	thread actitele4(); 
-	thread actitele5(); 
-	thread actitele6(); 
-	thread actitele7(); 
-	thread actitele8(); 
-	thread lasertrap1(); 
-	thread lasertrap2(); 
-	thread boing(); 
-	thread autoplatform2(); 
-	thread rotaterecttrap(); 
-	thread spinny(); 
+	thread loltext();
+	thread rendum();
+	thread lolderp();
+	thread endroomstele();
+	thread actitele1();
+	thread actitele2();
+	thread actitele3();
+	thread actitele4();
+	thread actitele5();
+	thread actitele6();
+	thread actitele7();
+	thread actitele8();
+	thread lasertrap1();
+	thread lasertrap2();
+	thread boing();
+	thread autoplatform2();
+	thread rotaterecttrap();
+	thread spinny();
 	thread old();
 	thread actirun();
 	thread a1();
@@ -203,7 +203,7 @@ autofunc()
 	lazahhurt = getent("lazahhurt","targetname");
 
 	thread bouncespin();
-	
+
 	lasers hide();
 	lasers notSolid();
 	rlh maps\mp\_utility::triggerOff();
@@ -239,12 +239,12 @@ autofunc()
 	secretbrush notSolid();
 
 	wait 5;
-	
+
 	trigger delete();
-	
+
 	while(1)
 	{
-	
+
 		iPrintLn("^3Map Made By: Pixel");
 		wait 4;
 		iPrintLn("^2Credits: Phaedrean, Xenon, JWofles, Sentrex");
@@ -255,8 +255,8 @@ autofunc()
 		wait 4;
 		iPrintLn("^1RIP ^2Raid-Gaming.");
 		wait 8;
-	
-	}	
+
+	}
 
 }
 
@@ -266,7 +266,7 @@ spawnelevators()
 	brushb = getent("brushb","targetname");
 	o2 = getent("raise2","targetname");
 	o4 = getent("raise4","targetname");
-	
+
 	while(1)
 	{
 		brushb moveto(o2.origin, 3, 0.5, 0.5);
@@ -280,8 +280,8 @@ spawnelevators()
 
 trap1() //Works (Add Fx)
 {
-	
-	trigger = getent("trap1_trig","targetname"); 
+
+	trigger = getent("trap1_trig","targetname");
 	trigger waittill("trigger");
 	hurt = getent("trap1_hurt","targetname");
 	laser = getent("t1laser","targetname");
@@ -321,7 +321,7 @@ Transporter1()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 teleport2()
@@ -351,7 +351,7 @@ Transporter2()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 teleport3()
@@ -381,7 +381,7 @@ Transporter3()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 autoplatform()
@@ -390,13 +390,13 @@ autoplatform()
 	trigger = getent("autoplatform1_trigger","targetname");
 	brush = getent("autoplatform1","targetname");
 	trigger waittill("trigger", player );
-	
+
 	player iPrintLn("^2Platform will move in ^12 ^2seconds^1");
-	
+
 	wait 2;
-	
+
 	trigger delete();
-	
+
 	for(;;)
 	{
 		brush moveX(488,5);
@@ -406,7 +406,7 @@ autoplatform()
 		brush waittill("movedone");
 		wait 1;
 	}
-	
+
 }
 
 bouncespin()
@@ -420,7 +420,7 @@ bouncespin()
 	}
 }
 
-triggeredplatform() 
+triggeredplatform()
 {
 
 	trigger = getent("platform1_trigger","targetname");
@@ -432,16 +432,16 @@ triggeredplatform()
 	o4 = getent("o4","targetname");
 	trigger waittill("trigger");
 	trigger setHintString("^5Platform Activated!");
-	
+
 	brush1 moveto (o2.origin, 4);
 	brush1 waittill("movedone");
 	brush1 moveto (o3.origin, 4);
 	brush1 waittill("movedone");
 	brush1 moveto (o4.origin, 4);
 	brush1 waittill("movedone");
-	
+
 	wait 4;
-	
+
 	while(1)
 	{
 		brush1 moveto(o3.origin, 4);
@@ -451,9 +451,9 @@ triggeredplatform()
 		brush1 waittill("movedone");
 		wait 2;
 	}
-	
+
 	trigger delete();
-	
+
 }
 
 elevator1()
@@ -476,9 +476,9 @@ elevator1()
 		    brush waittill("movedone");
 		    wait 3;
 	}
-	
+
 	trigger delete();
-	
+
 }
 
 mode()
@@ -486,9 +486,9 @@ mode()
 	trigger = getent("mode","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Hard Mode Activated ^5<<");
-	
+
 	iPrintLnBold("^1Activator ^3has increased the difficulty!");
-	
+
 	thread squashlasers();
 	thread rollerlaser();
 }
@@ -520,7 +520,7 @@ Transporter4()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 lasers()
 {
@@ -531,16 +531,16 @@ lasers()
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
 	origin = getent("lasers_origin","targetname");
 	origin2 = getent("lasers_origin2","targetname");
-	
+
 	laserdmg enablelinkto();
 	laserdmg linkto(origin);
-	
+
 	brush solid();
 	brush show();
 	origin moveto(origin2.origin, .1);
-	
+
 	wait 5;
-	
+
 	brush delete();
 	laserdmg delete();
 	trigger delete();
@@ -552,11 +552,11 @@ logotrap()
 	brush = getent("logotrap","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush moveY(-384,.5);
 	brush waittill("movedone");
 	brush moveY(384,4);
-	
+
 }
 
 
@@ -567,12 +567,12 @@ roller()
 	hurt = getent("roller_hurt1","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	hurt maps\mp\_utility::triggerOn();
-	
+
 	hurt enablelinkto();
 	hurt linkto(brush);
-	
+
 	while(1)
 	{
 		brush rotatePitch(360,2);
@@ -580,9 +580,9 @@ roller()
 		brush rotatePitch(360,2);
 		wait 1;
 	}
-	
+
 	trigger delete();
-	
+
 }
 
 squash()
@@ -594,18 +594,18 @@ squash()
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
 	quake = getent("quake300","targetname");
 	sound = getent("sound","targetname");
-	
+
 	hurt enablelinkto(brush);
 	hurt linkto (brush);
-	
+
 	brush moveZ(-230,1);
 	brush waittill("movedone");
-	
+
 	Earthquake( 0.7, 8, quake.origin, 10000 );
-	sound PlaySound( "elm_quake_sub_rumble"); 
-	
+	sound PlaySound( "elm_quake_sub_rumble");
+
 	wait 1;
-	
+
 	brush moveZ(230,1);
 	brush waittill("movedone");
 	wait 2;
@@ -637,7 +637,7 @@ block()
 	trigger = getent("block_trigger","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush moveZ(-192,.5);
 	brush waittill("movedone");
 	wait 4;
@@ -648,9 +648,9 @@ squashlasers()
 {
 	brush = getent("squashlasers","targetname");
 	damage = getent("squashlasersdamage","targetname");
-	
+
 	damage maps\mp\_utility::triggerOn();
-	
+
 	while(1)
 	{
 		for(i=0;i<brush.size;i++)
@@ -663,19 +663,19 @@ squashlasers()
 			wait 2;
 		}
 	}
-	
+
 }
 
 loltext()
 {
 	trigger = getent("loltext","targetname");
 	trigger waittill("trigger", player );
-	
+
 	while(1)
 	{
 		player iPrintLnBold("^2" + player.name + "^1, you can't jump on the platform from there!");
 			break;
-	}	
+	}
 }
 
 rendum()
@@ -683,7 +683,7 @@ rendum()
 	trigger = getent("rendum_trigger","targetname");
 	trigger waittill("trigger");
 	trigger setHintString("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush = randomint(4);
 	  switch(brush)
 	  {
@@ -705,24 +705,24 @@ rendum()
 rendum1()
 {
 	trigger = getent("rendum_trigger","targetname");
-	brush = getent("rendum1","targetname");	
-	
+	brush = getent("rendum1","targetname");
+
 	brush notsolid();
 }
 
 rendum2()
 {
 	trigger = getent("rendum_trigger","targetname");
-	brush = getent("rendum2","targetname");	
-	
+	brush = getent("rendum2","targetname");
+
 	brush notsolid();
 }
 
 rendum3()
 {
 	trigger = getent("rendum_trigger","targetname");
-	brush = getent("rendum3","targetname");	
-	
+	brush = getent("rendum3","targetname");
+
 	brush notsolid();
 }
 
@@ -739,7 +739,7 @@ lolderp()
 	trigger = getent("lolderp_trigger","targetname");
 	trigger waittill("trigger");
 	trigger setHintString("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush = randomint(2);
 	  switch(brush)
 	  {
@@ -755,14 +755,14 @@ lolderp()
 lolderp1()
 {
 	brush = getent("lolderp1","targetname");
-	
+
 	brush notSolid();
 }
 
 lolderp2()
 {
 	brush = getent("lolderp2","targetname");
-	
+
 	brush notSolid();
 }
 
@@ -779,7 +779,7 @@ entTransporter = getentarray("endroomstele","targetname");
 
 }
 
-Transporter1338() //Add HUD 
+Transporter1338() //Add HUD
 {
 
   while(true)
@@ -793,7 +793,7 @@ Transporter1338() //Add HUD
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele1()
@@ -823,7 +823,7 @@ actione()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele2()
@@ -853,7 +853,7 @@ actitwo()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele3()
@@ -883,7 +883,7 @@ actithree()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele4()
@@ -913,7 +913,7 @@ actifour()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele5()
@@ -943,7 +943,7 @@ actifive()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele6()
@@ -973,7 +973,7 @@ actisix()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele7()
@@ -1003,7 +1003,7 @@ actiseven()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 actitele8()
@@ -1033,7 +1033,7 @@ actieight()
    wait(0.10);
    other freezeControls(false);
   }
-  
+
 }
 
 boing()
@@ -1042,11 +1042,11 @@ boing()
 	brush = getent("boing","targetname");
 	trigger waittill("trigger");
 	trigger setHintString("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush moveZ(128, .5);
-	
+
 	wait 1;
-	
+
 	brush moveZ(-128, 3);
 }
 
@@ -1055,11 +1055,11 @@ autoplatform2()
 	trigger = getent("autoplatform2_trig","targetname");
 	brush = getent ("autoplatform2","targetname");
 	trigger waittill("trigger" , player );
-	
+
 	player iPrintLn("^2Platform will move in ^12 ^2seconds^1");
-	
+
 	wait 2;
-	
+
 	while(1)
 	{
 		brush moveX(384,5);
@@ -1067,33 +1067,33 @@ autoplatform2()
 		brush moveX(-384,5);
 		brush waittill("movedone");
 	}
-	
+
 	trigger delete();
 }
 
 rotaterecttrap()
 {
 	trigger = GetEnt("recttrap_trig","targetname");
-	
+
 	trigger waittill("trigger");
 	trigger setHintString("^5>> ^3Trap Activated ^5<<");
-	
+
 	thread rect1();
 	thread rect2();
-	
+
 	trigger delete();
-	
+
 }
 
 rect1()
 {
 
 	brush = getent("rectbrush1","targetname");
-	
+
 	brush moveY(320,2);
-	
+
 	brush waittill("movedone");
-	
+
 	while(1)
 	{
 		brush moveY(-640,2);
@@ -1101,18 +1101,18 @@ rect1()
 		brush moveY(640,2);
 		brush waittill("movedone");
 	}
-	
+
 }
 
 rect2()
 {
 
 	brush = getent("rectbrush2","targetname");
-	
+
 	brush moveY(-320,2);
-	
+
 	brush waittill("movedone");
-	
+
 	while(1)
 	{
 		brush moveY(640,2);
@@ -1120,7 +1120,7 @@ rect2()
 		brush moveY(-640,2);
 		brush waittill("movedone");
 	}
-	
+
 }
 
 spinny()
@@ -1131,13 +1131,13 @@ spinny()
 	trigger setHintString("^5>> ^3Trap Activated ^5<<");
 
 	thread spinnyright();
-	
+
 	while(1)
 	{
 		brush rotateYaw(360,2);
 		wait .1;
 	}
-	
+
 	trigger delete();
 
 }
@@ -1154,13 +1154,13 @@ spinnyright()
 	}
 }
 
-block2() 
+block2()
 {
 	brush = getent("block2","targetname");
 	trigger = getent("block2_trigger","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush moveZ(-192,.5);
 	brush waittill("movedone");
 	wait 4;
@@ -1179,14 +1179,14 @@ secret() //You must activate the secret in order to the teleportation system to 
 	trigger3 waittill("trigger" , player );
 	brush = getent("secretbruh","targetname");
 	secret = getent("secret","targetname");
-	
+
 	secret maps\mp\_utility::triggerOn();
 
 	level.fail = 0;
 
 	brush show();
 	brush solid();
-	
+
 	thread secretfound();
 	thread retries();
 	thread retries2();
@@ -1209,7 +1209,7 @@ secret() //You must activate the secret in order to the teleportation system to 
 	level.secret_hud.hideWhenInMenu = false;
 	level.secret_hud setText( ">>   ^2" + player.name + "^5 Has Unlocked The ^3Secret Room^6!   <<" );
 	level.secret_hud setPulseFX( 40, 4000, 400 );
-	
+
 	wait 5;
 	level.secret_hud destroy();
 }
@@ -1228,7 +1228,7 @@ entTransporter = getentarray("secret","targetname");
 
 Secrettele()
 {
-  
+
   while(true)
   {
    self waittill("trigger",other);
@@ -1238,7 +1238,7 @@ Secrettele()
    other setplayerangles(entTarget.angles);
    wait(0.10);
   }
-  
+
 }
 
 rollerlaser()
@@ -1247,20 +1247,20 @@ rollerlaser()
 	brush = getent("rollerlaser","targetname");
 	rlh = getent("rlhurt","targetname");
 	base = getent("rollerbase","targetname");
-	
+
 	rlh maps\mp\_utility::triggerOn();
-	
+
 	brush solid();
 	brush show();
-	
+
 	rlh enablelinkto();
 	rlh linkto(brush);
 	brush linkto(base);
-	
+
 	base moveZ(40, 4);
-	
+
 	base waittill("movedone");
-	
+
 	while(1)
 	{
 		time = RandomIntRange( 2 , 6 );
@@ -1270,7 +1270,7 @@ rollerlaser()
 		base moveZ(80, time);
 		base waittill("movedone");
 	}
-	
+
 }
 
 bouncefall()
@@ -1288,7 +1288,7 @@ bouncefall()
 			player setPlayerAngles( spawn_jump.angles );
 		}
 		else
-		{		
+		{
 			player setOrigin( spawn_acti.origin );
 			player setPlayerAngles(spawn_acti.angles );
 		}
@@ -1301,8 +1301,8 @@ actirun()
 		level.actirun_trig = getEnt( "actirun", "targetname");
 		jump = getEnt( "actirun_jumper", "targetname" );
 		acti = getEnt( "actirun_acti", "targetname" );
- 
- 
+
+
 		while(1)
 		{
 				level.actirun_trig waittill( "trigger", player );
@@ -1310,15 +1310,15 @@ actirun()
 			continue;
 				if( !isDefined( level.actirun_trig ) )
 						return;
-						
+
 				level.old_trig delete();
 				level.generator_trig delete();
- 
+
 				player freezeControls(true);
 				player SetPlayerAngles( jump.angles );
 				player setOrigin( jump.origin );
 				player TakeAllWeapons();
-				player GiveWeapon( "knife_mp" ); //jumper weapon  
+				player GiveWeapon( "knife_mp" ); //jumper weapon
 				player switchToWeapon( "knife_mp" );
 				if(isDefined(level.activ) && isAlive(level.activ))
 				{
@@ -1330,7 +1330,7 @@ actirun()
 						wait 0.05;
 				}
 				wait 0.05;
-				
+
 				player freezeControls(false);
    }
 }
@@ -1341,15 +1341,15 @@ a1()
 	brush = getent("a1b","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	while(1)
 	{
 		brush rotateYaw(360,2);
 		wait .1;
 	}
-	
+
 	trigger delete();
-	
+
 }
 
 a2() //Doesn't work meh
@@ -1358,7 +1358,7 @@ a2() //Doesn't work meh
 	brush = getentarray("lol","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	while(1)
 	{
 		for(i=0;i<brush.size;i++)
@@ -1367,9 +1367,9 @@ a2() //Doesn't work meh
 			wait 1;
 		}
 	}
-	
+
 	trigger delete();
-	
+
 }
 
 a3()
@@ -1381,24 +1381,24 @@ a3()
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
 	quake = getent("quake2","targetname");
 	sound = getent("sound2","targetname");
-	
+
 	hurt enablelinkto(brush);
 	hurt linkto (brush);
-	
+
 	brush moveZ(-176,1);
 	brush waittill("movedone");
-	
+
 	Earthquake( 0.7, 8, quake.origin, 10000 );
-	sound PlaySound( "elm_quake_sub_rumble"); 
-	
+	sound PlaySound( "elm_quake_sub_rumble");
+
 	wait 1;
-	
+
 	brush moveZ(230,1);
 	brush waittill("movedone");
 	wait 2;
-	
+
 	trigger delete();
-	
+
 }
 
 a4()
@@ -1407,7 +1407,7 @@ a4()
 	brush = getent("a4b","targetname");
 	trigger waittill("trigger");
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	while(1)
 	{
 		brush rotatePitch(-360,5);
@@ -1415,7 +1415,7 @@ a4()
 		brush rotatePitch(-360,5);
 		wait .1;
 	}
-	
+
 	trigger delete();
 }
 
@@ -1423,7 +1423,7 @@ actiruntext()
 {
 	trigger = getent("actirun","targetname");
 	trigger waittill("trigger" , player );
-	
+
 	level.ar_hud = newHudElem();
 	level.ar_hud.foreground = true;
 	level.ar_hud.AlignX = "center";
@@ -1441,7 +1441,7 @@ actiruntext()
 	level.ar_hud.hideWhenInMenu = false;
 	level.ar_hud setText( ">>   ^1" + player.name + "^3 Chosen ^5ActiRun!   <<" );
 	level.ar_hud setPulseFX( 40, 4000, 400 );
-	
+
 	wait 5;
 	level.ar_hud destroy();
 }
@@ -1451,12 +1451,12 @@ actirundoor()
 	trigger = getent("actirundoor","targetname");
 	brush = getent("actidoor","targetname");
 	trigger waittill("trigger");
-	
+
 	iPrintLnBold("^1" + level.activ.name + "^2reached the end! ^3FIGHT!");
-	
+
 	brush moveY(236,4);
 	brush waittill("movedone");
-	
+
 	trigger delete();
 }
 
@@ -1467,23 +1467,23 @@ lazor1() //x513 - add hurt
 	hurt = getent("lazor1hurt","targetname");
 	origin = getent("lazor1origin","targetname");
 	trigger waittill("trigger");
-	
+
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush show();
 	brush solid();
-	
+
 	hurt maps\mp\_utility::triggerOn();
-	
+
 	hurt enablelinkto(origin);
 	hurt linkto(origin);
-	
+
 	origin linkto(brush);
-	
+
 	while(1)
 	{
 		time = RandomIntRange( 2 , 6 );
-		wait(0.1); 
+		wait(0.1);
 		brush moveX(513,time);
 		brush waittill("movedone");
 		brush moveX(-513,time);
@@ -1498,23 +1498,23 @@ lazor2() //x513 - add hurt
 	hurt = getent("lazor2hurt","targetname");
 	origin = getent("lazor2origin","targetname");
 	trigger waittill("trigger");
-	
+
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	brush show();
 	brush solid();
-	
+
 	hurt maps\mp\_utility::triggerOn();
-	
+
 	hurt enablelinkto(origin);
 	hurt linkto(origin);
-	
+
 	origin linkto(brush);
-	
+
 	while(1)
 	{
 		time = RandomIntRange( 2 , 6 );
-		wait(0.1);	
+		wait(0.1);
 		brush moveX(513,time);
 		brush waittill("movedone");
 		brush moveX(-513,time);
@@ -1586,9 +1586,9 @@ r2brushes()
 	trigger = getent("r2b","targetname");
 	brush = getentarray("http://gyazo.com/63fa6b2713783084949b12bd0f99d11f","targetname");
 	trigger waittill("trigger");
-	
+
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	while(1)
 	{
 		for(i=0;i<brush.size;i++)
@@ -1601,7 +1601,7 @@ r2brushes()
 			brush[i] waittill("movedone");
 		}
 	}
-	
+
 		trigger delete();
 
 }
@@ -1625,19 +1625,19 @@ lasttrap()
 	trigger = getent("lasttrap_trigger","targetname");
 	brush = getent("lasttrap_brush","targetname");
 	trigger waittill("trigger");
-	
+
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
-	
+
 	thread ltlaser();
-	
+
 	while(1)
-	{	
+	{
 		time = RandomIntRange( 2 , 6 );
 		wait(0.1);
 		brush rotateYaw(360,time);
 		wait 2;
 	}
-	
+
 	trigger delete();
 }
 
@@ -1647,9 +1647,9 @@ ltlaser()
 	main = getent("lasttrap_brush","targetname");
 
 	brush show();
-	
+
 	thread lthurt();
-	
+
 	brush linkto(main);
 }
 
@@ -1658,7 +1658,7 @@ lthurt()
 	lasers = getent("ltlaser","targetname");
 	hurt = getent("lthurt","targetname");
 	hurt maps\mp\_utility::triggerOn();
-	
+
 	hurt enablelinkto();
 	hurt linkto(lasers);
 }
@@ -1670,7 +1670,7 @@ generator()
         acti = getEnt( "generator_acti", "targetname" );
 
         thread gentext();
- 
+
         while(1)
         {
                 level.generator_trig waittill( "trigger", player );
@@ -1680,10 +1680,10 @@ generator()
                         return;
 
                 thread generatorplatforms();
- 
+
                 level.actirun_trig delete();
                 level.old_trig delete();
- 
+
 				player freezeControls(true);
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
@@ -1700,13 +1700,13 @@ generator()
 						level.activ SwitchToWeapon( "ak47_mp" );
 						level.activ GiveMaxAmmo( "ak47_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
+
 			   player freezeControls(false);
    }
-   
+
 }
 
 generatorplatforms()
@@ -1714,9 +1714,9 @@ generatorplatforms()
 	platforms = getentarray("gp1","targetname");
 	trigger = getent("generator","targetaname");
 	org = getent("gunga","targetname");
-	
+
 	thread generatorplatform();
-	
+
 	while(1)
 	{
 		for(i=0;i<platforms.size;i++)
@@ -1726,7 +1726,7 @@ generatorplatforms()
 			wait .1;
 		}
 	}
-	
+
 }
 
 generatorplatform()
@@ -1735,7 +1735,7 @@ generatorplatform()
 	org = getent("generator_org2","targetname");
 
 	brush linkto(org);
-	
+
 	while(1)
 	{
 		org rotateYaw(-360,3);
@@ -1749,7 +1749,7 @@ old()
         jump = getEnt( "old_jumper", "targetname" );
 
  		thread oldtext();
- 
+
         while(1)
         {
                 level.old_trig waittill( "trigger", player );
@@ -1757,19 +1757,19 @@ old()
 			continue;
                 if( !isDefined( level.old_trig ) )
                         return;
- 
+
                 level.actirun_trig delete();
                 level.generator_trig delete();
- 
+
 				player freezeControls(true);
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
 
                 wait 0.05;
-               
+
 			   player freezeControls(false);
    }
-   
+
 }
 
 lasertrap1() //multiple lasers
@@ -1815,9 +1815,9 @@ lasertrap2() //One dynamic laser
 	hurt linkto(brush);
 
 	base moveZ(96, 1.5);
-	
+
 	base waittill("movedone");
-	
+
  	for(;;)
  	{
   	    time = RandomIntRange( 2 , 6 );
@@ -1854,7 +1854,7 @@ finished()
 {
 	trigger = getent("endmap_trig","targetname");
 	trigger waittill("trigger" , player );
-	
+
 	level.jump_hud = newHudElem();
 	level.jump_hud.foreground = true;
 	level.jump_hud.AlignX = "center";
@@ -1872,7 +1872,7 @@ finished()
 	level.jump_hud.hideWhenInMenu = false;
 	level.jump_hud setText( ">>   ^1" + player.name + "^5 Finished ^6Electory ^61ST!   <<" );
 	level.jump_hud setPulseFX( 40, 4000, 400 );
-	
+
 	wait 5;
 	level.jump_hud destroy();
 }
@@ -1883,7 +1883,7 @@ spinny2()
 	clip = getent("spinzor_clip","targetname");
 	trigger = getent("spinny2_trigger","targetname");
 	trigger waittill("trigger");
-	
+
 	trigger sethintstring("^5>> ^3Trap Activated ^5<<");
 
 	while(1)
@@ -1892,9 +1892,9 @@ spinny2()
 		clip rotateYaw(360,1);
 		wait .05;
 	}
-	
+
 	trigger delete();
-	
+
 }
 
 bounce()
@@ -1902,9 +1902,9 @@ bounce()
         level.bounce_trig = getEnt( "bounce", "targetname");
         jump = getEnt( "bounce_jumper", "targetname" );
         acti = getEnt( "bounce_acti", "targetname" );
- 
+
  		thread bouncetext();
- 
+
         while(1)
         {
                 level.bounce_trig waittill( "trigger", player );
@@ -1912,11 +1912,11 @@ bounce()
 			continue;
                 if( !isDefined( level.bounce_trig ) )
                         return;
- 
+
                 level.actirun_trig delete();
                 level.old_trig delete();
                 level.generator_trig delete();
- 
+
 				player freezeControls(true);
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
@@ -1931,20 +1931,20 @@ bounce()
 						level.activ GiveWeapon( "knife_mp" );
 						level.activ SwitchToWeapon( "knife_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
+
 			   player freezeControls(false);
    }
-   
+
 }
 
 bouncetext()
 {
 	trigger = getent("bounce","targetname");
 	trigger waittill("trigger" , player );
-	
+
 	level.bounce_hud = newHudElem();
 	level.bounce_hud.foreground = true;
 	level.bounce_hud.AlignX = "center";
@@ -1962,7 +1962,7 @@ bouncetext()
 	level.bounce_hud.hideWhenInMenu = false;
 	level.bounce_hud setText( ">>   ^1" + player.name + "^3 Chosen ^5Bounce Room!   <<" );
 	level.bounce_hud setPulseFX( 40, 4000, 400 );
-	
+
 	wait 5;
 	level.bounce_hud destroy();
 }
@@ -1971,7 +1971,7 @@ gentext()
 {
 	trigger = getent("generator","targetname");
 	trigger waittill("trigger" , player );
-	
+
 	level.gen_hud = newHudElem();
 	level.gen_hud.foreground = true;
 	level.gen_hud.AlignX = "center";
@@ -1989,7 +1989,7 @@ gentext()
 	level.gen_hud.hideWhenInMenu = false;
 	level.gen_hud setText( ">>   ^1" + player.name + "^3 Chosen ^5Generator Room!   <<" );
 	level.gen_hud setPulseFX( 40, 4000, 400 );
-	
+
 	wait 5;
 	level.gen_hud destroy();
 }
@@ -1998,7 +1998,7 @@ oldtext()
 {
 	trigger = getent("old","targetname");
 	trigger waittill("trigger" , player );
-	
+
 	level.old_hud = newHudElem();
 	level.old_hud.foreground = true;
 	level.old_hud.AlignX = "center";
@@ -2016,7 +2016,7 @@ oldtext()
 	level.old_hud.hideWhenInMenu = false;
 	level.old_hud setText( ">>   ^1" + player.name + "^3 Chosen ^5Old Room!   <<" );
 	level.old_hud setPulseFX( 40, 4000, 400 );
-	
+
 	wait 5;
 	level.old_hud destroy();
 }
@@ -2054,7 +2054,7 @@ secretfin1()
 
 }
 
-retries() 
+retries()
 {
 	trigger_teleport = getEnt( "checkpoint2", "targetname" );
 	trigger_destination = getEnt("checkpoint2_dest","targetname");
@@ -2062,9 +2062,9 @@ retries()
 	while(1)
 	{
 		trigger_teleport waittill ("trigger", player);
-	
+
 		level.fail += 1;
-		
+
 		if(level.fail == 9)
 		{
 			player iPrintlnBold( "^1Final Attempt!" );
@@ -2074,7 +2074,7 @@ retries()
 		{
 			player suicide();
 		}
-			
+
 		player SetOrigin(trigger_destination.origin);
 		player SetPlayerAngles( trigger_destination.angles );
 	}
@@ -2084,7 +2084,7 @@ retries()
 trails() //Thread functions for trials (Thanks to Xenon)
 {
 
-	self.trail = 0; 
+	self.trail = 0;
 
 	thread trail1();
 	thread trail2();
@@ -2096,14 +2096,14 @@ trails() //Thread functions for trials (Thanks to Xenon)
 trail1()
 {
 	trigger = getEnt ("trail1", "targetname");
-	
-	
+
+
 	trigger waittill ("trigger", player);
 	trigger delete();
 
-	
+
 	while(isAlive(player))
-	{	
+	{
 		if(self.trail == 0)
 		{
 			playFx( level.fx_trail1 , player.origin );
@@ -2121,69 +2121,69 @@ trail1()
 trail2()
 {
 	trigger = getEnt ("trail2", "targetname");
-	
-	
+
+
 	trigger waittill ("trigger", player);
 	trigger delete();
 
 	self.trail = 1;
-	
+
 	while(isAlive(player))
 	{
 		playFx( level.fx_trail2 , player.origin );
 		wait .1;
-	}	
+	}
 }
 
 trail3()
 {
 	trigger = getEnt ("trail3", "targetname");
-	
-	
+
+
 	trigger waittill ("trigger", player);
 	trigger delete();
 
 	self.trail = 1;
-	
+
 	while(isAlive(player))
 	{
 		playFx( level.fx_trail3 , player.origin );
 		wait .1;
-	}	
-}	
+	}
+}
 
 trail4()
 {
 	trigger = getEnt ("trail4", "targetname");
-	
-	
+
+
 	trigger waittill ("trigger", player);
 	trigger delete();
 
 	self.trail = 1;
-	
+
 	while(isAlive(player))
 	{
 		playFx( level.fx_trail4 , player.origin );
 		wait .1;
-	}		
+	}
 }
 
 trail5()
 {
 	trigger = getEnt ("trail5", "targetname");
-	
-	
+
+
 	trigger waittill ("trigger", player);
 	trigger delete();
 
 	self.trail = 1;
-	
+
 	while(isAlive(player))
 	{
 		playFx( level.fx_trail5 , player.origin );
 		wait .1;
-	}		
+	}
 }
 
 speed( trigger )
@@ -2194,7 +2194,7 @@ speed( trigger )
 	while(1)
 	{
 		trigger waittill( "trigger", player );
-		if( isDefined( player.speed ) )
+		if( isDefined( player.bh ) )
 			continue;
 		player thread PushPlayer( trigger );
 	}
@@ -2204,7 +2204,7 @@ PushPlayer( trigger )
 {
 	self endon("disconnect");
 
-	self.speed = true;
+	self.bh = true;
 
 	if(distance(trigger.origin, self.origin) > 400) // then the player tried to load-glitch the speed
 	{
@@ -2235,7 +2235,7 @@ PushPlayer( trigger )
 	while(self isTouching(trigger))
 		wait 0.05;
 
-	self.speed = undefined;
+	self.bh = undefined;
 }
 
 adminOff()
@@ -2310,9 +2310,9 @@ retries2()
 	while(1)
 	{
 		trigger_teleport waittill ("trigger", player);
-	
+
 		level.fail += 1;
-		
+
 		if(level.fail == 9)
 		{
 			player iPrintlnBold( "^1Final Attempt!" );
@@ -2322,7 +2322,7 @@ retries2()
 		{
 			player suicide();
 		}
-			
+
 		player SetOrigin(trigger_destination.origin);
 		player SetPlayerAngles( trigger_destination.angles );
 	}
@@ -2337,9 +2337,9 @@ retries3()
 	while(1)
 	{
 		trigger_teleport waittill ("trigger", player);
-	
+
 		level.fail += 1;
-		
+
 		if(level.fail == 9)
 		{
 			player iPrintlnBold( "^1Final Attempt!" );
@@ -2349,7 +2349,7 @@ retries3()
 		{
 			player suicide();
 		}
-			
+
 		player SetOrigin(trigger_destination.origin);
 		player SetPlayerAngles( trigger_destination.angles );
 	}
@@ -2368,10 +2368,10 @@ bounceweapon()
 	trigger delete();
 }
 
-/* 
+/*
 
 
-$$$$$$$\  $$\                     $$\ 
+$$$$$$$\  $$\                     $$\
 $$  __$$\ \__|                    $$ |
 $$ |  $$ |$$\ $$\   $$\  $$$$$$\  $$ |
 $$$$$$$  |$$ |\$$\ $$  |$$  __$$\ $$ |
@@ -2379,18 +2379,18 @@ $$  ____/ $$ | \$$$$  / $$$$$$$$ |$$ |
 $$ |      $$ | $$  $$<  $$   ____|$$ |
 $$ |      $$ |$$  /\$$\ \$$$$$$$\ $$ |
 \__|      \__|\__/  \__| \_______|\__|
-                                      
-                                      
-                                     
+
+
+
 The people above tested the map, and either found problem or offered suggestions I used.
 
 Credits to people who have helped with scripting/mapping:
 
--Phaedrean 
--Sentrex 
--Staab 
--Xenon 
--JWofles 
+-Phaedrean
+-Sentrex
+-Staab
+-Xenon
+-JWofles
 
 Be sure to visit CoDScript: http://codscript.net/
 
@@ -2399,7 +2399,7 @@ R.I.P Raid 2015 February - Never Forgotten:
 Personally, I'd just like to thank you all for giving me the chance to run such an amazing community.
 Raid has by-far been the greatest thing I have ever had the honor of being a part of. I never would have
 thought that my little side-community Raid would turn into something so great as this. Thanks for the great times. - Darmuh
- 
+
 I'm actually a guy - BraXi
 
 You probably forgot me. - Thomas
@@ -2408,33 +2408,33 @@ Nubs still spam me with coding questions. - Lossy
 
 
 
-$$$$$$$\            $$\       $$\          $$$$$$\                          $$\                     
-$$  __$$\           \__|      $$ |        $$  __$$\                         \__|                    
-$$ |  $$ | $$$$$$\  $$\  $$$$$$$ |        $$ /  \__| $$$$$$\  $$$$$$\$$$$\  $$\ $$$$$$$\   $$$$$$\  
-$$$$$$$  | \____$$\ $$ |$$  __$$ |$$$$$$\ $$ |$$$$\  \____$$\ $$  _$$  _$$\ $$ |$$  __$$\ $$  __$$\ 
+$$$$$$$\            $$\       $$\          $$$$$$\                          $$\
+$$  __$$\           \__|      $$ |        $$  __$$\                         \__|
+$$ |  $$ | $$$$$$\  $$\  $$$$$$$ |        $$ /  \__| $$$$$$\  $$$$$$\$$$$\  $$\ $$$$$$$\   $$$$$$\
+$$$$$$$  | \____$$\ $$ |$$  __$$ |$$$$$$\ $$ |$$$$\  \____$$\ $$  _$$  _$$\ $$ |$$  __$$\ $$  __$$\
 $$  __$$<  $$$$$$$ |$$ |$$ /  $$ |\______|$$ |\_$$ | $$$$$$$ |$$ / $$ / $$ |$$ |$$ |  $$ |$$ /  $$ |
 $$ |  $$ |$$  __$$ |$$ |$$ |  $$ |        $$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$ |$$ |  $$ |$$ |  $$ |
 $$ |  $$ |\$$$$$$$ |$$ |\$$$$$$$ |        \$$$$$$  |\$$$$$$$ |$$ | $$ | $$ |$$ |$$ |  $$ |\$$$$$$$ |
 \__|  \__| \_______|\__| \_______|         \______/  \_______|\__| \__| \__|\__|\__|  \__| \____$$ |
                                                                                           $$\   $$ |
                                                                                           \$$$$$$  |
-                                                                                           \______/ 
+                                                                                           \______/
 
- $$$$$$\            $$$$$$$\   $$$$$$\                      $$\            $$\     
-$$  __$$\           $$  __$$\ $$  __$$\                     \__|           $$ |    
-$$ /  \__| $$$$$$\  $$ |  $$ |$$ /  \__| $$$$$$$\  $$$$$$\  $$\  $$$$$$\ $$$$$$\   
-$$ |      $$  __$$\ $$ |  $$ |\$$$$$$\  $$  _____|$$  __$$\ $$ |$$  __$$\\_$$  _|  
-$$ |      $$ /  $$ |$$ |  $$ | \____$$\ $$ /      $$ |  \__|$$ |$$ /  $$ | $$ |    
-$$ |  $$\ $$ |  $$ |$$ |  $$ |$$\   $$ |$$ |      $$ |      $$ |$$ |  $$ | $$ |$$\ 
+ $$$$$$\            $$$$$$$\   $$$$$$\                      $$\            $$\
+$$  __$$\           $$  __$$\ $$  __$$\                     \__|           $$ |
+$$ /  \__| $$$$$$\  $$ |  $$ |$$ /  \__| $$$$$$$\  $$$$$$\  $$\  $$$$$$\ $$$$$$\
+$$ |      $$  __$$\ $$ |  $$ |\$$$$$$\  $$  _____|$$  __$$\ $$ |$$  __$$\\_$$  _|
+$$ |      $$ /  $$ |$$ |  $$ | \____$$\ $$ /      $$ |  \__|$$ |$$ /  $$ | $$ |
+$$ |  $$\ $$ |  $$ |$$ |  $$ |$$\   $$ |$$ |      $$ |      $$ |$$ |  $$ | $$ |$$\
 \$$$$$$  |\$$$$$$  |$$$$$$$  |\$$$$$$  |\$$$$$$$\ $$ |      $$ |$$$$$$$  | \$$$$  |
- \______/  \______/ \_______/  \______/  \_______|\__|      \__|$$  ____/   \____/ 
-                                                                $$ |               
-                                                                $$ |               
-                                                                \__|        
+ \______/  \______/ \_______/  \______/  \_______|\__|      \__|$$  ____/   \____/
+                                                                $$ |
+                                                                $$ |
+                                                                \__|
 
 */
 
-slaya() 
+slaya()
 {
 	trigger = getEnt( "slayaa", "targetname" );
 	trigger waittill( "trigger", player );

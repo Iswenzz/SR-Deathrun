@@ -80,7 +80,6 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		eAttacker iPrintln("You hit " + self.name + " ^7for ^2" + iDamage + " ^7damage.");
 		self iPrintln(eAttacker.name + " ^7hit you for ^2" + iDamage + " ^7damage.");
 	}
-
 	iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
 
 	self doPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);

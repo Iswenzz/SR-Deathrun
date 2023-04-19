@@ -87,6 +87,7 @@ watchGame()
 		}
 		if (level.jumpers <= 1 && !level.activators && !level.activatorKilled && !level.freeRun)
 		{
+			game["roundsplayed"]--;
 			levelRestart(true);
 			return;
 		}
@@ -203,24 +204,15 @@ pickActivator()
 	if (isDefined(level.forceActivator))
 		activator = level.forceActivator;
 
-	activator thread actiGodmode();
-	wait 0.05;
+	activator.godmode = true;
 	activator sr\game\_teams::setTeam("axis");
 	activator sr\game\_rank::giveRankXp("activator");
 	activator eventSpawn(true);
+	activator.godmode = undefined;
 
 	setDvar("last_picked_player", activator.number);
 	level notify("activator", activator);
 	level.activ = activator;
-}
-
-actiGodmode()
-{
-	self endon("disconnect");
-
-	self.godmode = true;
-	wait 1;
-	self.godmode = undefined;
 }
 
 lastJumper()

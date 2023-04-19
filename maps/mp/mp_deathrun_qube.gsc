@@ -1080,7 +1080,7 @@ speed( trigger )
 	while(1)
 	{
 		trigger waittill( "trigger", player );
-		if( isDefined( player.speed ) )
+		if( isDefined( player.bh ) )
 			continue;
 		player PlaySound( "doing" );
 		player thread PushPlayer( trigger );
@@ -1091,7 +1091,7 @@ PushPlayer( trigger )
 {
 	self endon("disconnect");
 
-	self.speed = true;
+	self.bh = true;
 
 	if(distance(trigger.origin, self.origin) > 400) // then the player tried to load-glitch the speed
 	{
@@ -1125,7 +1125,7 @@ PushPlayer( trigger )
 	while(self isTouching(trigger))
 		wait 0.05;
 
-	self.speed = undefined;
+	self.bh = undefined;
 }
 
 adminOff()

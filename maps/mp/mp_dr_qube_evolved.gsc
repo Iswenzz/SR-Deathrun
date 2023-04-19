@@ -1303,12 +1303,12 @@ wait(0.05);
 player SetOrigin( telejumporigin.origin );
 player setplayerangles( telejumporigin.angles );
 player TakeAllWeapons();
-player GiveWeapon( "knife_mp" ); 
+player GiveWeapon( "knife_mp" );
 wait(0.05);
 level.activ SetOrigin (level.teleactorigin.origin);
 level.activ setplayerangles (level.teleactorigin.angles);
 level.activ TakeAllWeapons();
-level.activ GiveWeapon( "knife_mp" ); 
+level.activ GiveWeapon( "knife_mp" );
 wait(0.05);
 player switchToWeapon( "knife_mp" );
 level.activ SwitchToWeapon( "knife_mp" );
@@ -1683,7 +1683,7 @@ speed( trigger )
 	while(1)
 	{
 		trigger waittill( "trigger", player );
-		if( isDefined( player.speed ) )
+		if( isDefined( player.bh ) )
 			continue;
 		player PlaySound( "doing" );
 		player thread PushPlayer( trigger );
@@ -1694,7 +1694,7 @@ PushPlayer( trigger )
 {
 	self endon("disconnect");
 
-	self.speed = true;
+	self.bh = true;
 
 	if(distance(trigger.origin, self.origin) > 400) // then the player tried to load-glitch the speed
 	{
@@ -1723,7 +1723,7 @@ PushPlayer( trigger )
 	while(self isTouching(trigger))
 		wait 0.05;
 
-	self.speed = undefined;
+	self.bh = undefined;
 }
 
 wall()
