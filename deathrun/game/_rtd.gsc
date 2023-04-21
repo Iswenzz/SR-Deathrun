@@ -46,6 +46,9 @@ rtd()
 	self endon("death");
 	self endon("disconnect");
 
+	if (game["state"] != "playing")
+		level waittill("round_started");
+
 	while (true)
 	{
 		wait 0.2;
@@ -60,7 +63,7 @@ rtd()
 
 canRTD()
 {
-	return game["state"] == "playing" && !isDefined(self.rtd) && self isAllies() && !level.trapsDisabled && !level.freeRun;
+	return !isDefined(self.rtd) && self isAllies() && !level.trapsDisabled && !level.freeRun;
 }
 
 randomize()

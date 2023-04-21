@@ -208,11 +208,13 @@ pickActivator()
 	activator sr\game\_teams::setTeam("axis");
 	activator sr\game\_rank::giveRankXp("activator");
 	activator eventSpawn(true);
-	activator.godmode = undefined;
 
 	setDvar("last_picked_player", activator.number);
 	level notify("activator", activator);
 	level.activ = activator;
+
+	wait 0.05;
+	activator.godmode = undefined;
 }
 
 lastJumper()
