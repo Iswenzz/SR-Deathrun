@@ -218,13 +218,6 @@ actiGodmode()
 {
 	self endon("disconnect");
 	self.godmode = true;
-
-	// for (i = 0; i < 20; i++)
-	// {
-	// 	iPrintLnBold(fmt("%s %d", self.name, isDefined(self.godmode)));
-	// 	wait 0.05;
-	// }
-
 	wait 1;
 	self.godmode = undefined;
 }
