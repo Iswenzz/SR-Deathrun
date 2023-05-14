@@ -8,26 +8,26 @@ main()
 	event("spawn", ::rtd);
 
 	add(5, "^3Defrag", ::rtd_Defrag);
-	add(5, "^3Portal", ::rtd_Portal);
+	// add(5, "^3Portal", ::rtd_Portal);
 	add(10, "^5Speed Boost !", ::rtd_SpeedBoost);
-	add(10, "^5Jump Boost !", ::rtd_JumpBoost);
-	add(10, "^5Gravity Boost !", ::rtd_GravityBoost);
+	// add(10, "^5Jump Boost !", ::rtd_JumpBoost);
+	// add(10, "^5Gravity Boost !", ::rtd_GravityBoost);
 	add(20, "^5Grenade !", ::rtd_Grenade);
-	add(20, "^5RPG !", ::rtd_RPG);
-	add(20, "^5150 XP", ::rtd_XP);
-	add(20, "^5Life", ::rtd_Life);
-	add(20, "^5Dog", ::rtd_Dog);
-	add(20, "^5Shovel !", ::rtd_Shovel);
-	add(20, "^5Health Boost !", ::rtd_HealthBoost);
-	add(20, "^2Fast Fire Perk", ::rtd_PerkFire);
-	add(20, "^2Fast Reload Perk", ::rtd_PerkReload);
-	add(20, "^1Slowdown", ::rtd_Slowdown);
-	add(20, "^1Heavy Gravity", ::rtd_HeavyGravity);
-	add(20, "^1No Sprint", ::rtd_NoSprint);
-	add(20, "^1-90 HP", ::rtd_Damage);
-	add(20, "^15sec Freeze Randomly", ::rtd_RandomFreeze);
-	add(20, "^1Flash Randomly", ::rtd_RandomFlash);
-	add(20, "^1Explode in 80 seconds !!!!", ::rtd_Explode);
+	// add(20, "^5RPG !", ::rtd_RPG);
+	// add(20, "^5150 XP", ::rtd_XP);
+	// add(20, "^5Life", ::rtd_Life);
+	// add(20, "^5Dog", ::rtd_Dog);
+	// add(20, "^5Shovel !", ::rtd_Shovel);
+	// add(20, "^5Health Boost !", ::rtd_HealthBoost);
+	// add(20, "^2Fast Fire Perk", ::rtd_PerkFire);
+	// add(20, "^2Fast Reload Perk", ::rtd_PerkReload);
+	// add(20, "^1Slowdown", ::rtd_Slowdown);
+	// add(20, "^1Heavy Gravity", ::rtd_HeavyGravity);
+	// add(20, "^1No Sprint", ::rtd_NoSprint);
+	// add(20, "^1-90 HP", ::rtd_Damage);
+	// add(20, "^15sec Freeze Randomly", ::rtd_RandomFreeze);
+	// add(20, "^1Flash Randomly", ::rtd_RandomFlash);
+	// add(20, "^1Explode in 80 seconds !!!!", ::rtd_Explode);
 }
 
 add(chance, message, callback)
@@ -84,6 +84,8 @@ randomize()
 	picked = level.rtd[randomInt(level.rtd.size)];
 	while (picked.chance != chance)
 		picked = level.rtd[randomInt(level.rtd.size)];
+
+	iPrintLnBold(fmt("%s: %s", selff.name, picked.message));
 
 	self setLowerMessage(picked.message);
 	self thread [[picked.callback]]();
