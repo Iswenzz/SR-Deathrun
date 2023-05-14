@@ -204,7 +204,7 @@ pickActivator()
 	if (isDefined(level.forceActivator))
 		activator = level.forceActivator;
 
-	activator.godmode = true;
+	activator thread actiGodmode();
 	activator sr\game\_teams::setTeam("axis");
 	activator sr\game\_rank::giveRankXp("activator");
 	activator eventSpawn(true);
@@ -212,9 +212,21 @@ pickActivator()
 	setDvar("last_picked_player", activator.number);
 	level notify("activator", activator);
 	level.activ = activator;
+}
 
-	wait 0.05;
-	activator.godmode = undefined;
+actiGodmode()
+{
+	self endon("disconnect");
+	self.godmode = true;
+
+	for (i = 0; i < 20; i++)
+	{
+		iPrintLnBold(fmt("%s %d", self.name, isDefined(self.godmode)));
+		wait 0.05;
+	}
+
+	// wait 1;
+	self.godmode = undefined;
 }
 
 lastJumper()
