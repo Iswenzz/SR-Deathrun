@@ -85,7 +85,7 @@ randomize()
 	while (picked.chance != chance)
 		picked = level.rtd[randomInt(level.rtd.size)];
 
-	iPrintLnBold(fmt("%s: %s", selff.name, picked.message));
+	iPrintLnBold(fmt("%s: %s", self.name, picked.message));
 
 	self setLowerMessage(picked.message);
 	self thread [[picked.callback]]();
