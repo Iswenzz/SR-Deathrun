@@ -90,6 +90,7 @@ main()
 	deathrun\player\huds\_demo::main();
 
 	deathrun\commands\_deathrun::main();
+	deathrun\commands\_leaderboard::main();
 }
 
 precache()
