@@ -71,6 +71,7 @@ main()
 	sr\commands\_portal::main();
 
 	deathrun\game\_game::main();
+	deathrun\game\_ghost::main();
 	deathrun\game\_rtd::main();
 	deathrun\game\_map::main();
 	deathrun\game\_demo::main();

@@ -69,6 +69,8 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		return;
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_PROJECTILE" && isWallbang(eAttacker, self))
 		return;
+	if (isPlayer(eAttacker) && !self sameTeam(eAttacker) && isDefined(eAttacker.ghost))
+		return;
 	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
 		return;
 	if (self isAxis() && sMeansOfDeath == "MOD_FALLING" && !level.finishedMap)
@@ -171,6 +173,7 @@ playerSpawn()
 	}
 
 	self spawnPlayer();
+	self.ghost = undefined;
 
 	if (self.settings["player_knife"])
 	{

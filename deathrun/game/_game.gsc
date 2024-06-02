@@ -39,6 +39,7 @@ start()
 
 	thread watchGame();
 	thread watchTraps();
+	thread autoRespawn();
 }
 
 watchGame()
@@ -108,6 +109,23 @@ watchTraps()
 			level.trapTriggers[i] thread trapFreeRun();
 		if (level.dvar["giveXpForActivation"])
 			level.trapTriggers[i] thread trapActivation();
+	}
+}
+
+autoRespawn()
+{
+	level endon("end");
+	level endon("endround");
+	level endon("kill logic");
+
+	while (true)
+	{
+		players = getDeadPlayers();
+		for (i = 0; i < players.size; i++)
+			players[i] respawn();
+
+		iPrintLn("^5All players respawned.");
+		wait 120;
 	}
 }
 
