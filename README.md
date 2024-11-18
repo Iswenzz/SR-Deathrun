@@ -1,6 +1,6 @@
 # SR Deathrun
 
-![](https://i.imgur.com/z5k09Fm.jpg)
+![](https://i.imgur.com/A861gUK.jpeg)
 
 The classical mod in which a single player fights alone against the other team, his only weapons are his deadly traps. The players in the opposite team have to kill the trapmaster after finishing his course without dying.
 
