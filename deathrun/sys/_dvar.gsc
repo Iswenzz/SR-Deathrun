@@ -23,6 +23,6 @@ initDvars()
 	setDvar("jump_slowdownEnable", 0);
 	setDvar("bullet_penetrationEnabled", 0);
 
-	makeDvarServerInfo("mod_author", "SuX Lolz");
-	setDvar("mod_author", "SuX Lolz");
+	makeDvarServerInfo("mod_author", "Iswenzz");
+	setDvar("mod_author", "Iswenzz");
 }
