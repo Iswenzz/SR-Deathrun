@@ -60,10 +60,6 @@ load()
 
 	request = SQL_Prepare("SELECT player, name, score, value FROM scores WHERE map = ?");
 	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 30);
-	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 
