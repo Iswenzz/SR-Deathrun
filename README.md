@@ -33,5 +33,16 @@ The classical mod in which a single player fights alone against the other team, 
 * Voice chat with proximity feature
 * Radio MP3 & WAV streaming
 
+
+## Documentation
+* [API](https://github.com/Iswenzz/SR-Dev/blob/master/docs/deathrun.md)
+
+## Instructions
+In order to use this mod, download the repository and extract it to the cod4's ``/mods/sr_deathrun`` directory. Then go to the ``scripts`` directory and start the ``build_iwds.sh`` to build the IWDs and the ``build.sh`` to build the mod.ff.
+
+## Building (Windows)
+_Pre-Requisites:_
+1. [CoD4 Mod Tools](https://github.com/promod/CoD4-Mod-Tools)
+
 ## Contributors:
 ***Note:*** If you would like to contribute to this repository, feel free to send a pull request, and I will review your code. Also feel free to post about any problems that may arise in the issues section of the repository.
