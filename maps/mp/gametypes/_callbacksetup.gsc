@@ -4,7 +4,7 @@
 start()
 {
 	printLn("^5===================================");
-	printLn("^5SR Mod (c) Iswenzz 2016-2023");
+	printLn("^5SR Mod (c) Iswenzz");
 	printLn("^5iswenzz.com" );
 	printLn("^5===================================");
 
@@ -150,7 +150,6 @@ CodeCallback_PlayerConnect()
 
 	self.shortName = getSubStr(self.name, 0, 15);
 	self.guid = getSubStr(self getGuid(), 24, 32);
-	self.id = sr\sys\_ids::load();
 	self.number = self getEntityNumber();
 	self.team = IfUndef(self.pers["team"], "spectator");
 	self.sessionteam = self.team;
@@ -179,7 +178,7 @@ CodeCallback_PlayerConnect()
 	}
 	else self eventSpawn();
 
-	comPrintLn(fmt("[Info] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
+	comPrintLn(fmt("^5[Player] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
 
 	self.pers["connected"] = true;
 	self notify("connecting_sync");
