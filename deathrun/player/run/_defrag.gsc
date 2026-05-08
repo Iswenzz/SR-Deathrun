@@ -25,6 +25,7 @@ start()
 
 	self thread sr\game\_defrag::onSpawn();
 	self thread sr\player\huds\_viewkick::onSpawn();
+	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 
 	if (!level.defragStartWeapons.size)
 	{

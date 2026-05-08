@@ -3,9 +3,6 @@
 
 main()
 {
-    cmd("player", 		"speed",    	::cmd_Speed);
-    cmd("player", 		"190",    		::cmd_190);
-    cmd("player", 		"210",    		::cmd_210);
 	cmd("player", 		"sheep",		::cmd_Sheep);
 	cmd("player", 		"fxenable",		::cmd_FX);
 	cmd("adminplus", 	"life",			::cmd_Life);
@@ -126,20 +123,25 @@ cmd_Points(args)
 cmd_Special(args)
 {
 	if (args.size < 1)
-		return self pm("Usage: special <defrag | portal>");
+		return self pm("Usage: special <defrag | portal | bhop>");
 
 	mode = undefined;
 	switch (args[0])
 	{
 		case "defrag":
 			mode = deathrun\player\run\_defrag::start;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^3DEFRAG ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^3DEFRAG ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^1DEFRAG ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^1DEFRAG ROUND");
 			break;
 		case "portal":
 			mode = deathrun\player\run\_portal::start;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
+			break;
+		case "bhop":
+			mode = deathrun\player\run\_bhop::start;
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^2BHOP ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^2BHOP ROUND");
 			break;
 	}
 	if (!isDefined(mode))

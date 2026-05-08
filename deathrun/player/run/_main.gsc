@@ -10,6 +10,7 @@ main()
 	addMode("210", deathrun\player\run\_210::start);
 	addMode("Portal", deathrun\player\run\_portal::start);
 	addMode("Defrag", deathrun\player\run\_defrag::start);
+	addMode("Bhop", deathrun\player\run\_bhop::start);
 
     event("map", ::endmapTrigger);
 }
@@ -29,21 +30,11 @@ start()
 
 getLastMode()
 {
-	switch (self getStat(1700))
-	{
-		case 1: return "190";
-		case 2: return "210";
-	}
 	return "210";
 }
 
 getLastModeStat()
 {
-	switch (self.sr_mode)
-	{
-		case "190": return 1;
-		case "210": return 2;
-	}
 	return 2;
 }
 

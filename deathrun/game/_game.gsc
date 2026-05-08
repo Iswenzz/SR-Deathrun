@@ -140,18 +140,23 @@ specialRound()
 	if (randomIntRange(0, 100) > 1)
 		return;
 
-	mode = randomIntRange(0, 2) + 1;
+	mode = randomIntRange(0, 3) + 1;
 	switch (mode)
 	{
 		case 1:
 			mode = deathrun\player\run\_defrag::start;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^3DEFRAG ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^3DEFRAG ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^1DEFRAG ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^1DEFRAG ROUND");
 			break;
 		case 2:
 			mode = deathrun\player\run\_portal::start;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
+			break;
+		case 3:
+			mode = deathrun\player\run\_bhop::start;
+			thread braxi\_mod::drawInformation(800, 0.8, 1, "^2BHOP ROUND");
+			thread braxi\_mod::drawInformation(800, 0.8, -1, "^2BHOP ROUND");
 			break;
 	}
 	players = getPlayingPlayers();
