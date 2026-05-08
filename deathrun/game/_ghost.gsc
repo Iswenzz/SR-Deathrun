@@ -15,14 +15,14 @@ start()
 	self clean();
 
 	wait 3.5;
-	if (!check())
+	if (!self check())
 		return;
 
 	self setLowerMessage("Ghost Mode ^5[{+activate}]");
 	while (!self useButtonPressed())
 		wait 0.05;
 
-	if (!check())
+	if (!self check())
 		return;
 
 	self thread spawn();
@@ -57,5 +57,5 @@ clean()
 
 check()
 {
-	return !isAxis() && game["state"] == "playing";
+	return self.died && !self isAxis() && game["state"] == "playing";
 }
