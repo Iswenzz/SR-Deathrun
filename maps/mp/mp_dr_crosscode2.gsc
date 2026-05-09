@@ -20,8 +20,8 @@ main()
     precacheitem( "crosscode_heat_mp" );
     precacheitem( "crosscode_shock_mp" );
     precacheitem( "crosscode_wave_mp" );
-    
-	
+
+
 	thread sniper();
 	thread elemental();
 	thread knife();
@@ -40,7 +40,7 @@ main()
     thread music();
     thread musicbox();
     thread weaponBox();
-    
+
 	thread endmap();
 //	thread credits();
 
@@ -273,7 +273,7 @@ trap7()
         grass moveZ (-500, 4, 0.2, 0);
         wait 5;
         island moveZ (500, 4, 0, 0.2);
-        grass moveZ (500, 4, 0, 0.2);        
+        grass moveZ (500, 4, 0, 0.2);
 
     }
 
@@ -291,7 +291,7 @@ musicBox()
     trig SetHintString("Press ^5[&&1]^7 to talk with Shizuka");
     trig waittill("trigger",p);
     trig delete();
-    
+
     p freezecontrols(1);
 	p thread musicfix();
     p musicMenu();
@@ -318,7 +318,7 @@ musicMenu()
     self endon( "death" );
     self endon( "spawned" );
     self endon( "joined_spectators" );
-    
+
     self notify( "music thread terminated" );
     self endon( "music thread terminated" );
 
@@ -367,7 +367,7 @@ musicMenu()
     i++; // 4: WIZUALNY TIMER
     self.hud_music[i] = braxi\_mod::addTextHud( self, 320, 245, 1, "center", "top", 1.4 );
     self.hud_music[i].sort = 886;
-    self.hud_music[i].color = (1, 1, 1); 
+    self.hud_music[i].color = (1, 1, 1);
     timerHud = self.hud_music[i];
     timerHud setText("Selection time left: 15s"); // Tekst startowy
 
@@ -383,7 +383,7 @@ musicMenu()
         else self.hud_music[i].glowcolor = (0.3, 0.7, 1.0);
         self.hud_music[i] setText(level.music[j]["song"]);
     }
-    
+
     i++; // Poświata
     self.hud_music[i] = braxi\_mod::addTextHud( self, 320, 175, 0.4, "center", "top", 1.4 );
     indicator = self.hud_music[i];
@@ -397,7 +397,7 @@ musicMenu()
     startWidth = (startSong.size * 5.8) + 10; // Liczymy jej szerokość
     indicator setShader( "white", int(startWidth), 17 ); // Ustawiamy shader z nową szerokością
     // ---------------------------------------
-	
+
 	wait 0.2;
     self thread musicTimer(15, timerHud); // Przekazujemy HUD timera
 
@@ -408,13 +408,13 @@ musicMenu()
         if(self attackButtonPressed())
         {
             // 1. Stary element wraca do niższej alfy
-            self.hud_music[5+self.selection].alpha = 0.93; 
-            
+            self.hud_music[5+self.selection].alpha = 0.93;
+
             // 2. Zmiana wyboru
             self.selection++;
-            if( self.selection >= level.music.size ) 
+            if( self.selection >= level.music.size )
                 self.selection = 0;
-            
+
             // 3. Nowy element piosenki
             item = self.hud_music[5+self.selection];
             item.alpha = 1;
@@ -422,28 +422,28 @@ musicMenu()
             // --- OBLICZANIE DYNAMICZNEJ SZEROKOŚCI ---
             songName = level.music[self.selection]["song"];
             // Obliczamy szerokość: liczba znaków * 8 pikseli + 30 marginesu
-            newWidth = (songName.size * 5.8) + 10; 
+            newWidth = (songName.size * 5.8) + 10;
 
             // 4. ANIMACJA RUCHU I SKALOWANIA
             // W GSC scaleOverTime działa na szerokość i wysokość obiektu
-            indicator moveOverTime(0.15); 
+            indicator moveOverTime(0.15);
             indicator scaleOverTime(0.15, int(newWidth), 17); // Płynna zmiana rozmiaru
-            indicator.y = item.y; 
+            indicator.y = item.y;
 
             wait 0.15;
         }
          else if(self useButtonPressed())
         {
             // Zatrzymujemy obecną (losową) muzykę z płynnym wyciszeniem (2 sekundy)
-            AmbientStop(2); 
+            AmbientStop(2);
             wait 0.1;
 
             iprintln("^6>> ^7Now playing: ^1"+level.music[self.selection]["song"]);
             ambientPlay(level.music[self.selection]["alias"]);
             level.selectedmusicid = self.selection;
-            
+
             self thread hideMusicHUD();
-            return; 
+            return;
         }
     }
 }
@@ -457,11 +457,11 @@ musicTimer(time, timerHud)
     while(time >= 0)
     {
         timerHud setText("Selection time left: " + time + "s");
-        
+
         if(time <= 3) // Ostatnie 3 sekundy - Czerwony
-            timerHud.color = (1, 0, 0); 
+            timerHud.color = (1, 0, 0);
         else if(time <= 5) // 5 i 4 sekundy - Pomarańczowy
-            timerHud.color = (1, 0.5, 0); 
+            timerHud.color = (1, 0.5, 0);
 
         wait 1;
         time--;
@@ -487,29 +487,29 @@ hideMusicHUD()
 
     // 2. Główne grafiki (0, 1, 2) odjeżdżają i znikają jednocześnie
     // Postać Shizuki (Index 0)
-    if(isdefined(self.hud_music[0])) 
-    { 
-        self.hud_music[0] moveOverTime(0.6); 
+    if(isdefined(self.hud_music[0]))
+    {
+        self.hud_music[0] moveOverTime(0.6);
         self.hud_music[0] fadeOverTime(0.6);
-        self.hud_music[0].x = 900; 
+        self.hud_music[0].x = 900;
         self.hud_music[0].alpha = 0;
     }
-    
+
     // Dymek (Index 1)
-    if(isdefined(self.hud_music[1])) 
-    { 
-        self.hud_music[1] moveOverTime(0.6); 
+    if(isdefined(self.hud_music[1]))
+    {
+        self.hud_music[1] moveOverTime(0.6);
         self.hud_music[1] fadeOverTime(0.6);
-        self.hud_music[1].y = 670; 
+        self.hud_music[1].y = 670;
         self.hud_music[1].alpha = 0;
     }
-    
+
     // Tło menu (Index 2)
-    if(isdefined(self.hud_music[2])) 
-    { 
-        self.hud_music[2] moveOverTime(0.6); 
+    if(isdefined(self.hud_music[2]))
+    {
+        self.hud_music[2] moveOverTime(0.6);
         self.hud_music[2] fadeOverTime(0.6);
-        self.hud_music[2].y = -150; 
+        self.hud_music[2].y = -150;
         self.hud_music[2].alpha = 0;
     }
 
@@ -531,15 +531,15 @@ music()
 {
     wait 0.05;
     level waittill("round_started");
-    
+
     // Jeśli gracz JUŻ wybrał coś w menu przed startem rundy, nie losuj
     if(isDefined(level.selectedmusicid))
         return;
 
     level.music_random = randomint(3);
-    
+
     // Zatrzymujemy poprzednie dźwięki przed nowym startem
-    AmbientStop(1); 
+    AmbientStop(1);
     wait 0.1;
 
     switch(level.music_random)
@@ -565,21 +565,21 @@ weaponBox()
 {
     trig = getent("trigger_emilienator","targetname");
     trig SetHintString("Press ^5[&&1]^7 to talk with Emilienator");
-    
+
     // Lista broni do wyboru
-    level.weapons = [];
-    level.weapons[0] = "deserteaglegold_mp";
-    level.weapons[1] = "crosscode_cold_mp";
-    level.weapons[2] = "crosscode_heat_mp";
-    level.weapons[3] = "crosscode_shock_mp";
-    level.weapons[4] = "crosscode_wave_mp";
-    
+    level.map_weapons = [];
+    level.map_weapons[0] = "deserteaglegold_mp";
+    level.map_weapons[1] = "crosscode_cold_mp";
+    level.map_weapons[2] = "crosscode_heat_mp";
+    level.map_weapons[3] = "crosscode_shock_mp";
+    level.map_weapons[4] = "crosscode_wave_mp";
+
     trig waittill("trigger", p);
-    trig delete(); 
-    
+    trig delete();
+
     p freezecontrols(1);
     p weaponMenu();
-    
+
 }
 
 
@@ -597,8 +597,8 @@ weaponMenu()
     // --- POJAWIANIE SIĘ (Kaskada 0.8s) ---
     i = 0;
     self.hud_weapons[i] = braxi\_mod::addTextHud( self, 900, 480, 0, "right", "bottom", 1.4 );
-    self.hud_weapons[i] setShader( "emilienator_face", 140, 208 ); 
-    self.hud_weapons[i] moveOverTime(0.8); 
+    self.hud_weapons[i] setShader( "emilienator_face", 140, 208 );
+    self.hud_weapons[i] moveOverTime(0.8);
     self.hud_weapons[i].x = 700;
     self.hud_weapons[i] fadeOverTime(0.8);
     self.hud_weapons[i].alpha = 0.93;
@@ -607,7 +607,7 @@ weaponMenu()
     i++; // 1: Dymek
     self.hud_weapons[i] = braxi\_mod::addTextHud( self, 550, 670, 0, "right", "bottom", 1.4 );
     self.hud_weapons[i] setShader( "message_bg3", 254, 90 );
-    self.hud_weapons[i] moveOverTime(0.8); 
+    self.hud_weapons[i] moveOverTime(0.8);
     self.hud_weapons[i].y = 452;
     self.hud_weapons[i] fadeOverTime(0.8);
     self.hud_weapons[i].alpha = 0.93;
@@ -616,7 +616,7 @@ weaponMenu()
     i++; // 2: Tło menu (Podniesione na Y=120 dla 5 broni)
     self.hud_weapons[i] = braxi\_mod::addTextHud( self, 320, -150, 0, "center", "top", 1.4 );
     self.hud_weapons[i] setShader( "music_menu4", 320, 180 );
-    self.hud_weapons[i] moveOverTime(0.8); 
+    self.hud_weapons[i] moveOverTime(0.8);
     self.hud_weapons[i].y = 120;
     self.hud_weapons[i] fadeOverTime(0.8);
     self.hud_weapons[i].alpha = 0.93;
@@ -632,24 +632,24 @@ weaponMenu()
     timerHud = self.hud_weapons[i];
 
     // 5+ Bronie
-    for( j = 0; j < level.weapons.size; j++ )
+    for( j = 0; j < level.map_weapons.size; j++ )
     {
         i++;
         self.hud_weapons[i] = braxi\_mod::addTextHud( self, 320, 160+(j*16), 0.93, "center", "top", 1.4 );
         self.hud_weapons[i].sort = 882;
         self.hud_weapons[i].glowalpha = 0.45;
         self.hud_weapons[i].glowcolor = (0.8, 0.4, 1.0); // Fioletowy glow
-        self.hud_weapons[i] setText(getWeaponDisplayName(level.weapons[j]));
+        self.hud_weapons[i] setText(getWeaponDisplayName(level.map_weapons[j]));
     }
-    
+
     i++; // Poświata (Indicator)
     indicator = braxi\_mod::addTextHud( self, 320, 160, 0.25, "center", "top", 1.4 );
     indicator.sort = 881;
     indicator.color = (0.7, 0.0, 1.0); // Fioletowy indicator
     self.hud_weapons[i] = indicator;
-    
+
     // Ustawienie startowej szerokości paska
-    startWidth = (getWeaponDisplayName(level.weapons[0]).size * 7) + 20;
+    startWidth = (getWeaponDisplayName(level.map_weapons[0]).size * 7) + 20;
     indicator setShader("white", int(startWidth), 17);
 
     self thread weaponTimer(15, timerHud);
@@ -659,35 +659,35 @@ weaponMenu()
         wait 0.05;
         if(self attackButtonPressed())
         {
-            self.hud_weapons[5+self.selection].alpha = 0.93; 
+            self.hud_weapons[5+self.selection].alpha = 0.93;
             self.selection++;
-            if( self.selection >= level.weapons.size ) self.selection = 0;
-            
+            if( self.selection >= level.map_weapons.size ) self.selection = 0;
+
             item = self.hud_weapons[5+self.selection];
             item.alpha = 1;
-            
-            newWidth = (getWeaponDisplayName(level.weapons[self.selection]).size * 7) + 20; 
-            indicator moveOverTime(0.15); 
+
+            newWidth = (getWeaponDisplayName(level.map_weapons[self.selection]).size * 7) + 20;
+            indicator moveOverTime(0.15);
             indicator scaleOverTime(0.15, int(newWidth), 17);
-            indicator.y = item.y; 
+            indicator.y = item.y;
             wait 0.15;
         }
    else if(self useButtonPressed())
         {
-            weap = level.weapons[self.selection];
-            
+            weap = level.map_weapons[self.selection];
+
             // Poprawiona nazwa z myślnikiem zamiast podkreślenia
-            self playLocalSound("equipsound"); 
+            self playLocalSound("equipsound");
 
             self takeAllWeapons();
             self giveWeapon(weap);
             self giveMaxAmmo(weap);
             self switchToWeapon(weap);
-            
+
             iprintln("^5>> ^7Received: ^1" + getWeaponDisplayName(weap));
-            
-            self thread hideWeaponHUD(); 
-            return; 
+
+            self thread hideWeaponHUD();
+            return;
         }
     }
 }
@@ -699,8 +699,8 @@ weaponTimer(time, timerHud)
     while(time >= 0)
     {
         timerHud setText("Selection time left: " + time + "s");
-        if(time <= 3) timerHud.color = (1, 0, 0); 
-        else if(time <= 5) timerHud.color = (1, 0.5, 0); 
+        if(time <= 3) timerHud.color = (1, 0, 0);
+        else if(time <= 5) timerHud.color = (1, 0.5, 0);
         wait 1;
         time--;
     }
@@ -724,7 +724,7 @@ hideWeaponHUD()
     if(isdefined(self.hud_weapons))
         for(i=0; i<self.hud_weapons.size; i++)
             if(isdefined(self.hud_weapons[i])) self.hud_weapons[i] destroy();
-            
+
     self freezecontrols(0);
 }
 
@@ -762,7 +762,7 @@ waterfall1()
         {
             if(distance(player.origin,orig.origin) < 1350)
                 player PlaySound("waterfallfar");
-            
+
             if(distance(player.origin,orig.origin) < 850)
                 player PlaySound("waterfallmid");
 
@@ -771,7 +771,7 @@ waterfall1()
 
             wait 1.5;
         }
-        else 
+        else
         {
         //    player StopSound("waterfallfar");
         //    player StopSound("waterfallmid");
@@ -796,7 +796,7 @@ waterfall2()
         {
             if(distance(player.origin,orig.origin) < 1350)
                 player PlaySound("waterfallfar");
-            
+
             if(distance(player.origin,orig.origin) < 850)
                 player PlaySound("waterfallmid");
 
@@ -805,7 +805,7 @@ waterfall2()
 
             wait 1.5;
         }
-        else 
+        else
         {
         //    player StopSound("waterfallfar");
         //    player StopSound("waterfallmid");
@@ -847,15 +847,15 @@ addTriggerToList( name )
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return undefined;
 }
 
@@ -881,8 +881,8 @@ removeTextActivator()
     {
         self.hud_textacti destroy();
     }
-} 
-	
+}
+
 createHUD( x, y, alignX, alignY, alpha, font, fontScale )
 {
     hud = NewHudElem();
@@ -900,7 +900,7 @@ createHUD( x, y, alignX, alignY, alpha, font, fontScale )
 
     return hud;
 }
-	
+
 fightHUD(room, jumper, activ)
 {
     self notify("newFhud");
@@ -959,8 +959,8 @@ accessHUD(player, message)
 }
 
 endmap()
-{ 
-    trig = getEnt("endmap_trig", "targetname");     
+{
+    trig = getEnt("endmap_trig", "targetname");
     trig waittill ("trigger" , player );
     player playLocalSound("puzzlesolved");
     firstPlace = newHudElem();
@@ -969,7 +969,7 @@ endmap()
     firstPlace.alignX = "left";
     firstPlace.alignY = "middle";
     firstPlace.horzAlign = "left";
-    firstPlace.vertAlign = "middle"; 
+    firstPlace.vertAlign = "middle";
     firstPlace.x = -400;
     firstPlace.y = 0;
     firstPlace.sort = 0;
@@ -979,13 +979,13 @@ endmap()
     firstPlace.glowAlpha = 1;
     firstPlace.glowColor = (.3,.0,3);
     firstPlace settext("^5" + player.name + " ^7has finished ^5FIRST^7");
-    firstPlace moveOverTime(2); 
+    firstPlace moveOverTime(2);
     firstPlace.x = 5;
     wait 5;
-    firstPlace moveOverTime(2); 
+    firstPlace moveOverTime(2);
     firstPlace.x = -500;
     wait 7;
-    firstPlace destroy(); 
+    firstPlace destroy();
 }
 
 ///ROOMS
@@ -995,11 +995,11 @@ waitdead()
     level.trigger_scope = getent("trigger_sniper","targetname");
     level.trigger_elemental = getent("trigger_elemental","targetname");
     level.trigger_knife = getent("trigger_knife","targetname");
-	
+
     level.trigger_scope thread maps\mp\_utility::triggerOff();
     level.trigger_elemental thread maps\mp\_utility::triggerOff();
     level.trigger_knife thread maps\mp\_utility::triggerOff();
-	
+
     self common_scripts\utility::waittill_any("death","disconnect");
     activator freezeControls(false);
     self freezeControls(false);
@@ -1036,10 +1036,10 @@ RoomCountDown(text, duration, extra)
     if (isDefined(self.endTimerHUD)) self.endTimerHUD destroy();
 }
 
-antiglitcher() 
+antiglitcher()
 {
 level.activator1 = GetActivator();
-level.activ = GetActivator();  
+level.activ = GetActivator();
 self common_scripts\utility::waittill_any("death","disconnect");
 	if(isDefined(self))
 	{
@@ -1053,8 +1053,8 @@ self common_scripts\utility::waittill_any("death","disconnect");
 self freezeControls(0);
 level.activ notify("matchend");
 
-	iPrintln("^5"+self.name+" ^7died^5!"); 
-	wait 0.2; 
+	iPrintln("^5"+self.name+" ^7died^5!");
+	wait 0.2;
 	iPrintlnBold("^5Room selection opened^7!");
 }
 
@@ -1067,7 +1067,7 @@ sniper()
     for(;;)
     {
         level.trigger_scope waittill ("trigger", player);
-        
+
         iPrintLnBold("^5 " + player.name + " ^7entered the ^5Scope ^7Room^5!");
         activator = GetActivator();
         player thread waitdead();
@@ -1076,7 +1076,7 @@ sniper()
         player thread RoomCountDown("^5ill each other !", 3, 0);
         activator thread RoomCountDown("^5Kill each other !", 3, 0);
         player setOrigin (jumpersc.origin);
-        player setPlayerAngles (jumpersc.angles);    
+        player setPlayerAngles (jumpersc.angles);
         activator setOrigin (actisc.origin);
         activator setPlayerAngles (actisc.angles);
         player takeAllWeapons();
@@ -1090,11 +1090,11 @@ sniper()
         player giveMaxAmmo("m40a3_mp");
         activator giveMaxAmmo("m40a3_mp");
         player switchToWeapon("m40a3_mp");
-        activator switchToWeapon("m40a3_mp");   
+        activator switchToWeapon("m40a3_mp");
         player.maxhealth = 100;
-        player.health = player.maxhealth; 
+        player.health = player.maxhealth;
 		activator.maxhealth = 100;
-		activator.health = activator.maxhealth; 
+		activator.health = activator.maxhealth;
         while(isDefined(player) && isAlive(player))
         wait .05;
 
@@ -1124,11 +1124,11 @@ elemental()
 
         // 2. Wiadomości (Wyświetlą się zawsze dla gracza, który wszedł)
         iPrintLnBold("^5 " + player.name + " ^7entered the ^5Elemental ^7Room^1!");
-        
+
         // HUD i Odliczanie dla Jumpera
-        thread fightHUD("Crosscode Elemental Room", player, activator); 
+        thread fightHUD("Crosscode Elemental Room", player, activator);
         player thread RoomCountDown("^5Kill each other !", 3, 0);
-        
+
         // 3. Obsługa Jumpera (Ciebie)
         player thread waitdead();
         player setOrigin(jumperak.origin);
@@ -1168,16 +1168,16 @@ knife()
     for(;;)
     {
         level.trigger_weapon waittill ("trigger", player);
-        
+
         iPrintLnBold("^5 " + player.name + " ^7entered the ^5Knife ^7Room^1!");
 		activator = GetActivator();
         player thread waitdead();
-		
+
         thread fightHUD("Knife Room", player, activator);
         player thread RoomCountDown("^5Kill each other !", 3, 0);
         activator thread RoomCountDown("^5Kill each other !", 3, 0);
         player setOrigin (jumperak.origin);
-        player setPlayerAngles (jumperak.angles);    
+        player setPlayerAngles (jumperak.angles);
         activator setOrigin (actiak.origin);
         activator setPlayerAngles (actiak.angles);
         player takeAllWeapons();
@@ -1187,20 +1187,20 @@ knife()
 		activator giveWeapon("knife_mp");
         activator giveWeapon("hands_mp");
 		player switchToWeapon("knife_mp");
-        activator switchToWeapon("knife_mp");   
+        activator switchToWeapon("knife_mp");
         player.maxhealth = 100;
         player.health = player.maxhealth;
 		activator.maxhealth = 100;
-		activator.health = activator.maxhealth; 
+		activator.health = activator.maxhealth;
         while(isDefined(player) && isAlive(player))
         wait .05;
 
     }
 }
-	
+
 credits()
 {
-  while(1) 
+  while(1)
 	{
         wait 10;
         iPrintln("^5M^7ap created by ^5l^7entava");
@@ -1211,12 +1211,12 @@ credits()
 		wait 0.5;
 		iPrintln("^3C^7lippy for scripting and mapping help");
 		wait 0.5;
-		iPrintln("^3S^7loth and ^3S^7tendby for custom models");	
+		iPrintln("^3S^7loth and ^3S^7tendby for custom models");
 		wait 0.5;
 		iPrintln("^5M^7ap made for ^5Velocity Deathrun^7: 51.38.35.106:28960");
 		wait 100;
         }
-	
+
 
 }
 
@@ -1245,12 +1245,12 @@ start_tp()
     while (1)
     {
         trig waittill("trigger", player);
-        
-        // WYWOŁANIE OSOBNEGO WĄTKU: 
+
+        // WYWOŁANIE OSOBNEGO WĄTKU:
         // Skrypt nie czeka tutaj, tylko od razu wraca do waittill dla następnego gracza
         thread player_teleport_logic(player, tele);
-        
-        // Krótki wait, aby zapobiec zbugowaniu triggera, 
+
+        // Krótki wait, aby zapobiec zbugowaniu triggera,
         // gdy gracz stoi w nim nieruchomo (0.05 - 0.1s)
         wait 0.1;
     }
@@ -1291,10 +1291,10 @@ player_teleport_logic(player, tele)
     black.alpha = 0;
 
     wait 0.3;
-    
-    if(isDefined(black)) 
+
+    if(isDefined(black))
         black destroy();
-        
+
     player.is_teleporting = false;
 }
 
@@ -1342,7 +1342,7 @@ end_tp()
 bouncer()
 {
 	trigger = getEnt("bouncer","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill("trigger", player);
@@ -1502,7 +1502,7 @@ puzzle_trigger(puzzle, barrier, trig, orig)
     fx16 = getEnt("sparks16", "targetname");
     fx17 = getEnt("sparks17", "targetname");
     fx18 = getEnt("sparks18", "targetname");
-    
+
     PlayFX(level.sparks_fx, fx1.origin);
     fx1 playSound("elementalpolehit");
     wait 0.05;
@@ -1560,7 +1560,7 @@ puzzle_trigger(puzzle, barrier, trig, orig)
     barrier playSound("barrierdown");
     barrier notSolid();
     barrier moveZ(-200, 1, 0.5, 0);
-    
+
 }
 
 
