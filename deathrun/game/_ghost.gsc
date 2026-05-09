@@ -14,6 +14,7 @@ start()
 	self endon("spawned");
 	self clean();
 
+	wait 0.5;
 	if (!self check())
 		return;
 
