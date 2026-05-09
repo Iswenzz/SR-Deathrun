@@ -39,7 +39,7 @@ start()
 
 	thread watchGame();
 	thread watchTraps();
-	thread autoRespawn();
+	// thread autoRespawn();
 }
 
 watchGame()
