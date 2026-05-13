@@ -38,7 +38,7 @@ freeRunChoice()
 	self endon("disconnect");
 	self endon("death");
 
-	if (!level.dvar["freeRunChoice"] || level.trapsDisabled || !deathrun\game\_game::hasTraps())
+	if (!level.dvar["freeRunChoice"] || level.trapsDisabled || !deathrun\core\_game::hasTraps())
 		return;
 
 	wait 1;
@@ -66,7 +66,7 @@ freeRunChoice()
 	if (!freeRun)
 		return;
 
-	level deathrun\game\_game::disableTraps();
+	level deathrun\core\_game::disableTraps();
 
 	thread braxi\_mod::drawInformation(800, 0.8, 1, "FREE RUN");
 	thread braxi\_mod::drawInformation(800, 0.8, -1, "FREE RUN");
@@ -105,7 +105,7 @@ life()
 		wait 0.05;
 	}
 	self clearLowerMessage();
-	if (use) self thread deathrun\game\_game::useLife();
+	if (use) self thread deathrun\core\_game::useLife();
 }
 
 drawLifes()

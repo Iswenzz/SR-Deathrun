@@ -1,7 +1,7 @@
 #include sr\sys\_events;
 #include sr\utils\_common;
 
-initPBs()
+main()
 {
     event("connect", ::onConnect);
 }
@@ -13,7 +13,7 @@ onConnect()
     if (self isBot())
 	{
 		self setLoading("pbs", false);
-		self deathrun\player\huds\_speedrun::updateRecords();
+		self deathrun\huds\_speedrun::updateRecords();
 		return;
 	}
 	critical_enter("mysql");
@@ -42,7 +42,7 @@ onConnect()
 		self.pbs[mode][way] = originToTime(row["time"]);
 	}
 	self setLoading("pbs", false);
-	self deathrun\player\huds\_speedrun::updateRecords();
+	self deathrun\huds\_speedrun::updateRecords();
 }
 
 isValidEntry(entry)
@@ -66,7 +66,7 @@ saveEntry(entry)
     way = entry["way"];
     self.pbs[mode][way] = entry["time"];
 
-	self thread deathrun\game\_leaderboards::updateMenuInfo();
+	self thread deathrun\core\_leaderboards::updateMenuInfo();
 
 	critical_enter("mysql");
 

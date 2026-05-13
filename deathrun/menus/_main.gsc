@@ -68,7 +68,7 @@ menu_3rdPerson(arg)
 
 menu_Suicide(arg)
 {
-	if (self sr\game\minigames\_main::isInAnyQueue() || self isAxis())
+	if (self sr\core\_minigames::isInAnyQueue() || self isAxis())
 	{
 		self iPrintLn("^1Suicide disabled");
 		return;
@@ -92,18 +92,18 @@ menu_Team(arg)
 	if (game["state"] == "end")
 		return;
 
-	if (self sr\game\minigames\_main::isInAnyQueue() || self isAxis())
+	if (self sr\core\_minigames::isInAnyQueue() || self isAxis())
 	{
 		self iPrintLn("^1Suicide disabled");
 		return;
 	}
-	self sr\game\_teams::setTeam("allies");
+	self sr\core\_teams::setTeam("allies");
 
 	if (self canSpawn())
 		self eventSpawn();
 
 	if (!self isPlaying())
-		self deathrun\game\_game::useLife();
+		self deathrun\core\_game::useLife();
 }
 
 menu_Spectator(arg)
@@ -119,5 +119,5 @@ menu_Spectator(arg)
 		self iPrintln("^1Nice try.");
 		return;
 	}
-	self sr\game\_teams::setSpectator();
+	self sr\core\_teams::setSpectator();
 }

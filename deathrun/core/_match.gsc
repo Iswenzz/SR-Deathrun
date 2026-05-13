@@ -42,11 +42,11 @@ start()
 	timer();
 
 	if (level.freeRun)
-		return thread deathrun\game\_map::endRound("Free run round has ended", "jumpers");
+		return thread deathrun\core\_map::endRound("Free run round has ended", "jumpers");
 	if (game["roundsplayed"] < level.dvar["round_limit"])
-		return thread deathrun\game\_map::endRound("Time limit reached", "activators");
+		return thread deathrun\core\_map::endRound("Time limit reached", "activators");
 
-	thread deathrun\game\_map::end();
+	thread deathrun\core\_map::end();
 }
 
 canStartGame()

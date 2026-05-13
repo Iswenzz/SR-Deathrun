@@ -9,6 +9,7 @@ main()
 
 	add(5, "^3Defrag", ::rtd_Defrag);
 	add(5, "^3Portal", ::rtd_Portal);
+	add(5, "^3Bhop", ::rtd_Bhop);
 	add(10, "^5Speed Boost !", ::rtd_SpeedBoost);
 	add(10, "^5Jump Boost !", ::rtd_JumpBoost);
 	add(10, "^5Gravity Boost !", ::rtd_GravityBoost);
@@ -145,12 +146,12 @@ rtd_RPG()
 
 rtd_XP()
 {
-	self sr\game\_rank::giveRankXP("", 150);
+	self sr\core\_rank::giveRankXP("", 150);
 }
 
 rtd_Life()
 {
-	self deathrun\game\_game::giveLife();
+	self deathrun\core\_game::giveLife();
 }
 
 rtd_Dog()
@@ -251,10 +252,15 @@ rtd_Explode()
 
 rtd_Defrag()
 {
-	self deathrun\player\run\_defrag::start();
+	self deathrun\core\_run::start_Defrag();
 }
 
 rtd_Portal()
 {
-	self deathrun\player\run\_portal::start();
+	self deathrun\core\_run::start_Portal();
+}
+
+rtd_Bhop()
+{
+	self deathrun\core\_run::start_Bhop();
 }

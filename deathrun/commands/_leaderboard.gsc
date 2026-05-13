@@ -1,7 +1,6 @@
 #include sr\sys\_admins;
 #include sr\sys\_events;
 #include sr\utils\_common;
-#include deathrun\game\_leaderboards;
 
 main()
 {
@@ -18,7 +17,7 @@ cmd_LeaderboardDelete(args)
 	way = args[1];
 	tas = 0;
 
-	id = getLeaderboardIndex(mode, way, tas);
+	id = deathrun\core\_leaderboards::getLeaderboardIndex(mode, way, tas);
 	leaderboard = level.leaderboards[id];
 	if (!isDefined(leaderboard) || !leaderboard.entries.size)
 	{
@@ -57,7 +56,7 @@ cmd_LeaderboardDeleteEntry(args)
 	index = ToInt(args[2]);
 	tas = 0;
 
-	id = getLeaderboardIndex(mode, way, tas);
+	id = deathrun\core\_leaderboards::getLeaderboardIndex(mode, way, tas);
 	leaderboard = level.leaderboards[id];
 	if (!isDefined(leaderboard) || !leaderboard.entries.size || !isDefined(leaderboard.entries[index]))
 	{
@@ -72,7 +71,7 @@ cmd_LeaderboardDeleteEntry(args)
 	if (!hasConfirmed(response))
 		return;
 
-	level.leaderboards[id].entries = sortEntries(Remove(level.leaderboards[id].entries, entry));
+	level.leaderboards[id].entries = deathrun\core\_leaderboards::sortEntries(Remove(level.leaderboards[id].entries, entry));
 
 	critical_enter("mysql");
 

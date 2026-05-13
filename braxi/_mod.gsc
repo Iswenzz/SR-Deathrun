@@ -4,12 +4,12 @@
 
 main()
 {
-	braxi\_dvar::initDvars();
+	braxi\_dvar::main();
 }
 
 endTimer()
 {
-	self thread deathrun\player\run\_main::endTimer();
+	self thread deathrun\core\_run::endTimer();
 }
 
 addTextHud(who, x, y, alpha, alignX, alignY, fontScale)
@@ -43,7 +43,7 @@ endRoundAnnoucement(text, color)
 
 disableTraps()
 {
-	deathrun\game\_game::disableTraps();
+	deathrun\core\_game::disableTraps();
 }
 
 endingHud(align, fade_in_time, x_off, y_off)
@@ -88,5 +88,5 @@ drawInformation(start_offset, movetime, mult, text)
 
 giveLife()
 {
-	self deathrun\game\_game::giveLife();
+	self deathrun\core\_game::giveLife();
 }

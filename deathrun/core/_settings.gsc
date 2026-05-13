@@ -2,7 +2,7 @@
 #include sr\sys\_admins;
 #include sr\utils\_common;
 #include sr\utils\_hud;
-#include sr\player\_settings;
+#include sr\core\_settings;
 
 main()
 {

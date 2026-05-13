@@ -1,25 +1,25 @@
 #include sr\sys\_events;
 #include sr\utils\_common;
-#include sr\game\menus\_main;
 
 main()
 {
 	event("connect", ::onConnect);
 	event("spawn", ::onSpawn);
 
-	main = menuElement("Main", "shop", "main");
+	main = sr\core\_overlays::menuElement("Main", "shop", "main");
 
     // Main
-	menuOption(main, "Life", 			::menu_Life, 50);
-	menuOption(main, "Heal", 			::menu_Heal, 50);
-	menuOption(main, "Dog", 			::menu_Dog, 75);
-	menuOption(main, "Random Weapon", 	::menu_RandomWeapon, 150);
-	menuOption(main, "Random Perk", 	::menu_RandomPerk, 150);
-	menuOption(main, "200 XP", 			::menu_XP, 200);
-	menuOption(main, "Portal", 			::menu_Portal, 250);
-	menuOption(main, "Defrag", 			::menu_Defrag, 250);
-	menuOption(main, "Unlimited Ammo", 	::menu_UAmmo, 300);
-	menuOption(main, "Party Mode", 		::menu_PartyMode, 400);
+	sr\core\_overlays::menuOption(main, "Life", ::menu_Life, 50);
+	sr\core\_overlays::menuOption(main, "Heal", ::menu_Heal, 50);
+	sr\core\_overlays::menuOption(main, "Dog", ::menu_Dog, 75);
+	sr\core\_overlays::menuOption(main, "Random Weapon", ::menu_RandomWeapon, 150);
+	sr\core\_overlays::menuOption(main, "Random Perk", ::menu_RandomPerk, 150);
+	sr\core\_overlays::menuOption(main, "200 XP", ::menu_XP, 200);
+	sr\core\_overlays::menuOption(main, "Portal", ::menu_Portal, 250);
+	sr\core\_overlays::menuOption(main, "Defrag", ::menu_Defrag, 250);
+	sr\core\_overlays::menuOption(main, "Bhop", ::menu_Bhop, 250);
+	sr\core\_overlays::menuOption(main, "Unlimited Ammo", ::menu_UAmmo, 300);
+	sr\core\_overlays::menuOption(main, "Party Mode", ::menu_PartyMode, 400);
 }
 
 onConnect()
@@ -29,7 +29,7 @@ onConnect()
 	if (level.freeRun)
 		return;
 
-    self thread loop("shop", "cobra_FFAR_mp");
+    self thread sr\core\_overlays::loop("shop", "cobra_FFAR_mp");
 	self.pers["shopPoints"] = self getStat(2358);
 
 	while (true)
@@ -65,9 +65,9 @@ menu_Life(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\game\_game::giveLife();
+	self deathrun\core\_game::giveLife();
 	self pm("^2You bought an additional life !");
-	self done();
+	self sr\core\_overlays::done();
 }
 
 menu_Heal(points)
@@ -79,7 +79,7 @@ menu_Heal(points)
 	self.health = self.maxhealth;
 
 	self pm("^2Health restored !");
-	self done();
+	self sr\core\_overlays::done();
 }
 
 menu_Dog(points)
@@ -88,7 +88,7 @@ menu_Dog(points)
 		return;
 
 	self pm("^2Dogo !");
-	self done();
+	self sr\core\_overlays::done();
 
 	wait 0.5;
 	self sr\commands\_player::dog();
@@ -104,7 +104,7 @@ menu_RandomWeapon(points)
 	name = asset["name"];
 
 	self pm(fmt("^2You got %s !", name));
-	self done();
+	self sr\core\_overlays::done();
 
 	wait 0.5;
 	self cheat();
@@ -120,10 +120,10 @@ menu_RandomPerk(points)
 	self cheat();
 	keys = getArrayKeys(level.perks);
 	perk = level.perks[keys[randomInt(keys.size)]];
-	self sr\game\_perks::playerSetPerk(perk.id);
+	self sr\core\_perks::playerSetPerk(perk.id);
 
 	self pm(fmt("^2You got %s !", perk.name));
-	self done();
+	self sr\core\_overlays::done();
 }
 
 menu_UAmmo(points)
@@ -135,7 +135,7 @@ menu_UAmmo(points)
 	self sr\commands\_player::unlimitedAmmo();
 
 	self pm("^2You got unlimited ammo !");
-	self done();
+	self sr\core\_overlays::done();
 }
 
 menu_XP(points)
@@ -143,10 +143,10 @@ menu_XP(points)
 	if (!self canBuy(points))
 		return;
 
-	self sr\game\_rank::giveRankXP("", 200);
+	self sr\core\_rank::giveRankXP("", 200);
 
 	self pm("^2You got 200 XP !");
-	self done();
+	self sr\core\_overlays::done();
 }
 
 menu_PartyMode(points)
@@ -155,10 +155,10 @@ menu_PartyMode(points)
 		return;
 
 	alias = fmt("end_map%d", randomIntRange(1, 9));
-	thread sr\game\music\_main::play(alias);
+	thread sr\core\_music::playAmbient(alias);
 
 	self message(fmt("%s ^5throw a party !!!", self.name));
-	self done();
+	self sr\core\_overlays::done();
 }
 
 menu_Portal(points)
@@ -166,10 +166,10 @@ menu_Portal(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\player\run\_portal::start();
+	self deathrun\core\_run::start_Portal();
 
 	self pm("^5Portal mode !");
-	self done();
+	self sr\core\_overlays::done();
 }
 
 menu_Defrag(points)
@@ -177,10 +177,21 @@ menu_Defrag(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\player\run\_defrag::start();
+	self deathrun\core\_run::start_Defrag();
 
 	self pm("^3Defrag mode !");
-	self done();
+	self sr\core\_overlays::done();
+}
+
+menu_Bhop(points)
+{
+	if (!self canBuy(points))
+		return;
+
+	self deathrun\core\_run::start_Bhop();
+
+	self pm("^3Bhop mode !");
+	self sr\core\_overlays::done();
 }
 
 canBuy(points)
@@ -188,7 +199,7 @@ canBuy(points)
 	if (self.pers["shopPoints"] < points)
 	{
 		self pm("^1Not enough points for this item !");
-		self done();
+		self sr\core\_overlays::done();
 		return false;
 	}
 	self.pers["shopPoints"] -= points;

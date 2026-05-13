@@ -63,8 +63,8 @@ order()
 		{
 			self.orderCard = true;
 
-			self thread sr\player\huds\_card::hud(self, level.activ);
-			level.activ thread sr\player\huds\_card::hud(self, level.activ);
+			self thread sr\huds\_card::hud(self, level.activ);
+			level.activ thread sr\huds\_card::hud(self, level.activ);
 		}
 		return true;
 	}

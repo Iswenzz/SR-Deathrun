@@ -21,7 +21,7 @@ cmd_Speed(args)
 	self setStat(1700, Ternary(speed == "190", 1, 2));
     self.sr_mode = speed;
     self pm(fmt("Run mode: ^5%s", speed));
-	self thread deathrun\game\_leaderboards::updateMenuInfo();
+	self thread deathrun\core\_leaderboards::updateMenuInfo();
     self suicide();
 }
 
@@ -33,7 +33,7 @@ cmd_190(args)
 	self setStat(1700, 1);
 	self.sr_mode = "190";
     self pm("Run mode: ^5190");
-	self thread deathrun\game\_leaderboards::updateMenuInfo();
+	self thread deathrun\core\_leaderboards::updateMenuInfo();
     self suicide();
 }
 
@@ -45,7 +45,7 @@ cmd_210(args)
 	self setStat(1700, 2);
 	self.sr_mode = "210";
     self pm("Run mode: ^5210");
-	self thread deathrun\game\_leaderboards::updateMenuInfo();
+	self thread deathrun\core\_leaderboards::updateMenuInfo();
     self suicide();
 }
 
@@ -62,7 +62,7 @@ cmd_Sheep(args)
 
 cmd_FX(args)
 {
-	self sr\player\_settings::toggle("gfx_fx");
+	self sr\core\_settings::toggle("gfx_fx");
 
 	msg = Ternary(self.settings["gfx_fx"], "^2FX On", "^1FX Off");
 	self pm(msg);
@@ -79,7 +79,7 @@ cmd_Life(args)
 	if (!isDefined(player))
 		return pm("Could not find player");
 
-	player deathrun\game\_game::giveLife();
+	player deathrun\core\_game::giveLife();
 }
 
 cmd_Activator(args)
@@ -129,17 +129,17 @@ cmd_Special(args)
 	switch (args[0])
 	{
 		case "defrag":
-			mode = deathrun\player\run\_defrag::start;
+			mode = deathrun\core\_run::start_Defrag;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^1DEFRAG ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^1DEFRAG ROUND");
 			break;
 		case "portal":
-			mode = deathrun\player\run\_portal::start;
+			mode = deathrun\core\_run::start_Portal;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
 			break;
 		case "bhop":
-			mode = deathrun\player\run\_bhop::start;
+			mode = deathrun\core\_run::start_Bhop;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^2BHOP ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^2BHOP ROUND");
 			break;

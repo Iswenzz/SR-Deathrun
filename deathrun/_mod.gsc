@@ -2,7 +2,7 @@ main()
 {
 	precache();
 
-	deathrun\sys\_dvar::initDvars();
+	deathrun\sys\_dvar::main();
 
 	maps\mp\gametypes\_hud::init();
 	maps\mp\gametypes\_hud_message::init();
@@ -16,81 +16,83 @@ main()
 	maps\mp\gametypes\_quickmessages::init();
 	maps\mp\gametypes\_weapons::init();
 
-	sr\_mod::main();
 	braxi\_mod::main();
 
-	sr\game\_cheat::main();
-	sr\game\_demo::main();
-	sr\game\_perks::initPerks();
-	sr\game\_defrag::main();
-	sr\game\_time::main();
-	sr\game\_vote::initVote();
-	sr\game\_poll::initPoll();
-	sr\game\_rank::initRank();
-	sr\game\_hitmarker::main();
-	sr\game\_killcam::main();
-	sr\game\fx\_trail::main();
-	sr\game\menus\_main::initMenus();
-	sr\game\minigames\_main::initMinigames();
-	sr\game\music\_main::initMusics();
-	sr\game\weapons\_main::main();
-
-	sr\libs\portal\_main::initPortal();
-
-	sr\player\_hide::main();
-	sr\player\_insertion::main();
-	sr\player\customize\_main::initCustomize();
-	sr\player\fx\_spray::main();
-	sr\player\fx\_shaders::initShaders();
-	sr\player\modes\_main::initModes();
-	sr\player\modes\_defrag::main();
-	sr\player\modes\_noclip::main();
-	sr\player\modes\_pickup::main();
-	sr\player\modes\_portal::main();
-	sr\player\modes\_practise::main();
-	sr\player\modes\_debug::main();
-	sr\player\huds\_cgaz::main();
-	sr\player\huds\_crosshair::main();
-	sr\player\huds\_fps::main();
-	sr\player\huds\_keys::main();
-	sr\player\huds\_spectator::main();
-	sr\player\huds\_velocity::main();
-	sr\player\huds\_viewkick::main();
-	sr\player\huds\_voice::main();
-
+	sr\_mod::main();
 	sr\commands\_admin::main();
+	sr\commands\_cef::main();
 	sr\commands\_debug::main();
+	sr\commands\_defrag::main();
 	sr\commands\_graphics::main();
+	sr\commands\_map::main();
 	sr\commands\_misc::main();
 	sr\commands\_music::main();
 	sr\commands\_player::main();
-	sr\commands\_vote::main();
-	sr\commands\_map::main();
-	sr\commands\_defrag::main();
 	sr\commands\_portal::main();
-
-	deathrun\game\_game::main();
-	deathrun\game\_ghost::main();
-	deathrun\game\_rtd::main();
-	deathrun\game\_map::main();
-	deathrun\game\_demo::main();
-	deathrun\game\_order::main();
-	deathrun\game\_match::main();
-	deathrun\game\_menus::main();
-	deathrun\game\_race::main();
-	deathrun\game\_scoreboard::main();
-	deathrun\game\_leaderboards::initLeaderboards();
-	deathrun\game\_pbs::initPBs();
-	deathrun\game\menus\_shop::main();
-
-	deathrun\player\_settings::main();
-	deathrun\player\run\_main::main();
-	deathrun\player\huds\_speedrun::main();
-	deathrun\player\huds\_player::main();
-	deathrun\player\huds\_demo::main();
+	sr\commands\_vote::main();
+	sr\core\_assets::main();
+	sr\core\_bhop::main();
+	sr\core\_cheat::main();
+	sr\core\_defrag::main();
+	sr\core\_demo::main();
+	sr\core\_hide::main();
+	sr\core\_insertion::main();
+	sr\core\_killcam::main();
+	sr\core\_minigames::main();
+	sr\core\_modes::main();
+	sr\core\_music::main();
+	sr\core\_noclip::main();
+	sr\core\_overlays::main();
+	sr\core\_perks::main();
+	sr\core\_pickup::main();
+	sr\core\_poll::main();
+	sr\core\_portal::main();
+	sr\core\_rank::main();
+	sr\core\_time::main();
+	sr\core\_vote::main();
+	sr\core\_weapons::main();
+	sr\fx\_shaders::main();
+	sr\fx\_spray::main();
+	sr\fx\_trail::main();
+	sr\huds\_cgaz::main();
+	sr\huds\_crosshair::main();
+	sr\huds\_fps::main();
+	sr\huds\_hitmarker::main();
+	sr\huds\_keys::main();
+	sr\huds\_notifications::main();
+	sr\huds\_spectator::main();
+	sr\huds\_velocity::main();
+	sr\huds\_viewkick::main();
+	sr\huds\_voice::main();
+	sr\menus\_customize::main();
+	sr\menus\_vote::main();
+	sr\modes\_debug::main();
+	sr\modes\_defrag::main();
+	sr\modes\_portal::main();
+	sr\modes\_practise::main();
+	sr\overlays\_owner::main();
 
 	deathrun\commands\_deathrun::main();
 	deathrun\commands\_leaderboard::main();
+	deathrun\core\_demo::main();
+	deathrun\core\_game::main();
+	deathrun\core\_ghost::main();
+	deathrun\core\_leaderboards::main();
+	deathrun\core\_map::main();
+	deathrun\core\_match::main();
+	deathrun\core\_order::main();
+	deathrun\core\_pbs::main();
+	deathrun\core\_race::main();
+	deathrun\core\_rtd::main();
+	deathrun\core\_run::main();
+	deathrun\core\_settings::main();
+	deathrun\huds\_demo::main();
+	deathrun\huds\_player::main();
+	deathrun\huds\_speedrun::main();
+	deathrun\menus\_leaderboards::main();
+	deathrun\menus\_main::main();
+	deathrun\overlays\_shop::main();
+	deathrun\sys\_scoreboard::main();
 }
 
 precache()

@@ -14,7 +14,7 @@ playerConnect()
 	self.teamKill = false;
 	self.hidden = false;
 
-	self.sr_mode = self deathrun\player\run\_main::getLastMode();
+	self.sr_mode = self deathrun\core\_run::getLastMode();
 	self.sr_way = "normal_0";
 	self.run = 0;
 
@@ -28,7 +28,7 @@ playerConnect()
 		self.assists = self.pers["assists"];
 		self.deaths = self.pers["deaths"];
 
-		self sr\game\_teams::setTeam("allies");
+		self sr\core\_teams::setTeam("allies");
 		return;
 	}
 	self.pers["score"] = 0;
@@ -136,18 +136,18 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	obituary(self, attacker, sWeapon, sMeansOfDeath);
 
 	if (game["state"] == "playing" && (level.activatorKilled || getPlayingPlayers().size <= 1))
-		self thread sr\game\_killcam::start(4, 8, eInflictor, attacker, sWeapon);
+		self thread sr\core\_killcam::start(4, 8, eInflictor, attacker, sWeapon);
 	if (isPlayer(attacker) && attacker isAxis())
-		self thread deathrun\game\_game::dropWeapon();
+		self thread deathrun\core\_game::dropWeapon();
 	if (!isPlayer(attacker) || attacker == self)
 		return;
 
 	attacker.kills++;
 	attacker.pers["kills"]++;
-	sr\game\_rank::processXpReward(sMeansOfDeath, attacker, self);
+	sr\core\_rank::processXpReward(sMeansOfDeath, attacker, self);
 
 	if (attacker isAllies())
-		attacker deathrun\game\_game::giveLife();
+		attacker deathrun\core\_game::giveLife();
 }
 
 playerSpawn()
@@ -158,8 +158,8 @@ playerSpawn()
 	level notify("jumper", self);
 	self cleanUp();
 
-	self sr\game\_teams::setPlayerModel();
-	self sr\game\_teams::setHealth();
+	self sr\core\_teams::setPlayerModel();
+	self sr\core\_teams::setHealth();
 	self sr\api\_player::antiElevator(false);
 
 	self.pers["weapon"] = self getCustomizeWeapon()["item"];
@@ -200,10 +200,10 @@ playerSpawn()
 	self giveWeapon("claymore_mp");
 	if (!level.freeRun)
 		self giveWeapon("cobra_FFAR_mp");
-	if (self deathrun\game\_rtd::canRTD())
+	if (self deathrun\core\_rtd::canRTD())
 		self giveWeapon("hind_FFAR_mp");
 
-	self deathrun\player\run\_main::start();
+	self deathrun\core\_run::start();
 
 	self notify("spawned_player");
 	level notify("player_spawn", self);

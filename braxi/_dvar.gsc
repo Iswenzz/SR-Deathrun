@@ -1,6 +1,6 @@
 #include sr\sys\_dvar;
 
-initDvars()
+main()
 {
 	addDvar("time_limit", "dr_timelimit", 5, 0, 60, "int");
 	addDvar("round_limit", "dr_rounds", 15, 1, 30, "int");
@@ -21,7 +21,6 @@ initDvars()
 	addDvar("bunnyhoop", "dr_bunnyhoop_pro", 0, 0, 1, "int");
 	addDvar("freerun", "dr_freerun_round", 1, 0, 1, "int");
 	addDvar("freerun_time", "dr_freerun_time", 600, 5, 7200, "int");
-	addDvar("time", "sr_time", 300, 60, 7200, "int");
 	addDvar("bots", "g_bots", 0, 0, 64, "int");
 	addDvar("dev", "g_moddev", 0, 0, 1, "int");
 	addDvar("allies_health", "dr_jumpers_health", 100, 1, 1000, "int");

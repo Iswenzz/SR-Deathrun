@@ -1,4 +1,4 @@
 setTeam(team)
 {
-	self sr\game\_teams::setTeam(team);
+	self sr\core\_teams::setTeam(team);
 }

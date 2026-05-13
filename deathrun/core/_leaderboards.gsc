@@ -1,55 +1,15 @@
 #include sr\sys\_events;
 #include sr\utils\_common;
 
-initLeaderboards()
+main()
 {
 	level.leaderboards = [];
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 40;
 	level.leaderboard_xps = xpTable();
 
-	menu("sr_leaderboard", "open", ::menu_Open);
-	menu("sr_leaderboard", "demo", ::menu_Demo);
-	menu_multiple("sr_leaderboard", "way", ::menu_Leaderboard);
-	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
-
 	event("map", ::load);
 	event("connected", ::onConnect);
-}
-
-menu_Open(arg)
-{
-	if (!isDefined(self.leaderboard_way))
-		self.leaderboard_way = self.sr_way;
-	if (!isDefined(self.leaderboard_mode))
-		self.leaderboard_mode = "210";
-
-	self display();
-}
-
-menu_Demo(arg)
-{
-	index = getLeaderboardIndex(self.leaderboard_mode, self.leaderboard_way);
-	self thread deathrun\game\_demo::play(index);
-
-	self closeMenu();
-	self closeInGameMenu();
-}
-
-menu_Leaderboard(args)
-{
-	way = args[1];
-
-	self.leaderboard_way = way;
-	self display();
-}
-
-menu_Mode(args)
-{
-	mode = args[1];
-
-	self.leaderboard_mode = mode;
-	self display();
 }
 
 onConnect()
@@ -62,7 +22,7 @@ onConnect()
 	{
 		self setLoading("wr", false);
 		self botLeaderboardEntries();
-		self deathrun\player\huds\_speedrun::updateRecords();
+		self deathrun\huds\_speedrun::updateRecords();
 		return;
 	}
 
@@ -91,7 +51,7 @@ onConnect()
 		return;
 
 	self setLoading("wr", false);
-	self deathrun\player\huds\_speedrun::updateRecords();
+	self deathrun\huds\_speedrun::updateRecords();
 	self updateMenuInfo();
 }
 
@@ -103,8 +63,8 @@ botLeaderboardEntries()
 
 updateMenuInfo()
 {
-	wr = deathrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
-	pb = self deathrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
+	wr = deathrun\core\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
+	pb = self deathrun\core\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
 
 	self setClientDvars(
 		"sr_leaderboard_pb", fmt("^3%s", pb),
@@ -243,7 +203,7 @@ load()
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
-		players[i] thread deathrun\player\huds\_speedrun::updateRecords();
+		players[i] thread deathrun\huds\_speedrun::updateRecords();
 }
 
 demos()
@@ -267,7 +227,7 @@ demos()
 			entryIndex = 0;
 			entries = level.leaderboards[index].entries;
 			entry = entries[entryIndex];
-			registred = deathrun\game\_demo::addSpeedrunDemo(entry);
+			registred = deathrun\core\_demo::addSpeedrunDemo(entry);
 
 			while (!registred)
 			{
@@ -276,7 +236,7 @@ demos()
 					break;
 
 				entry = level.leaderboards[index].entries[entryIndex];
-				registred = deathrun\game\_demo::addSpeedrunDemo(entry);
+				registred = deathrun\core\_demo::addSpeedrunDemo(entry);
 			}
 			if (registred)
 				level.demos[index] = entry;
@@ -340,7 +300,7 @@ saveEntry(entry)
 	self givePlacementXP(entry, entries, placement);
 
 	if (placement <= 3)
-		self thread sr\game\_demo::recordSave();
+		self thread sr\core\_demo::recordSave();
 	if (placement == 1 && !self isTie(entry, entries))
 		self thread worldRecord(entry);
 
@@ -395,68 +355,6 @@ addWay(way, name)
 	level.leaderboard_ways[way] = spawnStruct();
 	level.leaderboard_ways[way].id = way;
 	level.leaderboard_ways[way].name = name;
-}
-
-display()
-{
-	if (!mapHasLeaderboards())
-		return;
-
-	numbers = "";
-	names = "";
-	times = "";
-
-	leaderboard = getLeaderboard(self.leaderboard_mode, self.leaderboard_way);
-	if (!isDefined(leaderboard))
-		return;
-
-	entries = leaderboard.entries;
-
-	self setClientDvar("leaderboard_name", fmt("%s ^7%s", self.leaderboard_mode, leaderboard.name));
-
-	if (!isDefined(entries))
-		return;
-
-	for (i = 0; i < int(level.leaderboard_max_entries / 10); i++)
-	{
-		self setClientDvars(
-			"leaderboard_numbers_" + i, "",
-			"leaderboard_names_" + i, "",
-			"leaderboard_values_" + i, ""
-		);
-	}
-
-	stringIndex = 0;
-	for (i = 0; i < entries.size; i++)
-    {
-		placement = i + 1;
-		numbers += fmt("#%d\n", placement);
-        color = "^7";
-
-		switch (placement)
-		{
-			case 1: color = "^3"; break;
-			case 2: color = "^8"; break;
-			case 3: color = "^9"; break;
-		}
-
-		names += fmt("%s%s^7\n", color, entries[i]["name"]);
-		times += fmt("^7%d:%d.%d\n", entries[i]["time"].min, entries[i]["time"].sec, entries[i]["time"].ms);
-
-		if (!(placement % 10) || i == entries.size - 1)
-		{
-			self setClientDvars(
-				"leaderboard_numbers_" + stringIndex, numbers,
-				"leaderboard_names_" + stringIndex, names,
-				"leaderboard_values_" + stringIndex, times
-			);
-
-			numbers = "";
-			names = "";
-			times = "";
-			stringIndex++;
-		}
-	}
 }
 
 addEntry(entry, index)
@@ -562,7 +460,7 @@ givePlacementXP(entry, entries, placement)
 	filled = entries.size / level.leaderboard_max_entries;
 	xp = level.leaderboard_xps[placement - 1] * filled * multiplier;
 
-	self thread sr\game\_rank::giveRankXP("", xp);
+	self thread sr\core\_rank::giveRankXP("", xp);
 }
 
 getWorldRecord(mode, way)
@@ -599,7 +497,7 @@ worldRecord(entry)
 	}
 
 	wait 1;
-	if (deathrun\game\_demo::addSpeedrunDemo(entry))
+	if (deathrun\core\_demo::addSpeedrunDemo(entry))
 		level.demos[index] = entry;
 }
 

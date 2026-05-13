@@ -41,7 +41,7 @@ huds()
 {
 	time = self.demo["time"];
 	timeFormat = fmt("%d:%d.%d", time.min, time.sec, time.ms);
-	wayName = deathrun\game\_leaderboards::getLeaderboardName(self.demo["mode"], self.demo["way"]);
+	wayName = deathrun\core\_leaderboards::getLeaderboardName(self.demo["mode"], self.demo["way"]);
 
 	self.huds["demo"] = [];
 	self.huds["demo"]["demo"] = addHud(self, 3, 40, 1, "left", "top", 1.4, true);

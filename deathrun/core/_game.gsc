@@ -93,11 +93,11 @@ watchGame()
 			return;
 		}
 		else if(!level.jumpers && level.activators)
-			thread deathrun\game\_map::endRound("Jumpers died", "activators");
+			thread deathrun\core\_map::endRound("Jumpers died", "activators");
 		else if(level.jumpers && !level.activators && !level.freeRun)
-			thread deathrun\game\_map::endRound("Activator died", "jumpers");
+			thread deathrun\core\_map::endRound("Activator died", "jumpers");
 		else if(!level.jumpers && !level.activators)
-			thread deathrun\game\_map::endRound("Everyone died", "activators");
+			thread deathrun\core\_map::endRound("Everyone died", "activators");
 	}
 }
 
@@ -144,17 +144,17 @@ specialRound()
 	switch (mode)
 	{
 		case 1:
-			mode = deathrun\player\run\_defrag::start;
+			mode = deathrun\core\_run::start_Defrag;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^1DEFRAG ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^1DEFRAG ROUND");
 			break;
 		case 2:
-			mode = deathrun\player\run\_portal::start;
+			mode = deathrun\core\_run::start_Portal;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
 			break;
 		case 3:
-			mode = deathrun\player\run\_bhop::start;
+			mode = deathrun\core\_run::start_Bhop;
 			thread braxi\_mod::drawInformation(800, 0.8, 1, "^2BHOP ROUND");
 			thread braxi\_mod::drawInformation(800, 0.8, -1, "^2BHOP ROUND");
 			break;
@@ -200,7 +200,7 @@ trapActivation()
 	if (!player isAxis())
 		return;
 
-	player sr\game\_rank::giveRankXP("trap_activation");
+	player sr\core\_rank::giveRankXP("trap_activation");
 }
 
 disableTraps()
@@ -228,8 +228,8 @@ pickActivator()
 		activator = level.forceActivator;
 
 	activator thread actiGodmode();
-	activator sr\game\_teams::setTeam("axis");
-	activator sr\game\_rank::giveRankXp("activator");
+	activator sr\core\_teams::setTeam("axis");
+	activator sr\core\_rank::giveRankXp("activator");
 	activator eventSpawn(true);
 
 	setDvar("last_picked_player", activator.number);
@@ -274,7 +274,7 @@ giveLife()
 		return;
 
 	self.pers["lifes"]++;
-	self thread deathrun\player\huds\_player::addLife();
+	self thread deathrun\huds\_player::addLife();
 }
 
 useLife()
