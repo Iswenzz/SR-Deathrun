@@ -158,13 +158,18 @@ playerSpawn()
 	level notify("jumper", self);
 	self cleanUp();
 
-	self sr\core\_teams::setPlayerModel();
 	self sr\core\_teams::setHealth();
 	self sr\api\_player::antiElevator(false);
+	self detachAll();
 
-	self.pers["weapon"] = self getCustomizeWeapon()["item"];
-	self.pers["knife"] = self getCustomizeKnife()["item"];
-	self.pers["knife_skin"] = self getCustomizeKnifeSkin()["id"];
+	self.pers["weapon"] = self sr\core\_assets::getCustomizeWeapon()["item"];
+	self.pers["knife"] = self sr\core\_assets::getCustomizeKnife()["item"];
+	self.pers["knife_skin"] = self sr\core\_assets::getCustomizeKnifeSkin()["id"];
+	self.pers["character"] = self sr\core\_assets::getCustomizeCharacter()["model"];
+	self.pers["glove"] = self sr\core\_assets::getCustomizeGlove()["model"];
+
+	self setModel(self.pers["character"]);
+	self setViewModel(self.pers["glove"]);
 
 	if (self isAxis())
 	{
