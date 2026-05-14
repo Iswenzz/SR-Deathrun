@@ -3,13 +3,13 @@
 
 main()
 {
-	cmd("player", 		"sheep",		::cmd_Sheep);
-	cmd("player", 		"fxenable",		::cmd_FX);
-	cmd("adminplus", 	"life",			::cmd_Life);
-	cmd("masteradmin", 	"activator",	::cmd_Activator);
-	cmd("masteradmin", 	"rtd",			::cmd_Rtd);
-	cmd("masteradmin", 	"points",		::cmd_Points);
-	cmd("masteradmin", 	"special",		::cmd_Special);
+	cmd("activator", "masteradmin", ::cmd_Activator, "Set player as activator");
+	cmd("fxenable",  "player",      ::cmd_FX,        "Toggle game FX");
+	cmd("life",      "adminplus",   ::cmd_Life,      "Give a player an extra life");
+	cmd("points",    "masteradmin", ::cmd_Points,    "Give shop points to a player");
+	cmd("rtd",       "masteradmin", ::cmd_Rtd,       "Roll the dice");
+	cmd("sheep",     "player",      ::cmd_Sheep,     "Toggle sheep mode");
+	cmd("special",   "masteradmin", ::cmd_Special,   "Start a special round");
 }
 
 cmd_Speed(args)
@@ -71,7 +71,7 @@ cmd_FX(args)
 cmd_Life(args)
 {
 	if (args.size < 1)
-		return self pm("Usage: life <playerName>");
+		return self pm("Usage: !life <playerName>");
 
 	player = getPlayerByName(args[0]);
 
@@ -87,7 +87,7 @@ cmd_Activator(args)
 	if (game["state"] != "readyup")
 		return self pm("Activator can only be set during round begin.");
 	if (args.size < 1)
-		return self pm("Usage: activator <playerName>");
+		return self pm("Usage: !activator <playerName>");
 
 	player = getPlayerByName(args[0]);
 
@@ -108,7 +108,7 @@ cmd_Rtd(args)
 cmd_Points(args)
 {
 	if (args.size < 1)
-		return self pm("Usage: points <playerName>");
+		return self pm("Usage: !points <playerName>");
 
 	player = getPlayerByName(args[0]);
 
@@ -123,7 +123,7 @@ cmd_Points(args)
 cmd_Special(args)
 {
 	if (args.size < 1)
-		return self pm("Usage: special <defrag | portal | bhop>");
+		return self pm("Usage: !special <defrag | portal | bhop>");
 
 	mode = undefined;
 	switch (args[0])

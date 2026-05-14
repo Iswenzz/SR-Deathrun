@@ -4,14 +4,14 @@
 
 main()
 {
-    cmd("owner", 	"leaderboard_delete",			::cmd_LeaderboardDelete);
-    cmd("owner", 	"leaderboard_delete_entry",		::cmd_LeaderboardDeleteEntry);
+    cmd("leaderboard_delete_entry", "owner", ::cmd_LeaderboardDeleteEntry, 	"Delete an entry in a leaderboard");
+    cmd("leaderboard_delete", 		"owner", ::cmd_LeaderboardDelete, 		"Delete a whole leaderboard");
 }
 
 cmd_LeaderboardDelete(args)
 {
 	if (args.size < 2)
-		return self pm("Usage: leaderboard_delete <mode> <way>");
+		return self pm("Usage: !leaderboard_delete <mode> <way>");
 
 	mode = args[0];
 	way = args[1];
@@ -49,7 +49,7 @@ cmd_LeaderboardDelete(args)
 cmd_LeaderboardDeleteEntry(args)
 {
 	if (args.size < 3)
-		return self pm("Usage: leaderboard_delete_entry <mode> <way> <index>");
+		return self pm("Usage: !leaderboard_delete_entry <mode> <way> <index>");
 
 	mode = args[0];
 	way = args[1];
