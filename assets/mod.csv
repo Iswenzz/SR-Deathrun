@@ -1,17 +1,82 @@
-// SR
+// Game
+rawfile,cleanup.cfg
+rawfile,info/bullet_penetration_mp
+rawfile,maps/mp/gametypes/_gametypes.txt
+rawfile,maps/mp/gametypes/battleroyale.txt
+rawfile,maps/mp/gametypes/cj.txt
+rawfile,maps/mp/gametypes/deathrun.txt
+rawfile,maps/mp/gametypes/war.txt
+
+// Animation
+rawfile,animtrees/multiplayer.atr
+rawfile,mp/playeranim.script
+rawfile,mp/playeranimtypes.txt
+
+// Strings
+localize,perks
+localize,sr
+localize,weapon
+
+// Tables
+stringtable,mp/abilityTable.csv
+stringtable,mp/challengetable_tier1.csv
+stringtable,mp/challengetable_tier2.csv
+stringtable,mp/challengetable.csv
+stringtable,mp/characterTable.csv
+stringtable,mp/fxTable.csv
+stringtable,mp/gloveTable.csv
+stringtable,mp/itemTable.csv
+stringtable,mp/knifeSkinTable.csv
+stringtable,mp/knifeTable.csv
+stringtable,mp/playerStatsTable.csv
+stringtable,mp/rankIconTable.csv
+stringtable,mp/rankTable.csv
+stringtable,mp/sprayTable.csv
+
+// Menus
+menufile,ui_mp/scriptmenus/commands/quickcommands.menu
+menufile,ui_mp/scriptmenus/commands/quickresponses.menu
+menufile,ui_mp/scriptmenus/commands/quickstatements.menu
+menufile,ui_mp/scriptmenus/commands/quickstuff.menu
+menufile,ui_mp/scriptmenus/commands/wm_quickmessage.menu
+menufile,ui_mp/scriptmenus/controls/controls_multi.menu
+menufile,ui_mp/scriptmenus/main/main_mp.menu
+menufile,ui_mp/scriptmenus/main/sr_customize.menu
+menufile,ui_mp/scriptmenus/main/sr_leaderboard.menu
+menufile,ui_mp/scriptmenus/main/sr_votemap.menu
+menufile,ui_mp/scriptmenus/misc/clientcmd.menu
+menufile,ui_mp/scriptmenus/misc/endofgame.menu
+menufile,ui_mp/scriptmenus/misc/muteplayer.menu
+menufile,ui_mp/scriptmenus/misc/scoreboard.menu
+menufile,ui_mp/scriptmenus/options/sr_settings.menu
+menufile,ui_mp/scriptmenus/popups/exit.menu
+menufile,ui/menus.txt
+
+// Sound
+sound,common,,all_mp
+sound,speedrun,,all_mp
+sound,user_interface,,all_mp
+
+// Models
+xmodel,axis
 xmodel,bc_militarytent_draped
+xmodel,ch_crate64x64
 xmodel,ch_roadrock_06
 xmodel,ch_russian_table
-xmodel,axis
 xmodel,com_crate01
 xmodel,com_crate02
-xmodel,ch_crate64x64
-xmodel,chicken
-xmodel,viewmodel_knife
-xanim,chicken_dance
-xmodel,x_spray7
-xmodel,x_spray8
-xmodel,x_spray9
+xmodel,com_teddy_bear
+xmodel,gib_abdomen
+xmodel,gib_arm
+xmodel,gib_chest
+xmodel,gib_forearm
+xmodel,gib_leg
+xmodel,mil_frame_charge
+xmodel,x_aurora
+xmodel,x_hexagon
+xmodel,x_mirror
+xmodel,x_screen
+xmodel,x_space_curvature
 xmodel,x_spray10
 xmodel,x_spray11
 xmodel,x_spray12
@@ -22,51 +87,115 @@ xmodel,x_spray16
 xmodel,x_spray17
 xmodel,x_spray18
 xmodel,x_spray19
-xmodel,x_mirror
+xmodel,x_spray7
+xmodel,x_spray8
+xmodel,x_spray9
 xmodel,x_volumetric_clouds
-xmodel,x_space_curvature
-xmodel,x_hexagon
-xmodel,x_aurora
-material,sr_glitch
-material,sr_translate
-material,sr_shake
-material,sr_zoom
-material,sr_vhs
+
+// Materials
+material,arrow_a
+material,arrow_d
+material,arrow_s
+material,arrow_w
+material,caulk
+material,crosshair
+material,default
+material,faction_128_arab_gold
+material,faction_128_sas_black
+material,headicon_vip
+material,headicon_voice
+material,hit_direction
+material,hud_icon_44
+material,hudstopwatch
+material,icon_risingstar
+material,killiconfalling
+material,killiconheadshot
+material,killiconmelee
+material,killiconsuicide
+material,line
+material,scope
+material,score_icon
+material,speedrunner_logo
+material,sr_banner
 material,sr_blur
-material,sr_edge
-material,sr_psy_edge
-material,sr_psy_glass
-material,sr_grid
-material,sr_loader
 material,sr_bokeh
 material,sr_bokeh_add
 material,sr_bokeh_multiply
-material,time_hud
-material,sr_banner
-material,sr_race
-material,sr_quit
-material,sr_settings
+material,sr_dice
+material,sr_edge
+material,sr_glitch
+material,sr_grid
+material,sr_insert
+material,sr_loader
 material,sr_next
 material,sr_prev
-material,vip_status
-material,vip_gold
-material,speedrunner_logo
+material,sr_psy_edge
+material,sr_psy_glass
+material,sr_quit
+material,sr_race
+material,sr_settings
+material,sr_shake
 material,sr_shop
+material,sr_translate
+material,sr_vhs
 material,sr_vip
-material,sr_insert
-material,sr_dice
-material,sr_life
-material,arrow_w
-material,arrow_a
-material,arrow_s
-material,arrow_d
-material,crosshair
-material,killiconsuicide
-material,killiconmelee
-material,killiconheadshot
-material,killiconfalling
+material,sr_zoom
 material,stance_stand
-material,icon_risingstar
+material,time_hud
+material,vip_gold
+material,vip_status
+material,weapon_knife
+
+// FX
+fx,speedrun/blue_particles
+fx,speedrun/cyan_fx
+fx,speedrun/endgame_fx
+fx,speedrun/endtrig_fx
+fx,speedrun/endtrigcircle_fx
+fx,speedrun/flare_startnstop
+fx,speedrun/green_fx
+fx,speedrun/lasershow
+fx,speedrun/orange_fx
+fx,speedrun/purple_fx
+fx,speedrun/red_fx
+fx,speedrun/secrettrig_fx
+fx,speedrun/secrettrigcircle_fx
+fx,speedrun/spray0
+fx,speedrun/spray1
+fx,speedrun/spray2
+fx,speedrun/spray3
+fx,speedrun/spray4
+fx,speedrun/spray5
+fx,speedrun/spray6
+fx,speedrun/vip_trail1
+fx,speedrun/vip_trail2
+fx,speedrun/vip_trail3
+fx,speedrun/vip_trail4
+fx,speedrun/vip_trail5
+fx,speedrun/wr_fx
+fx,speedrun/yellow_fx
+fx,weather/lightning_mp_farm
+fx,weather/rain_mp_farm
+fx,weather/snow_light_mp_bloc
+
+// Vision
+rawfile,vision/activators.vision
+rawfile,vision/jumpers.vision
+rawfile,vision/mp_br_blackout.vision
+rawfile,vision/mp_dr_nighty_v2.vision
+rawfile,vision/mp_dr_sm64.vision
+rawfile,vision/mp_dr_train_rush.vision
+rawfile,vision/null.vision
+
+// Shock
+rawfile,shock/concussion_grenade_mp.shock
+rawfile,shock/damage_mp.shock
+rawfile,shock/default.shock
+rawfile,shock/flashbang.shock
+rawfile,shock/frag_grenade_mp.shock
+rawfile,shock/radiation_high.shock
+
+// Ranks
 material,0
 material,1
 material,2
@@ -147,64 +276,17 @@ material,76
 material,77
 material,78
 material,79
-material,scope
-material,weapon_knife
-material,default
-material,hit_direction
-material,caulk
-material,headicon_vip
-material,headicon_voice
-material,hud_icon_44
-material,hudstopwatch
-material,score_icon
-material,faction_128_sas_black
-material,faction_128_arab_gold
-material,line
-fx,weather/snow_light_mp_bloc
-fx,weather/lightning_mp_farm
-fx,weather/rain_mp_farm
-fx,deathrun/blue_particles
-fx,deathrun/lasershow
-fx,deathrun/wr_fx
-fx,deathrun/endtrig_fx
-fx,deathrun/endtrigcircle_fx
-fx,deathrun/secrettrigcircle_fx
-fx,deathrun/secrettrig_fx
-fx,deathrun/yellow_fx
-fx,deathrun/red_fx
-fx,deathrun/purple_fx
-fx,deathrun/orange_fx
-fx,deathrun/green_fx
-fx,deathrun/cyan_fx
-fx,deathrun/vip_trail1
-fx,deathrun/vip_trail2
-fx,deathrun/vip_trail3
-fx,deathrun/vip_trail4
-fx,deathrun/vip_trail5
-fx,deathrun/flare_startnstop
-rawfile,info/bullet_penetration_mp
-rawfile,vision/jumpers.vision
-rawfile,vision/activators.vision
-rawfile,vision/mp_br_blackout.vision
-rawfile,vision/mp_dr_nighty_v2.vision
-rawfile,vision/mp_dr_sm64.vision
-rawfile,vision/mp_dr_train_rush.vision
-rawfile,vision/null.vision
-rawfile,shock/concussion_grenade_mp.shock
-rawfile,shock/damage_mp.shock
-rawfile,shock/default.shock
-rawfile,shock/flashbang.shock
-rawfile,shock/frag_grenade_mp.shock
-rawfile,shock/radiation_high.shock
-rawfile,maps/mp/gametypes/_gametypes.txt
-rawfile,maps/mp/gametypes/war.txt
-rawfile,maps/mp/gametypes/deathrun.txt
-rawfile,maps/mp/gametypes/battleroyale.txt
-rawfile,maps/mp/gametypes/cj.txt
-rawfile,cleanup.cfg
-sound,common,,all_mp
-sound,user_interface,,all_mp
-sound,speedrun,,all_mp
+material,rank_prestige11
+material,rank_prestige12
+material,rank_prestige13
+material,rank_prestige14
+material,rank_prestige15
+material,rank_prestige16
+material,rank_prestige17
+material,rank_prestige18
+material,rank_prestige19
+material,rank_prestige20
+material,rank_special1
 
 // Portal
 sound,portal,,all_mp
@@ -250,76 +332,6 @@ fx,portal\turret_cookoff
 fx,portal\redlaser
 weapon,mp\portalgun_mp
 
-// Deathrun
-xmodel,gib_abdomen
-xmodel,gib_arm
-xmodel,gib_chest
-xmodel,gib_forearm
-xmodel,gib_leg
-xmodel,com_teddy_bear
-xmodel,weapon_bo_tomahawk
-xmodel,weapon_bo_tomahawk_wm
-xmodel,weapon_bo_tomahawk_wm_knife
-xmodel,bo2_t6_wpn_pistol_m1911_view
-xmodel,bo2_t6_wpn_pistol_m1911_world
-xmodel,viewmodel_colt_anaconda_44
-xmodel,weapon_colt_anaconda_44
-xmodel,viewmodel_bo2_mc96
-xmodel,worldmodel_bo2_mc96
-xmodel,body_mp_usmc_cqb
-xmodel,body_mp_sas_urban_sniper
-xmodel,body_zoey
-xmodel,body_shepherd
-xmodel,body_juggernaut
-xmodel,body_masterchief
-xmodel,body_makarov
-xmodel,body_complete_mp_russian_farmer
-xmodel,body_complete_mp_zakhaev
-xmodel,body_complete_mp_velinda_desert
-xmodel,body_alice
-xmodel,tf_re45_view
-xmodel,tf_re45_world
-xmodel,viewmodel_bo2_870mcs
-xmodel,worldmodel_bo2_870mcs
-xmodel,playermodel_dnf_duke
-xmodel,captainamerica
-xmodel,ratchet
-xmodel,shadow1
-xmodel,deadpool
-xmodel,viewmodel_hands_zombie
-xmodel,viewmodel_hands_50cent
-xmodel,viewhands_black_kit
-xmodel,viewhands_desert_opfor
-xmodel,viewhands_marine_sniper
-xmodel,viewhands_op_force
-xmodel,viewhands_sas_woodland
-xmodel,viewhands_usmc
-xmodel,viewhands_dnf_duke
-xmodel,viewhands_mw3_ally_jugg
-xmodel,viewhands_null
-xmodel,viewmodel_bo2_mp7
-xmodel,worldmodel_bo2_mp7
-xmodel,mil_frame_charge
-fx,deathrun/spray0
-fx,deathrun/spray1
-fx,deathrun/spray2
-fx,deathrun/spray3
-fx,deathrun/spray4
-fx,deathrun/spray5
-fx,deathrun/spray6
-fx,deathrun/endgame_fx
-fx,muzzleflashes/mist_mk2_flashview
-sound,deathrun,,all_mp
-sound,braxi,,all_mp
-sound,anaconda,,all_mp
-sound,mauser,,all_mp
-sound,mp7,,all_mp
-sound,mr6,,all_mp
-weapon,mp/colt44_mp
-weapon,mp/tomahawk_mp
-weapon,mp/knife_mp
-weapon,mp/dog_mp
-
 // Rumble
 rawfile,rumble/ac130_105mm_fire
 rawfile,rumble/ac130_25mm_fire
@@ -347,50 +359,54 @@ rawfile,rumble/sniper_fire
 rawfile,rumble/stinger_lock_rumble
 rawfile,rumble/tank_rumble
 
-// Animation scripts
-rawfile,animtrees/multiplayer.atr
-rawfile,mp/playeranimtypes.txt
-rawfile,mp/playeranim.script
+// Chicken
+xanim,chicken_dance
+xmodel,chicken
 
-// Localized strings
-localize,sr
-localize,weapon
-localize,perks
+// Dog
+xmodel,german_sheperd_dog
+xanim,german_shepherd_attack_player
+xanim,german_shepherd_run_attack
+xanim,german_shepherd_idle
+xanim,german_shepherd_sitting_looking_idle
+xanim,german_shepherd_sleeping
+xanim,german_shepherd_walk
+xanim,german_shepherd_run
+xanim,german_shepherd_run_jump_40
+xanim,german_shepherd_death_front
+xanim,german_shepherd_run_pain
+xanim,german_shepherd_wakeup_fast
+weapon,mp/dog_mp
 
-// String tables
-stringtable,mp/gloveTable.csv
-stringtable,mp/fxTable.csv
-stringtable,mp/sprayTable.csv
-stringtable,mp/characterTable.csv
-stringtable,mp/itemTable.csv
-stringtable,mp/knifeTable.csv
-stringtable,mp/knifeSkinTable.csv
-stringtable,mp/rankTable.csv
-stringtable,mp/abilityTable.csv
-stringtable,mp/rankIconTable.csv
-stringtable,mp/playerStatsTable.csv
-stringtable,mp/challengetable.csv
-stringtable,mp/challengetable_tier1.csv
-stringtable,mp/challengetable_tier2.csv
+// Gloves
+xmodel,viewmodel_hands_zombie
+xmodel,viewmodel_hands_50cent
+xmodel,viewhands_black_kit
+xmodel,viewhands_desert_opfor
+xmodel,viewhands_marine_sniper
+xmodel,viewhands_op_force
+xmodel,viewhands_sas_woodland
+xmodel,viewhands_usmc
+xmodel,viewhands_dnf_duke
+xmodel,viewhands_mw3_ally_jugg
+xmodel,viewhands_null
+xmodel,viewmodel_bo2_mp7
 
-// Menus
-menufile,ui/menus.txt
-menufile,ui_mp/scriptmenus/main/main_mp.menu
-menufile,ui_mp/scriptmenus/main/sr_customize.menu
-menufile,ui_mp/scriptmenus/main/sr_leaderboard.menu
-menufile,ui_mp/scriptmenus/main/sr_votemap.menu
-menufile,ui_mp/scriptmenus/commands/wm_quickmessage.menu
-menufile,ui_mp/scriptmenus/commands/quickcommands.menu
-menufile,ui_mp/scriptmenus/commands/quickresponses.menu
-menufile,ui_mp/scriptmenus/commands/quickstatements.menu
-menufile,ui_mp/scriptmenus/commands/quickstuff.menu
-menufile,ui_mp/scriptmenus/options/sr_settings.menu
-menufile,ui_mp/scriptmenus/controls/controls_multi.menu
-menufile,ui_mp/scriptmenus/popups/exit.menu
-menufile,ui_mp/scriptmenus/misc/clientcmd.menu
-menufile,ui_mp/scriptmenus/misc/endofgame.menu
-menufile,ui_mp/scriptmenus/misc/scoreboard.menu
-menufile,ui_mp/scriptmenus/misc/muteplayer.menu
+// Knife
+weapon,mp/knife_mp
+xmodel,viewmodel_knife
+xanim,viewmodel_sog_knife_ads_down
+xanim,viewmodel_sog_knife_ads_up
+xanim,viewmodel_sog_knife_idle
+xanim,viewmodel_sog_knife_idle_loop
+xanim,viewmodel_sog_knife_melee_stick
+xanim,viewmodel_sog_knife_melee_swipe
+xanim,viewmodel_sog_knife_pullout
+xanim,viewmodel_sog_knife_pullout_quick
+xanim,viewmodel_sog_knife_putaway
+xanim,viewmodel_sog_knife_putaway_quick
+xanim,viewmodel_sog_knife_pullout_quick
+xanim,viewmodel_sog_knife_sprint_loop
 
 // Knifes
 xmodel,sr_knife_4_0
@@ -435,6 +451,9 @@ xmodel,sr_knife_1_7
 xmodel,sr_knife_0_7
 
 // Tomahawk
+xmodel,weapon_bo_tomahawk
+xmodel,weapon_bo_tomahawk_wm
+xmodel,weapon_bo_tomahawk_wm_knife
 xanim,viewmodel_tomahawk_attack
 xanim,viewmodel_tomahawk_attack2
 xanim,viewmodel_tomahawk_idle
@@ -443,8 +462,62 @@ xanim,viewmodel_tomahawk_pullout
 xanim,viewmodel_tomahawk_sprint_in
 xanim,viewmodel_tomahawk_sprint_loop
 xanim,viewmodel_tomahawk_sprint_out
+weapon,mp/tomahawk_mp
+
+// MC96
+xmodel,viewmodel_bo2_mc96
+xmodel,worldmodel_bo2_mc96
+
+// USMC
+xmodel,body_mp_usmc_cqb
+
+// Urban Sniper
+xmodel,body_mp_sas_urban_sniper
+
+// Zoey
+xmodel,body_zoey
+
+// Shepherd
+xmodel,body_shepherd
+
+// Juggernaut
+xmodel,body_juggernaut
+
+// Masterchief
+xmodel,body_masterchief
+
+// Makarov
+xmodel,body_makarov
+
+// Russian Farmer
+xmodel,body_complete_mp_russian_farmer
+
+// Zakhaev
+xmodel,body_complete_mp_zakhaev
+
+// Velinda Desert
+xmodel,body_complete_mp_velinda_desert
+
+// Alice
+xmodel,body_alice
+
+// Duke
+xmodel,playermodel_dnf_duke
+
+// Captain America
+xmodel,captainamerica
+
+// Ratchet
+xmodel,ratchet
+
+// Shadow
+xmodel,shadow1
+
+// Deadpool
+xmodel,deadpool
 
 // Mauser
+sound,mauser,,all_mp
 xanim,viewmodel_zomb_mauser_ads_down
 xanim,viewmodel_zomb_mauser_ads_fire
 xanim,viewmodel_zomb_mauser_ads_up
@@ -467,7 +540,8 @@ xanim,viewmodel_zomb_mauser_upgrade_ads_up
 xanim,viewmodel_zomb_mauser_upgrade_first_raise
 xanim,viewmodel_zomb_mauser_upgraded_fire
 
-// MR6
+// BO3 MR6
+sound,mr6,,all_mp
 sound,bo3_mr6,,all_mp
 xmodel,viewmodel_mist_mr6
 xmodel,worldmodel_mist_mr6
@@ -485,7 +559,7 @@ xanim,vm_mr6_sprint_in
 xanim,vm_mr6_sprint_loop
 xanim,vm_mr6_sprint_out
 
-// Intervention
+// MW2 Intervention
 sound,cheytac,,all_mp
 xmodel,viewmodel_cheytac
 xmodel,weapon_cheytac
@@ -523,6 +597,7 @@ xmodel,playermodel_css_badass_terrorist
 xmodel,viewmodel_barrett_new_mw2
 
 // Colt 44
+weapon,mp/colt44_mp
 xanim,viewmodel_sw357_ads_down
 xanim,viewmodel_sw357_ads_fire
 xanim,viewmodel_sw357_ads_up
@@ -537,6 +612,9 @@ xanim,viewmodel_sw357_reload
 xanim,viewmodel_sw357_sprint_in
 xanim,viewmodel_sw357_sprint_loop
 xanim,viewmodel_sw357_sprint_out
+xmodel,viewmodel_colt_anaconda_44
+xmodel,weapon_colt_anaconda_44
+sound,anaconda,,all_mp
 
 // Beretta 2023
 xanim,viewmodel_beretta2023r_ads_down
@@ -612,7 +690,7 @@ xanim,viewmodel_fnfiveseven_tactical_sprint_loop
 xanim,viewmodel_fnfiveseven_tactical_sprint_out
 sound,fn57,,all_mp
 
-// Remington 870
+// 870MCS
 xanim,viewmodel_870mcs_ads_down
 xanim,viewmodel_870mcs_ads_fire
 xanim,viewmodel_870mcs_ads_rechamber
@@ -634,21 +712,9 @@ xanim,viewmodel_870mcs_reload_out
 xanim,viewmodel_870mcs_sprint_in
 xanim,viewmodel_870mcs_sprint_loop
 xanim,viewmodel_870mcs_sprint_out
+xmodel,viewmodel_bo2_870mcs
+xmodel,worldmodel_bo2_870mcs
 sound,870mcs,,all_mp
-
-// Knife
-xanim,viewmodel_sog_knife_ads_down
-xanim,viewmodel_sog_knife_ads_up
-xanim,viewmodel_sog_knife_idle
-xanim,viewmodel_sog_knife_idle_loop
-xanim,viewmodel_sog_knife_melee_stick
-xanim,viewmodel_sog_knife_melee_swipe
-xanim,viewmodel_sog_knife_pullout
-xanim,viewmodel_sog_knife_pullout_quick
-xanim,viewmodel_sog_knife_putaway
-xanim,viewmodel_sog_knife_putaway_quick
-xanim,viewmodel_sog_knife_pullout_quick
-xanim,viewmodel_sog_knife_sprint_loop
 
 // PPSH
 sound,ppsh,,all_mp
@@ -668,11 +734,13 @@ xanim,vm_raid_ppsh_sprint_in
 xanim,vm_raid_ppsh_sprint_loop
 xanim,vm_raid_ppsh_sprint_out
 
-// Ghost
+// Ghost Deagle
 xmodel,vm_raid_ghostrun_deagle
 xmodel,wm_raid_ghostrun_deagle
 
-// M1911
+// BO2 M1911
+xmodel,bo2_t6_wpn_pistol_m1911_view
+xmodel,bo2_t6_wpn_pistol_m1911_world
 xanim,ndr_m1911_idle
 xanim,ndr_m1911_fire
 xanim,ndr_m1911_fire_ads
@@ -691,6 +759,8 @@ xanim,ndr_m1911_first_raise
 xmodel,viewmodel_remington700_darkmatter
 
 // MP7
+sound,mp7,,all_mp
+xmodel,worldmodel_bo2_mp7
 xanim,viewmodel_mp7_ads_down
 xanim,viewmodel_mp7_ads_fire
 xanim,viewmodel_mp7_ads_up
@@ -736,16 +806,16 @@ xmodel,sonic
 // Joker
 xmodel,playermodel_baa_joker
 
-// MW2 DEAGLE
+// MW2 Deagle
 xmodel,viewmodel_desert_eagle_tactical
 xmodel,weapon_desert_eagle_tactical
 
-// Tac-45
+// Tac 45
 sound,bo2_m1911,,all_mp
 xmodel,st_core_fnp45_viewmodel
 xmodel,st_core_fnp45_worldmodel
 
-// Golden Python
+// Python
 sound,python,,all_mp
 xanim,viewmodel_python_sw_ads_down
 xanim,viewmodel_python_sw_ads_fire
@@ -779,6 +849,7 @@ xanim,mist_bo2_mk2_reload_full
 xanim,mist_bo2_mk2_sprint_in
 xanim,mist_bo2_mk2_sprint_loop
 xanim,mist_bo2_mk2_sprint_out
+fx,muzzleflashes/mist_mk2_flashview
 
 // BO3 RK5
 xanim,viewmodel_rk5_ads_down
@@ -865,7 +936,7 @@ sound,bo3_ark7,,all_sp
 xmodel,vm_bo3_ark7
 xmodel,wm_bo3_ark7
 
-// K7 Fox
+// K7
 xanim,viewmodel_k7_ads_down
 xanim,viewmodel_k7_ads_up
 xanim,viewmodel_k7_fire
@@ -922,7 +993,7 @@ xanim,vm_locus_sprint_out
 xmodel,vm_bo3_locus
 xmodel,wm_bo3_locus
 
-// COD5 MG42
+// WAW MG42
 xmodel,viewmodel_mg42_waw,,
 xmodel,weapon_mg42_waw,,
 sound,MG42,,all_mp
@@ -1095,7 +1166,7 @@ sound,olympia,,all_mp
 // FON Riotgear
 xmodel,plr_fonv_riotgear_a
 
-// Shovel WW2
+// WW2 Shovel
 xanim,viewmodel_ww2_shovel_sprint_loop
 xanim,viewmodel_ww2_shovel_swipe
 xanim,viewmodel_ww2_shovel_stab
@@ -1107,7 +1178,7 @@ xanim,viewmodel_ww2_shovel_pullout_fast
 xanim,viewmodel_ww2_shovel_idle
 xmodel,viewmodel_fox_ww2_shovel
 
-// Insertion MW2
+// MW2 Insertion
 xanim,viewmodel_mw2_insertion_idle
 xanim,viewmodel_mw2_insertion_strike
 xanim,viewmodel_mw2_insertion_raise
@@ -1129,26 +1200,12 @@ xmodel,viewmodel_plasma
 xmodel,wm_quake_plasma
 sound,plasma,,all
 
-// Predator MW2
+// MW2 Predator
 xanim,predator_drop
 xanim,predator_idle
 xanim,predator_raise
 xmodel,predator_vm
 xmodel,predator_wm
-
-// Dog
-xmodel,german_sheperd_dog
-xanim,german_shepherd_attack_player
-xanim,german_shepherd_run_attack
-xanim,german_shepherd_idle
-xanim,german_shepherd_sitting_looking_idle
-xanim,german_shepherd_sleeping
-xanim,german_shepherd_walk
-xanim,german_shepherd_run
-xanim,german_shepherd_run_jump_40
-xanim,german_shepherd_death_front
-xanim,german_shepherd_run_pain
-xanim,german_shepherd_wakeup_fast
 
 // Wavegun
 fx,wavegun/fire_wavegun
@@ -1179,7 +1236,7 @@ xmodel,playermodel_crss_nanosuit
 // MW3 Chemwar Russian
 xmodel,playermodel_mw3_chemwar_aa
 
-// BO Sten
+// BO1 Sten
 xanim,viewmodel_sten_ADS_down
 xanim,viewmodel_sten_ADS_up
 xanim,viewmodel_sten_fire
@@ -1302,7 +1359,7 @@ fx,smoke/jetpack
 // AW RW1
 // xmodel,viewmodel_AW_RW1
 // xmodel,weaponl_AW_RW1
-// sound,RW1,,all_mp
+// sound,rw1,,all_mp
 // xanim,vm_rw1_ads_down
 // xanim,vm_rw1_ads_fire
 // xanim,vm_rw1_ads_up
@@ -1315,7 +1372,7 @@ fx,smoke/jetpack
 // xanim,vm_rw1_sprint_loop
 // xanim,vm_rw1_sprint_out
 
-// MP40 T5
+// BO1 MP40
 sound,t5_smg_mp40,,all_mp
 xmodel,t5_smg_mp40_view
 xmodel,t5_smg_mp40_npc
