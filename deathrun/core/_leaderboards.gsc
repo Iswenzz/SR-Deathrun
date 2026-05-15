@@ -67,8 +67,8 @@ updateMenuInfo()
 	pb = self deathrun\core\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
 
 	self setClientDvars(
-		"sr_leaderboard_pb", fmt("^3%s", pb),
-		"sr_leaderboard_wr", fmt("^2%s", wr)
+		"sr_leaderboard_pb", fmt("^3%s", Ternary(IsNullOrEmpty(pb), "-", pb)),
+		"sr_leaderboard_wr", fmt("^2%s", Ternary(IsNullOrEmpty(wr), "-", wr))
 	);
 }
 
