@@ -4,34 +4,39 @@
 
 The classical mod in which a single player fights alone against the other team, his only weapons are his deadly traps. The players in the opposite team have to kill the trapmaster after finishing his course without dying.
 
-## Player
+## Features
 
-* Customization
-* Shaders, sprays, trails
-* HUDs cgaz, crosshair, keys, velocity, fps, viewkick
-* 210, 190, Defrag and portal movements
-* Noclip, pickup, practise player modes
-* Bunny hop, player hiding and insertions
-* Player settings using stats
-
-## Game
-
-* Script menus
-* Minigames with queue system
-* Trigger effects
-* Killzone, race minigames
-* Music animations sequences
-* Bullettrace weapons
-* Demo recording
-* Demo player
-* Leaderboards and PBs
-* Map edition moving entities or placing chickens
-* Anti-cheat preventing elevators, lag switch and low fps
+* 150+ admin commands
+* Access to filesystem, DVars, Discord, HTTP, and databases
+* AI chat integration
+* Anti-cheat system covering elevators, lag switching, and low FPS abuse
+* API support for player, maps, speedrun, deathrun, and battle royale mods
+* Built-in gsclib, gscunit, and portal libraries
+* Bullet trace weapons
+* Bunny hop, player hiding, and insertions
+* Callback-based event system
+* Command suite covering graphics, minigames, maps, players, and debugging
+* Demo playback and recording
+* HUD elements: CGAZ, crosshair, keys, velocity, spectator, FPS, viewkick, killcam, and hitmarker
+* In-game map edition
+* Leaderboards and personal bests
+* MediaSync integration for IW3SR browser playback
+* Minigame queue system
+* Minigames: KillZone, Race, Bomberman
+* Movement support: 190, 210, Q3, Q3CPM, Q3CPMW, CS, Portal
+* MP3 & WAV radio streaming
+* Music animation sequences
+* Notification system
+* Overlay menus
+* Perks system
+* Player customization and settings
+* Player modes: noclip, pickup, and practice
+* Proximity-based voice chat
 * Random map rotation
-* Ranking, match and vote systems
-* Time played
-* Voice chat with proximity feature
-* Radio MP3 & WAV streaming
+* Ranking, match, and voting systems
+* Shaders, sprays, and trails
+* Time played tracking
+* Trigger effects
 
 ## Documentation
 * [API](https://github.com/Iswenzz/SR-Dev/blob/master/docs/deathrun.md)
