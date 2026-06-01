@@ -1187,16 +1187,22 @@ sound,insertion,,all
 
 // Q3 Rocket
 fx,q3/rocket_trail
-xmodel,viewmodel_rocket
-xmodel,wm_quake_rocket
 xmodel,quake_rocket_projectile
+xmodel,q3rocket_view
+xmodel,q3rocket_world
+xanim,q3rocket_putaway
+xanim,q3rocket_pullout
+xanim,q3rocket_fire
+xanim,q3rocket_idle
 sound,rocket,,all
 
 // Q3 Plasma
 fx,q3/plasma_fire
 fx,q3/plasma_explode
-xmodel,viewmodel_plasma
-xmodel,wm_quake_plasma
+xmodel,q3plasma_view
+xmodel,q3plasma_world
+xanim,q3plasma_idle
+xanim,q3plasma_fire
 sound,plasma,,all
 
 // MW2 Predator
