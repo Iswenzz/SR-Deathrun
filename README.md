@@ -2,41 +2,11 @@
 
 ![](https://i.imgur.com/A861gUK.jpeg)
 
-The classical mod in which a single player fights alone against the other team, his only weapons are his deadly traps. The players in the opposite team have to kill the trapmaster after finishing his course without dying.
+The classical mod in which a single player fights alone against the other team, armed with nothing but a series of deadly traps. The opposing team must navigate the course and reach the end without dying — then finish off the activator to win the round. Built on top of [SR-Core](https://github.com/Iswenzz/SR-Core), the mod brings a full competitive and social experience to the classic deathrun format.
 
-## Features
+Not every round plays the same — at random, a round may launch in an alternate movement mode such as 190, CS, Q3, Q3CPM, Q3CPMW, Portal, keeping every game unpredictable and pushing players to adapt on the fly. Once per round, players can roll the dice for a random outcome that can work in their favour or against them. A shop lets you spend points — earned naturally just by playing — on lives, weapons, and health.
 
-* 150+ admin commands
-* Access to filesystem, DVars, Discord, HTTP, and databases
-* AI chat integration
-* Anti-cheat system covering elevators, lag switching, and low FPS abuse
-* API support for player, maps, speedrun, deathrun, and battle royale mods
-* Built-in gsclib, gscunit, and portal libraries
-* Bullet trace weapons
-* Bunny hop, player hiding, and insertions
-* Callback-based event system
-* Command suite covering graphics, minigames, maps, players, and debugging
-* Demo playback and recording
-* HUD elements: CGAZ, crosshair, keys, velocity, spectator, FPS, viewkick, killcam, and hitmarker
-* In-game map edition
-* Leaderboards and personal bests
-* MediaSync integration for IW3SR browser playback
-* Minigame queue system
-* Minigames: KillZone, Race, Bomberman
-* Movement support: 190, 210, Q3, Q3CPM, Q3CPMW, CS, Portal
-* MP3 & WAV radio streaming
-* Music animation sequences
-* Notification system
-* Overlay menus
-* Perks system
-* Player customization and settings
-* Player modes: noclip, pickup, and practice
-* Proximity-based voice chat
-* Random map rotation
-* Ranking, match, and voting systems
-* Shaders, sprays, and trails
-* Time played tracking
-* Trigger effects
+Players who die can spawn as a ghost and keep running the course, using the time to practise without affecting the live round. Per-map leaderboards and personal bests track your progress across every course, and demo playback lets you watch the current world record with slow motion and rewind to study any run in detail.
 
 ## Documentation
 * [API](https://github.com/Iswenzz/SR-Dev/blob/master/docs/deathrun.md)
