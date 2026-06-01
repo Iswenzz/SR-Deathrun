@@ -123,31 +123,8 @@ cmd_Points(args)
 cmd_Special(args)
 {
 	if (args.size < 1)
-		return self pm("Usage: !special <defrag | portal | bhop>");
+		return self pm("Usage: !special <mode>");
 
-	mode = undefined;
-	switch (args[0])
-	{
-		case "defrag":
-			mode = deathrun\core\_run::start_Defrag;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^1DEFRAG ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^1DEFRAG ROUND");
-			break;
-		case "portal":
-			mode = deathrun\core\_run::start_Portal;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
-			break;
-		case "bhop":
-			mode = deathrun\core\_run::start_Bhop;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^2BHOP ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^2BHOP ROUND");
-			break;
-	}
-	if (!isDefined(mode))
-		return;
-
-	players = getPlayingPlayers();
-	for (i = 0; i < players.size; i++)
-		players[i] thread [[mode]]();
+	mode = args[0];
+	deathrun\core\_game::startSpecialRound(mode);
 }

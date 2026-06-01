@@ -18,7 +18,6 @@ main()
 	level.mapHasTimeTrigger = false;
 
 	event("map", ::start);
-	event("map", ::specialRound);
 	event("map", ::bots);
 	event("spawn", ::playerAFK);
 	event("spawn", ::playerWeapon);
@@ -39,6 +38,7 @@ start()
 
 	thread watchGame();
 	thread watchTraps();
+	thread specialRound();
 	// thread autoRespawn();
 }
 
@@ -140,25 +140,50 @@ specialRound()
 	if (randomIntRange(0, 100) > 1)
 		return;
 
-	mode = randomIntRange(0, 3) + 1;
+	modes = strTok("190;Q3;Q3CPM;Q3CPMW;CS;Portal", ";");
+	startSpecialRound(modes[randomInt(modes.size)]);
+}
+
+startSpecialRound(mode)
+{
+	color = "^7";
+	mode = undefined;
+	modeIndex = 0;
+
 	switch (mode)
 	{
-		case 1:
-			mode = deathrun\core\_run::start_Defrag;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^1DEFRAG ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^1DEFRAG ROUND");
+		case "190":
+			mode = deathrun\core\_run::start_190;
+			modeIndex = 1;
 			break;
-		case 2:
+		case "Q3":
+			mode = deathrun\core\_run::start_Q3;
+			modeIndex = 3;
+			break;
+		case "Q3CPM":
+			mode = deathrun\core\_run::start_Q3CPM;
+			modeIndex = 4;
+			break;
+		case "Q3CPMW":
+			mode = deathrun\core\_run::start_Q3CPMW;
+			modeIndex = 5;
+			break;
+		case "CS":
+			mode = deathrun\core\_run::start_CS;
+			modeIndex = 6;
+			break;
+		case "Portal":
 			mode = deathrun\core\_run::start_Portal;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^5PORTAL ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^5PORTAL ROUND");
-			break;
-		case 3:
-			mode = deathrun\core\_run::start_Bhop;
-			thread braxi\_mod::drawInformation(800, 0.8, 1, "^2BHOP ROUND");
-			thread braxi\_mod::drawInformation(800, 0.8, -1, "^2BHOP ROUND");
+			modeIndex = 7;
 			break;
 	}
+	msg = fmt("%s%s ROUND", color, toUpper(mode));
+	thread braxi\_mod::drawInformation(800, 0.8, 1, msg);
+	thread braxi\_mod::drawInformation(800, 0.8, -1, msg);
+
+	if (!isDefined(mode))
+		return;
+
 	players = getPlayingPlayers();
 	for (i = 0; i < players.size; i++)
 		players[i] thread [[mode]]();

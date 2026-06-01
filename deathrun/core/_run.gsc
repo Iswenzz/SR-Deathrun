@@ -5,11 +5,7 @@ main()
 {
 	level.finishedMap = false;
 
-	deathrun\core\_leaderboards::addMode("190", ::start_190);
 	deathrun\core\_leaderboards::addMode("210", ::start_210);
-	deathrun\core\_leaderboards::addMode("Portal", ::start_Portal);
-	deathrun\core\_leaderboards::addMode("Defrag", ::start_Defrag);
-	deathrun\core\_leaderboards::addMode("Bhop", ::start_Bhop);
 
     event("map", ::endmapTrigger);
 }
@@ -122,6 +118,10 @@ endTimer()
 
 start_190()
 {
+	self.sr_mode = "190";
+	self.huds["speedrun"]["mode"] setText(self.sr_mode);
+	self cheat();
+
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.05);
 	self.gravity = sr\api\_map::getGravity(800);
 	self.jumpHeight = sr\api\_map::getJumpHeight(39);
@@ -156,14 +156,16 @@ start_210()
 	self setMoveSpeed(self.speed);
 }
 
-start_Bhop()
+start_Q3()
 {
-	self.sr_mode = "Bhop";
-	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(0.9);
+	self.sr_mode = "Q3";
+	self.huds["speedrun"]["mode"] setText(self.sr_mode);
+	self cheat();
+
+	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 	self.gravity = sr\api\_map::getGravity(800);
 	self.jumpHeight = sr\api\_map::getJumpHeight(39);
 	self.speed = sr\api\_map::getSpeed(320);
-	self cheat();
 
 	self.spawnMoveSpeedScale = self.moveSpeedScale;
 	self.spawnGravity = self.gravity;
@@ -174,20 +176,40 @@ start_Bhop()
 	self setGravity(self.gravity);
 	self setJumpHeight(self.jumpHeight);
 	self setMoveSpeed(self.speed);
-
-	self thread sr\core\_bhop::onSpawn();
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 }
 
-start_Defrag()
+start_Q3CPM()
 {
-	self.sr_mode = "Defrag";
+	self.sr_mode = "Q3CPM";
+	self.huds["speedrun"]["mode"] setText(self.sr_mode);
+	self cheat();
+
+	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
+	self.gravity = sr\api\_map::getGravity(800);
+	self.jumpHeight = sr\api\_map::getJumpHeight(39);
+	self.speed = sr\api\_map::getSpeed(320);
+
+	self.spawnMoveSpeedScale = self.moveSpeedScale;
+	self.spawnGravity = self.gravity;
+	self.spawnJumpHeight = self.jumpHeight;
+	self.spawnSpeed = self.speed;
+
+	self setMoveSpeedScale(self.moveSpeedScale);
+	self setGravity(self.gravity);
+	self setJumpHeight(self.jumpHeight);
+	self setMoveSpeed(self.speed);
+}
+
+start_Q3CPMW()
+{
+	self.sr_mode = "Q3CPMW";
 	self.forceWeaponVisual = true;
 	self.forceWeaponKnockback = true;
 	self.forceWeaponHitPlayers = true;
+	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 	self cheat();
 
-	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(0.9);
+	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 	self.gravity = sr\api\_map::getGravity(800);
 	self.jumpHeight = sr\api\_map::getJumpHeight(39);
 	self.speed = sr\api\_map::getSpeed(320);
@@ -202,11 +224,7 @@ start_Defrag()
 	self setJumpHeight(self.jumpHeight);
 	self setMoveSpeed(self.speed);
 
-	self thread sr\core\_defrag::onSpawn();
-	self thread sr\huds\_viewkick::onSpawn();
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
-
-	if (!level.defragStartWeapons.size)
+	if (!level.q3StartWeapons.size)
 	{
 		for (i = 0; i < level.weapons.size; i++)
 		{
@@ -216,15 +234,37 @@ start_Defrag()
 		}
 		return;
 	}
-
 	self takeAllWeapons();
-	for (i = 0; i < level.defragStartWeapons.size; i++)
+	for (i = 0; i < level.q3StartWeapons.size; i++)
 	{
-		weapon = level.defragWeapons[level.defragStartWeapons[i]];
+		weapon = level.defragWeapons[level.q3StartWeapons[i]];
 		self giveWeapon(weapon);
 		if (i == 0)
 			self setSpawnWeapon(weapon);
 	}
+	self thread sr\huds\_viewkick::onSpawn();
+}
+
+start_CS()
+{
+	self.sr_mode = "CS";
+	self.huds["speedrun"]["mode"] setText(self.sr_mode);
+	self cheat();
+
+	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
+	self.gravity = sr\api\_map::getGravity(800);
+	self.jumpHeight = sr\api\_map::getJumpHeight(39);
+	self.speed = sr\api\_map::getSpeed(250);
+
+	self.spawnMoveSpeedScale = self.moveSpeedScale;
+	self.spawnGravity = self.gravity;
+	self.spawnJumpHeight = self.jumpHeight;
+	self.spawnSpeed = self.speed;
+
+	self setMoveSpeedScale(self.moveSpeedScale);
+	self setGravity(self.gravity);
+	self setJumpHeight(self.jumpHeight);
+	self setMoveSpeed(self.speed);
 }
 
 start_Portal()
@@ -232,12 +272,13 @@ start_Portal()
 	self.sr_mode = "Portal";
 	self.forcePortalVisual = true;
 	self.forcePortalHitPlayers = true;
+	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 	self cheat();
 
-	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.12);
+	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 	self.gravity = sr\api\_map::getGravity(800);
 	self.jumpHeight = sr\api\_map::getJumpHeight(39);
-	self.speed = sr\api\_map::getSpeed(210);
+	self.speed = sr\api\_map::getSpeed(250);
 
 	self.spawnMoveSpeedScale = self.moveSpeedScale;
 	self.spawnGravity = self.gravity;
@@ -249,13 +290,10 @@ start_Portal()
 	self setJumpHeight(self.jumpHeight);
 	self setMoveSpeed(self.speed);
 
-	self allowAds(true);
-
 	weapon = level.portalgun;
+	self allowAds(true);
 	self takeAllWeapons();
 	self giveWeapon(weapon);
 	self setSpawnWeapon(weapon);
 	self giveMaxAmmo(weapon);
-
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 }
