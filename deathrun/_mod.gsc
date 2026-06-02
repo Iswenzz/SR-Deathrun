@@ -20,7 +20,7 @@ main()
 	sr\commands\_admin::main();
 	sr\commands\_cef::main();
 	sr\commands\_debug::main();
-	sr\commands\_defrag::main();
+	sr\commands\_q3::main();
 	sr\commands\_graphics::main();
 	sr\commands\_map::main();
 	sr\commands\_misc::main();
@@ -29,9 +29,8 @@ main()
 	sr\commands\_portal::main();
 	sr\commands\_vote::main();
 	sr\core\_assets::main();
-	sr\core\_bhop::main();
 	sr\core\_cheat::main();
-	sr\core\_defrag::main();
+	sr\core\_q3::main();
 	sr\core\_demo::main();
 	sr\core\_hide::main();
 	sr\core\_insertion::main();
@@ -65,8 +64,6 @@ main()
 	sr\menus\_customize::main();
 	sr\menus\_vote::main();
 	sr\modes\_debug::main();
-	sr\modes\_defrag::main();
-	sr\modes\_portal::main();
 	sr\modes\_practise::main();
 	sr\overlays\_owner::main();
 

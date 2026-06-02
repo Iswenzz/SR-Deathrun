@@ -15,9 +15,11 @@ main()
 	sr\core\_overlays::menuOption(main, "Random Weapon", ::menu_RandomWeapon, 150);
 	sr\core\_overlays::menuOption(main, "Random Perk", ::menu_RandomPerk, 150);
 	sr\core\_overlays::menuOption(main, "200 XP", ::menu_XP, 200);
+	sr\core\_overlays::menuOption(main, "Q3", ::menu_Q3, 250);
+	sr\core\_overlays::menuOption(main, "Q3CPM", ::menu_Q3CPM, 250);
+	sr\core\_overlays::menuOption(main, "Q3CPMW", ::menu_Q3CPMW, 250);
+	sr\core\_overlays::menuOption(main, "CS", ::menu_CS, 250);
 	sr\core\_overlays::menuOption(main, "Portal", ::menu_Portal, 250);
-	sr\core\_overlays::menuOption(main, "Defrag", ::menu_Defrag, 250);
-	sr\core\_overlays::menuOption(main, "Bhop", ::menu_Bhop, 250);
 	sr\core\_overlays::menuOption(main, "Unlimited Ammo", ::menu_UAmmo, 300);
 	sr\core\_overlays::menuOption(main, "Party Mode", ::menu_PartyMode, 400);
 }
@@ -161,6 +163,50 @@ menu_PartyMode(points)
 	self sr\core\_overlays::done();
 }
 
+menu_Q3(points)
+{
+	if (!self canBuy(points))
+		return;
+
+	self deathrun\core\_run::start_Q3();
+
+	self pm("^5Q3 mode !");
+	self sr\core\_overlays::done();
+}
+
+menu_Q3CPM(points)
+{
+	if (!self canBuy(points))
+		return;
+
+	self deathrun\core\_run::start_Q3CPM();
+
+	self pm("^5Q3CPM mode !");
+	self sr\core\_overlays::done();
+}
+
+menu_Q3CPMW(points)
+{
+	if (!self canBuy(points))
+		return;
+
+	self deathrun\core\_run::start_Q3CPMW();
+
+	self pm("^5Q3CPMW mode !");
+	self sr\core\_overlays::done();
+}
+
+menu_CS(points)
+{
+	if (!self canBuy(points))
+		return;
+
+	self deathrun\core\_run::start_CS();
+
+	self pm("^5CS mode !");
+	self sr\core\_overlays::done();
+}
+
 menu_Portal(points)
 {
 	if (!self canBuy(points))
@@ -169,28 +215,6 @@ menu_Portal(points)
 	self deathrun\core\_run::start_Portal();
 
 	self pm("^5Portal mode !");
-	self sr\core\_overlays::done();
-}
-
-menu_Defrag(points)
-{
-	if (!self canBuy(points))
-		return;
-
-	self deathrun\core\_run::start_Defrag();
-
-	self pm("^3Defrag mode !");
-	self sr\core\_overlays::done();
-}
-
-menu_Bhop(points)
-{
-	if (!self canBuy(points))
-		return;
-
-	self deathrun\core\_run::start_Bhop();
-
-	self pm("^3Bhop mode !");
 	self sr\core\_overlays::done();
 }
 

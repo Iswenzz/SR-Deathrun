@@ -7,9 +7,11 @@ main()
 
 	event("spawn", ::rtd);
 
-	add(5, "^3Defrag", ::rtd_Defrag);
+	add(5, "^3Q3", ::rtd_Q3);
+	add(5, "^3Q3CPM", ::rtd_Q3CPM);
+	add(5, "^3Q3CPMW", ::rtd_Q3CPMW);
+	add(5, "^3CS", ::rtd_CS);
 	add(5, "^3Portal", ::rtd_Portal);
-	add(5, "^3Bhop", ::rtd_Bhop);
 	add(10, "^5Speed Boost !", ::rtd_SpeedBoost);
 	add(10, "^5Jump Boost !", ::rtd_JumpBoost);
 	add(10, "^5Gravity Boost !", ::rtd_GravityBoost);
@@ -250,17 +252,27 @@ rtd_Explode()
 	self suicide();
 }
 
-rtd_Defrag()
+rtd_Q3()
 {
-	self deathrun\core\_run::start_Defrag();
+	self deathrun\core\_run::start_Q3();
+}
+
+rtd_Q3CPM()
+{
+	self deathrun\core\_run::start_Q3CPM();
+}
+
+rtd_Q3CPMW()
+{
+	self deathrun\core\_run::start_Q3CPMW();
+}
+
+rtd_CS()
+{
+	self deathrun\core\_run::start_CS();
 }
 
 rtd_Portal()
 {
 	self deathrun\core\_run::start_Portal();
-}
-
-rtd_Bhop()
-{
-	self deathrun\core\_run::start_Bhop();
 }

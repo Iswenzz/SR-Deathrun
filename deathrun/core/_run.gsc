@@ -237,7 +237,7 @@ start_Q3CPMW()
 	self takeAllWeapons();
 	for (i = 0; i < level.q3StartWeapons.size; i++)
 	{
-		weapon = level.defragWeapons[level.q3StartWeapons[i]];
+		weapon = level.q3Weapons[level.q3StartWeapons[i]];
 		self giveWeapon(weapon);
 		if (i == 0)
 			self setSpawnWeapon(weapon);
