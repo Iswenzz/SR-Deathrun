@@ -1,0 +1,222 @@
+#define LAYOUT_NAME             "about"
+#define LAYOUT_X_START          0
+#define LAYOUT_Y_START          100
+#define LAYOUT_SIZE_X           520
+#define LAYOUT_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER
+#define LAYOUT_VERTICAL_ALIGN   VERTICAL_ALIGN_CENTER
+
+#include "ui/components/base.inc"
+
+#define ABOUT_X             120
+#define ABOUT_Y             90
+#define ABOUT_W             400
+#define ABOUT_H             270
+#define ABOUT_HEADER_H      22
+#define ABOUT_BORDER_COLOR  0.5 0.1 1 1
+
+#define ABOUT_WINDOW(menuname) \
+    menuDef \
+    { \
+        name        menuname \
+        rect        0 0 640 480 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+        style       WINDOW_STYLE_EMPTY \
+        blurWorld   7.0 \
+        visible     0 \
+        onEsc       { close self; } \
+        onOpen      { focusFirst; } \
+        foreColor   1 1 1 1 \
+        focusColor  1 1 1 1 \
+        itemDef \
+        { \
+            name        "background" \
+            rect        0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN \
+            style       1 \
+            backcolor   0 0 0 0.6 \
+            visible     1 \
+            decoration \
+        } \
+        itemDef \
+        { \
+            name        "window" \
+            rect        ABOUT_X ABOUT_Y ABOUT_W ABOUT_H HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style       1 \
+            backcolor   0 0 0 0.3 \
+            visible     1 \
+            decoration \
+        } \
+        itemDef \
+        { \
+            name        "header" \
+            rect        ABOUT_X ABOUT_Y ABOUT_W ABOUT_HEADER_H HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style       1 \
+            backcolor   0 0 0 0.5 \
+            visible     1 \
+            decoration \
+        } \
+        itemDef \
+        { \
+            name        "headerBorder" \
+            rect        ABOUT_X (ABOUT_Y + ABOUT_HEADER_H) ABOUT_W 2 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style       1 \
+            backcolor   ABOUT_BORDER_COLOR \
+            visible     1 \
+            decoration \
+        }
+
+#define ABOUT_TITLE(title) \
+        itemDef \
+        { \
+            name        "title" \
+            text        title \
+            type        0 \
+            rect        ABOUT_X ABOUT_Y ABOUT_W ABOUT_HEADER_H HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            textfont    1 \
+            textscale   0.35 \
+            textalign   ITEM_ALIGN_MIDDLE_CENTER \
+            forecolor   1 1 1 1 \
+            textstyle   3 \
+            visible     1 \
+            decoration \
+        }
+
+#define ABOUT_TEXT(content) \
+        itemDef \
+        { \
+            name        "page_text" \
+            text        content \
+            type        0 \
+            rect        (ABOUT_X + 10) (ABOUT_Y + ABOUT_HEADER_H + 20) (ABOUT_W - 20) (ABOUT_H - ABOUT_HEADER_H - 50) HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            textfont    1 \
+            textscale   0.30 \
+            textalign   0 \
+            forecolor   0.8 0.8 0.8 1 \
+            textstyle   3 \
+            visible     1 \
+            decoration \
+        }
+
+#define ABOUT_COUNTER(current, total) \
+        itemDef \
+        { \
+            name            "pageindex" \
+            rect            (ABOUT_X + ABOUT_W / 2 - 5) (ABOUT_Y + ABOUT_H - 32) 20 30 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style           WINDOW_STYLE_EMPTY \
+            textstyle       ITEM_TEXTSTYLE_SHADOWED \
+            textalign       ITEM_ALIGN_MIDDLE_CENTER \
+            textaligny      4 \
+            visible         1 \
+            text            current " / " total \
+            textscale       0.35 \
+            decoration \
+        }
+
+#define ABOUT_PREV(target) \
+        itemDef \
+        { \
+            name            "prev" \
+            rect            (ABOUT_X + ABOUT_W / 2 - 40) (ABOUT_Y + ABOUT_H - 30) 30 30 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style           WINDOW_STYLE_FILLED \
+            text            "<" \
+            textalign       ITEM_ALIGN_CENTER \
+            textalignx      0 \
+            textaligny      26 \
+            type            ITEM_TYPE_BUTTON \
+            textstyle       ITEM_TEXTSTYLE_SHADOWED \
+            visible         1 \
+            mouseEnter \
+            { \
+                play "mouse_over"; \
+            } \
+            action \
+            { \
+                play "mouse_click"; \
+                close self; open target; \
+            } \
+        }
+
+#define ABOUT_NEXT(target) \
+        itemDef \
+        { \
+            name            "next" \
+            rect            (ABOUT_X + ABOUT_W / 2 + 20) (ABOUT_Y + ABOUT_H - 30) 30 30 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style           WINDOW_STYLE_FILLED \
+            text            ">" \
+            textalign       ITEM_ALIGN_CENTER \
+            textalignx      0 \
+            textaligny      26 \
+            type            ITEM_TYPE_BUTTON \
+            textstyle       ITEM_TEXTSTYLE_SHADOWED \
+            visible         1 \
+            mouseEnter \
+            { \
+                play "mouse_over"; \
+            } \
+            action \
+            { \
+                play "mouse_click"; \
+                close self; open target; \
+            } \
+        }
+
+#define ABOUT_CLOSE \
+        execKeyInt 13   { scriptmenuresponse "enter"; } \
+        execKeyInt 32   { scriptmenuresponse "space"; } \
+    }
+
+{
+    ABOUT_WINDOW("about_page_1")
+	ABOUT_TITLE("Welcome")
+	ABOUT_TEXT("^7Welcome to ^5SR Deathrun^7, a competitive ^5Call of Duty 4^7 deathrun mod\nbringing a full competitive and social experience\nto the classic deathrun format.\n\n^7One player takes the role of the ^5activator^7, armed with nothing but a series\nof deadly traps. The opposing team must navigate the course and reach\nthe end alive, then finish off the activator to win the round.\n\n^7Not every round plays the same. At random, a round may launch in an\nalternate movement mode such as ^5190, CS, Q3, Q3CPM, Q3CPMW^7 or ^5Portal^7,\nkeeping every game unpredictable and forcing players to adapt on the fly.\n\n^7Roll the ^5dice^7 once per round for a random outcome, spend ^5points^7 in the\nshop on lives, weapons, and health, or spawn as a ^5ghost^7 after dying to\nkeep practising the course without affecting the live round.")
+	ABOUT_COUNTER("1", "7")
+	ABOUT_PREV(about_page_1)
+	ABOUT_NEXT(about_page_2)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_2")
+	ABOUT_TITLE("Commands")
+	ABOUT_TEXT("^7A large set of commands is available to all players at any time.\nType ^2!help^7 in chat to browse the full list. Here are the most useful ones:\n\n^2!pm ^7Send a private message directly to another player on the server.\n^2!graphics ^7Re-enable common graphics settings if they were disabled.\n^2!fps ^7Toggle fullbright mode for improved frame rate.\n^2!fov ^7Adjust your field of view to your preference.\n^2!video ^7Request a video to be played on the in-game screen.")
+	ABOUT_COUNTER("2", "7")
+	ABOUT_PREV(about_page_1)
+	ABOUT_NEXT(about_page_3)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_3")
+	ABOUT_TITLE("Leaderboard")
+	ABOUT_TEXT("^7Every completed run is tracked across all maps and movement modes,\nbrowsable directly from the main menu at any time.\n\n^7Each map supports ^5multiple routes^7, each with its own independent\nleaderboard so that times are always compared fairly within the same path.\n\n^7Use the filters to sort by movement mode, map, or route to find exactly\nthe records you are looking for, whether checking your own rank or scouting\nthe competition.\n\n^7Hit the ^5demo^7 button on any leaderboard to watch a full in-game\nplayback of the WR. This is the best way to study exactly how a record\nwas achieved, what routes were taken, and what techniques were used.")
+	ABOUT_COUNTER("3", "7")
+	ABOUT_PREV(about_page_2)
+	ABOUT_NEXT(about_page_4)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_4")
+	ABOUT_TITLE("How to play")
+	ABOUT_TEXT("^5Strafing ^7is the foundation of all movement modes. While airborne, hold\na strafe key and move your mouse in the same direction simultaneously.\nDone correctly, each jump builds speed beyond the normal movement cap.\n\n^5FPS switching ^7exploits how the engine ties physics calculations to frame\nrate. Different fps values change jump height, distance, and acceleration.\nBind fps values in console: ^2/bind KEY com_maxfps 125^7. Switching at the\nright moment before or during a jump opens up routes otherwise impossible.\n\n^5Bounces ^7are physics exploits triggered by colliding with geometry at very\nspecific angles and speeds, launching you across the map in an instant.\nThey are frame-precise and require consistent setup to execute reliably.\n\n^7Each mode has its own advanced techniques. Search the mode name alongside\n^2CoD4 speedrun^7 on YouTube to find tutorials and record breakdowns.")
+	ABOUT_COUNTER("4", "7")
+	ABOUT_PREV(about_page_3)
+	ABOUT_NEXT(about_page_5)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_5")
+	ABOUT_TITLE("IW3SR")
+	ABOUT_TEXT("^5IW3SR^7 is a custom CoD4 client.\nStrongly recommended for all players and essential for the smoothest\nexperience on custom movement modes like Q3, Q3CPM, CS, and Portal.\n\n^5Velocity meter: ^7Real-time velocity display showing your exact speed at\n^7all times, essential for learning and optimizing movement.\n^5CGAZ: ^7Visualizes strafe zones on screen, showing the optimal angle\n^7window to maximize acceleration during every airborne moment.\n^5Bhop script: ^7Optimized bunny hop input handling built directly into\n^7the client for consistent jumps without timing variance.\n^5KMOV: ^7Fully customizable dynamic HUD displays for movement data.\n^5Built-in browser: ^7Watch videos in-game without alt-tabbing.\n\n^7Download and source available at ^2github.com/Iswenzz/IW3SR")
+	ABOUT_COUNTER("5", "7")
+	ABOUT_PREV(about_page_4)
+	ABOUT_NEXT(about_page_6)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_6")
+	ABOUT_TITLE("Open Source")
+	ABOUT_TEXT("^7The entire SR project is open source and community maintained.\nEvery part of the server, client, and tooling is publicly available\nfor anyone to explore, learn from, or contribute to.\n\n^7The full codebase is hosted on GitHub. You can browse the source,\nopen issues, suggest features, or submit pull requests directly at\n^2github.com/Iswenzz\n\n^7Contributions of all kinds are welcome and appreciated.\n^7The project grows because of the community. If you have skills\nand want to contribute, the door is open.")
+	ABOUT_COUNTER("6", "7")
+	ABOUT_PREV(about_page_5)
+	ABOUT_NEXT(about_page_7)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_7")
+	ABOUT_TITLE("Community")
+	ABOUT_TEXT("^7An active community of players, speedrunners, and mappers is\nalways online. Whether you are looking for help, want to share a run,\nor just want to follow the latest updates, come join us.\n\nThe ^5Discord^7 is the heart of the community. It is the best place\nto ask questions, get feedbacks, report bugs, and stay up to date with every\nnew map release, mode update, and server announcement.\n\n^5Website: ^2sr-speedrun.com\n^5Discord: ^2discord.gg/76aHfGF\n^5GitHub: ^2github.com/Iswenzz")
+	ABOUT_COUNTER("7", "7")
+	ABOUT_PREV(about_page_6)
+	ABOUT_NEXT(about_page_7)
+	ABOUT_CLOSE
+}
