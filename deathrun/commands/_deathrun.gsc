@@ -4,49 +4,12 @@
 main()
 {
 	cmd("activator", "masteradmin", ::cmd_Activator, "Set player as activator");
-	cmd("fxenable",  "player",      ::cmd_FX,        "Toggle game FX");
+	cmd("fx",        "player",      ::cmd_FX,        "Toggle game FX");
 	cmd("life",      "adminplus",   ::cmd_Life,      "Give a player an extra life");
 	cmd("points",    "masteradmin", ::cmd_Points,    "Give shop points to a player");
 	cmd("rtd",       "masteradmin", ::cmd_Rtd,       "Roll the dice");
 	cmd("sheep",     "player",      ::cmd_Sheep,     "Toggle sheep mode");
 	cmd("special",   "masteradmin", ::cmd_Special,   "Start a special round");
-}
-
-cmd_Speed(args)
-{
-	if (self isAxis())
-		return;
-
-    speed = Ternary(self.sr_mode == "190", "210", "190");
-	self setStat(1700, Ternary(speed == "190", 1, 2));
-    self.sr_mode = speed;
-    self pm(fmt("Run mode: ^5%s", speed));
-	self thread deathrun\core\_leaderboards::updateMenuInfo();
-    self suicide();
-}
-
-cmd_190(args)
-{
-	if (self isAxis())
-		return;
-
-	self setStat(1700, 1);
-	self.sr_mode = "190";
-    self pm("Run mode: ^5190");
-	self thread deathrun\core\_leaderboards::updateMenuInfo();
-    self suicide();
-}
-
-cmd_210(args)
-{
-	if (self isAxis())
-		return;
-
-	self setStat(1700, 2);
-	self.sr_mode = "210";
-    self pm("Run mode: ^5210");
-	self thread deathrun\core\_leaderboards::updateMenuInfo();
-    self suicide();
 }
 
 cmd_Sheep(args)

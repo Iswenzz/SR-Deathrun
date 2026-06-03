@@ -186,7 +186,10 @@ startSpecialRound(mode)
 
 	players = getPlayingPlayers();
 	for (i = 0; i < players.size; i++)
+	{
+		players[i] setStat(1700, modeIndex);
 		players[i] thread [[mode]]();
+	}
 }
 
 trapFreeRun()
