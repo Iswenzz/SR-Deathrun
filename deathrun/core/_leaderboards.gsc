@@ -58,7 +58,7 @@ onConnect()
 botLeaderboardEntries()
 {
 	self.lbEntries = 0;
-	self.pers["wrCount"] = 0;
+	self.pers["wrs"] = 0;
 }
 
 updateMenuInfo()
@@ -83,7 +83,7 @@ getPlayerWorldRecordCount()
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
 	SQL_Execute(request);
 	AsyncWait(request);
-	wrCount = IfUndef(SQL_FetchRow(request), []);
+	wrs = IfUndef(SQL_FetchRow(request), []);
 	SQL_Free(request);
 
 	critical_release("mysql");
@@ -91,9 +91,9 @@ getPlayerWorldRecordCount()
 	if (!isDefined(self))
 		return;
 
-	self.pers["wrCount"] = IfUndef(wrCount[0], 0);
-	self setClientDvar("sr_leaderboard_wr_count", fmt("%d", self.pers["wrCount"]));
-	self setStat(2001, self.pers["wrCount"]);
+	self.pers["wrs"] = IfUndef(wrs[0], 0);
+	self setClientDvar("sr_leaderboard_wr_count", fmt("%d", self.pers["wrs"]));
+	self setStat(2001, self.pers["wrs"]);
 }
 
 getPlayerEntriesCount()
