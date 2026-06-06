@@ -255,4 +255,8 @@ serverDvars()
 		"ui_hud_hardcore", 1,
 		"ui_uav_client", 0
 	);
+	wait 0.05;
+	self setClientDvars(
+		"cef_url", "https://sr-speedrun.com/media"
+	);
 }
