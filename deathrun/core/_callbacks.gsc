@@ -159,7 +159,7 @@ playerSpawn()
 	self cleanUp();
 
 	self sr\core\_teams::setHealth();
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 	self detachAll();
 
 	self.pers["weapon"] = self sr\core\_assets::getCustomizeWeapon()["item"];
