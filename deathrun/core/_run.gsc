@@ -18,6 +18,8 @@ start()
 	if (self sr\core\_minigames::isInAnyQueue())
 		self.sr_mode = "210";
 	self.sr_way = "normal_0";
+	self setStat(1700, 2);
+	self allowSprint(true);
 
     self [[level.leaderboard_modes[self.sr_mode].callback]]();
 	self thread playerTimer();
