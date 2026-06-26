@@ -160,6 +160,7 @@ material,sr_bokeh
 material,sr_bokeh_add
 material,sr_bokeh_multiply
 material,sr_dice
+material,sr_life
 material,sr_edge
 material,sr_glitch
 material,sr_grid
