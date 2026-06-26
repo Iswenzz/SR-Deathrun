@@ -4,9 +4,12 @@
 main()
 {
 	level.leaderboards = [];
+	level.leaderboard_modes = [];
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 40;
 	level.leaderboard_xps = xpTable();
+
+	addMode("210");
 
 	event("map", ::load);
 	event("connected", ::onConnect);
@@ -339,13 +342,10 @@ saveEntry(entry)
 	critical_release("mysql");
 }
 
-addMode(mode, callback)
+addMode(mode)
 {
-	if (!isDefined(level.leaderboard_modes))
-		level.leaderboard_modes = [];
 	level.leaderboard_modes[mode] = spawnStruct();
 	level.leaderboard_modes[mode].id = mode;
-	level.leaderboard_modes[mode].callback = callback;
 }
 
 addWay(way, name)

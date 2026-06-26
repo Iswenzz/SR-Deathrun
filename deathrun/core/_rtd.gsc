@@ -259,12 +259,12 @@ rtd_Q3()
 
 rtd_Q3CPM()
 {
-	self deathrun\core\_run::start_Q3CPM();
+	self deathrun\core\_run::start_Q3();
 }
 
 rtd_Q3CPMW()
 {
-	self deathrun\core\_run::start_Q3CPMW();
+	self deathrun\core\_run::start_Q3W();
 }
 
 rtd_CS()

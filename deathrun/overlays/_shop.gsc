@@ -179,7 +179,7 @@ menu_Q3CPM(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\core\_run::start_Q3CPM();
+	self deathrun\core\_run::start_Q3();
 
 	self pm("^5Q3CPM mode !");
 	self sr\core\_overlays::done();
@@ -190,7 +190,7 @@ menu_Q3CPMW(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\core\_run::start_Q3CPMW();
+	self deathrun\core\_run::start_Q3W();
 
 	self pm("^5Q3CPMW mode !");
 	self sr\core\_overlays::done();

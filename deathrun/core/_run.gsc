@@ -4,35 +4,66 @@
 main()
 {
 	level.finishedMap = false;
+	level.run_modes = [];
 
-	deathrun\core\_leaderboards::addMode("210", ::start_210);
+	addMode("190", ::start_190);
+	addMode("210", ::start_210);
+	addMode("Q3", ::start_Q3);
+	addMode("Q3CPM", ::start_Q3);
+	addMode("Q3CPMW", ::start_Q3W);
+	addMode("CS", ::start_CS);
+	addMode("Portal", ::start_Portal);
 
     event("map", ::endmapTrigger);
+}
+
+addMode(mode, callback)
+{
+	level.run_modes[mode] = spawnStruct();
+	level.run_modes[mode].id = mode;
+	level.run_modes[mode].callback = callback;
 }
 
 start()
 {
 	self.finishedMap = false;
 
-	self.sr_mode = self getLastMode();
-	if (self sr\core\_minigames::isInAnyQueue())
-		self.sr_mode = "210";
+	self.sr_mode = self getMode();
 	self.sr_way = "normal_0";
-	self setStat(1700, 2);
+
+	if (self getStat(1700) != self getModeStat())
+		self setStat(1700, self getModeStat());
+
 	self allowSprint(true);
 
-    self [[level.leaderboard_modes[self.sr_mode].callback]]();
+    self [[level.run_modes[self.sr_mode].callback]]();
 	self thread playerTimer();
 }
 
-getLastMode()
+getMode()
 {
+	if (isDefined(self.demo))
+		return self.sr_mode;
+	if (isDefined(self.sr_mode_force))
+		return self.sr_mode_force;
+	if (isSurf())
+		return "CS";
 	return "210";
 }
 
-getLastModeStat()
+getModeStat()
 {
-	return 2;
+	switch (self.sr_mode)
+	{
+		case "190": return 1;
+		case "210": return 2;
+		case "Q3": return 3;
+		case "Q3CPM": return 4;
+		case "Q3CPMW": return 5;
+		case "CS": return 6;
+		case "Portal": return 7;
+	}
+	return 1;
 }
 
 endmapTrigger()
@@ -120,8 +151,6 @@ endTimer()
 
 start_190()
 {
-	self.sr_mode = "190";
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 	self cheat();
 
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.05);
@@ -160,8 +189,6 @@ start_210()
 
 start_Q3()
 {
-	self.sr_mode = "Q3";
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 	self cheat();
 
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
@@ -180,36 +207,13 @@ start_Q3()
 	self setMoveSpeed(self.speed);
 }
 
-start_Q3CPM()
+start_Q3W()
 {
-	self.sr_mode = "Q3CPM";
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 	self cheat();
 
-	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
-	self.gravity = sr\api\_map::getGravity(800);
-	self.jumpHeight = sr\api\_map::getJumpHeight(39);
-	self.speed = sr\api\_map::getSpeed(320);
-
-	self.spawnMoveSpeedScale = self.moveSpeedScale;
-	self.spawnGravity = self.gravity;
-	self.spawnJumpHeight = self.jumpHeight;
-	self.spawnSpeed = self.speed;
-
-	self setMoveSpeedScale(self.moveSpeedScale);
-	self setGravity(self.gravity);
-	self setJumpHeight(self.jumpHeight);
-	self setMoveSpeed(self.speed);
-}
-
-start_Q3CPMW()
-{
-	self.sr_mode = "Q3CPMW";
 	self.forceWeaponVisual = true;
 	self.forceWeaponKnockback = true;
 	self.forceWeaponHitPlayers = true;
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
-	self cheat();
 
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 	self.gravity = sr\api\_map::getGravity(800);
@@ -249,8 +253,6 @@ start_Q3CPMW()
 
 start_CS()
 {
-	self.sr_mode = "CS";
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 	self cheat();
 
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
@@ -271,11 +273,10 @@ start_CS()
 
 start_Portal()
 {
-	self.sr_mode = "Portal";
+	self cheat();
+
 	self.forcePortalVisual = true;
 	self.forcePortalHitPlayers = true;
-	self.huds["speedrun"]["mode"] setText(self.sr_mode);
-	self cheat();
 
 	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 	self.gravity = sr\api\_map::getGravity(800);

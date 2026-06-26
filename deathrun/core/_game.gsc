@@ -147,33 +147,26 @@ specialRound()
 startSpecialRound(mode)
 {
 	color = "^7";
-	modeCallback = undefined;
 	modeIndex = 0;
 
 	switch (mode)
 	{
 		case "190":
-			modeCallback = deathrun\core\_run::start_190;
 			modeIndex = 1;
 			break;
 		case "Q3":
-			modeCallback = deathrun\core\_run::start_Q3;
 			modeIndex = 3;
 			break;
 		case "Q3CPM":
-			modeCallback = deathrun\core\_run::start_Q3CPM;
 			modeIndex = 4;
 			break;
 		case "Q3CPMW":
-			modeCallback = deathrun\core\_run::start_Q3CPMW;
 			modeIndex = 5;
 			break;
 		case "CS":
-			modeCallback = deathrun\core\_run::start_CS;
 			modeIndex = 6;
 			break;
 		case "Portal":
-			modeCallback = deathrun\core\_run::start_Portal;
 			modeIndex = 7;
 			break;
 	}
@@ -181,14 +174,18 @@ startSpecialRound(mode)
 	thread braxi\_mod::drawInformation(800, 0.8, 1, msg);
 	thread braxi\_mod::drawInformation(800, 0.8, -1, msg);
 
-	if (!isDefined(modeCallback))
+	if (!modeIndex)
 		return;
 
 	players = getPlayingPlayers();
 	for (i = 0; i < players.size; i++)
 	{
-		players[i] setStat(1700, modeIndex);
-		players[i] thread [[modeCallback]]();
+		players[i].sr_mode_force = mode;
+
+		if (isDefined(players[i].huds["speedrun"]))
+			players[i].huds["speedrun"]["mode"] setText(self.sr_mode_force);
+
+		players[i] thread deathrun\core\_run::start();
 	}
 }
 
