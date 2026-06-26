@@ -268,9 +268,9 @@ pickActivator()
 actiGodmode()
 {
 	self endon("disconnect");
-	self.godmodeCallback = true;
+	self.godmode = true;
 	wait 1;
-	self.godmodeCallback = undefined;
+	self.godmode = undefined;
 }
 
 lastJumper()
