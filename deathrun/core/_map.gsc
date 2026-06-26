@@ -119,7 +119,7 @@ endRound(text, team)
 endMusic()
 {
 	alias = fmt("end_map%d", randomIntRange(1, 9));
-	thread sr\core\_music::playAmbient(alias);
+	thread sr\core\_music::playSequence(alias);
 }
 
 endSpectate()
