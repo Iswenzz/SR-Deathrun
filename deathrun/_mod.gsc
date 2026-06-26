@@ -16,6 +16,7 @@ main()
 
 	sr\_mod::main();
 	braxi\_mod::main();
+	surf\_mod::main();
 
 	sr\commands\_admin::main();
 	sr\commands\_cef::main();
