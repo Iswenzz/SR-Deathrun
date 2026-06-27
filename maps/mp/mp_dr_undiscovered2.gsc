@@ -2,25 +2,25 @@
  Map By CoMpy.
  /devmap mp_dr_undiscovered2
 
-                                                                                                            
-     ***** *      **           *****  *       *******      ****           *         *****  *       * ***    
-  ******  *    *****        ******  *       *       ***   *  *************       ******  *       *  ****  * 
- **   *  *       *****     **   *  *       *         **  *     *********        **   *  *       *  *  ****  
-*    *  **       * **     *    *  *        **        *   *     *  *            *    *  *       *  **   **   
-    *  ***      *             *  *          ***           **  *  **                *  *       *  ***        
-   **   **      *            ** **         ** ***            *  ***               ** **      **   **        
-   **   **      *            ** **          *** ***         **   **               ** **      **   **        
-   **   **     *           **** **            *** ***       **   **             **** **      **   **        
-   **   **     *          * *** **              *** ***     **   **            * *** **      **   **        
-   **   **     *             ** **                ** ***    **   **               ** **      **   **        
-    **  **    *         **   ** **                 ** **     **  **          **   ** **       **  **        
-     ** *     *        ***   *  *                   * *       ** *      *   ***   *  *         ** *      *  
-      ***     *         ***    *          ***        *         ***     *     ***    *           ***     *   
-       *******           ******          *  *********           *******       ******             *******    
-         ***               ***          *     *****               ***           ***                ***      
-                                        *                                                                   
-                                         **                                                                 
-                                                                                                            
+
+     ***** *      **           *****  *       *******      ****           *         *****  *       * ***
+  ******  *    *****        ******  *       *       ***   *  *************       ******  *       *  ****  *
+ **   *  *       *****     **   *  *       *         **  *     *********        **   *  *       *  *  ****
+*    *  **       * **     *    *  *        **        *   *     *  *            *    *  *       *  **   **
+    *  ***      *             *  *          ***           **  *  **                *  *       *  ***
+   **   **      *            ** **         ** ***            *  ***               ** **      **   **
+   **   **      *            ** **          *** ***         **   **               ** **      **   **
+   **   **     *           **** **            *** ***       **   **             **** **      **   **
+   **   **     *          * *** **              *** ***     **   **            * *** **      **   **
+   **   **     *             ** **                ** ***    **   **               ** **      **   **
+    **  **    *         **   ** **                 ** **     **  **          **   ** **       **  **
+     ** *     *        ***   *  *                   * *       ** *      *   ***   *  *         ** *      *
+      ***     *         ***    *          ***        *         ***     *     ***    *           ***     *
+       *******           ******          *  *********           *******       ******             *******
+         ***               ***          *     *****               ***           ***                ***
+                                        *
+                                         **
+
 
 */
 
@@ -40,7 +40,6 @@ main()
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
 
-    setdvar("g_speed" ,"210");
     setdvar("bg_falldamageminheight" , "99998");
     setdvar("bg_falldamagemaxheight" , "99999");
     setdvar("bg_bobmax" , "0");
@@ -69,10 +68,10 @@ fire_effect1()
     fire = getentarray("pump3","targetname");
     hfx = undefined;
     level waittill("round_started");
-    
+
     for(i=0;i<fire.size;i++)
     {
-        hfx[i] = spawnfx(level.pumpfire,fire[i].origin); 
+        hfx[i] = spawnfx(level.pumpfire,fire[i].origin);
         triggerfx(hfx[i]);
     }
 }
@@ -138,8 +137,8 @@ autorotation()
 
 
 
- 
-  for(;;) 
+
+  for(;;)
   {
     deathrun rotateYaw (360,5);
     sphere  rotateYaw (360,5);
@@ -156,20 +155,20 @@ autorotation()
     wtf  rotateYaw (360,5);
     sletter  rotateYaw (360,10);
     bletter  rotateYaw (360,10);
-    kletter  rotateYaw (360,10);    
+    kletter  rotateYaw (360,10);
 
    wait 4;
   }
 }
 
 
-tpend()//jumper last tp 
+tpend()//jumper last tp
 {
    trig = getent("trigger_endtp", "targetname");
    tele1 = getent ("origin_endtp", "targetname");
-   
+
    for (;;)
-    {   
+    {
      trig waittill ("trigger", player);
 	   player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
@@ -180,9 +179,9 @@ finaltp()//jumper tp to endtrig
 {
    trig = getent("trigger_finaltp", "targetname");
    tele1 = getent ("origin_finaltp", "targetname");
-   
+
    for (;;)
-    {   
+    {
      trig waittill ("trigger", player);
 	   player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
@@ -190,8 +189,8 @@ finaltp()//jumper tp to endtrig
 }
 
 endmap_trig()
-{ 
-	trig = getEnt("endmap_trig", "targetname"); 	
+{
+	trig = getEnt("endmap_trig", "targetname");
 	trig waittill ("trigger",player );
 	firstPlace = newHudElem();
 	firstPlace.foreground = true;
@@ -199,7 +198,7 @@ endmap_trig()
 	firstPlace.alignX = "left";
 	firstPlace.alignY = "middle";
 	firstPlace.horzAlign = "left";
-	firstPlace.vertAlign = "middle"; 
+	firstPlace.vertAlign = "middle";
 	firstPlace.x = -400;
 	firstPlace.y = 0;
 	firstPlace.sort = 0;
@@ -209,27 +208,27 @@ endmap_trig()
 	firstPlace.glowAlpha = 1;
 	firstPlace.glowColor = (.3,.0,3);
 	firstPlace settext("^6"+ player.name+ " ^7Finished ^7First");
-	firstPlace moveOverTime(2); 
+	firstPlace moveOverTime(2);
 	firstPlace.x = 5;
 	wait 5;
-	firstPlace moveOverTime(2); 
+	firstPlace moveOverTime(2);
 	firstPlace.x = -500;
 	wait 7;
-	firstPlace destroy(); 
+	firstPlace destroy();
 }
 
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -279,7 +278,7 @@ jumproom()
         player.health = player.maxhealth;
                        while(isDefined(player) && isAlive(player))
             wait .05;
-        
+
         iPrintLnBold ("" + player.name + " has died in Jump Room");
     }
 }
@@ -304,21 +303,21 @@ givesniper()//bounceroom
 
 sniproom()
 {
-    
+
     level.trigger_scope = getEnt ("trigger_sniproom", "targetname");
 
     jumpersc = getEnt ("origin_sniperjumper", "targetname");
     actisc = getEnt ("origin_sniperacti", "targetname");
 
     for(;;)
-    {   
+    {
         level.trigger_scope setHintString ("Press [&&1] to enter Sniper Room");
         level.trigger_scope waittill ("trigger", player);
 
         player thread waitdead();
         activator = GetActivator();
         player setOrigin (jumpersc.origin);
-        player setPlayerAngles (jumpersc.angles);    
+        player setPlayerAngles (jumpersc.angles);
         activator setOrigin (actisc.origin);
         activator setPlayerAngles (actisc.angles);
         player takeAllWeapons();
@@ -332,9 +331,9 @@ sniproom()
         player giveMaxAmmo("m40a3_mp");
         activator giveMaxAmmo("m40a3_mp");
         player switchToWeapon("m40a3_mp");
-        activator switchToWeapon("m40a3_mp");   
+        activator switchToWeapon("m40a3_mp");
         player.maxhealth = 100;
-        
+
 
         while(isDefined(player) && isAlive(player))
             wait .05;
@@ -345,7 +344,7 @@ sniproom()
 
 kniferoom()
 {
-   
+
    level.trigger_knife = getEnt ("trigger_kniferoom", "targetname");
 
     jumperk = getEnt ("origin_knifejumper", "targetname");
@@ -372,7 +371,7 @@ kniferoom()
         player.health = player.maxhealth;
                        while(isDefined(player) && isAlive(player))
             wait .05;
-        
+
         iPrintLnBold ("" + player.name + " has died in Knife Room");
     }
 }
@@ -383,7 +382,7 @@ jumperfailb()//jumper respawn bounce r
    teleb = getent ("origin_bouncejumper", "targetname");
 
    for(;;)
-    {   
+    {
 	  trigb waittill("trigger", player);
 	  player setOrigin(teleb.origin);
 	  player setPlayerAngles (teleb.angles);
@@ -396,7 +395,7 @@ bounceactif()// acti respawn bounce r
    teleb = getent ("origin_bounceactif", "targetname");
 
    for(;;)
-    {   
+    {
 	  trigb waittill("trigger", player);
 	  player setOrigin(teleb.origin);
 	  player setPlayerAngles (teleb.angles);

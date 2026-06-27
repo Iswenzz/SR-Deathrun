@@ -4,25 +4,25 @@
 
 
 
-                                                                                                            
-     ***** *      **           *****  *       *******      ****           *         *****  *       * ***    
-  ******  *    *****        ******  *       *       ***   *  *************       ******  *       *  ****  * 
- **   *  *       *****     **   *  *       *         **  *     *********        **   *  *       *  *  ****  
-*    *  **       * **     *    *  *        **        *   *     *  *            *    *  *       *  **   **   
-    *  ***      *             *  *          ***           **  *  **                *  *       *  ***        
-   **   **      *            ** **         ** ***            *  ***               ** **      **   **        
-   **   **      *            ** **          *** ***         **   **               ** **      **   **        
-   **   **     *           **** **            *** ***       **   **             **** **      **   **        
-   **   **     *          * *** **              *** ***     **   **            * *** **      **   **        
-   **   **     *             ** **                ** ***    **   **               ** **      **   **        
-    **  **    *         **   ** **                 ** **     **  **          **   ** **       **  **        
-     ** *     *        ***   *  *                   * *       ** *      *   ***   *  *         ** *      *  
-      ***     *         ***    *          ***        *         ***     *     ***    *           ***     *   
-       *******           ******          *  *********           *******       ******             *******    
-         ***               ***          *     *****               ***           ***                ***      
-                                        *                                                                   
-                                         **                                                                 
-                                                                                                            
+
+     ***** *      **           *****  *       *******      ****           *         *****  *       * ***
+  ******  *    *****        ******  *       *       ***   *  *************       ******  *       *  ****  *
+ **   *  *       *****     **   *  *       *         **  *     *********        **   *  *       *  *  ****
+*    *  **       * **     *    *  *        **        *   *     *  *            *    *  *       *  **   **
+    *  ***      *             *  *          ***           **  *  **                *  *       *  ***
+   **   **      *            ** **         ** ***            *  ***               ** **      **   **
+   **   **      *            ** **          *** ***         **   **               ** **      **   **
+   **   **     *           **** **            *** ***       **   **             **** **      **   **
+   **   **     *          * *** **              *** ***     **   **            * *** **      **   **
+   **   **     *             ** **                ** ***    **   **               ** **      **   **
+    **  **    *         **   ** **                 ** **     **  **          **   ** **       **  **
+     ** *     *        ***   *  *                   * *       ** *      *   ***   *  *         ** *      *
+      ***     *         ***    *          ***        *         ***     *     ***    *           ***     *
+       *******           ******          *  *********           *******       ******             *******
+         ***               ***          *     *****               ***           ***                ***
+                                        *
+                                         **
+
 
 */
 
@@ -40,11 +40,10 @@ main()
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
 
-    setdvar("g_speed" ,"210");
     setdvar("bg_falldamageminheight" , "99998");
     setdvar("bg_falldamagemaxheight" , "99999");
     setdvar("bg_bobmax" , "0");
- 
+
  thread fx();
  thread fire_effect1();
  thread fire_effect();
@@ -118,7 +117,7 @@ createHUD( x, y, alignX, alignY, alpha, font, fontScale )
 }
 
 fx()
-{   
+{
 
      cyanglow = getEnt("cyanglow", "targetname");//hall of fame glow fx
      mist1 = getEnt("mist1", "targetname");//first part inside building
@@ -145,10 +144,10 @@ fire_effect1()
     fire = getentarray("emberblue2","targetname");
     hfx = undefined;
     level waittill("round_started");
-    
+
     for(i=0;i<fire.size;i++)
     {
-        hfx[i] = spawnfx(level.fire_effect,fire[i].origin); 
+        hfx[i] = spawnfx(level.fire_effect,fire[i].origin);
         triggerfx(hfx[i]);
     }
 }
@@ -163,17 +162,17 @@ fire_effect()
     middlefire = getentarray("middlefire","targetname");
     hfx = undefined;
     level waittill("round_started");
-    
+
     for(i=0;i<fire.size;i++)
     {
-        hfx[i] = spawnfx(level.fire_effect,fire[i].origin); 
+        hfx[i] = spawnfx(level.fire_effect,fire[i].origin);
         triggerfx(hfx[i]);
     }
 }
 
 endmap_trig()
-{ 
-	trig = getEnt("endmap_trig", "targetname"); 	
+{
+	trig = getEnt("endmap_trig", "targetname");
 	trig waittill ("trigger",player );
 	firstPlace = newHudElem();
 	firstPlace.foreground = true;
@@ -181,7 +180,7 @@ endmap_trig()
 	firstPlace.alignX = "left";
 	firstPlace.alignY = "middle";
 	firstPlace.horzAlign = "left";
-	firstPlace.vertAlign = "middle"; 
+	firstPlace.vertAlign = "middle";
 	firstPlace.x = -400;
 	firstPlace.y = 0;
 	firstPlace.sort = 0;
@@ -191,13 +190,13 @@ endmap_trig()
 	firstPlace.glowAlpha = 1;
 	firstPlace.glowColor = (.3,.0,3);
 	firstPlace settext("^6"+ player.name+ " ^7Finished ^7First");
-	firstPlace moveOverTime(2); 
+	firstPlace moveOverTime(2);
 	firstPlace.x = 5;
 	wait 5;
-	firstPlace moveOverTime(2); 
+	firstPlace moveOverTime(2);
 	firstPlace.x = -500;
 	wait 7;
-	firstPlace destroy(); 
+	firstPlace destroy();
 }
 
 messagescreen()
@@ -310,7 +309,7 @@ autorotation()
      circlebounce1 = getent("circlebounce1","targetname");
      circlebounce1a = getent("circlebounce1a","targetname");
 
-  for(;;) 
+  for(;;)
   {
    rotate rotateYaw (360,5);
    brush1 rotatePitch (360,5);
@@ -335,15 +334,15 @@ autorotation()
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -367,21 +366,21 @@ waitdead()
 
 sniproom()
 {
-    
+
     level.trigger_scope = getEnt ("trigger_sniproom", "targetname");
 
     jumpersc = getEnt ("origin_sniperjumper", "targetname");
     actisc = getEnt ("origin_sniperacti", "targetname");
 
     for(;;)
-    {   
+    {
         level.trigger_scope setHintString ("Press [&&1] to enter Sniper Room");
         level.trigger_scope waittill ("trigger", player);
 
         player thread waitdead();
         activator = GetActivator();
         player setOrigin (jumpersc.origin);
-        player setPlayerAngles (jumpersc.angles);    
+        player setPlayerAngles (jumpersc.angles);
         activator setOrigin (actisc.origin);
         activator setPlayerAngles (actisc.angles);
         player takeAllWeapons();
@@ -395,9 +394,9 @@ sniproom()
         player giveMaxAmmo("m40a3_mp");
         activator giveMaxAmmo("m40a3_mp");
         player switchToWeapon("m40a3_mp");
-        activator switchToWeapon("m40a3_mp");   
+        activator switchToWeapon("m40a3_mp");
         player.maxhealth = 100;
-        
+
 
         while(isDefined(player) && isAlive(player))
             wait .05;
@@ -410,9 +409,9 @@ jumpertp()//second area
 {
    trig = getent("trigger_tp1", "targetname");
    tele1 = getent ("origin_tp1", "targetname");
-   
+
    for (;;)
-    {   
+    {
      trig waittill ("trigger", player);
 	   player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
@@ -423,9 +422,9 @@ return1()//second area return back kjumper
 {
    trig = getent("trigger_return1", "targetname");
    tele1 = getent ("origin_return1", "targetname");
-   
+
    for (;;)
-    {   
+    {
      trig waittill ("trigger", player);
 	   player setOrigin(tele1.origin);
        player freeze_on_tps(0.05);
@@ -461,7 +460,7 @@ jumproom()
         player.health = player.maxhealth;
                        while(isDefined(player) && isAlive(player))
             wait .05;
-        
+
         iPrintLnBold ("" + player.name + " has died in Jump Room");
     }
 }
@@ -490,7 +489,7 @@ jumperfailb()//jumper respawn bounce r
    teleb = getent ("origin_bouncejumper", "targetname");
 
    for(;;)
-    {   
+    {
 	  trigb waittill("trigger", player);
 	  player setOrigin(teleb.origin);
 	  player setPlayerAngles (teleb.angles);
@@ -503,7 +502,7 @@ bounceactif()// acti respawn bounce r
    teleb = getent ("origin_bounceactif", "targetname");
 
    for(;;)
-    {   
+    {
 	  trigb waittill("trigger", player);
 	  player setOrigin(teleb.origin);
 	  player setPlayerAngles (teleb.angles);
@@ -512,7 +511,7 @@ bounceactif()// acti respawn bounce r
 
 kniferoom()
 {
-   
+
    level.trigger_knife = getEnt ("trigger_kniferoom", "targetname");
 
     jumperk = getEnt ("origin_knifejumper", "targetname");
@@ -539,7 +538,7 @@ kniferoom()
         player.health = player.maxhealth;
                        while(isDefined(player) && isAlive(player))
             wait .05;
-        
+
         iPrintLnBold ("" + player.name + " has died in Knife Room");
     }
 }
@@ -549,9 +548,9 @@ actitp1()
    trig = getent("trigger_actitp1", "targetname");
    tele1 = getent ("origin_actitp1", "targetname");
    trig setHintString ("Acti next area");
-   
+
    for (;;)
-    {   
+    {
      trig waittill ("trigger", player);
 	   player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
