@@ -1,4 +1,5 @@
 #include sr\sys\_dvar;
+#include sr\utils\_common;
 
 main()
 {
@@ -13,6 +14,7 @@ main()
 	addDvar("map_edition", "sr_map_edition", 0, 0, 1, "int");
 	addDvar("match_need_players", "sr_match_need_players", 2, 0, 10, "int");
 	addDvar("time", "sr_time", 300, 60, 7200, "int");
+	addDvar("seed", "sr_seed", generateToken(10), 0, 0, "string");
 
 	setDvar("g_deadchat", 1000);
 	setDvar("g_knockback", 1000);

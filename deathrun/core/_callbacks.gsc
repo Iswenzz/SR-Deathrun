@@ -257,6 +257,6 @@ serverDvars()
 	);
 	wait 0.05;
 	self setClientDvars(
-		"cef_url", "https://sr-speedrun.com/media"
+		"cef_url", fmt("https://sr-speedrun.com/media/%s", level.dvar["seed"])
 	);
 }
