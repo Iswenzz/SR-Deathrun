@@ -254,25 +254,30 @@ rtd_Explode()
 
 rtd_Q3()
 {
-	self deathrun\core\_run::start_Q3();
+	self.sr_mode_force = "Q3";
+	self thread deathrun\core\_run::start();
 }
 
 rtd_Q3CPM()
 {
-	self deathrun\core\_run::start_Q3();
+	self.sr_mode_force = "Q3CPM";
+	self thread deathrun\core\_run::start();
 }
 
 rtd_Q3CPMW()
 {
-	self deathrun\core\_run::start_Q3W();
+	self.sr_mode_force = "Q3CPMW";
+	self thread deathrun\core\_run::start();
 }
 
 rtd_CS()
 {
-	self deathrun\core\_run::start_CS();
+	self.sr_mode_force = "CS";
+	self thread deathrun\core\_run::start();
 }
 
 rtd_Portal()
 {
-	self deathrun\core\_run::start_Portal();
+	self.sr_mode_force = "Portal";
+	self thread deathrun\core\_run::start();
 }

@@ -58,6 +58,7 @@ main()
 	sr\huds\_hitmarker::main();
 	sr\huds\_keys::main();
 	sr\huds\_notifications::main();
+	sr\huds\_pmove::main();
 	sr\huds\_spectator::main();
 	sr\huds\_velocity::main();
 	sr\huds\_viewkick::main();

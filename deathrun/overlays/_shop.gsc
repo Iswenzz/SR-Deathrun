@@ -168,7 +168,8 @@ menu_Q3(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\core\_run::start_Q3();
+	self.sr_mode_force = "Q3";
+	self thread deathrun\core\_run::start();
 
 	self pm("^5Q3 mode !");
 	self sr\core\_overlays::done();
@@ -179,7 +180,8 @@ menu_Q3CPM(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\core\_run::start_Q3();
+	self.sr_mode_force = "Q3CPM";
+	self thread deathrun\core\_run::start();
 
 	self pm("^5Q3CPM mode !");
 	self sr\core\_overlays::done();
@@ -190,7 +192,8 @@ menu_Q3CPMW(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\core\_run::start_Q3W();
+	self.sr_mode_force = "Q3CPMW";
+	self thread deathrun\core\_run::start();
 
 	self pm("^5Q3CPMW mode !");
 	self sr\core\_overlays::done();
@@ -201,7 +204,8 @@ menu_CS(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\core\_run::start_CS();
+	self.sr_mode_force = "CS";
+	self thread deathrun\core\_run::start();
 
 	self pm("^5CS mode !");
 	self sr\core\_overlays::done();
@@ -212,7 +216,8 @@ menu_Portal(points)
 	if (!self canBuy(points))
 		return;
 
-	self deathrun\core\_run::start_Portal();
+	self.sr_mode_force = "Portal";
+	self thread deathrun\core\_run::start();
 
 	self pm("^5Portal mode !");
 	self sr\core\_overlays::done();
