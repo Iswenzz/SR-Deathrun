@@ -44,7 +44,7 @@ start()
 			self.forceWeaponKnockback = true;
 			self.forceWeaponHitPlayers = true;
 			self.speed = sr\api\_map::getSpeed(320);
-			self.jumpHeight = sr\api\_map::getJumpHeight(45.5625);
+			self.jumpHeight = sr\api\_map::getJumpHeight(39);
 			self.gravity = sr\api\_map::getGravity(800);
 			self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 			self thread sr\huds\_viewkick::onSpawn();
@@ -56,7 +56,7 @@ start()
 			self.forceWeaponKnockback = true;
 			self.forceWeaponHitPlayers = true;
 			self.speed = sr\api\_map::getSpeed(320);
-			self.jumpHeight = sr\api\_map::getJumpHeight(45.5625);
+			self.jumpHeight = sr\api\_map::getJumpHeight(39);
 			self.gravity = sr\api\_map::getGravity(800);
 			self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 			self takeAllWeapons();
@@ -72,7 +72,7 @@ start()
 		case "CS":
 			self cheat();
 			self.speed = sr\api\_map::getSpeed(250);
-			self.jumpHeight = sr\api\_map::getJumpHeight(45);
+			self.jumpHeight = sr\api\_map::getJumpHeight(39);
 			self.gravity = sr\api\_map::getGravity(800);
 			self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 			break;
@@ -82,7 +82,7 @@ start()
 			self.forcePortalVisual = true;
 			self.forcePortalHitPlayers = true;
 			self.speed = sr\api\_map::getSpeed(250);
-			self.jumpHeight = sr\api\_map::getJumpHeight(45);
+			self.jumpHeight = sr\api\_map::getJumpHeight(39);
 			self.gravity = sr\api\_map::getGravity(800);
 			self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 			self allowAds(true);
