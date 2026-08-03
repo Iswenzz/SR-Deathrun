@@ -27,7 +27,7 @@ hud()
 
 	self.huds["speedrun"]["players"] = addHud(self, 120, 0, 1, "left", "top", 1.4, 99, true);
 	self.huds["speedrun"]["players"] setValue(0);
-	self.huds["speedrun"]["players"].label = &"Players  ^8";
+	self.huds["speedrun"]["players"].label = &"Players  ^>";
 	self.huds["speedrun"]["players"].alignX = "right";
 
  	self.huds["speedrun"]["mode"] = addHud(self, 4, 18, 1, "left", "top", 1.8, 99, true);

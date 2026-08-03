@@ -178,8 +178,8 @@ getPlacementString(index)
 	switch (index)
 	{
 		case 1: 	return "^31st";
-		case 2: 	return "^82nd";
-		case 3: 	return "^93rd";
+		case 2: 	return "^>2nd";
+		case 3: 	return "^<3rd";
 		default: 	return "^7" + index + "th";
 	}
 }
