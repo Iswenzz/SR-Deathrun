@@ -39,17 +39,6 @@ start()
 
 		case "Q3":
 		case "Q3CPM":
-			self cheat();
-			self.forceWeaponVisual = true;
-			self.forceWeaponKnockback = true;
-			self.forceWeaponHitPlayers = true;
-			self.speed = sr\api\_map::getSpeed(320);
-			self.jumpHeight = sr\api\_map::getJumpHeight(39);
-			self.gravity = sr\api\_map::getGravity(800);
-			self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
-			self thread sr\huds\_viewkick::onSpawn();
-			break;
-
 		case "Q3CPMW":
 			self cheat();
 			self.forceWeaponVisual = true;
@@ -59,15 +48,29 @@ start()
 			self.jumpHeight = sr\api\_map::getJumpHeight(39);
 			self.gravity = sr\api\_map::getGravity(800);
 			self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
-			self.scriptedAmmo = 999999;
-			self takeAllWeapons();
-			for (i = 0; i < level.q3StartWeapons.size; i++)
+
+			if (self isQ3W())
 			{
-				weapon = level.q3Weapons[level.q3StartWeapons[i]];
-				self giveWeapon(weapon);
-				if (i == 0) self setSpawnWeapon(weapon);
+				self.scriptedAmmo = 999999;
+				self takeAllWeapons();
+				self giveWeapon(level.q3Weapons["rl"]);
+				self giveWeapon(level.q3Weapons["pg"]);
+				self setSpawnWeapon(level.q3Weapons["rl"]);
 			}
-			self thread sr\huds\_viewkick::onSpawn();
+			else
+			{
+				for (i = 0; i < level.q3StartWeapons.size; i++)
+				{
+					weapon = level.q3Weapons[level.q3StartWeapons[i]];
+					if (!isDefined(weapon))
+						continue;
+					self giveWeapon(weapon);
+					if (i == 0)
+						self setSpawnWeapon(weapon);
+				}
+				if (level.q3StartWeapons.size)
+					self.scriptedAmmo = IfUndef(level.q3StartAmmo, 0);
+			}
 			break;
 
 		case "CS":

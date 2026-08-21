@@ -47,6 +47,7 @@ main()
 	sr\core\_portal::main();
 	sr\core\_rank::main();
 	sr\core\_time::main();
+	sr\core\_trigger::main();
 	sr\core\_vote::main();
 	sr\core\_weapons::main();
 	sr\fx\_shaders::main();
@@ -63,6 +64,7 @@ main()
 	sr\huds\_velocity::main();
 	sr\huds\_viewkick::main();
 	sr\huds\_voice::main();
+	sr\huds\_weapons::main();
 	sr\menus\_customize::main();
 	sr\menus\_vote::main();
 	sr\modes\_debug::main();
