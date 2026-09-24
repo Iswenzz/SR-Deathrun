@@ -80,8 +80,7 @@ load()
 
 		if (id == "time")
 		{
-			time = originToTime(row["value"]);
-			game["scoreboard_records"][id]["display"] = "" + time.min + ":" + time.sec + "." + time.ms;
+			game["scoreboard_records"][id]["display"] = deathrun\core\_run::formatTime(originToTime(row["value"]));
 		}
 	}
 }
@@ -190,8 +189,7 @@ updateScore(id, entry)
 
 	if (id == "time")
 	{
-		time = originToTime(entry[id]);
-		game["scoreboard"][id]["display"] = "" + time.min + ":" + time.sec + "." + time.ms;
+		game["scoreboard"][id]["display"] = deathrun\core\_run::formatTime(originToTime(entry[id]));
 	}
 }
 

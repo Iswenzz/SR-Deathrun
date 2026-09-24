@@ -24,14 +24,12 @@ hud()
 
 	while (true)
 	{
-		time = originToTime(timeOffset + self getDemoTimer());
+		origin = timeOffset + self getDemoTimer();
+		if (origin < 0)
+			origin = 0;
 
-		ms = time.ms;
-		if (!self jumpButtonPressed())
-			ms = int(ms / 100);
-		if (ms < 0) ms = 0;
-
-		self.huds["speedrun"]["row1"] setText(fmt("%d:%d.%d", time.min, time.sec, ms));
+		time = originToTime(origin);
+		self.huds["speedrun"]["row1"] setText(deathrun\core\_run::formatTime(time, !self jumpButtonPressed()));
 
 		wait 0.05;
 	}
@@ -39,8 +37,7 @@ hud()
 
 huds()
 {
-	time = self.demo["time"];
-	timeFormat = fmt("%d:%d.%d", time.min, time.sec, time.ms);
+	timeFormat = deathrun\core\_run::formatTime(self.demo["time"]);
 	wayName = deathrun\core\_leaderboards::getLeaderboardName(self.demo["mode"], self.demo["way"]);
 
 	self.huds["demo"] = [];
