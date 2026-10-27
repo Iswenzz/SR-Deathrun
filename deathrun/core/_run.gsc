@@ -6,6 +6,82 @@ main()
 	level.finishedMap = false;
 
     event("map", ::endmapTrigger);
+    event("practise_save", ::practiseSave);
+    event("practise_load", ::practiseLoad);
+    event("practise_rewind", ::practiseRewind);
+}
+
+// A practise load resumes the timer from the time of the save, so a section is timed as part of a full run.
+practiseSave(save)
+{
+	if (isDefined(self.time) && !self.finishedMap)
+		save.time = getTime() - self.time.origin;
+}
+
+practiseLoad(save)
+{
+	if (!isDefined(save.time))
+		return;
+
+	self.finishedMap = false;
+	self.time = originToTime(getTime() - save.time);
+	self timerHistory(self.time.origin);
+	self deathrun\huds\_speedrun::resumeTime(save.time);
+}
+
+// A rewind puts the timer back to what it read at the frame it lands on.
+practiseRewind(rewind)
+{
+	entry = self timerAt(rewind.time);
+
+	// Landing after the finish keeps the finished time.
+	if (isDefined(entry) && !isDefined(entry.start))
+		return;
+
+	// A frame from before the timer started puts it back at zero.
+	elapsed = 0;
+	if (isDefined(entry))
+		elapsed = rewind.time - entry.start;
+
+	self.finishedMap = false;
+	self.time = originToTime(getTime() - elapsed);
+	self timerHistory(self.time.origin);
+	self deathrun\huds\_speedrun::resumeTime(elapsed);
+}
+
+// Every start the timer takes since the spawn, undefined once finished, so a rewind can find the one in
+// effect at its frame. Past the 12.8 s SR-Server records, only the entry in effect at that edge matters.
+timerHistory(start)
+{
+	now = getTime();
+	previous = IfUndef(self.timerHistory, []);
+	history = [];
+
+	for (i = 0; i < previous.size; i++)
+	{
+		if (i + 1 < previous.size && previous[i + 1].at <= now - 13000)
+			continue;
+		history[history.size] = previous[i];
+	}
+
+	entry = spawnStruct();
+	entry.at = now;
+	entry.start = start;
+	history[history.size] = entry;
+	self.timerHistory = history;
+}
+
+timerAt(time)
+{
+	if (!isDefined(self.timerHistory))
+		return undefined;
+
+	for (i = self.timerHistory.size - 1; i >= 0; i--)
+	{
+		if (self.timerHistory[i].at <= time)
+			return self.timerHistory[i];
+	}
+	return undefined;
 }
 
 start()
@@ -162,6 +238,7 @@ playerTimer()
 	if (self.finishedMap)
 		return;
 	self.time = undefined;
+	self.timerHistory = [];
 
 	// Spastic delay caused by bad modding, too bad...
 	if (game["state"] == "playing")
@@ -178,6 +255,7 @@ playerTimer()
 
 	self deathrun\huds\_speedrun::updateTime();
 	self.time = originToTime(getTime());
+	self timerHistory(self.time.origin);
 }
 
 endTimer()
@@ -187,6 +265,7 @@ endTimer()
 	self.finishedMap = true;
 
 	self.time = originToTime(getTime() - self.time.origin);
+	self timerHistory(undefined);
 	self deathrun\huds\_speedrun::updateTime();
 
 	if (self isCheat())
