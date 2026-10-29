@@ -268,6 +268,11 @@ endTimer()
 	self timerHistory(undefined);
 	self deathrun\huds\_speedrun::updateTime();
 
+	if (!self sr\sys\_admins::isAuth())
+	{
+		self sr\sys\_admins::printLinkRequired();
+		return;
+	}
 	if (self isCheat())
 	{
 		self iPrintLnBold("^1Your time was not saved!");

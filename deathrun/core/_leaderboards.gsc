@@ -47,8 +47,13 @@ onConnect()
 	}
 
 	// Stats
-	self getPlayerEntriesCount();
-	self getPlayerWorldRecordCount();
+	if (self sr\sys\_admins::isAuth())
+	{
+		self getPlayerEntriesCount();
+		self getPlayerWorldRecordCount();
+	}
+	else
+		self unlinkedLeaderboardEntries();
 
 	if (!isDefined(self))
 		return;
@@ -62,6 +67,14 @@ botLeaderboardEntries()
 {
 	self.lbEntries = 0;
 	self.pers["wrs"] = 0;
+}
+
+unlinkedLeaderboardEntries()
+{
+	self botLeaderboardEntries();
+	self setStat(2001, 0);
+	self setStat(2002, 0);
+	self setClientDvar("sr_leaderboard_wr_count", "0");
 }
 
 updateMenuInfo()
