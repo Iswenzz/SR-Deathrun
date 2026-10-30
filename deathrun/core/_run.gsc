@@ -117,9 +117,7 @@ start()
 		case "Q3CPM":
 		case "Q3CPMW":
 			self cheat();
-			self.forceWeaponVisual = true;
-			self.forceWeaponKnockback = true;
-			self.forceWeaponHitPlayers = true;
+			self setQ3Weapons(true, true);
 			self.speed = sr\api\_map::getSpeed(320);
 			self.jumpHeight = sr\api\_map::getJumpHeight(39);
 			self.gravity = sr\api\_map::getGravity(800);
@@ -127,7 +125,6 @@ start()
 
 			if (self isQ3W())
 			{
-				self.scriptedAmmo = 999999;
 				self takeAllWeapons();
 				self giveWeapon(level.q3Weapons["rl"]);
 				self giveWeapon(level.q3Weapons["pg"]);
@@ -141,11 +138,11 @@ start()
 					if (!isDefined(weapon))
 						continue;
 					self giveWeapon(weapon);
+					self setWeaponAmmoStock(weapon, 0);
+					self setWeaponAmmoClip(weapon, IfUndef(level.q3StartAmmo, 0));
 					if (i == 0)
 						self setSpawnWeapon(weapon);
 				}
-				if (level.q3StartWeapons.size)
-					self.scriptedAmmo = IfUndef(level.q3StartAmmo, 0);
 			}
 			break;
 
